@@ -1,0 +1,12 @@
+* {
+    color: red;
+}
+
+div h1 {
+    color: blue;
+}
+
+.hello {
+    color: red;
+    font-size: 50px;
+}
