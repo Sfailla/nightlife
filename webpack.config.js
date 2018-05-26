@@ -1,5 +1,4 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
 
@@ -16,21 +15,19 @@ module.exports = {
             loader: 'babel-loader',
             test: /\.js$/,
             exclude: /node_modules/,
-        },
-        {
+            query: {
+                presets: ['react', 'env', 'es2015'],
+                plugins: ['transform-class-properties'],
+            }
+        }, {
             test: /\.s?css$/,
-            use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-                fallback: 'style-loader',
-                use: [
-                    'css-loader',
-                    'sass-loader'
-                ]
-            })),
+            use: [
+                'style-loader',
+                'css-loader',
+                'sass-loader'
+            ]
         }]
     },
-    plugins: [
-        new ExtractTextPlugin('public/css/index.css'),
-    ],
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),
