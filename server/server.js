@@ -4,22 +4,38 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
 app.use(logger('dev'));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('../public', express.static('public'))
+// always gives me problems linking css because server.js is not in root dir
+app.use(express.static(path.join(__dirname, '../public')));
 
-// testing purpose
-// app.get('/*', (req, res) => {
-//     res.sendFile('index.html', { root: path.join(__dirname, '../public') });
-// });
 
-app.get('/home', (req, res) => {
-    res.send('hello world');
+app.get('/api/events', (req, res) => {
+    const event = [
+        {
+            id: 1,
+            function: 'party',
+            location: 'Jays Pub'
+        },
+        {
+            id: 2,
+            function: 'wedding',
+            location: 'Rivieras on Hudson'
+        },
+        {
+            id: 3,
+            function: 'art gala',
+            location: 'moma'
+        }
+    ]
+    res.send(event);
 })
 
 
