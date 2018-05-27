@@ -1,11 +1,16 @@
 import React, { Component }  from 'react';
 
+import Header from '../components/Header'
+import Layout from '../layout/Layout';
 
 export default class Homepage extends Component {
     render() {
         return (
-            <div className="container">
-                <h1>This is the Homepage</h1>
+            <div> 
+                <Header />
+                <div className="container">
+                    <Layout />
+                </div>
             </div>
         );
     }

@@ -1,2 +1,14 @@
+// ABSTRACTS
 @import './abstracts/variables';
+@import './abstracts/mixins';
+
+// BASE
 @import './base/base';
+@import './base/typography';
+
+// OBJECTS
+@import './objects/layout';
+@import './objects/side-nav';
+
+// COMPONENTS
+

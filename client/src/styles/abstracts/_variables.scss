@@ -1,0 +1,27 @@
+:root {
+    // COLORS
+    --color-black: #000;
+    --color-white: #FFF;
+
+    --primary-color: #062442;
+    --secondary-color: '';
+    
+    --primary-text-color: #F71735;
+    --secondary-text-color: '';
+
+    --color-navy-blue: #003366;
+    --color-light-grey: #E8E8E8;
+
+
+    // FONTS
+    --default-font-size: 1.6rem;
+
+    // SHADOWS
+    --box-shadow-lg: 0 1rem 2rem rgba($color-black, .45);
+}
+
+
+// Sass Variables
+
+$color-black: #000;
+$color-white: #FFF;

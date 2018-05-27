@@ -1,4 +1,26 @@
-* {
-    color: red;
-    background: yellow;
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
+
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: var(--default-font-size);
+    background: #eeeeee;
+    color: rgba($color-black, .87);
+}
+
+.container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+

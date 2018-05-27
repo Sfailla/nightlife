@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 
+// good config for react, express full stack projects
 
 module.exports = {
     entry: {
