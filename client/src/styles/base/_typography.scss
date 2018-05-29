@@ -1,5 +1,21 @@
 body {
-    font-size: 2rem;
+    font-size: var(--font-size-default);
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 700;
+}
+
+.heading-primary {
+    font-size: var(--font-size-xl);
+    font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.heading-secondary {
+    font-size: var(--font-size-lg);
+    font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }

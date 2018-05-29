@@ -4,11 +4,13 @@
 
 // BASE
 @import './base/base';
+@import './base/utilities';
 @import './base/typography';
 
-// OBJECTS
-@import './objects/layout';
-@import './objects/side-nav';
-
 // COMPONENTS
+@import './components/form';
+@import './components/search-card';
+@import './components/side-nav';
 
+// PAGES 
+@import './pages/home-layout';

@@ -1,0 +1,53 @@
+.main {
+    padding: 2rem;
+
+    &__heading {
+        color: var(--primary-text-color);
+    }
+
+    &__heading-secondary {
+        font-size: var(--font-size-md);
+        color: black;
+
+        &--sub {
+            padding-top: 1rem;
+            padding-bottom: 5rem;
+            font-weight: 400;
+            color: rgba(54, 54, 54, .85);
+        }
+    }
+
+        
+    & .form-group {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+
+    &__search-card {
+        width: 70%;
+        height: 35rem;
+        margin: 0 auto;
+        margin-top: 5rem;
+        border-radius: 3px;
+        border-bottom: 4px solid var(--primary-color);
+        background: var(--color-white);
+        box-shadow: var(--box-shadow-sm-l);
+    }
+
+    &__search-container {
+        padding: 4rem 1rem 1rem 1rem;
+    }
+
+    & label {
+        color: var(--secondary-color);
+    }
+
+    & input {
+        border-radius: 3px;
+        font-size: 1.4rem;
+        border: none;
+        border-bottom: 2px solid #F71735;
+        box-shadow: var(--box-shadow-sm-l);
+    }
+}

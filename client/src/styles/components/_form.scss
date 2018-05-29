@@ -1,0 +1,44 @@
+form  {
+
+    & div.form-group {
+        font-size: var(--font-size-lg);
+        text-align: center;
+        padding: 1rem;
+    }
+
+    & div.form-group:not(:last-of-type) {
+        margin-bottom: 2rem;
+    }
+
+    & label {
+        display: block;
+        margin-left: 1rem;
+        margin-top: 1.2rem;
+        transition: all .3s ease;
+        text-align: left;
+    }
+
+    & input {
+        width: 100%;
+        height: 3.5rem;     
+        padding: 1.8rem 2rem 1.5rem 1rem;
+
+        &:focus {
+            outline: none;
+            box-shadow: var(--box-shadow-md-l);
+            border: none;
+            border-bottom: 2px solid #F71735;
+        }
+
+        &::-webkit-input-placeholder,
+        &:-moz-placeholder {
+            color: var(--color-grey-dark-2);
+        }
+    }
+
+    & input:placeholder-shown + label {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+}

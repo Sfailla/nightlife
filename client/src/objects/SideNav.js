@@ -8,7 +8,7 @@ const SideNav = () => (
                 display: 'flex',
                 justifyContent: 'center',
                 marginTop: '3rem',
-                color: 'var(--primary-text-color)',
+                color: 'var(--secondary-color)',
                 fontSize: '5rem',
             }}>
         NL
