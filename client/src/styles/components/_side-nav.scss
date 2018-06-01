@@ -1,10 +1,7 @@
 .side-nav {
     width: 100%;
     color: var(--color-white);
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
+    
 
     & li {
         width: 100%;

@@ -2,7 +2,7 @@ import React from 'react';
 
 
 const SideNav = () => (
-    <div>
+    <div style={{width: '100%' }}>
         <div className="logo" 
             style={{
                 display: 'flex',

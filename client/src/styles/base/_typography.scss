@@ -19,3 +19,8 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
+::selection {
+    background: #003366;
+    color: var(--secondary-color);
+}

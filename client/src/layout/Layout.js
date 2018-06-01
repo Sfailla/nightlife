@@ -16,6 +16,6 @@ const Layout = (props) => (
             <Search />
         </div>
     </div>
-)
+);
 
 export default Layout;
