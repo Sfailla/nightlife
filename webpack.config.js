@@ -13,13 +13,13 @@ module.exports = {
     },
     module: {
         rules: [{
+            test: /\.(js|jsx)$/,
             loader: 'babel-loader',
-            test: /\.js$/,
             exclude: /node_modules/,
             query: {
                 presets: ['react', 'env', 'es2015'],
                 plugins: ['transform-class-properties'],
-            }
+            },
         }, {
             test: /\.s?css$/,
             use: [
@@ -29,6 +29,13 @@ module.exports = {
             ]
         }]
     },
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
+    plugins: [
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+    ],
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),
@@ -41,9 +48,5 @@ module.exports = {
                 secure: false
             }
         }
-    },
-    plugins: [
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-    ]
+    }
 };

@@ -2,9 +2,9 @@ import React from 'react';
 
 import AppHeader from '../objects/AppHeader';
 import SideNav from '../objects/SideNav';
-import Search from '../objects/Search';
+import Search from '../sections/Search';
 
-
+import Dashboard from '../sections/Dashboard';
 
 const Layout = (props) => (
     <div className="home__grid-container">
@@ -13,7 +13,8 @@ const Layout = (props) => (
             <SideNav />
         </div>
         <div className="home__main">
-            <Search />
+            {/* <Search /> */}
+            <Dashboard />
         </div>
     </div>
 );

@@ -32,10 +32,10 @@ export default class Search extends Component {
     }
 
     handleFetchData = () => {
-        fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.state.searchVal}&limit=20&term=nightclubs,bars,clubs`, {
+        fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.state.searchVal}&limit=20&term=nightclubs,lounges,nightlife`, {
             method: 'GET',
             headers: {
-                'authorization': `Bearer ${this.getToken()}`,
+                'Authorization': `Bearer ${this.getToken()}`,
             }
         })
             .then(res => res.json())
@@ -45,6 +45,7 @@ export default class Search extends Component {
     componentDidMount() {}
 
     render() {
+
         return (
             <div className="search">
                 <h2 className="search__heading heading-primary u-center-text u-mt-25">
@@ -70,10 +71,8 @@ export default class Search extends Component {
                             handleOnSubmit={this.handleOnSubmit} />
                                                 
                         {this.state.errors.length > 0 ? <p>{this.state.errors}</p> : null}
-
                     </div>
                 </div>
-
                 <br/>
 
                 <div className="results">
@@ -85,8 +84,11 @@ export default class Search extends Component {
                                         location={data.location.address1}
                                         img_src={data.image_url}
                                         img_alt="bar images" />
-                        }) : <h1>No Data Yet</h1>}
+                        }) : null }
                     </ul>
+
+                    {this.state.results.length > 0 ? 
+                        <a href="#app-header" style={{display: 'block'}} className="u-center-text">back to top</a> : null }
                 </div>
             </div>
         );

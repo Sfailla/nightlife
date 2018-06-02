@@ -11,7 +11,7 @@ const styles = {
 
 const Header = () => (
     <div style={styles}>
-        <div className="container"
+        <div id="app-header" className="container"
             style={{
                 height: '6rem',
                 display: 'flex', 

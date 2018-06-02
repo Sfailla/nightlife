@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 import './styles/style.scss';
 
-import Homepage from './pages/home.js';
+import Homepage from './pages/HomePage';
 
 class App extends Component {
 
