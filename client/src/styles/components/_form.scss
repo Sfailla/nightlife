@@ -2,7 +2,6 @@ form  {
 
     & div.form-group {
         font-size: var(--font-size-md);
-        padding: 1rem;
     }
 
     & div.form-group:not(:last-of-type) {
@@ -12,12 +11,15 @@ form  {
     & label {
         display: block;
         margin-left: 1rem;
-        margin-top: 1.2rem;
         transition: all .3s ease;
         text-align: left;
     }
 
-    & input {
+    & .form input label {
+        margin-top: 1.2rem;
+    }
+
+    & .form input {
         width: 100%;
         height: 4.5rem;     
         padding: 0 2rem 0 1rem;
@@ -25,17 +27,30 @@ form  {
         font-size: inherit;
 
         &:focus {
-            height: 5rem;
+            height: 4.5rem;
             outline: none;
             background: white;
             box-shadow: var(--box-shadow-md-l);
             border: none;
-            border-bottom: 2px solid #F71735;
+            border-bottom: 2px solid var(--secondary-color);
         }
 
         &::-webkit-input-placeholder,
         &:-moz-placeholder {
             color: var(--color-grey-dark-2);
+        }
+    }
+
+    & .borderless-form input {
+        width: 100%;
+        padding: 0 2rem 0 1rem;
+        border: none;
+        border-bottom: 2px solid var(--primary-color);
+        font-size: inherit;
+        font-family: inherit;
+
+        &:focus {
+            outline: none;
         }
     }
 

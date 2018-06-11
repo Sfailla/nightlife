@@ -17,14 +17,10 @@
     &__side-nav {
         grid-column: 1 / 2;
         grid-row: 1 / -1;
-
-        display: flex;
-        justify-content: center;
         background: var(--primary-color);
-        position: relative;
     }
 
-    &__main {
+    &__main-page-area {
         grid-column: 2 / -1;
         grid-row: 2 / -1;
 
@@ -38,7 +34,7 @@
         box-shadow: var(--box-shadow-lg-l);
 
         min-height: 80vh;
-        margin-top: 5rem;
+        margin-top: 4rem;
         margin-bottom: 3rem;
         background-color: #FFF;
     }

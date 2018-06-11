@@ -9,7 +9,7 @@ body {
     font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .heading-secondary {
@@ -17,7 +17,14 @@ body {
     font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+}
+
+.heading-tertiary {
+    font-size: var(--font-size-md);
+    font-family: 'Cabin', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 ::selection {

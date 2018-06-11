@@ -9,9 +9,9 @@ const cors = require('cors');
 const app = express();
 
 app.use(logger('dev'));
-app.use(cors());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
 
 // always gives me problems linking css because server.js is not in root dir
 app.use(express.static(path.join(__dirname, '../client')));

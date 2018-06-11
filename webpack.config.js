@@ -27,6 +27,13 @@ module.exports = {
                 'css-loader',
                 'sass-loader'
             ]
+        }, {
+            test: /\.(gif|png|jpe?g)$/i,
+            exclude: [/node_modules/],
+            loaders: [
+                'file-loader',
+                'image-webpack-loader'
+            ]
         }]
     },
     resolve: {
@@ -36,7 +43,8 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'eval-source-map',
+    watch: true,
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),
         hot: true,

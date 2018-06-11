@@ -9,7 +9,6 @@
 
 // COMPONENTS
 @import './components/form';
-@import './components/search';
 @import './components/side-nav';
 @import './components/search-results';
 @import './components/buttons';
@@ -17,3 +16,5 @@
 // PAGES 
 @import './pages/home-layout';
 @import './pages/dashboard';
+@import './pages/search';
+@import './pages/account';

@@ -65,7 +65,6 @@ export default class Search extends Component {
                             id_name="search"
                             type="text"
                             label="Enter location"
-                            placeholder="Enter location"
                             autocomplete={false}
                             handleOnChange={this.handleOnChange}
                             handleOnSubmit={this.handleOnSubmit} />

@@ -2,34 +2,70 @@
 
     &__container {
         height: 100%;
-        padding: 2rem;
-
+        padding: 4rem;
         display: grid;
-        grid-template-rows: min-content 1fr;
+        grid-template-rows: repeat(2, min-content) 1fr;
+        grid-gap: 3rem;
     }
-
-    &__title-wrapper {}
 
     &__title {
         font-size: 3.5rem;
+        color: var(--primary-color);
     }
 
-    &__sub-title {}
+    &__sub-title {
+        color: var(--text-secondary);
+    }
+}
+
+.dash-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8rem;
+
+    & .lower-box {
+
+        & img {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__pic-box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: .5rem;
+    }
+
+    &__content-box {
+        padding: 1rem;
+        background: white;
+        border-bottom: 3px solid var(--primary-color);
+        box-shadow: var(--box-shadow-md-l);
+
+        &--heading {
+            color: var(--primary-color);
+        }
+
+        &--sub-heading {
+            color: var(--color-gold);
+        }
+    }
+
+    &__list {
+        color: var(--text-secondary);
+    }
 }
 
 .select {
-    width: 100%;
-    height: 100%;
+    height: auto;
 
     &__container {
-        padding: 2rem;
-
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-        grid-template-rows: min-content;
-        grid-gap: 2rem;
-
-        justify-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     &__card {
@@ -40,7 +76,19 @@
         background-color: #fff;
         border-bottom: 3px solid var(--primary-color);
 
+        & a {
+            display: block;
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         &--title {}
         &--icon {}
     }
 }
+
+
