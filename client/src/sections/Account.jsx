@@ -21,7 +21,7 @@ class Account extends Component {
 
     handleSelectAvatar = () => {
         const avatar = this.state.selectedAvatar;
-        let imgSrc = noAvatar;
+        let imgSrc = null;
 
         switch(avatar) {
             case 'no-avatar':
@@ -34,14 +34,10 @@ class Account extends Component {
                 imgSrc = girlAvatar;
                 break;
             default:
-                'no image available';
+                alert('no image available');
         }
 
         return imgSrc;
-    }
-
-    componentDidUpdate() {
-        document.querySelector('input[name=avatar-select]:checked').value;
     }
 
     render() {

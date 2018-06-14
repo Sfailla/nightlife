@@ -14,8 +14,8 @@ const Layout = () => (
             <SideNav />
         </div>
         <div className="home__main-page-area">
-            {/* <Dashboard /> */}
-            <Search />
+            <Dashboard />
+            {/* <Search /> */}
             {/* <Account /> */}
         </div> 
     </div>

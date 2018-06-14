@@ -11,7 +11,7 @@ const SideNav = () => (
                 NL
             </div>
             <ul className="side-nav__nav-items">
-                <li><a href="#">Home</a></li>
+                <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Search</a></li>
                 <li><a href="#">My Events</a></li>
                 <li><a href="#">Account</a></li>

@@ -6,6 +6,8 @@ const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
 
+const users = require('./routes/users');
+
 const app = express();
 
 app.use(logger('dev'));
@@ -38,6 +40,7 @@ app.get('/api/events', (req, res) => {
     res.send(event);
 })
 
+app.use('/users', users);
 
 app.listen(process.env.PORT, () =>
     console.log(

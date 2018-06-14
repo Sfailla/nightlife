@@ -3,10 +3,6 @@ import React from 'react';
 import Button from './Button';
 import truncateRes from '../utils/functions';
 
-const ex1 = 'The Holiday Inn';
-const ex2 = 'The TutanKamen Mummy Museum Of Ancient Egypt'
-
-
 
 const SearchResComponent = ({img_src, img_alt, name, location}) => (
     <div className="results__container">

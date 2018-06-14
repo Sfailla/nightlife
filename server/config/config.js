@@ -1,7 +1,7 @@
 // ENV VARIABLES
 
 let env = process.env.NODE_ENV || 'development';
-console.log('env === ', env);
+console.log('node_env === ', env);
 
 if (env === 'development' || env === 'test') {
     let config = require('./config.json');
