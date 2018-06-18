@@ -9,16 +9,17 @@ export const BorderlessForm = ({
     autocomplete, 
     name, 
     type, 
-    label 
-}) => (
+    label, }) => (
+
     <form onSubmit={handleOnSubmit}>
         <div className="form-group borderless-form">
             <input 
-                type={type}
-                className={className}
-                name={name}
                 id={name}
+                type={type}
+                name={name}
                 placeholder={label}
+                autoComplete={autocomplete ? 'on' : 'off'}
+                className={className}
                 onChange={handleOnChange} />
 
             <label htmlFor={name}>{label}</label>
@@ -28,26 +29,26 @@ export const BorderlessForm = ({
 ); 
 
 const Form = ({ 
+    handleOnChange,
     handleOnSubmit,
-    handleOnChange, 
-    className, 
     autocomplete, 
-    id_name, 
+    className, 
+    label,
     type, 
-    label
-}) => (
+    id }) => (
+
     <form onSubmit={handleOnSubmit}>
         <div className="form-group form">
             <input 
-                className={className}
+                id={id}
+                name={id}
                 type={type} 
-                id={id_name}
+                className={className}
                 autoComplete={autocomplete ? 'on' : 'off' }
-                name={id_name}
                 placeholder={label}
                 onChange={handleOnChange} />
 
-            <label htmlFor={id_name}>{label}</label>
+            <label htmlFor={id}>{label}</label>
         </div>
     </form>
 );

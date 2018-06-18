@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppHeaderList from './AppHeaderList';
+import AppHeaderList from './AppHeaderNav';
 
 
 const AppHeader = () => (

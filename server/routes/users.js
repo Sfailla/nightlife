@@ -2,6 +2,7 @@ const express = require('express');
 
 const User = require('../models/user');
 const mongoose = require('../db/mongoose');
+
 const authenticate = require('../middleware/authenticate');
 
 const server = express.Router();
@@ -23,21 +24,26 @@ server.post('/sign-up', (req, res) => {
         user.email = null;
         user.avatar = null;
 
-    
     user.save()
-        .then(user => user.generateAuthToken())
-        .then(token => res.header('x-auth', token).status(200).send(user))
-        .catch(err => res.status(401).send(err))
-    
-    console.log(user)
+        .then(user => {
+            return user.generateAuthToken()
+                .then(token => res.header('x-auth', token)
+                .status(200)
+                .send(user));
+        })
+        .catch(err => res.status(400).send(err))
 });
 
 server.post('/sign-in', (req, res) => {
     const { username, password } = req.body;
 
     User.findByCredentials(username, password)
-        .then(user => user.generateAuthToken())
-        .then(token => res.header('x-auth', token).status(200).send(user))
+        .then(user => {
+            return user.generateAuthToken()
+                .then(token => res.header('x-auth', token)
+                .status(200)
+                .send(user));
+        })        
         .catch(err => res.status(400).send(err))
 })
 

@@ -89,10 +89,11 @@ UserSchema.statics = {
         return User.findOne({ username })
             .then(user => {
                 if (!user) {
+                    console.log('there is a problem with user sign-in')
                     return Promise.reject();
                 }
                 return new Promise((resolve, reject) => {
-                    return bcrypt.compare(password, user.password, (err, res) => {
+                    bcrypt.compare(password, user.password, (err, res) => {
                         if (res) {
                             resolve(user);
                         } else {

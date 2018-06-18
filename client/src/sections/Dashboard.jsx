@@ -1,13 +1,12 @@
 import React from 'react';
 
-import DashSelect from '../objects/DashSelect';
+import DashOptions from '../objects/DashOptions';
 import DashLowerContent from '../objects/Dash-LC';
 
-import * as img1 from '../images/unsplash-nl1.jpg';
-import * as img2 from '../images/unsplash-nl2.jpg';
-import * as img3 from '../images/unsplash-nl3.jpg';
-import * as img4 from '../images/unsplash-nl4.jpg';
-
+import img1 from '../images/unsplash-nl1.jpg';
+import img2 from '../images/unsplash-nl2.jpg';
+import img3 from '../images/unsplash-nl3.jpg';
+import img4 from '../images/unsplash-nl4.jpg';
 
 const Dashboard = () => (
     <div className="dashboard__container">
@@ -20,15 +19,15 @@ const Dashboard = () => (
             </div>
         </div>
         <div className="dashboard__selection">
-            <DashSelect />
+            <DashOptions />
         </div>
         <div className="dash-content">
             <div className="lower-box dash-content__pic-box">
-                {/* <img src={img2.default} alt="lower box img" /> */}
-                <img src={img4.default} alt="lower box img" />
-                <img src={img1.default} alt="lower box img" />
-                <img src={img3.default} alt="lower box img" />
-                <img src={img4.default} alt="lower box img" />
+                <img src={img2} alt="lower box img" />
+                {/* <img src={img4} alt="lower box img" /> */}
+                <img src={img1} alt="lower box img" />
+                <img src={img3} alt="lower box img" />
+                <img src={img4} alt="lower box img" />
                 
             </div>
             <div className="lower-box dash-content__content-box">

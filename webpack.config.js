@@ -43,7 +43,7 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin(),
     ],
-    devtool: 'eval-source-map',
+    devtool: 'cheap-module-source-map',
     watch: true,
     devServer: {
         contentBase: path.resolve(__dirname, 'public'),

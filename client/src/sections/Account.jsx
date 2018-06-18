@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import Form, { BorderlessForm } from '../components/Form';
+import { BorderlessForm } from '../components/Form';
 import RadioGroup from '../components/RadioGroup';
 
-import noAvatar from '../images/noAvatar.jpg'  // switch to SVG... 
 import guyAvatar from '../images/person-guy-flat.png';
 import girlAvatar from '../images/person-girl-flat.png';
 
@@ -11,21 +10,29 @@ import girlAvatar from '../images/person-girl-flat.png';
 class Account extends Component {
 
     state = {
-        selectedAvatar: 'male-avatar',
+        avatarSelect: 'male-avatar',
+        isCustom: false,
+        avatar: '',
+        email: '',
+        location: '',
+        description: '',
     }
 
     handleOnChange = (evt) => {
         evt.persist();
-        this.setState(() => ({ selectedAvatar: evt.target.value }))
+        const { name, value } = evt.target;
+
+        console.log({[name]: value})
+        this.setState(() => ({ [name]: value }))
     }
 
     handleSelectAvatar = () => {
-        const avatar = this.state.selectedAvatar;
+        const avatar = this.state.avatarSelect;
         let imgSrc = null;
 
         switch(avatar) {
-            case 'no-avatar':
-                imgSrc = noAvatar;
+            case 'custom-avatar':
+                imgSrc = this.state.avatar;
                 break;
             case 'male-avatar':
                 imgSrc = guyAvatar;
@@ -34,7 +41,7 @@ class Account extends Component {
                 imgSrc = girlAvatar;
                 break;
             default:
-                alert('no image available');
+                return null;
         }
 
         return imgSrc;
@@ -55,39 +62,39 @@ class Account extends Component {
                         <div className="acct__card-title heading-tertiary">
                             Profile
                         </div>
-                        <a href="#" role="button">
-                            Save
-                        </a>
+                        
                     </div>
                     <hr />
                     <div className="acct__avatar-wrapper">
                         <div className="acct__avatar">
-                            <img src={this.handleSelectAvatar()} alt="no-avatar"/>
+                            <img src={this.handleSelectAvatar() } alt="no-avatar"/>
                         </div>
                         <div className="acct__checkboxes">
                             <RadioGroup
-                                labelName="guy-avatar"
+                                labelName="male-avatar"
                                 type="radio"
                                 id="male-avatar"
-                                handleChecked={this.state.selectedAvatar === 'male-avatar'}
+                                handleChecked={this.state.avatarSelect === 'male-avatar'}
                                 handleOnChange={this.handleOnChange}
-                                name="avatar-select" />
+                                name="avatarSelect" />
                             
                             <RadioGroup
                                 labelName="female-avatar"
                                 type="radio"
                                 id="female-avatar"
-                                handleChecked={this.state.selectedAvatar === 'female-avatar'}
+                                handleChecked={this.state.avatarSelect === 'female-avatar'}
                                 handleOnChange={this.handleOnChange}
-                                name="avatar-select" />
+                                name="avatarSelect" />
                             
                             <RadioGroup
-                                labelName="no-avatar"
+                                labelName="custom-avatar"
                                 type="radio"
-                                id="no-avatar"
-                                handleChecked={this.state.selectedAvatar === 'no-avatar'}
+                                id="custom-avatar"
+                                handleChecked={this.state.avatarSelect === 'custom-avatar'}
                                 handleOnChange={this.handleOnChange}
-                                name="avatar-select" />
+                                name="avatarSelect" />
+
+                            <input type="button" value="Submit" />
                         </div>
                     </div>
                     <hr/>
@@ -105,22 +112,30 @@ class Account extends Component {
                             <BorderlessForm 
                                 type="text" 
                                 name="avatar"
-                                label="Add-Avatar-url" />
+                                label="Add-Avatar-url"
+                                handleOnSubmit={this.handleOnSubmit}
+                                handleOnChange={this.handleOnChange} />
 
                             <BorderlessForm
                                 type="email"
                                 name="email"
-                                label="Add-Email" />
+                                label="Add-Email" 
+                                handleOnSubmit={this.handleOnSubmit}
+                                handleOnChange={this.handleOnChange} />
 
                             <BorderlessForm
                                 type="text"
                                 name="location"
-                                label="Add-Location" />
+                                label="Add-Location"
+                                handleOnSubmit={this.handleOnSubmit}
+                                handleOnChange={this.handleOnChange} />
 
                             <textarea 
                                 name="description"
                                 rows={5}
-                                placeholder="Add-Description" />
+                                placeholder="Add-Description"
+                                onSubmit={this.handleOnSubmit}
+                                onChange={this.handleOnChange} />
                         </div>
                     </div>
                 </div>

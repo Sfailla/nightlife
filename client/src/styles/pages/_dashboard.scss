@@ -26,16 +26,16 @@
     & .lower-box {
 
         & img {
-            min-width: 100%;
             min-height: 100%;
+            min-width: 100%;
             object-fit: cover;
         }
     }
 
     &__pic-box {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 22rem);
+        grid-template-rows: repeat(2, 16rem);
         grid-gap: .5rem;
     }
 

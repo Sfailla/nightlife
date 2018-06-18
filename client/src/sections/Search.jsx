@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Form from '../components/Form';
-import SearchResComponent from '../components/SearchRes';
+import SearchResults from '../components/SearchRes';
 
 export default class Search extends Component {
     state = {
@@ -15,7 +15,7 @@ export default class Search extends Component {
 
         // basic error handling
         if (this.state.searchVal.length > 0) {
-            evt.target.elements.search.value = '';
+            evt.target.elements[0].value = '';
             this.handleFetchData();            
         } else {
             this.setState(() => ({ errors: '** you must enter a location to search **' }))
@@ -33,16 +33,21 @@ export default class Search extends Component {
 
     handleFetchData = () => {
         fetch(`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.state.searchVal}&limit=20&term=nightclubs,lounges,nightlife`, {
-            method: 'GET',
+            method: 'get',
             headers: {
                 'Authorization': `Bearer ${this.getToken()}`,
             }
         })
-            .then(res => res.json())
-            .then(res => this.setState(() => ({ results: res.businesses })))      
+        .then(res => {
+            return res.json();
+        })
+        .then(res => this.setState(() => ({ results: res.businesses })))
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        
+    }
+
 
     render() {
 
@@ -76,8 +81,8 @@ export default class Search extends Component {
 
                 <div className="results">
                     <ul>
-                        {this.state.results.length ? this.state.results.map((data) => {
-                            return <SearchResComponent 
+                        {this.state.results.length ? this.state.results.map(data => {
+                            return <SearchResults 
                                         key={data.id}
                                         name={data.name}
                                         location={data.location.address1}
