@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import '../utils/tabs';
-
 const styles = {
 	heading: {
 		textAlign: 'center',
