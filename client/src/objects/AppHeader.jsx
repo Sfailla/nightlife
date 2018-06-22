@@ -1,13 +1,12 @@
 import React from 'react';
 
-import AppHeaderList from './AppHeaderNav';
+import AppHeaderNav from './AppHeaderNav';
 
-
-const AppHeader = () => (
-    <div className="home__app-header">
-        <div className="icon">ICON</div>
-        <AppHeaderList />
-    </div>
+const AppHeader = ({ handleSelectAvatar }) => (
+	<div className="home__app-header">
+		<div className="icon">ICON</div>
+		<AppHeaderNav handleSelectAvatar={handleSelectAvatar} />
+	</div>
 );
 
 export default AppHeader;

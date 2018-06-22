@@ -1,56 +1,59 @@
 import React from 'react';
 
+export const BorderlessForm = ({
+	handleOnChange,
+	handleOnSubmit,
+	autocomplete,
+	inputButton,
+	btnName,
+	labelColor,
+	value,
+	name,
+	type,
+	label
+}) => (
+	<form onSubmit={handleOnSubmit}>
+		<div className="form-group borderless-form">
+			<input
+				id={name}
+				type={type}
+				name={name}
+				value={value}
+				placeholder={label}
+				autoComplete={autocomplete ? 'on' : 'off'}
+				className="borderless"
+				onChange={handleOnChange}
+			/>
 
+			<label className="borderless" htmlFor={name}>
+				{label}
+			</label>
+		</div>
 
-export const BorderlessForm = ({ 
-    handleOnChange, 
-    handleOnSubmit, 
-    className, 
-    autocomplete, 
-    name, 
-    type, 
-    label, }) => (
+		{inputButton ? <input type="submit" role="button" value={btnName} /> : null}
+	</form>
+);
 
-    <form onSubmit={handleOnSubmit}>
-        <div className="form-group borderless-form">
-            <input 
-                id={name}
-                type={type}
-                name={name}
-                placeholder={label}
-                autoComplete={autocomplete ? 'on' : 'off'}
-                className={className}
-                onChange={handleOnChange} />
+const Form = ({ handleOnChange, handleOnSubmit, autocomplete, inputButton, btnName, label, type, id }) => (
+	<form onSubmit={handleOnSubmit}>
+		<div className="form-group form">
+			<input
+				id={id}
+				name={id}
+				type={type}
+				className="form"
+				autoComplete={autocomplete ? 'on' : 'off'}
+				placeholder={label}
+				onChange={handleOnChange}
+			/>
 
-            <label htmlFor={name}>{label}</label>
+			<label className="form" htmlFor={id}>
+				{label}
+			</label>
+		</div>
 
-        </div>
-    </form>
-); 
-
-const Form = ({ 
-    handleOnChange,
-    handleOnSubmit,
-    autocomplete, 
-    className, 
-    label,
-    type, 
-    id }) => (
-
-    <form onSubmit={handleOnSubmit}>
-        <div className="form-group form">
-            <input 
-                id={id}
-                name={id}
-                type={type} 
-                className={className}
-                autoComplete={autocomplete ? 'on' : 'off' }
-                placeholder={label}
-                onChange={handleOnChange} />
-
-            <label htmlFor={id}>{label}</label>
-        </div>
-    </form>
+		{inputButton ? <input type="submit" role="button" value={btnName} /> : null}
+	</form>
 );
 
 export default Form;

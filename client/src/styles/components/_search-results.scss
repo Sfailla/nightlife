@@ -1,55 +1,54 @@
 .results {
+	&__container {
+		width: 70%;
+		margin: 0 auto;
+		margin-top: 3rem;
+		margin-bottom: 7rem;
+		padding: 3rem;
+		background: white;
+		border-left: 3px solid var(--primary-color);
+		box-shadow: var(--box-shadow-md-l);
 
-    &__container {
-        width: 70%;
-        margin: 0 auto;
-        margin-top: 3rem;
-        margin-bottom: 7rem;
-        padding: 3rem;
-        background: white;
-        border-left: 3px solid var(--primary-color);
-        box-shadow: var(--box-shadow-md-l);
+		&:not(:last-child) {
+			margin-bottom: 2rem;
+		}
+	}
 
-        &:not(:last-child) {
-            margin-bottom: 2rem;
-        }
-    }
+	&__card {
+		width: 100%;
+		height: 30rem;
+		background: inherit;
 
-    &__card {
-        width: 100%;
-        height: 30rem;
-        background: inherit;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		grid-column-gap: 2rem;
 
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 2rem;
+		&--left {
+			border: 2px solid var(--primary-color);
+			grid-column: 1 / 2;
 
-        &--left {
-            border: 2px solid var(--primary-color);
-            grid-column: 1 / 2;
+			& img {
+				min-width: 100%;
+				max-width: 100%;
+				min-height: 100%;
+				max-height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+		}
 
-            & img {
-                min-width: 100%;
-                max-width: 100%;
-                min-height: 100%;
-                max-height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-        }
+		&--right {
+			grid-column: 2 / -1;
+			padding: 2rem;
+			background: var(--primary-color);
+			color: white;
+			line-height: 1.7;
+		}
+	}
 
-        &--right {
-            grid-column: 2 / -1;
-            padding: 2rem;
-            background: var(--primary-color);
-            color: white;
-            line-height: 1.7;
-        }
-    }
-
-    &__inner-container {
-        padding: 2rem;
-        height: 100%;
-        border: 1px solid white;
-    }
+	&__inner-container {
+		padding: 2rem;
+		height: 100%;
+		border: 1px solid white;
+	}
 }

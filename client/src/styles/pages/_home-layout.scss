@@ -39,3 +39,12 @@
         background-color: #FFF;
     }
 }
+
+.app-header-list {
+    align-items: center;
+     
+    &__avatar-img {
+        width: 4rem;
+        height: 4rem;
+    }
+}
