@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import Form from '../components/Form';
 import SearchResults from '../components/SearchRes';
 
-import logo from '../images/loading.jpg';
-
 export default class Search extends Component {
 	state = {
 		searchVal: [],
@@ -38,8 +36,8 @@ export default class Search extends Component {
 		this.setState(() => ({ isLoading: true }));
 
 		fetch(
-			`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=${this.state
-				.searchVal}&limit=20&term=nightclubs,lounges,nightlife`,
+			`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=
+				${this.state.searchVal}&limit=20&term=nightclubs,lounges,bars`,
 			{
 				method: 'get',
 				headers: {

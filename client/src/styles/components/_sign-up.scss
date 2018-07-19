@@ -1,6 +1,11 @@
 .signup {
 	position: relative;
 
+	&__signup-container {
+		padding: 0 4rem;
+		padding-top: 5rem;
+	}
+
 	& input[type="checkbox"] {
 		margin-top: 2rem;
 		margin-right: .5rem;
@@ -8,7 +13,7 @@
 
 	& input[type="submit"] {
 		position: absolute;
-		bottom: 5rem;
+		bottom: -10rem;
 		left: 50%;
 		transform: translateX(-50%);
 	}
@@ -16,52 +21,64 @@
 	& input[type="password"] {
 		letter-spacing: 2px;
 	}
+}
 
-	&__tabs {
-		position: relative;
-		display: flex;
-		overflow-x: auto;
-		overflow-y: hidden;
-		height: 48px;
-		width: 100%;
-		background-color: #fff;
-		margin: 0 auto;
-		white-space: nowrap;
+.active {
+	display: block;
+	color: red;
+	background: var(--primary-color);
+	border-bottom: 2px solid var(--secondary-color);
+}
+
+.shrink-tab-right {
+	animation: shrinkTabRight .6s ease-in-out forwards;
+}
+
+.grow-tab-right {
+	animation: growTabRight .6s ease-in-out;
+}
+
+.grow-tab-left {
+	animation-fill-mode: right;
+}
+
+.grow-tab-right {
+	animation-fill-mode: left;
+	transform-origin: 0 100%;
+}
+
+@keyframes growTabRight {
+	0% {
+		transform: scaleX(0);
 	}
-
-	&__tab {
-		display: inline-block;
-		text-align: center;
-		line-height: 48px;
-		height: 48px;
-		padding: 0;
-		margin: 0;
-		text-transform: uppercase;
-	}
-
-	&__tab a {
-		color: rgba(238, 110, 115, 0.7);
-		display: block;
-		width: 100%;
-		height: 100%;
-		padding: 0 24px;
-		font-size: 14px;
-		text-decoration: none;
-		text-overflow: ellipsis;
-		overflow: hidden;
-		-webkit-transition: color .28s ease;
-		transition: color .28s ease;
-	}
-
-	&__indicator {
-		position: absolute;
-		bottom: 0;
-		height: 2px;
-		background-color: #f6b2b5;
-		will-change: left, right;
+	100% {
+		transform: scaleX(1);
 	}
 }
 
-.active-tab {
-	display: block !important;
+@keyframes growTabLeft {
+	0% {
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
+@keyframes shrinkTabRight {
+	0% {
+		transform: scaleX(1);
+	}
+	100% {
+		transform: scaleX(0);
+	}
+}
+
+@keyframes shrinkTabLeft {
+	0% {
+		transform: scaleX(1);
+	}
+	100% {
+		transform: scaleX(0);
+	}
 }

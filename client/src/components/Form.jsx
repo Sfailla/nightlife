@@ -6,8 +6,6 @@ export const BorderlessForm = ({
 	autocomplete,
 	inputButton,
 	btnName,
-	labelColor,
-	value,
 	name,
 	type,
 	label
@@ -18,7 +16,6 @@ export const BorderlessForm = ({
 				id={name}
 				type={type}
 				name={name}
-				value={value}
 				placeholder={label}
 				autoComplete={autocomplete ? 'on' : 'off'}
 				className="borderless"

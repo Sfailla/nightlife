@@ -3,10 +3,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import guyAvatar from '../images/person-guy-flat.png';
 
-const AppHeaderNav = () => (
+const SideNavList = () => (
 	<ul className="app-header-list">
 		<li>
-			<Link to="/sign-up">sign up</Link>
+			<Link to="/sign-up">sign in</Link>
 		</li>
 		<li>
 			<img className="app-header-list__avatar-img" src={guyAvatar} alt="avatar-profile" />
@@ -17,4 +17,4 @@ const AppHeaderNav = () => (
 	</ul>
 );
 
-export default AppHeaderNav;
+export default SideNavList;

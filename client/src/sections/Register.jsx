@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Signup from '../components/Signup';
+
 const styles = {
 	heading: {
 		textAlign: 'center',
@@ -7,22 +9,16 @@ const styles = {
 	},
 	card: {
 		maxWidth: '70%',
-		minHeight: '40rem',
+		minHeight: '50rem',
 		backgroundColor: 'white',
-		padding: '2rem 5rem',
 		margin: '0 auto',
 		marginTop: '4rem',
+		marginBottom: '4rem',
 		boxShadow: 'var(--box-shadow-md-l)'
-	},
-	title: {
-		textAlign: 'center',
-		marginTop: '2rem',
-		marginBottom: '2rem',
-		color: 'var(--primary-text-color)'
 	}
 };
 
-class SignUp extends Component {
+class Register extends Component {
 	state = {
 		formType: 'password',
 		username: null,
@@ -40,7 +36,7 @@ class SignUp extends Component {
 	handleCBChange = (evt) => {
 		let form = document.querySelector('#password');
 
-		if (form !== null || undefined) {
+		if (form !== null || form !== undefined) {
 			this.setState(() => ({
 				formType: this.state.formType === 'password' ? 'input' : 'password',
 				checked: this.state.checked === false ? true : false
@@ -53,31 +49,21 @@ class SignUp extends Component {
 		evt.preventDefault();
 	};
 
-	handleOnClick = (evt) => {};
-
 	render() {
 		return (
 			<div className="signup">
 				<div className="heading-primary" style={styles.heading}>
 					Sign up to see who is going out tonite!
 				</div>
-
-				<div className="signup__container">
-					<ul className="signup__tabs">
-						<li className="signup__tab">
-							<a href="#test1">Test 1</a>
-						</li>
-						<li className="signup__tab">
-							<a href="#test2">Test 2</a>
-						</li>
-						<li className="signup__indicator" />
-					</ul>
-
-					<div id="test1" className="signup__tab-content active-tab">
-						Test 1
-					</div>
-					<div id="test2" className="signup__tab-content">
-						Test 2
+				<div style={styles.card}>
+					<div className="signup__container">
+						<Signup
+							formType={this.state.formType}
+							checked={this.state.checked}
+							handleCBChange={this.handleCBChange}
+							handleOnChange={this.handleOnChange}
+							handleOnSubmit={this.handleOnSubmit}
+						/>
 					</div>
 				</div>
 			</div>
@@ -85,4 +71,4 @@ class SignUp extends Component {
 	}
 }
 
-export default SignUp;
+export default Register;

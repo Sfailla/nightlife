@@ -1,46 +1,45 @@
 :root {
-    // COLORS
-    --color-black: #000;
-    --color-white: #FFF;
-    --color-gold: #c69963;
+	// COLORS
+	--color-black: #000;
+	--color-white: #fff;
+	--color-gold: #c69963;
 
-    --primary-color: #062442;
-    --secondary-color: #F71735;
-    
-    --primary-text-color: #241361;
+	--primary-color: #062442;
+	--secondary-color: #f71735;
 
-    --text-primary: #2C3643;
-    --text-secondary: rgba(44, 54, 67, 0.7);
+	--primary-text-color: #241361;
 
-    --color-grey-dark: #777;
-    --color-grey-dark-2: #999;
-    --color-grey-dark-3: #333;
+	--text-primary: #2c3643;
+	--text-secondary: rgba(44, 54, 67, 0.7);
 
-    --color-navy-blue: #003366;
-    --color-light-grey: #E8E8E8;
+	--color-grey-dark: #777;
+	--color-grey-dark-2: #999;
+	--color-grey-dark-3: #333;
 
+	--color-navy-blue: #003366;
+	--color-light-grey: #e8e8e8;
 
-    // FONTS
-    --font-size-default: 1.8rem;    
-    --font-size-sm: 1.6rem;
-    --font-size-md: 2rem;
-    --font-size-lg: 2.8rem;
-    --font-size-xl: 3.2rem;
+	// FONTS
+	--font-size-default: 1.8rem;
+	--font-size-sm: 1.6rem;
+	--font-size-md: 2rem;
+	--font-size-lg: 2.8rem;
+	--font-size-xl: 3.2rem;
 
-
-    // SHADOWS 
-        // Light
-    --box-shadow-sm-l: 0 2px 4px rgba(0, 0, 0, .30);
-    --box-shadow-md-l: 0 .5rem 1rem rgba(0, 0, 0, .40);
-    --box-shadow-lg-l: 0 1rem 2rem rgba(0, 0, 0, .45);
-        // Dark
-    --box-shadow-sm-d: 0 2px 4px rgba(0, 0, 0, .60);
-    --box-shadow-md-d: 0 .5rem 1rem rgba(0, 0, 0, .60);
-    --box-shadow-lg-d: 0 1rem 2rem rgba(0, 0, 0, .75);
+	// SHADOWS
+	// Light
+	--box-shadow-sm-l: 0 2px 4px rgba(0, 0, 0, .30);
+	--box-shadow-md-l: 0 .5rem 1rem rgba(0, 0, 0, .40);
+	--box-shadow-lg-l: 0 1rem 2rem rgba(0, 0, 0, .45);
+	// Dark
+	--box-shadow-sm-d: 0 2px 4px rgba(0, 0, 0, .60);
+	--box-shadow-md-d: 0 .5rem 1rem rgba(0, 0, 0, .60);
+	--box-shadow-lg-d: 0 1rem 2rem rgba(0, 0, 0, .75);
 }
-
 
 // Sass Variables
 
 $color-black: #000;
-$color-white: #FFF;
+$color-white: #fff;
+
+$color-primary: #062442;

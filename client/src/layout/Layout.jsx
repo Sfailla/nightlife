@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 
-import AppHeader from '../objects/AppHeader';
+import SideNavHeader from '../objects/SideNavHeader';
 import SideNav from '../components/SideNav';
-
 import Search from '../sections/Search';
 import Account from '../sections/Account';
 import Dashboard from '../sections/Dashboard';
-import SignUp from '../sections/SignUp';
+import Register from '../sections/Register';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 const routes = (
 	<Switch>
 		<Route exact path="/" component={Search} />
 		<Route path="/dashboard" component={Dashboard} />
 		<Route path="/account" component={Account} />
-		<Route path="/sign-up" component={SignUp} />
+		<Route path="/sign-up" component={Register} />
 	</Switch>
 );
 
@@ -24,15 +23,11 @@ class Layout extends Component {
 		return (
 			<Router>
 				<div className="home__grid-container">
-					<AppHeader />
+					<SideNavHeader />
 					<div className="home__side-nav">
 						<SideNav />
 					</div>
-					<div className="home__main-page-area">
-						{/* {routes} */}
-
-						<SignUp />
-					</div>
+					<div className="home__main-page-area">{routes}</div>
 				</div>
 			</Router>
 		);

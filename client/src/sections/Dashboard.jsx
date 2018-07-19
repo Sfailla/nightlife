@@ -2,6 +2,7 @@ import React from 'react';
 
 import DashOptions from '../objects/DashOptions';
 import DashLowerContent from '../objects/Dash-LC';
+import GoingOut from '../components/GoingOut';
 
 import img1 from '../images/unsplash-nl1.jpg';
 import img2 from '../images/unsplash-nl2.jpg';
@@ -18,12 +19,8 @@ const Dashboard = () => (
 			<DashOptions />
 		</div>
 		<div className="dash-content">
-			<div className="lower-box dash-content__pic-box">
-				<img src={img2} alt="lower box img" />
-				{/* <img src={img4} alt="lower box img" /> */}
-				<img src={img1} alt="lower box img" />
-				<img src={img3} alt="lower box img" />
-				<img src={img4} alt="lower box img" />
+			<div className="lower-box dash-content__content-box">
+				<GoingOut />
 			</div>
 			<div className="lower-box dash-content__content-box">
 				<DashLowerContent />
