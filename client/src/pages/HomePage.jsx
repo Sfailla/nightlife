@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import Header from '../components/Header';
-import Layout from '../layout/Layout';
+import SideNavHeader from '../objects/SideNavHeader';
+import SideNav from '../components/SideNav';
+import Search from '../sections/Search';
+import Account from '../sections/Account';
+import Dashboard from '../sections/Dashboard';
+import Register from '../sections/Register';
 
-const HomePage = () => (
-	<div>
-		<Header />
-		<div className="container">
-			<Layout />
-		</div>
-	</div>
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+const routes = (
+	<Switch>
+		<Route exact path="/" component={Search} />
+		<Route path="/dashboard" component={Dashboard} />
+		<Route path="/account" component={Account} />
+		<Route path="/sign-up" component={Register} />
+	</Switch>
 );
 
-export default HomePage;
+class Layout extends Component {
+	render() {
+		return (
+			<Router>
+				<div className="home__grid-container home__homepage-container">
+					<SideNavHeader />
+					<div className="home__side-nav">
+						<SideNav />
+					</div>
+					<div className="home__main-page-area">{routes}</div>
+				</div>
+			</Router>
+		);
+	}
+}
+
+export default Layout;

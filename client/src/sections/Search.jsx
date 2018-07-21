@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
+import api from '../api/yelpAPI.json';
+
 import Form from '../components/Form';
 import SearchResults from '../components/SearchRes';
+import Topography from '../components/Topography';
 
 export default class Search extends Component {
 	state = {
@@ -14,9 +17,9 @@ export default class Search extends Component {
 	handleOnSubmit = (evt) => {
 		evt.preventDefault();
 
-		// basic error handling
 		if (this.state.searchVal.length) {
 			evt.target.elements[0].value = '';
+			this.setState(() => ({ errors: '' }));
 			this.handleFetchData();
 		} else {
 			this.setState(() => ({ errors: '** you must enter a location to search **' }));
@@ -29,26 +32,23 @@ export default class Search extends Component {
 	};
 
 	getToken = () => {
-		return '8L1CGTC6CeVEUvOTTAjyudXqIv4GnSNNSTOIb1xCyEhAbfcBAb-0ViQus0U-jN31RYXOuKadsAkLsJm_40A8e-gFzsBrIOSZHElUiirCKVgbcCfzSfHH1Qor6PINW3Yx';
+		return api.token;
 	};
 
 	handleFetchData = () => {
-		this.setState(() => ({ isLoading: true }));
-
-		fetch(
-			`https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location=
-				${this.state.searchVal}&limit=20&term=nightclubs,lounges,bars`,
-			{
+		if (this.state.searchVal.length) {
+			this.setState(() => ({ isLoading: true }));
+			fetch(`${api.baseURL}location=${this.state.searchVal}&limit=20&term=nightclubs,lounges,bars`, {
 				method: 'get',
 				headers: {
 					Authorization: `Bearer ${this.getToken()}`
 				}
-			}
-		)
-			.then((res) => {
-				return res.json();
 			})
-			.then((res) => this.setState(() => ({ results: res.businesses, isLoading: false })));
+				.then((res) => res.json())
+				.then((res) => this.setState(() => ({ results: res.businesses, isLoading: false, searchVal: '' })));
+		} else {
+			this.setState(() => ({ errors: '** you must enter a location to search **' }));
+		}
 	};
 
 	componentDidMount = () => {};
@@ -56,27 +56,35 @@ export default class Search extends Component {
 	render() {
 		return (
 			<div className="search">
-				<h2 className="search__heading heading-primary u-center-text u-mt-25">See whose going out tonight!</h2>
+				<Topography
+					headingPrimary={true}
+					primaryMessage="See whose going out tonight!"
+					clsname="search__heading u-center-text u-mt-25"
+				/>
 				<div className="search__search-card">
 					<div className="search__search-container">
-						<h2 className="search__heading-secondary heading-secondary u-center-text">
-							Search any area for bars and clubs!
-						</h2>
-						<p className="search__heading-secondary--sub u-mb-25 u-center-text">
-							Please enter City and State, or Zip
-						</p>
-
-						<Form
-							className="search__search-form"
-							id_name="search"
-							type="text"
-							label="Enter location"
-							autocomplete={false}
-							handleOnChange={this.handleOnChange}
-							handleOnSubmit={this.handleOnSubmit}
+						<Topography
+							headingSecondary={true}
+							secondaryMessage="Search any area for bars and clubs!"
+							clsname="search__heading-secondary u-center-text"
 						/>
+						<Topography
+							headingTertiary={true}
+							tertiaryMessage="Please enter City and State, or Zip"
+							clsname="search__heading-secondary--sub u-center-text u-mb-25"
+						/>
+						<form onSubmit={this.handleOnSubmit}>
+							<Form
+								className="search__search-form"
+								id_name="search"
+								type="text"
+								label="Enter location"
+								autocomplete={false}
+								handleOnChange={this.handleOnChange}
+							/>
 
-						{this.state.errors && <p>{this.state.errors}</p>}
+							{this.state.errors && <p>{this.state.errors}</p>}
+						</form>
 					</div>
 				</div>
 				<br />

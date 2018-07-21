@@ -10,7 +10,7 @@ export const BorderlessForm = ({
 	type,
 	label
 }) => (
-	<form onSubmit={handleOnSubmit}>
+	<div>
 		<div className="form-group borderless-form">
 			<input
 				id={name}
@@ -28,11 +28,11 @@ export const BorderlessForm = ({
 		</div>
 
 		{inputButton ? <input type="submit" role="button" value={btnName} /> : null}
-	</form>
+	</div>
 );
 
 const Form = ({ handleOnChange, handleOnSubmit, autocomplete, inputButton, btnName, label, type, id }) => (
-	<form onSubmit={handleOnSubmit}>
+	<div>
 		<div className="form-group form">
 			<input
 				id={id}
@@ -50,7 +50,7 @@ const Form = ({ handleOnChange, handleOnSubmit, autocomplete, inputButton, btnNa
 		</div>
 
 		{inputButton ? <input type="submit" role="button" value={btnName} /> : null}
-	</form>
+	</div>
 );
 
 export default Form;

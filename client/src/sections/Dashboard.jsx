@@ -1,13 +1,8 @@
 import React from 'react';
 
 import DashOptions from '../objects/DashOptions';
-import DashLowerContent from '../objects/Dash-LC';
+import DashLowerContent from '../objects/DashContent';
 import GoingOut from '../components/GoingOut';
-
-import img1 from '../images/unsplash-nl1.jpg';
-import img2 from '../images/unsplash-nl2.jpg';
-import img3 from '../images/unsplash-nl3.jpg';
-import img4 from '../images/unsplash-nl4.jpg';
 
 const Dashboard = () => (
 	<div className="dashboard__container">

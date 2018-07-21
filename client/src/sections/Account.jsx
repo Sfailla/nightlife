@@ -91,8 +91,6 @@ class Account extends Component {
 								handleOnChange={this.handleOnChange}
 								name="avatarSelect"
 							/>
-
-							<input type="button" value="Submit" />
 						</div>
 					</div>
 					<hr />
@@ -106,38 +104,37 @@ class Account extends Component {
 							</ul>
 						</div>
 						<div className="acct__form">
-							<BorderlessForm
-								type="text"
-								name="avatar"
-								label="Add-Avatar-url"
-								handleOnSubmit={this.handleOnSubmit}
-								handleOnChange={this.handleOnChange}
-							/>
+							<form onSubmit={this.handleOnSubmit}>
+								<BorderlessForm
+									type="text"
+									name="avatar"
+									label="Add-Avatar-url"
+									handleOnChange={this.handleOnChange}
+								/>
 
-							<BorderlessForm
-								type="email"
-								name="email"
-								label="Add-Email"
-								handleOnSubmit={this.handleOnSubmit}
-								handleOnChange={this.handleOnChange}
-							/>
+								<BorderlessForm
+									type="email"
+									name="email"
+									label="Add-Email"
+									handleOnChange={this.handleOnChange}
+								/>
 
-							<BorderlessForm
-								type="text"
-								name="location"
-								label="Add-Location"
-								handleOnSubmit={this.handleOnSubmit}
-								handleOnChange={this.handleOnChange}
-							/>
+								<BorderlessForm
+									type="text"
+									name="location"
+									label="Add-Location"
+									handleOnChange={this.handleOnChange}
+								/>
 
-							<textarea
-								className="u-mt-25"
-								name="description"
-								rows={5}
-								placeholder="Add-Description"
-								onSubmit={this.handleOnSubmit}
-								onChange={this.handleOnChange}
-							/>
+								<textarea
+									className="u-mt-25"
+									name="description"
+									rows={5}
+									placeholder="Add-Description"
+									onSubmit={this.handleOnSubmit}
+									onChange={this.handleOnChange}
+								/>
+							</form>
 						</div>
 					</div>
 				</div>

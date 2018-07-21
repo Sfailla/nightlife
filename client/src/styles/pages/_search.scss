@@ -1,61 +1,61 @@
 .search {
-    padding: 2rem;
+	padding: 2rem;
 
-    &__heading {
-        font-size: 4rem;
-        color: var(--primary-text-color);
-    }
+	&__heading {
+		font-size: 4rem;
+		color: var(--primary-text-color);
+	}
 
-    &__heading-secondary {
-        font-size: 2.6rem;
-        color: var(--primary-color);
+	&__heading-secondary {
+		font-size: 2.6rem;
+		color: var(--primary-color);
 
-        &--sub {
-            padding-top: 1rem;
-            padding-bottom: 3rem;
-            font-weight: 400;
-            color: rgba(54, 54, 54, .85);
-        }
-    }
+		&--sub {
+			padding-top: 1rem;
+			padding-bottom: 3rem;
+			font-weight: 400;
+			color: var(--secondary-color);
+		}
+	}
 
-    &__search-card .form-group {
-        width: 60%;
-        margin: 0 auto;
-    }
+	&__search-card .form-group {
+		width: 60%;
+		margin: 0 auto;
+	}
 
-    &__search-card {
-        width: 70%;
-        height: 35rem;
-        margin: 0 auto;
-        margin-top: 5rem;
-        border-radius: none;
-        border-bottom: 4px solid var(--primary-color);
-        background: var(--color-white);
-        box-shadow: var(--box-shadow-sm-l);
-    }
+	&__search-card {
+		width: 70%;
+		height: 35rem;
+		margin: 0 auto;
+		margin-top: 5rem;
+		border-radius: none;
+		border-bottom: 4px solid var(--primary-color);
+		background: var(--color-white);
+		box-shadow: var(--box-shadow-sm-l);
+	}
 
-    &__search-container {
-        padding: 4rem 1rem 1rem 1rem;
-    }
+	&__search-container {
+		padding: 4rem 1rem 1rem 1rem;
+	}
 
-    &__search-card label {
-        color: var(--color-grey-dark);
-        font-size: inherit;
-    }
+	&__search-card label {
+		color: var(--color-grey-dark);
+		font-size: inherit;
+	}
 
-    &__search-card input {
-        color: var(--color-grey-dark);
-        background: #FCFCFC;
-        border-radius: none;
-        font-size: inherit;
-        font-family: inherit;
-        border: 1px solid rgb(202, 202, 202);
-        // border-bottom: 2px solid #F71735;
-        box-shadow: var(--box-shadow-sm-l);
-    }
+	&__search-card input {
+		color: var(--color-grey-dark);
+		background: #fcfcfc;
+		border-radius: none;
+		font-size: inherit;
+		font-family: inherit;
+		border: 1px solid rgb(202, 202, 202);
+		// border-bottom: 2px solid #F71735;
+		box-shadow: var(--box-shadow-sm-l);
+	}
 
-    &__search-card:nth-last-child(3) {
-        text-align: center;
-        color: red;
-    }
+	&__search-card:nth-last-child(3) {
+		text-align: center;
+		color: red;
+	}
 }

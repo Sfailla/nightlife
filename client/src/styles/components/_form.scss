@@ -1,4 +1,4 @@
-form {
+div {
 	& div.form-group {
 		font-size: var(--font-size-md);
 		display: flex;
@@ -88,5 +88,10 @@ form {
 		margin-top: 2rem;
 		color: white;
 		outline: none;
+	}
+
+	& input[type="checkbox"] {
+		width: 40px;
+		font-size: 2rem;
 	}
 }
