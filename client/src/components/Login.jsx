@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Signup from '../components/Signup';
+import Signin from './Signin';
 
 const styles = {
 	heading: {
@@ -18,29 +18,15 @@ const styles = {
 	}
 };
 
-class Register extends Component {
+export class Login extends Component {
 	state = {
-		formType: 'password',
-		username: null,
-		password: null,
-		errors: null,
-		checked: false
+		username: '',
+		password: '',
+		errors: ''
 	};
-
 	handleOnChange = (evt) => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value }));
-	};
-
-	handleCBChange = (evt) => {
-		let form = document.querySelector('#password');
-
-		if (form !== null || form !== undefined) {
-			this.setState(() => ({
-				formType: this.state.formType === 'password' ? 'input' : 'password',
-				checked: this.state.checked === false ? true : false
-			}));
-		}
 	};
 
 	handleOnSubmit = (evt) => {
@@ -51,14 +37,12 @@ class Register extends Component {
 		return (
 			<div className="signup">
 				<div className="heading-primary" style={styles.heading}>
-					Sign up to see who is going out tonite!
+					Sign In below!
 				</div>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<Signup
+						<Signin
 							formType={this.state.formType}
-							checked={this.state.checked}
-							handleCBChange={this.handleCBChange}
 							handleOnChange={this.handleOnChange}
 							handleOnSubmit={this.handleOnSubmit}
 						/>
@@ -69,4 +53,4 @@ class Register extends Component {
 	}
 }
 
-export default Register;
+export default Login;

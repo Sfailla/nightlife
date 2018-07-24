@@ -1,5 +1,10 @@
 import React from 'react';
 
-const Button = ({ classname, name }) => <button className="button">{name}</button>;
+// button types are: button, submit, reset
+const Button = ({ classname, name, onClick, btnType }) => (
+	<button type={btnType} onClick={onClick} className={`button ${classname}`}>
+		{name}
+	</button>
+);
 
 export default Button;

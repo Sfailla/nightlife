@@ -1,4 +1,6 @@
 {
-	"token": "8L1CGTC6CeVEUvOTTAjyudXqIv4GnSNNSTOIb1xCyEhAbfcBAb-0ViQus0U-jN31RYXOuKadsAkLsJm_40A8e-gFzsBrIOSZHElUiirCKVgbcCfzSfHH1Qor6PINW3Yx",
-	"baseURL": "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?"
+	"yelp": {
+		"token": "8L1CGTC6CeVEUvOTTAjyudXqIv4GnSNNSTOIb1xCyEhAbfcBAb-0ViQus0U-jN31RYXOuKadsAkLsJm_40A8e-gFzsBrIOSZHElUiirCKVgbcCfzSfHH1Qor6PINW3Yx",
+		"baseURL": "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?"
+	}
 }

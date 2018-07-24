@@ -22,33 +22,42 @@ export default class Search extends Component {
 			this.setState(() => ({ errors: '' }));
 			this.handleFetchData();
 		} else {
-			this.setState(() => ({ errors: '** you must enter a location to search **' }));
+			this.setState(() => ({
+				errors: '** you must enter a location to search **'
+			}));
 		}
 	};
 
 	handleOnChange = (evt) => {
-		const { name, value } = evt.target;
+		const { value } = evt.target;
 		this.setState(() => ({ searchVal: value }));
 	};
 
 	getToken = () => {
-		return api.token;
+		return api.yelp.token;
 	};
 
 	handleFetchData = () => {
-		if (this.state.searchVal.length) {
-			this.setState(() => ({ isLoading: true }));
-			fetch(`${api.baseURL}location=${this.state.searchVal}&limit=20&term=nightclubs,lounges,bars`, {
-				method: 'get',
-				headers: {
-					Authorization: `Bearer ${this.getToken()}`
+		this.setState(() => ({ isLoading: true }));
+		fetch(`${api.yelp.baseURL}location=${this.state.searchVal}&limit=10&term=bars`, {
+			method: 'get',
+			headers: {
+				Authorization: `Bearer ${this.getToken()}`
+			}
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.businesses.length > 0) {
+					this.setState(() => ({
+						results: res.businesses,
+						isLoading: false,
+						searchVal: '',
+						errors: ''
+					}));
+				} else if (!res.businesses.length) {
+					this.setState(() => ({ errors: '** Sorry no results for that area **' }));
 				}
-			})
-				.then((res) => res.json())
-				.then((res) => this.setState(() => ({ results: res.businesses, isLoading: false, searchVal: '' })));
-		} else {
-			this.setState(() => ({ errors: '** you must enter a location to search **' }));
-		}
+			});
 	};
 
 	componentDidMount = () => {};
