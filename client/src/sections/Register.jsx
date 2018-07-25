@@ -5,7 +5,8 @@ import Signup from '../components/Signup';
 const styles = {
 	heading: {
 		textAlign: 'center',
-		marginTop: '5rem'
+		marginTop: '5rem',
+		color: 'blue'
 	},
 	card: {
 		maxWidth: '70%',
@@ -37,7 +38,7 @@ class Register extends Component {
 
 		if (form !== null || form !== undefined) {
 			this.setState(() => ({
-				formType: this.state.formType === 'password' ? 'input' : 'password',
+				formType: this.state.formType === 'password' ? 'text' : 'password',
 				checked: this.state.checked === false ? true : false
 			}));
 		}

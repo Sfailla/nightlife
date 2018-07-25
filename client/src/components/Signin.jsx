@@ -7,7 +7,8 @@ const styles = {
 		textAlign: 'center',
 		marginTop: '2rem',
 		marginBottom: '2rem',
-		color: 'var(--primary-text-color)'
+		color: 'var(--primary-text-color)',
+		fontWeight: 'bold'
 	}
 };
 
@@ -26,7 +27,7 @@ const Signin = (props) => (
 				handleOnSubmit={props.handleOnSubmit}
 			/>
 			<BorderlessForm
-				type="text"
+				type="password"
 				name="password"
 				label="password"
 				inputButton={true}

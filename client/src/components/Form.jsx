@@ -1,15 +1,6 @@
 import React from 'react';
 
-export const BorderlessForm = ({
-	handleOnChange,
-	handleOnSubmit,
-	autocomplete,
-	inputButton,
-	btnName,
-	name,
-	type,
-	label
-}) => (
+export const BorderlessForm = ({ handleOnChange, autocomplete, inputButton, btnName, name, type, label }) => (
 	<div>
 		<div className="form-group borderless-form">
 			<input
@@ -31,7 +22,7 @@ export const BorderlessForm = ({
 	</div>
 );
 
-const Form = ({ handleOnChange, handleOnSubmit, autocomplete, inputButton, btnName, label, type, id }) => (
+const Form = ({ handleOnChange, autocomplete, inputButton, btnName, label, type, id }) => (
 	<div>
 		<div className="form-group form">
 			<input

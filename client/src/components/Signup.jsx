@@ -8,6 +8,7 @@ const styles = {
 		textAlign: 'center',
 		marginTop: '2rem',
 		marginBottom: '2rem',
+		fontWeight: 'bold',
 		color: 'var(--primary-text-color)'
 	}
 };

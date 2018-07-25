@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 // good config for react, express full stack projects
@@ -9,7 +10,8 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
 	module: {
 		rules: [
@@ -36,7 +38,11 @@ module.exports = {
 	resolve: {
 		extensions: [ '.js', '.jsx' ]
 	},
-	plugins: [ new webpack.NamedModulesPlugin(), new webpack.HotModuleReplacementPlugin() ],
+	plugins: [
+		new webpack.NamedModulesPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
+		new HtmlWebpackPlugin({ template: 'public/index.html' })
+	],
 	devtool: 'cheap-module-source-map',
 	watch: true,
 	devServer: {

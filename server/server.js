@@ -19,33 +19,36 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('/*', (req, res) => {
+	console.log('here => ', __dirname);
+	res.sendFile(path.join(__dirname, '../public/index.html'), (err) => {
+		if (err) res.status(500).send(err);
+	});
+});
+
 app.get('/api/events', (req, res) => {
-    const event = [
-        {
-            id: 1,
-            event: 'Party',
-            location: 'Jays Pub'
-        },
-        {
-            id: 2,
-            event: 'Wedding',
-            location: 'Rivieras on Hudson'
-        },
-        {
-            id: 3,
-            event: 'Art Gala',
-            location: 'MOMA'
-        }
-    ]
-    res.send(event);
-})
+	const event = [
+		{
+			id: 1,
+			event: 'Party',
+			location: 'Jays Pub'
+		},
+		{
+			id: 2,
+			event: 'Wedding',
+			location: 'Rivieras on Hudson'
+		},
+		{
+			id: 3,
+			event: 'Art Gala',
+			location: 'MOMA'
+		}
+	];
+	res.send(event);
+});
 
 app.use('/users', users);
 
-app.listen(process.env.PORT, () =>
-    console.log(
-        `express server running on port: ${process.env.PORT}`
-    )
-);
+app.listen(process.env.PORT, () => console.log(`express server running on port: ${process.env.PORT}`));
 
-module.exports = { app }
+module.exports = { app };

@@ -6,10 +6,7 @@
 		padding-top: 5rem;
 	}
 
-	& input[type="checkbox"] {
-		margin-top: 2rem;
-		margin-right: .5rem;
-	}
+	// & input[type="checkbox"] {}
 
 	& input[type="submit"] {
 		position: absolute;
@@ -18,67 +15,14 @@
 		transform: translateX(-50%);
 	}
 
-	& input[type="password"] {
+	& input[type="password"],
+	& input[type="submit"],
+	& input[type="text"] {
 		letter-spacing: 2px;
+		font-weight: bold;
 	}
-}
 
-.active {
-	display: block;
-	color: red;
-	background: var(--primary-color);
-	border-bottom: 2px solid var(--secondary-color);
-}
-
-.shrink-tab-right {
-	animation: shrinkTabRight .6s ease-in-out forwards;
-}
-
-.grow-tab-right {
-	animation: growTabRight .6s ease-in-out;
-}
-
-.grow-tab-left {
-	animation-fill-mode: right;
-}
-
-.grow-tab-right {
-	animation-fill-mode: left;
-	transform-origin: 0 100%;
-}
-
-@keyframes growTabRight {
-	0% {
-		transform: scaleX(0);
-	}
-	100% {
-		transform: scaleX(1);
-	}
-}
-
-@keyframes growTabLeft {
-	0% {
-		transform: scaleX(0);
-	}
-	100% {
-		transform: scaleX(1);
-	}
-}
-
-@keyframes shrinkTabRight {
-	0% {
-		transform: scaleX(1);
-	}
-	100% {
-		transform: scaleX(0);
-	}
-}
-
-@keyframes shrinkTabLeft {
-	0% {
-		transform: scaleX(1);
-	}
-	100% {
-		transform: scaleX(0);
+	& ::placeholder {
+		font-weight: normal;
 	}
 }

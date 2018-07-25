@@ -5,7 +5,8 @@ import Signin from './Signin';
 const styles = {
 	heading: {
 		textAlign: 'center',
-		marginTop: '5rem'
+		marginTop: '5rem',
+		color: 'blue'
 	},
 	card: {
 		maxWidth: '70%',
@@ -41,11 +42,7 @@ export class Login extends Component {
 				</div>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<Signin
-							formType={this.state.formType}
-							handleOnChange={this.handleOnChange}
-							handleOnSubmit={this.handleOnSubmit}
-						/>
+						<Signin handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit} />
 					</div>
 				</div>
 			</div>

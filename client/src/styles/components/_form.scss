@@ -17,9 +17,7 @@ div {
 		display: block;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
-		margin-left: 1rem;
 		transition: all .3s ease-in-out;
-		text-align: left;
 		color: var(--primary-text-color);
 	}
 
@@ -56,7 +54,7 @@ div {
 		border: none;
 		border-bottom: 2px solid var(--primary-color);
 		font-size: inherit;
-		font-family: 'Fira Sans', sans-serif;
+		font-family: 'Roboto', sans-serif;
 		order: 2;
 		color: var(--primary-text-color);
 
