@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const SideNav = (props) => (
+const MainSideNav = (props) => (
 	<div className="side-nav">
 		<div className="side-nav__nav-list-group">
 			<div className="side-nav__logo">NL</div>
@@ -40,4 +40,4 @@ const SideNav = (props) => (
 	</div>
 );
 
-export default SideNav;
+export default MainSideNav;

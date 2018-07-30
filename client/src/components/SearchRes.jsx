@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from './Button';
-import truncateRes from '../utils/functions';
+import { truncateRes } from '../utils/functions';
 
 const SearchResComponent = ({ img_src, img_alt, name, location }) => (
 	<div className="results__container">

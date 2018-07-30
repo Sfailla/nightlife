@@ -1,11 +1,11 @@
 export default class Auth {
-	register = (email, password) => {
+	register = (username, password) => {
 		return fetch('/users/sign-up', {
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',
-			body: JSON.stringify({ email, password })
+			body: JSON.stringify({ username, password })
 		}).then((res) => {
 			return new Promise((resolve, reject) => {
 				if (!res) {
@@ -17,13 +17,13 @@ export default class Auth {
 		});
 	};
 
-	login = (email, password) => {
+	login = (username, password) => {
 		return fetch('/users/sign-in', {
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',
-			body: JSON.stringify({ email, password })
+			body: JSON.stringify({ username, password })
 		}).then((res) => {
 			return new Promise((resolve, reject) => {
 				if (!res) {

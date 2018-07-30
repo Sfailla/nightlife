@@ -1,6 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // good config for react, express full stack projects
 
@@ -46,14 +46,15 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	watch: true,
 	devServer: {
-		contentBase: path.resolve(__dirname, 'public'),
+		contentBase: path.resolve(__dirname, '/src'),
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
 		proxy: {
-			'*': {
+			'/**': {
 				target: 'http://localhost:3001',
-				secure: false
+				secure: false,
+				changeOrigin: true
 			}
 		}
 	}

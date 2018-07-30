@@ -20,13 +20,7 @@ const Signup = (props) => (
 				Sign Up
 			</div>
 
-			<BorderlessForm
-				type="text"
-				name="username"
-				label="username"
-				handleOnChange={props.handleOnChange}
-				handleOnSubmit={props.handleOnSubmit}
-			/>
+			<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
 			<BorderlessForm
 				type={props.formType}
 				name="password"
@@ -34,7 +28,6 @@ const Signup = (props) => (
 				inputButton={true}
 				btnName="Submit"
 				handleOnChange={props.handleOnChange}
-				handleOnSubmit={props.handleOnSubmit}
 			/>
 			<CheckGroup
 				name="checkbox"

@@ -19,13 +19,7 @@ const Signin = (props) => (
 				Sign In
 			</div>
 
-			<BorderlessForm
-				type="text"
-				name="username"
-				label="username"
-				handleOnChange={props.handleOnChange}
-				handleOnSubmit={props.handleOnSubmit}
-			/>
+			<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
 			<BorderlessForm
 				type="password"
 				name="password"
@@ -33,7 +27,6 @@ const Signin = (props) => (
 				inputButton={true}
 				btnName="Submit"
 				handleOnChange={props.handleOnChange}
-				handleOnSubmit={props.handleOnSubmit}
 			/>
 		</div>
 	</div>

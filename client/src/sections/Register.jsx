@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { isLoggedIn } from '../actions/users';
 
+import Auth from '../utils/AuthComponent';
 import Signup from '../components/Signup';
 
 const styles = {
@@ -25,15 +29,18 @@ class Register extends Component {
 		username: null,
 		password: null,
 		errors: null,
-		checked: false
+		checked: false,
+		isLoggedIn: false
 	};
+
+	Auth = new Auth();
 
 	handleOnChange = (evt) => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value }));
 	};
 
-	handleCBChange = (evt) => {
+	handleCBChange = () => {
 		let form = document.querySelector('#password');
 
 		if (form !== null || form !== undefined) {
@@ -46,7 +53,19 @@ class Register extends Component {
 
 	handleOnSubmit = (evt) => {
 		evt.preventDefault();
+
+		const { register, setToken } = this.Auth;
+		const { username, password } = this.state;
+
+		return register(username, password).then((res) => res.json()).then((res) => {
+			const token = res.tokens[0].token;
+			setToken(token);
+			this.props.dispatch(isLoggedIn(true));
+			this.props.history.push('/dashboard');
+		});
 	};
+
+	componentDidMount = () => {};
 
 	render() {
 		return (
@@ -56,13 +75,14 @@ class Register extends Component {
 				</div>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<Signup
-							formType={this.state.formType}
-							checked={this.state.checked}
-							handleCBChange={this.handleCBChange}
-							handleOnChange={this.handleOnChange}
-							handleOnSubmit={this.handleOnSubmit}
-						/>
+						<form onSubmit={this.handleOnSubmit}>
+							<Signup
+								formType={this.state.formType}
+								checked={this.state.checked}
+								handleCBChange={this.handleCBChange}
+								handleOnChange={this.handleOnChange}
+							/>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -70,4 +90,4 @@ class Register extends Component {
 	}
 }
 
-export default Register;
+export default withRouter(connect()(Register));

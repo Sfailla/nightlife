@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+import Auth from '../utils/AuthComponent';
 
 import Signin from './Signin';
+import { isLoggedIn } from '../actions/users';
 
 const styles = {
 	heading: {
@@ -21,10 +26,13 @@ const styles = {
 
 export class Login extends Component {
 	state = {
-		username: '',
-		password: '',
-		errors: ''
+		username: null,
+		password: null,
+		errors: null
 	};
+
+	Auth = new Auth();
+
 	handleOnChange = (evt) => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value }));
@@ -32,6 +40,16 @@ export class Login extends Component {
 
 	handleOnSubmit = (evt) => {
 		evt.preventDefault();
+
+		const { username, password } = this.state;
+		const { login, setToken } = this.Auth;
+
+		return login(username, password).then((res) => res.json()).then((res) => {
+			const token = res.tokens[0].token;
+			setToken(token);
+			this.props.dispatch(isLoggedIn(true));
+			this.props.history.push('/dashboard');
+		});
 	};
 
 	render() {
@@ -42,7 +60,9 @@ export class Login extends Component {
 				</div>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<Signin handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit} />
+						<form onSubmit={this.handleOnSubmit}>
+							<Signin handleOnChange={this.handleOnChange} />
+						</form>
 					</div>
 				</div>
 			</div>
@@ -50,4 +70,4 @@ export class Login extends Component {
 	}
 }
 
-export default Login;
+export default withRouter(connect()(Login));
