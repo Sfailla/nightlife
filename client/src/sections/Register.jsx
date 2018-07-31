@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { isLoggedIn } from '../actions/users';
 
+import { isLoggedIn } from '../actions/users';
 import Auth from '../utils/AuthComponent';
 import Signup from '../components/Signup';
 
@@ -29,8 +29,7 @@ class Register extends Component {
 		username: null,
 		password: null,
 		errors: null,
-		checked: false,
-		isLoggedIn: false
+		checked: false
 	};
 
 	Auth = new Auth();

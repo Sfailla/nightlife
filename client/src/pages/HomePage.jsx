@@ -21,19 +21,7 @@ const AuthRoute = ({ component: Component, rest }) => (
 	/>
 );
 
-const Routes = () => (
-	<Switch>
-		<Route exact path="/" component={() => <Search />} />
-		<AuthRoute exact path="/dashboard" component={() => <Dashboard />} />
-		<AuthRoute exact path="/account" component={() => <Account />} />
-		<Route exact path="/sign-in" component={() => <Login />} />
-		<Route exact path="/sign-up" component={() => <Register />} />
-	</Switch>
-);
-
 class HomePage extends Component {
-	state = {};
-
 	Auth = new Auth();
 
 	logout = () => {
@@ -50,7 +38,13 @@ class HomePage extends Component {
 					<MainSideNav isLoggedIn={this.props.user.isLoggedIn} />
 				</div>
 				<div className="home__main-page-area">
-					<Routes />
+					<Switch>
+						<Route exact path="/" component={() => <Search />} />
+						<AuthRoute exact path="/dashboard" component={() => <Dashboard />} />
+						<AuthRoute exact path="/account" component={() => <Account />} />
+						<Route exact path="/sign-in" component={() => <Login />} />
+						<Route exact path="/sign-up" component={() => <Register />} />
+					</Switch>
 				</div>
 			</div>
 		);
