@@ -15,6 +15,7 @@ div {
 
 	& label {
 		display: block;
+		padding-left: 1rem;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
 		transition: all .3s ease-in-out;
@@ -82,6 +83,7 @@ div {
 	& input[type="submit"] {
 		width: 20rem;
 		height: 4rem;
+		font-size: 1.6rem;
 		background-color: var(--primary-color);
 		margin-top: 2rem;
 		color: white;
@@ -89,7 +91,6 @@ div {
 	}
 
 	& input[type="checkbox"] {
-		width: 40px;
 		font-size: 2rem;
 	}
 }

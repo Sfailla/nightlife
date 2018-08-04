@@ -1,22 +1,26 @@
 import React from 'react';
 
-const Topography = ({
-	headingPrimary,
-	primaryMessage,
-	headingSecondary,
-	secondaryMessage,
-	headingTertiary,
-	tertiaryMessage,
-	clsname
-}) => {
+const Topography = ({ headingPrimary, headingSecondary, headingTertiary, classname, addedStyles }) => {
 	if (headingPrimary) {
-		return <p className={`heading-primary ${clsname}`}>{primaryMessage}</p>;
+		return (
+			<p style={{ ...addedStyles }} className={`heading-primary ${classname}`}>
+				{headingPrimary}
+			</p>
+		);
 	}
 	if (headingSecondary) {
-		return <p className={`heading-secondary ${clsname}`}>{secondaryMessage}</p>;
+		return (
+			<p style={{ ...addedStyles }} className={`heading-secondary ${classname}`}>
+				{headingSecondary}
+			</p>
+		);
 	}
 	if (headingTertiary) {
-		return <p className={`heading-tertiary ${clsname}`}>{tertiaryMessage}</p>;
+		return (
+			<p style={{ ...addedStyles }} className={`heading-tertiary ${classname}`}>
+				{headingTertiary}
+			</p>
+		);
 	}
 };
 

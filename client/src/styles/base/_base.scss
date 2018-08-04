@@ -23,6 +23,11 @@ img {
 	object-fit: cover;
 }
 
+button {
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
 .container {
 	max-width: 120rem;
 	margin: 0 auto;

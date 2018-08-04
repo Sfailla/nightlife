@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { isLoggedIn } from '../actions/users';
+import { isLoggedIn, getUsername } from '../actions/users';
+import Topography from '../components/Topography';
 import Auth from '../utils/AuthComponent';
 import Signup from '../components/Signup';
 
@@ -59,6 +60,7 @@ class Register extends Component {
 		return register(username, password).then((res) => res.json()).then((res) => {
 			const token = res.tokens[0].token;
 			setToken(token);
+			this.props.dispatch(getUsername(res.username));
 			this.props.dispatch(isLoggedIn(true));
 			this.props.history.push('/dashboard');
 		});
@@ -69,9 +71,7 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<div className="heading-primary" style={styles.heading}>
-					Sign up to see who is going out tonite!
-				</div>
+				<Topography addedStyles={styles.heading} headingPrimary="Sign up to see who is going out tonite!" />
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>

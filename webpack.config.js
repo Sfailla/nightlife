@@ -46,12 +46,12 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	watch: true,
 	devServer: {
-		contentBase: path.resolve(__dirname, '/src'),
+		contentBase: path.resolve(__dirname, './public'),
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
 		proxy: {
-			'/**': {
+			'*': {
 				target: 'http://localhost:3001',
 				secure: false,
 				changeOrigin: true

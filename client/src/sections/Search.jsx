@@ -66,21 +66,18 @@ export default class Search extends Component {
 		return (
 			<div className="search">
 				<Topography
-					headingPrimary={true}
-					primaryMessage="See whose going out tonight!"
-					clsname="search__heading u-center-text u-mt-25"
+					headingPrimary="See whose going out tonight!"
+					classname="search__heading u-center-text u-mt-25"
 				/>
 				<div className="search__search-card">
 					<div className="search__search-container">
 						<Topography
-							headingSecondary={true}
-							secondaryMessage="Search any area for bars and clubs!"
-							clsname="search__heading-secondary u-center-text"
+							headingSecondary="Search any area for bars and clubs!"
+							classname="search__heading-secondary u-center-text"
 						/>
 						<Topography
-							headingTertiary={true}
-							tertiaryMessage="Please enter City and State, or Zip"
-							clsname="search__heading-secondary--sub u-center-text u-mb-25"
+							headingTertiary="Please enter City, State, and/or Zip"
+							classname="search__heading-secondary--sub u-center-text u-mb-25"
 						/>
 						<form onSubmit={this.handleOnSubmit}>
 							<Form

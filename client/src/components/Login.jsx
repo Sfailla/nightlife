@@ -5,13 +5,13 @@ import { withRouter } from 'react-router-dom';
 import Auth from '../utils/AuthComponent';
 
 import Signin from './Signin';
-import { isLoggedIn } from '../actions/users';
+import { isLoggedIn, getUsername } from '../actions/users';
 
 const styles = {
 	heading: {
 		textAlign: 'center',
 		marginTop: '5rem',
-		color: 'blue'
+		color: 'var(--primary-text-color)'
 	},
 	card: {
 		maxWidth: '70%',
@@ -47,6 +47,7 @@ export class Login extends Component {
 		return login(username, password).then((res) => res.json()).then((res) => {
 			const token = res.tokens[0].token;
 			setToken(token);
+			this.props.dispatch(getUsername(res.username));
 			this.props.dispatch(isLoggedIn(true));
 			this.props.history.push('/dashboard');
 		});

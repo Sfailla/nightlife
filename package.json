@@ -5,7 +5,7 @@
 	"main": "server.js",
 	"scripts": {
 		"start": "concurrently -k \"npm run server\" \"npm run dev\"",
-		"dev": "start http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
+		"dev": "start firefox http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
 		"server": "nodemon server/server.js",
 		"build": "webpack -p --progress",
 		"test-watch": "nodemon --exec \"npm test\"",

@@ -14,16 +14,16 @@ export const truncateRes = (str) => {
 // Function checks for token to grant access to restricted routes
 export const checkAuth = () => {
 	const token = localStorage.getItem('TOKEN');
-
+	const date = Math.round(Date.now());
 	if (!token) {
 		return false;
 	}
 	// try {
-	// 	if (token && decode(token).exp !== undefined) {
-	// 		const { exp } = decode(token);
-	// 		if (exp > new Date.getTime() / 1000) {
-	// 			return false;
-	// 		}
+	// 	const { exp } = decode(token);
+	// 	console.log('exp ', new Date(exp));
+	// 	console.log(new Date(date));
+	// 	if (exp >= date) {
+	// 		return false;
 	// 	}
 	// } catch (e) {
 	// 	return false;

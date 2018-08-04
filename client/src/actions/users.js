@@ -7,3 +7,13 @@ export const isLoggedIn = (bool) => ({
 	type: 'IS_LOGGED_IN',
 	payload: bool
 });
+
+export const setAvatar = (avatarSelect, avatar) => ({
+	type: 'SET_AVATAR',
+	avatarSelect,
+	avatar
+});
+
+export const setCustomAvatar = (customImg) => ({
+	type: 'SET_CUSTOM_AVATAR'
+});

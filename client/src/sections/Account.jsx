@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { setAvatar } from '../actions/users';
 import { BorderlessForm } from '../components/Form';
 import RadioGroup from '../components/RadioGroup';
 
-import guyAvatar from '../images/person-guy-flat.png';
-import girlAvatar from '../images/person-girl-flat.png';
+import guyAvatar from '../images/male-avatar.png';
+import girlAvatar from '../images/female-avatar.png';
+import defaultAvatar from '../images/default-avatar.jpg';
+import Topography from '../components/Topography';
 
 class Account extends Component {
 	state = {
-		avatarSelect: 'male-avatar',
-		noAvatarImg: 'https://www.roughdiamondproductions.net/wp-content/uploads/2016/03/no-image-240x300.gif',
-		avatar: null,
 		email: null,
 		location: null,
 		description: null
 	};
 
 	handleOnChange = (evt) => {
-		evt.persist();
-		const { name, value } = evt.target;
-
-		this.setState(() => ({ [name]: value }));
+		const { value } = evt.target;
+		console.log('onchange ', this.handleSelectAvatar());
+		this.props.dispatch(setAvatar(value, this.handleSelectAvatar()));
 	};
 
 	handleOnSubmit = (evt) => {
@@ -28,48 +28,49 @@ class Account extends Component {
 	};
 
 	handleSelectAvatar = () => {
-		const avatar = this.state.avatarSelect;
-		let imgSrc = null;
+		let avatar = defaultAvatar;
 
-		switch (avatar) {
-			case 'custom-avatar':
-				this.state.avatar === null || !this.state.avatar.length
-					? (imgSrc = this.state.noAvatarImg)
-					: (imgSrc = this.state.avatar);
-				break;
+		switch (this.props.user.avatarSelect) {
 			case 'male-avatar':
-				imgSrc = guyAvatar;
+				avatar = guyAvatar;
 				break;
 			case 'female-avatar':
-				imgSrc = girlAvatar;
+				avatar = girlAvatar;
+				break;
+			case 'default-avatar':
+				avatar = defaultAvatar;
 				break;
 			default:
-				return null;
+				return avatar;
 		}
-
-		return imgSrc;
+		return avatar;
 	};
 
+	componentDidMount = () => {};
+
 	render() {
+		console.log('render ', this.handleSelectAvatar());
 		return (
-			<div className="acct">
-				<p className="acct__title heading-primary">Account</p>
-				<p className="acct__sub-title heading-secondary">create a profile</p>
-				<div className="acct__profile-card">
-					<div className="acct__wrapper">
-						<div className="acct__card-title heading-tertiary">Profile</div>
+			<div className="account">
+				<div style={{ display: 'flex' }}>
+					<Topography classname="account__title" headingPrimary="Account" />
+					<Topography classname="account__sub-title" headingSecondary="create a profile" />
+				</div>
+				<div className="account__profile-card">
+					<div className="account__wrapper">
+						<Topography clsname="account__card-title" headingTertiary="Profile" />
 					</div>
 					<hr />
-					<div className="acct__avatar-wrapper">
-						<div className="acct__avatar">
+					<div className="account__avatar-wrapper">
+						<div className="account__avatar">
 							<img src={this.handleSelectAvatar()} alt="no-avatar" />
 						</div>
-						<div className="acct__checkboxes">
+						<div className="account__checkboxes">
 							<RadioGroup
 								labelName="male-avatar"
 								type="radio"
 								id="male-avatar"
-								handleChecked={this.state.avatarSelect === 'male-avatar'}
+								handleChecked={this.props.user.avatarSelect === 'male-avatar'}
 								handleOnChange={this.handleOnChange}
 								name="avatarSelect"
 							/>
@@ -78,32 +79,24 @@ class Account extends Component {
 								labelName="female-avatar"
 								type="radio"
 								id="female-avatar"
-								handleChecked={this.state.avatarSelect === 'female-avatar'}
+								handleChecked={this.props.user.avatarSelect === 'female-avatar'}
 								handleOnChange={this.handleOnChange}
 								name="avatarSelect"
 							/>
 
 							<RadioGroup
-								labelName="custom-avatar"
+								labelName="default-avatar"
 								type="radio"
-								id="custom-avatar"
-								handleChecked={this.state.avatarSelect === 'custom-avatar'}
+								id="default-avatar"
+								handleChecked={this.props.user.avatarSelect === 'default-avatar'}
 								handleOnChange={this.handleOnChange}
 								name="avatarSelect"
 							/>
 						</div>
 					</div>
 					<hr />
-					<div className="acct__content">
-						<div className="acct__names">
-							<ul>
-								<li>Add An Avatar URL</li>
-								<li>Add Email</li>
-								<li>Add Location</li>
-								<li>Add Description</li>
-							</ul>
-						</div>
-						<div className="acct__form">
+					<div className="account__bio-info">
+						<div className="account__form">
 							<form onSubmit={this.handleOnSubmit}>
 								<BorderlessForm
 									type="text"
@@ -131,7 +124,6 @@ class Account extends Component {
 									name="description"
 									rows={5}
 									placeholder="Add-Description"
-									onSubmit={this.handleOnSubmit}
 									onChange={this.handleOnChange}
 								/>
 							</form>
@@ -143,4 +135,10 @@ class Account extends Component {
 	}
 }
 
-export default Account;
+const mapStateToProps = (state) => {
+	return {
+		user: state.users
+	};
+};
+
+export default connect(mapStateToProps)(Account);

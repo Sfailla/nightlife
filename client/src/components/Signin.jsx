@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Topography from '../components/Topography';
 import { BorderlessForm } from '../components/Form';
 
 const styles = {
@@ -7,7 +8,7 @@ const styles = {
 		textAlign: 'center',
 		marginTop: '2rem',
 		marginBottom: '2rem',
-		color: 'var(--primary-text-color)',
+		color: 'blue',
 		fontWeight: 'bold'
 	}
 };
@@ -15,10 +16,7 @@ const styles = {
 const Signin = (props) => (
 	<div className="signup">
 		<div className="signup__signup-container">
-			<div className="heading-secondary" style={styles.title}>
-				Sign In
-			</div>
-
+			<Topography addedStyles={styles.title} headingSecondary="Sign In" />
 			<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
 			<BorderlessForm
 				type="password"

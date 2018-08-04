@@ -4,8 +4,8 @@ const styles = {
 	width: '100%',
 	height: '6rem',
 	fontSize: '2rem',
-	backgroundColor: 'var(--primary-color)',
 	color: 'white',
+	backgroundColor: 'var(--primary-color)',
 	boxShadow: '0 .5rem 1.2rem rgba(0, 0, 0, .45)'
 };
 

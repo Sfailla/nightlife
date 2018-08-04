@@ -17,7 +17,7 @@ import Auth from '../utils/AuthComponent';
 const AuthRoute = ({ component: Component, rest }) => (
 	<Route
 		{...rest}
-		render={(props) => (checkAuth() ? <Component {...props} /> : <Redirect to={{ pathname: '/sign-up' }} />)}
+		render={(props) => (checkAuth() ? <Component {...props} /> : <Redirect to={{ pathname: '/sign-in' }} />)}
 	/>
 );
 

@@ -25,11 +25,13 @@ const MainSideNav = (props) => (
 						</Link>
 					</li>
 				)}
-				<li>
-					<Link to="/sign-up">
-						<span>Sign Up</span>
-					</Link>
-				</li>
+				{props.isLoggedIn ? null : (
+					<li>
+						<Link to="/sign-up">
+							<span>Sign Up</span>
+						</Link>
+					</li>
+				)}
 			</ul>
 
 			<div className="side-nav__yelp-tag">

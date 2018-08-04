@@ -1,8 +1,4 @@
 .button {
-	display: inline-block;
-	width: 15rem;
-	height: 3rem;
-
 	&:not(:last-child) {
 		margin-right: 2rem;
 	}
