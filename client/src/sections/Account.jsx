@@ -2,35 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { setAvatar } from '../actions/users';
-import { BorderlessForm } from '../components/Form';
-import RadioGroup from '../components/RadioGroup';
-
 import guyAvatar from '../images/male-avatar.png';
 import girlAvatar from '../images/female-avatar.png';
 import defaultAvatar from '../images/default-avatar.jpg';
 import Topography from '../components/Topography';
+import SelectAvatar from '../components/SelectAvatar';
+import AccountBioForm from '../components/AccountBioForm';
 
 class Account extends Component {
 	state = {
 		email: null,
 		location: null,
-		description: null
+		description: null,
+		avatar: defaultAvatar,
+		avatarSelect: 'default-avatar'
 	};
 
 	handleOnChange = (evt) => {
-		const { value } = evt.target;
-		console.log('onchange ', this.handleSelectAvatar());
-		this.props.dispatch(setAvatar(value, this.handleSelectAvatar()));
+		const { name, value } = evt.target;
+		this.setState(() => ({ [name]: value }));
 	};
 
 	handleOnSubmit = (evt) => {
 		evt.preventDefault();
+		this.props.dispatch(setAvatar(this.state.avatarSelect, this.handleSelectAvatar()));
 	};
 
 	handleSelectAvatar = () => {
 		let avatar = defaultAvatar;
 
-		switch (this.props.user.avatarSelect) {
+		switch (this.state.avatarSelect) {
 			case 'male-avatar':
 				avatar = guyAvatar;
 				break;
@@ -49,7 +50,6 @@ class Account extends Component {
 	componentDidMount = () => {};
 
 	render() {
-		console.log('render ', this.handleSelectAvatar());
 		return (
 			<div className="account">
 				<div style={{ display: 'flex' }}>
@@ -57,78 +57,21 @@ class Account extends Component {
 					<Topography classname="account__sub-title" headingSecondary="create a profile" />
 				</div>
 				<div className="account__profile-card">
-					<div className="account__wrapper">
-						<Topography clsname="account__card-title" headingTertiary="Profile" />
-					</div>
+					<Topography classname="account__card-title" headingTertiary="Change Avatar" />
 					<hr />
-					<div className="account__avatar-wrapper">
-						<div className="account__avatar">
-							<img src={this.handleSelectAvatar()} alt="no-avatar" />
-						</div>
-						<div className="account__checkboxes">
-							<RadioGroup
-								labelName="male-avatar"
-								type="radio"
-								id="male-avatar"
-								handleChecked={this.props.user.avatarSelect === 'male-avatar'}
-								handleOnChange={this.handleOnChange}
-								name="avatarSelect"
-							/>
-
-							<RadioGroup
-								labelName="female-avatar"
-								type="radio"
-								id="female-avatar"
-								handleChecked={this.props.user.avatarSelect === 'female-avatar'}
-								handleOnChange={this.handleOnChange}
-								name="avatarSelect"
-							/>
-
-							<RadioGroup
-								labelName="default-avatar"
-								type="radio"
-								id="default-avatar"
-								handleChecked={this.props.user.avatarSelect === 'default-avatar'}
-								handleOnChange={this.handleOnChange}
-								name="avatarSelect"
-							/>
-						</div>
-					</div>
+					<SelectAvatar
+						avatarSelect={this.state.avatarSelect}
+						handleSelectAvatar={this.handleSelectAvatar}
+						handleOnChange={this.handleOnChange}
+						handleOnSubmit={this.handleOnSubmit}
+					/>
 					<hr />
-					<div className="account__bio-info">
-						<div className="account__form">
-							<form onSubmit={this.handleOnSubmit}>
-								<BorderlessForm
-									type="text"
-									name="avatar"
-									label="Add-Avatar-url"
-									handleOnChange={this.handleOnChange}
-								/>
-
-								<BorderlessForm
-									type="email"
-									name="email"
-									label="Add-Email"
-									handleOnChange={this.handleOnChange}
-								/>
-
-								<BorderlessForm
-									type="text"
-									name="location"
-									label="Add-Location"
-									handleOnChange={this.handleOnChange}
-								/>
-
-								<textarea
-									className="u-mt-25"
-									name="description"
-									rows={5}
-									placeholder="Add-Description"
-									onChange={this.handleOnChange}
-								/>
-							</form>
-						</div>
-					</div>
+					<Topography classname="account__card-title" headingTertiary="Add Biography" />
+					<hr />
+					<AccountBioForm handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit} />
+					<hr style={{ marginTop: '1rem' }} />
+					<Topography classname="account__card-title" headingTertiary="change username and/or password" />
+					<hr />
 				</div>
 			</div>
 		);

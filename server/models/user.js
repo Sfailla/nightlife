@@ -73,7 +73,7 @@ UserSchema.methods = {
 				{ expiresIn: 604800 }
 			)
 			.toString();
-
+		console.log(this.tokens.token.length);
 		this.tokens = this.tokens.concat({ token, access });
 
 		return this.save().then(() => token);

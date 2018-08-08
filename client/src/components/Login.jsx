@@ -45,6 +45,7 @@ export class Login extends Component {
 		const { login, setToken } = this.Auth;
 
 		return login(username, password).then((res) => res.json()).then((res) => {
+			console.log(res.tokens);
 			const token = res.tokens[0].token;
 			setToken(token);
 			this.props.dispatch(getUsername(res.username));

@@ -18,23 +18,16 @@
 		box-shadow: var(--box-shadow-md-l);
 	}
 
-	&__wrapper {
-		height: 5rem;
-		display: flex;
-		justify-content: space-between;
-	}
-
 	&__avatar {
-		width: 15rem;
-		height: 15rem;
-		border: 1px solid currentColor;
-		overflow: hidden;
+		& img {
+			width: 15rem;
+			height: 15rem;
+			border: 1px solid currentColor;
+		}
 	}
 
 	&__avatar-wrapper {
-		width: 100%;
 		margin: 2rem auto;
-
 		display: grid;
 		grid-template-columns: 20rem 1fr;
 		grid-column-gap: 2rem;

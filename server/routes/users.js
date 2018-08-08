@@ -13,15 +13,6 @@ server.get('/me', authenticate, (req, res) => {
 	res.send(req.user);
 });
 
-server.get('/info', (req, res) => {
-	let user = {
-		name: 'Steve',
-		alias: 'Expert Javascript Developer'
-	};
-
-	res.send(user);
-});
-
 server.post('/sign-up', (req, res) => {
 	const { username, password } = req.body;
 

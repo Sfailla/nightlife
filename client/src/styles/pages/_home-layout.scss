@@ -23,6 +23,7 @@
 		grid-column: 2 / -1;
 		grid-row: 2 / -1;
 
+		overflow-y: auto;
 		background: var(--color-light-grey);
 	}
 
@@ -37,7 +38,7 @@
 		grid-template-rows: 7rem 1fr;
 		box-shadow: var(--box-shadow-lg-l);
 
-		min-height: 80vh;
+		height: 80vh;
 		margin-top: 4rem;
 		margin-bottom: 3rem;
 		background-color: #fff;
