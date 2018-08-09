@@ -6,10 +6,8 @@ import CheckGroup from '../components/CheckGroup';
 const styles = {
 	title: {
 		textAlign: 'center',
-		marginTop: '2rem',
-		marginBottom: '2rem',
 		fontWeight: 'bold',
-		color: 'var(--primary-text-color)'
+		color: 'blue'
 	}
 };
 
@@ -19,7 +17,6 @@ const Signup = (props) => (
 			<div className="heading-secondary" style={styles.title}>
 				Sign Up
 			</div>
-
 			<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
 			<BorderlessForm
 				type={props.formType}

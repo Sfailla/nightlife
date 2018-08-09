@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export const BorderlessForm = ({ handleOnChange, autocomplete, inputButton, btnName, name, type, label }) => (
-	<div>
+	<Fragment>
 		<div className="form-group borderless-form">
 			<input
-				id={name}
 				type={type}
 				name={name}
 				placeholder={label}
 				autoComplete={autocomplete ? 'on' : 'off'}
-				className="borderless"
 				onChange={handleOnChange}
 			/>
 
@@ -19,29 +17,27 @@ export const BorderlessForm = ({ handleOnChange, autocomplete, inputButton, btnN
 		</div>
 
 		{inputButton ? <input type="submit" role="button" value={btnName} /> : null}
-	</div>
+	</Fragment>
 );
 
-const Form = ({ handleOnChange, autocomplete, inputButton, btnName, label, type, id }) => (
-	<div>
+const Form = ({ handleOnChange, autocomplete, inputButton, btnName, label, type, name }) => (
+	<Fragment>
 		<div className="form-group form">
 			<input
-				id={id}
-				name={id}
+				name={name}
 				type={type}
-				className="form"
 				autoComplete={autocomplete ? 'on' : 'off'}
 				placeholder={label}
 				onChange={handleOnChange}
 			/>
 
-			<label className="form" htmlFor={id}>
+			<label className="form" htmlFor={name}>
 				{label}
 			</label>
 		</div>
 
 		{inputButton ? <input type="submit" role="button" value={btnName} /> : null}
-	</div>
+	</Fragment>
 );
 
 export default Form;

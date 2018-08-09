@@ -2,7 +2,8 @@ import React from 'react';
 
 const styles = {
 	display: 'flex',
-	alignItems: 'center'
+	alignItems: 'center',
+	order: '1'
 };
 
 const CheckGroup = ({ name, checked, labelName, handleCBChange }) => (

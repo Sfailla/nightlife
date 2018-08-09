@@ -1,16 +1,8 @@
 div {
-	& div.form-group {
+	& .form-group {
 		font-size: var(--font-size-md);
 		display: flex;
 		flex-direction: column;
-	}
-
-	& div.form-group:not(:last-of-type) {
-		margin-bottom: 2rem;
-	}
-
-	& .form-group:not(:first-of-type) {
-		margin-top: 2rem;
 	}
 
 	& label {
@@ -68,19 +60,20 @@ div {
 		order: 1;
 	}
 
-	& input.form:placeholder-shown + label {
+	& input:placeholder-shown + label {
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(-4rem);
 	}
 
-	& input.borderless:placeholder-shown + label {
+	& input:placeholder-shown + label {
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(4rem);
 	}
 
 	& input[type="submit"] {
+		margin: 0 auto;
 		width: 20rem;
 		height: 4rem;
 		font-size: 1.6rem;
@@ -88,9 +81,5 @@ div {
 		margin-top: 2rem;
 		color: white;
 		outline: none;
-	}
-
-	& input[type="checkbox"] {
-		font-size: 2rem;
 	}
 }

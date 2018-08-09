@@ -1,18 +1,10 @@
 .signup {
-	position: relative;
-
 	&__signup-container {
-		padding: 0 4rem;
-		padding-top: 5rem;
-	}
-
-	// & input[type="checkbox"] {}
-
-	& input[type="submit"] {
-		position: absolute;
-		bottom: -10rem;
-		left: 50%;
-		transform: translateX(-50%);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		min-height: 50rem;
+		padding: 2rem 5rem;
 	}
 
 	& input[type="password"],
@@ -20,6 +12,11 @@
 	& input[type="text"] {
 		letter-spacing: 2px;
 		font-weight: bold;
+	}
+
+	& input[type="submit"] {
+		order: 2;
+		margin-top: 0;
 	}
 
 	& ::placeholder {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import api from '../api/yelpAPI.json';
-
 import Form from '../components/Form';
 import SearchResults from '../components/SearchRes';
 import Topography from '../components/Topography';

@@ -73,7 +73,9 @@ UserSchema.methods = {
 				{ expiresIn: 604800 }
 			)
 			.toString();
-		console.log(this.tokens.token.length);
+		if (this.tokens.length >= 2) {
+			this.tokens = [];
+		}
 		this.tokens = this.tokens.concat({ token, access });
 
 		return this.save().then(() => token);
@@ -102,7 +104,8 @@ UserSchema.statics = {
 					if (res) {
 						resolve(user);
 					} else {
-						reject();
+						console.log('sorry wrong password for that user, please try again');
+						reject(err);
 					}
 				});
 			});

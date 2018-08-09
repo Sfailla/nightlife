@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import Auth from '../utils/AuthComponent';
 
+import Topography from '../components/Topography';
 import Signin from './Signin';
 import { isLoggedIn, getUsername } from '../actions/users';
 
@@ -15,7 +16,7 @@ const styles = {
 	},
 	card: {
 		maxWidth: '70%',
-		minHeight: '50rem',
+		minHeight: '45rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
 		marginTop: '4rem',
@@ -33,23 +34,23 @@ export class Login extends Component {
 
 	Auth = new Auth();
 
-	handleOnChange = (evt) => {
-		const { name, value } = evt.target;
+	handleOnChange = (event) => {
+		const { name, value } = event.target;
 		this.setState(() => ({ [name]: value }));
 	};
 
-	handleOnSubmit = (evt) => {
-		evt.preventDefault();
+	handleOnSubmit = (event) => {
+		event.preventDefault();
 
+		const { getUsername, isLoggedIn } = this.props.dispatch;
 		const { username, password } = this.state;
 		const { login, setToken } = this.Auth;
 
-		return login(username, password).then((res) => res.json()).then((res) => {
-			console.log(res.tokens);
+		login(username, password).then((res) => res.json()).then((res) => {
 			const token = res.tokens[0].token;
 			setToken(token);
-			this.props.dispatch(getUsername(res.username));
-			this.props.dispatch(isLoggedIn(true));
+			getUsername(res.username);
+			isLoggedIn(true);
 			this.props.history.push('/dashboard');
 		});
 	};
@@ -57,9 +58,7 @@ export class Login extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<div className="heading-primary" style={styles.heading}>
-					Sign In below!
-				</div>
+				<Topography addStyles={styles.heading} headingPrimary="sign in below" />
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>

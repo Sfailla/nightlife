@@ -11,10 +11,11 @@ const styles = {
 	heading: {
 		textAlign: 'center',
 		marginTop: '5rem',
-		color: 'blue'
+		color: 'var(--primary-color)'
 	},
 	card: {
 		maxWidth: '70%',
+
 		minHeight: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
@@ -27,10 +28,10 @@ const styles = {
 class Register extends Component {
 	state = {
 		formType: 'password',
+		checked: false,
 		username: null,
 		password: null,
-		errors: null,
-		checked: false
+		errors: null
 	};
 
 	Auth = new Auth();
@@ -71,7 +72,7 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Topography addedStyles={styles.heading} headingPrimary="Sign up to see who is going out tonite!" />
+				<Topography addStyles={styles.heading} headingPrimary="Sign up to see who is going out tonite!" />
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>

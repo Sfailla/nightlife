@@ -6,8 +6,6 @@ import { BorderlessForm } from '../components/Form';
 const styles = {
 	title: {
 		textAlign: 'center',
-		marginTop: '2rem',
-		marginBottom: '2rem',
 		color: 'blue',
 		fontWeight: 'bold'
 	}
@@ -16,7 +14,7 @@ const styles = {
 const Signin = (props) => (
 	<div className="signup">
 		<div className="signup__signup-container">
-			<Topography addedStyles={styles.title} headingSecondary="Sign In" />
+			<Topography addStyles={styles.title} headingSecondary="Sign In" />
 			<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
 			<BorderlessForm
 				type="password"

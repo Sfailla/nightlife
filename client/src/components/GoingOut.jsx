@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const GoingOut = (props) => (
-	<div>
+	<Fragment>
 		<div className="heading-tertiary">Check whose going out</div>
-	</div>
+	</Fragment>
 );
 
 export default GoingOut;
