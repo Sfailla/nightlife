@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { isLoggedIn } from '../actions/users';
 
 import api from '../api/yelpAPI.json';
 import Form from '../components/Form';
-import SearchResults from '../components/SearchRes';
+import SearchResults from '../components/SearchResults';
 import Topography from '../components/Topography';
 
-export default class Search extends Component {
+const styles = {
+	card: {}
+};
+
+class Search extends Component {
 	state = {
 		searchVal: [],
 		results: [],
@@ -44,7 +50,19 @@ export default class Search extends Component {
 				Authorization: `Bearer ${this.getToken()}`
 			}
 		})
-			.then((res) => res.json())
+			.then((res) => {
+				if (res.status >= 200 && res.status <= 300) {
+					console.log(res);
+					return res.json();
+				} else {
+					if (res.status > 300) {
+						console.log(res);
+						return this.setState(() => ({
+							errors: '** Sorry that wont work. Try an area near you! **'
+						}));
+					}
+				}
+			})
 			.then((res) => {
 				if (res.businesses.length > 0) {
 					this.setState(() => ({
@@ -104,8 +122,9 @@ export default class Search extends Component {
 										key={data.id}
 										name={data.name}
 										location={data.location.address1}
-										img_src={data.image_url}
-										img_alt="bar images"
+										imageSrc={data.image_url}
+										imageAlt="bar images"
+										isLoggedIn={this.props.user.isLoggedIn}
 									/>
 								);
 							})
@@ -122,3 +141,9 @@ export default class Search extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	user: state.users
+});
+
+export default connect(mapStateToProps)(Search);

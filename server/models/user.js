@@ -70,12 +70,10 @@ UserSchema.methods = {
 					access
 				},
 				process.env.JWT_SECRET,
-				{ expiresIn: 604800 }
+				{ expiresIn: '5min' }
 			)
 			.toString();
-		if (this.tokens.length >= 2) {
-			this.tokens = [];
-		}
+		this.tokens = [];
 		this.tokens = this.tokens.concat({ token, access });
 
 		return this.save().then(() => token);

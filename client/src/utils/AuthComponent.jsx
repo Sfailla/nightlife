@@ -54,6 +54,20 @@ export default class Auth {
 		});
 	};
 
+	// isTokenExpired(token) {
+	//     try {
+	//         const decoded = decode(token);
+	//         if (decoded.exp < Date.now() / 1000) { // Checking if token is expired
+	//             return true;
+	//         }
+	//         else
+	//             return false;
+	//     }
+	//     catch (err) {
+	//         return false;
+	//     }
+	// }
+
 	isLoggedIn = () => {
 		const token = this.getToken();
 		return !!token;
@@ -77,4 +91,15 @@ export default class Auth {
 		});
 		this.removeToken();
 	};
+
+	checkStatus(response) {
+		// raises an error in case response status is not a success
+		if (res.status >= 200 && res.status < 300) {
+			return res;
+		} else {
+			var error = new Error(res.statusText);
+			error.res = response;
+			throw error;
+		}
+	}
 }

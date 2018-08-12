@@ -42,15 +42,14 @@ export class Login extends Component {
 	handleOnSubmit = (event) => {
 		event.preventDefault();
 
-		const { getUsername, isLoggedIn } = this.props.dispatch;
 		const { username, password } = this.state;
 		const { login, setToken } = this.Auth;
 
 		login(username, password).then((res) => res.json()).then((res) => {
 			const token = res.tokens[0].token;
 			setToken(token);
-			getUsername(res.username);
-			isLoggedIn(true);
+			this.props.dispatch(getUsername(res.username));
+			this.props.dispatch(isLoggedIn(true));
 			this.props.history.push('/dashboard');
 		});
 	};
@@ -58,7 +57,7 @@ export class Login extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Topography addStyles={styles.heading} headingPrimary="sign in below" />
+				<Topography addStyles={styles.heading} headingPrimary="sign in below for more options" />
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>
