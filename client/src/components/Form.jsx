@@ -22,6 +22,7 @@ const Form = ({ handleOnChange, addStyles, autocomplete, label, type, name }) =>
 	<Fragment>
 		<div className="form-group form">
 			<input
+				className="search-input"
 				style={{ ...addStyles }}
 				name={name}
 				type={type}

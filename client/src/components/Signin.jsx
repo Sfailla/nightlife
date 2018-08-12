@@ -21,13 +21,21 @@ const styles = {
 		fontWeight: 'bold',
 		margin: '0 auto',
 		background: 'var(--primary-color)'
+	},
+	error: {
+		color: 'red',
+		position: 'absolute',
+		top: '30%',
+		left: '50%',
+		transform: 'translateX(-50%)'
 	}
 };
 
-const Signin = ({ handleOnChange }) => (
+const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
 		<div className="signup__signup-container">
 			<Topography addStyles={styles.title} headingSecondary="Sign In" />
+			{errors && <p style={styles.error}>** {errors} **</p>}
 			<div style={{ marginBottom: '2rem' }}>
 				<BorderlessForm
 					addStyles={styles.borderlessForm}

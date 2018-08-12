@@ -19,6 +19,9 @@ const styles = {
 		fontWeight: 'bold',
 		margin: '0 auto',
 		background: 'var(--primary-color)'
+	},
+	form: {
+		marginBottom: '1rem'
 	}
 };
 
@@ -31,18 +34,19 @@ const Signup = (props) => (
 			<div>
 				<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
 				<BorderlessForm
+					addStyles={styles.form}
 					type={props.formType}
 					name="password"
 					label="password"
 					handleOnChange={props.handleOnChange}
 				/>
+				<CheckGroup
+					name="checkbox"
+					labelName="Show Password"
+					checked={props.checked}
+					handleCBChange={props.handleCBChange}
+				/>
 			</div>
-			<CheckGroup
-				name="checkbox"
-				labelName="Show Password"
-				checked={props.checked}
-				handleCBChange={props.handleCBChange}
-			/>
 			<Button addStyles={styles.button} type="submit" name="submit" />
 		</div>
 	</div>

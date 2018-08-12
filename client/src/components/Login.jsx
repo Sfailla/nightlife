@@ -21,22 +21,23 @@ const styles = {
 		margin: '0 auto',
 		marginTop: '4rem',
 		marginBottom: '4rem',
-		boxShadow: 'var(--box-shadow-md-l)'
+		boxShadow: 'var(--box-shadow-md-l)',
+		position: 'relative'
 	}
 };
 
 export class Login extends Component {
 	state = {
-		username: null,
-		password: null,
-		errors: null
+		username: '',
+		password: '',
+		errors: ''
 	};
 
 	Auth = new Auth();
 
 	handleOnChange = (event) => {
 		const { name, value } = event.target;
-		this.setState(() => ({ [name]: value }));
+		this.setState(() => ({ [name]: value, errors: '' }));
 	};
 
 	handleOnSubmit = (event) => {
@@ -45,15 +46,19 @@ export class Login extends Component {
 		const { username, password } = this.state;
 		const { login, setToken } = this.Auth;
 
-		login(username, password).then((res) => res.json()).then((res) => {
-			const token = res.tokens[0].token;
-			setToken(token);
-			this.props.dispatch(getUsername(res.username));
-			this.props.dispatch(isLoggedIn(true));
-			this.props.history.push('/dashboard');
-		});
+		if (username.length && password.length) {
+			this.setState(() => ({ errors: '' }));
+			login(username, password).then((res) => res.json()).then((res) => {
+				const token = res.tokens[0].token;
+				setToken(token);
+				this.props.dispatch(getUsername(res.username));
+				this.props.dispatch(isLoggedIn(true));
+				this.props.history.push('/dashboard');
+			});
+		} else {
+			this.setState(() => ({ errors: 'Please fill out form completely' }));
+		}
 	};
-
 	render() {
 		return (
 			<div className="signup">
@@ -61,7 +66,7 @@ export class Login extends Component {
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>
-							<Signin handleOnChange={this.handleOnChange} />
+							<Signin errors={this.state.errors} handleOnChange={this.handleOnChange} />
 						</form>
 					</div>
 				</div>

@@ -35,7 +35,7 @@ class Search extends Component {
 
 	handleOnChange = (evt) => {
 		const { value } = evt.target;
-		this.setState(() => ({ searchVal: value }));
+		this.setState(() => ({ searchVal: value, errors: '' }));
 	};
 
 	getToken = () => {

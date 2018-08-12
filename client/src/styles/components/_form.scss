@@ -10,8 +10,8 @@ div {
 		padding-left: 1rem;
 		margin-top: 1rem;
 		margin-bottom: 1rem;
-		letter-spacing: 2px;
-		text-transform: uppercase;
+		// letter-spacing: 2px;
+		// text-transform: uppercase;
 		transition: all .3s ease-in-out;
 		color: var(--primary-text-color);
 	}
@@ -62,16 +62,16 @@ div {
 		order: 1;
 	}
 
-	& input:placeholder-shown + label {
+	& input.search-input:placeholder-shown + label {
 		opacity: 0;
 		visibility: hidden;
-		transform: translateY(-4rem);
+		transform: translateY(4rem);
 	}
 
 	& input:placeholder-shown + label {
 		opacity: 0;
 		visibility: hidden;
-		transform: translateY(4rem);
+		transform: translateY(-4rem);
 	}
 
 	& input[type="submit"] {
