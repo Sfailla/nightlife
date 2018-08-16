@@ -1,9 +1,18 @@
 import React from 'react';
 
-const Topography = ({ headingPrimary, headingSecondary, headingTertiary, classname, addStyles }) => {
+const Topography = ({
+	headingPrimary,
+	headingSecondary,
+	headingTertiary,
+	classname,
+	addStyles
+}) => {
 	if (headingPrimary && classname) {
 		return (
-			<p style={{ ...addStyles }} className={`heading-primary ${classname}`}>
+			<p
+				style={{ ...addStyles }}
+				className={`heading-primary ${classname}`}
+			>
 				{headingPrimary}
 			</p>
 		);
@@ -16,7 +25,10 @@ const Topography = ({ headingPrimary, headingSecondary, headingTertiary, classna
 	}
 	if (headingSecondary && classname) {
 		return (
-			<p style={{ ...addStyles }} className={`heading-secondary ${classname}`}>
+			<p
+				style={{ ...addStyles }}
+				className={`heading-secondary ${classname}`}
+			>
 				{headingSecondary}
 			</p>
 		);
@@ -29,7 +41,10 @@ const Topography = ({ headingPrimary, headingSecondary, headingTertiary, classna
 	}
 	if (headingTertiary) {
 		return (
-			<p style={{ ...addStyles }} className={`heading-tertiary ${classname}`}>
+			<p
+				style={{ ...addStyles }}
+				className={`heading-tertiary ${classname}`}
+			>
 				{headingTertiary}
 			</p>
 		);

@@ -19,7 +19,11 @@ const styles = {
 
 const Header = () => (
 	<div style={styles.header}>
-		<div id="app-header" className="container" style={styles.headerElements}>
+		<div
+			id="app-header"
+			className="container"
+			style={styles.headerElements}
+		>
 			<p>Steve Failla</p>
 			<p>FCC Nightlife App</p>
 		</div>

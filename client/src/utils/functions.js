@@ -1,7 +1,7 @@
 import decode from 'jwt-decode';
 
 // function for truncating names of search results
-export const truncateRes = (str) => {
+export const truncateRes = str => {
 	if (typeof str === 'string' && str.length > 30) {
 		str = str.slice(0, 30);
 		str += '...';
@@ -14,7 +14,7 @@ export const truncateRes = (str) => {
 // Function checks for token to grant access to restricted routes
 export const checkAuth = () => {
 	const token = localStorage.getItem('TOKEN');
-	const date = Math.round(Date.now());
+	// console.log(decode(token))
 	if (!token) {
 		return false;
 	}

@@ -3,19 +3,15 @@ import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
 
 import api from '../api/yelpAPI.json';
-import Form from '../components/Form';
+import { Form } from '../components/Form';
 import SearchResults from '../components/SearchResults';
 import Topography from '../components/Topography';
 
-const styles = {
-	card: {}
-};
-
 class Search extends Component {
 	state = {
-		searchVal: [],
+		searchVal: '',
 		results: [],
-		errors: [],
+		errors: '',
 		isLoading: false
 	};
 
@@ -44,12 +40,16 @@ class Search extends Component {
 
 	handleFetchData = () => {
 		this.setState(() => ({ isLoading: true }));
-		fetch(`${api.yelp.baseURL}location=${this.state.searchVal}&limit=10&term=bars`, {
-			method: 'get',
-			headers: {
-				Authorization: `Bearer ${this.getToken()}`
+		fetch(
+			`${api.yelp.baseURL}location=${this.state
+				.searchVal}&limit=10&term=bars`,
+			{
+				method: 'get',
+				headers: {
+					Authorization: `Bearer ${this.getToken()}`
+				}
 			}
-		})
+		)
 			.then((res) => {
 				if (res.status >= 200 && res.status <= 300) {
 					console.log(res);
@@ -58,7 +58,8 @@ class Search extends Component {
 					if (res.status > 300) {
 						console.log(res);
 						return this.setState(() => ({
-							errors: '** Sorry that wont work. Try an area near you! **'
+							errors:
+								'** Sorry that wont work. Try an area near you! **'
 						}));
 					}
 				}
@@ -72,7 +73,9 @@ class Search extends Component {
 						errors: ''
 					}));
 				} else if (!res.businesses.length) {
-					this.setState(() => ({ errors: '** Sorry no results for that area **' }));
+					this.setState(() => ({
+						errors: '** Sorry no results for that area **'
+					}));
 				}
 			});
 	};
@@ -99,7 +102,7 @@ class Search extends Component {
 						<form onSubmit={this.handleOnSubmit}>
 							<Form
 								className="search__search-form"
-								id_name="search"
+								name="search"
 								type="text"
 								label="Enter location"
 								autocomplete={false}
@@ -132,7 +135,11 @@ class Search extends Component {
 					</ul>
 
 					{this.state.results.length > 0 ? (
-						<a href="#app-header" style={{ display: 'block' }} className="u-center-text">
+						<a
+							href="#app-header"
+							style={{ display: 'block' }}
+							className="u-center-text"
+						>
 							back to top
 						</a>
 					) : null}

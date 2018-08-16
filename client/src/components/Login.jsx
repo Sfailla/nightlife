@@ -48,25 +48,35 @@ export class Login extends Component {
 
 		if (username.length && password.length) {
 			this.setState(() => ({ errors: '' }));
-			login(username, password).then((res) => res.json()).then((res) => {
-				const token = res.tokens[0].token;
-				setToken(token);
-				this.props.dispatch(getUsername(res.username));
-				this.props.dispatch(isLoggedIn(true));
-				this.props.history.push('/dashboard');
-			});
+			return login(username, password)
+				.then((res) => res.json())
+				.then((res) => {
+					const token = res.tokens[0].token;
+					setToken(token);
+					this.props.dispatch(getUsername(res.username));
+					this.props.dispatch(isLoggedIn(true));
+					this.props.history.push('/dashboard');
+				});
 		} else {
-			this.setState(() => ({ errors: 'Please fill out form completely' }));
+			this.setState(() => ({
+				errors: 'Please fill out form completely'
+			}));
 		}
 	};
 	render() {
 		return (
 			<div className="signup">
-				<Topography addStyles={styles.heading} headingPrimary="sign in below for more options" />
+				<Topography
+					addStyles={styles.heading}
+					headingPrimary="sign in below for more options"
+				/>
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>
-							<Signin errors={this.state.errors} handleOnChange={this.handleOnChange} />
+							<Signin
+								errors={this.state.errors}
+								handleOnChange={this.handleOnChange}
+							/>
 						</form>
 					</div>
 				</div>

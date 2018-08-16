@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Auth from '../utils/AuthComponent';
+
 import { setAvatar } from '../actions/users';
 import guyAvatar from '../images/male-avatar.png';
 import girlAvatar from '../images/female-avatar.png';
@@ -14,18 +16,30 @@ class Account extends Component {
 		email: null,
 		location: null,
 		description: null,
-		avatar: defaultAvatar,
-		avatarSelect: 'default-avatar'
+		avatar: '',
+		avatarSelect: ''
 	};
 
-	handleOnChange = (evt) => {
+	Auth = new Auth();
+
+	handleOnChange = evt => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value }));
 	};
 
-	handleOnSubmit = (evt) => {
+	handleOnSubmit = evt => {
 		evt.preventDefault();
-		this.props.dispatch(setAvatar(this.state.avatarSelect, this.handleSelectAvatar()));
+
+		const { avatar, avatarSelect } = this.state;
+		this.Auth
+			.authFetch('/settings/avatar', {
+				method: 'PATCH',
+				body: JSON.stringify({ avatar, avatarSelect })
+			})
+			.then(user => user.json())
+			.then(user => {
+				console.log(user);
+			});
 	};
 
 	handleSelectAvatar = () => {
@@ -47,17 +61,60 @@ class Account extends Component {
 		return avatar;
 	};
 
-	componentDidMount = () => {};
+	initializeAvatar = () => {
+		this.Auth
+			.authFetch('/settings/avatar', { method: 'POST' })
+			.then(avatar => avatar.json())
+			.then(avatar => {
+				let avatar = avatar[0].avatar;
+				let avatarSelect = avatar[0].avatarSelect;
+				console.log(avatar);
+				this.setState(() => ({ avatar, avatarSelect }));
+			});
+	};
+
+	updateAvatar = async () => {
+		await this.Auth
+			.authFetch('/settings/avatar', { method: 'GET' })
+			.then(user => user.json())
+			.then(user => {
+				let avatar = user[0].avatar;
+				let avatarSelect = user[0].avatarSelect;
+				this.setState(() => ({ avatar, avatarSelect }));
+			});
+	};
+
+	componentDidUpdate = (prevProps, prevState) => {
+		// console.log(prevState.avatarSelect);
+		// console.log(this.state.avatarSelect);
+	};
+
+	componentDidMount = async () => {
+		await this.updateAvatar();
+		await console.log(this.state.avatarSelect);
+		// typeof this.state.avatar === null
+		// 	? console.log('first render')
+		// 	: console.log('already rendered');
+	};
 
 	render() {
 		return (
 			<div className="account">
 				<div style={{ display: 'flex' }}>
-					<Topography classname="account__title" headingPrimary="Account" />
-					<Topography classname="account__sub-title" headingSecondary="create a profile" />
+					<Topography
+						classname="account__title"
+						headingPrimary="Account"
+					/>
+					<Topography
+						classname="account__sub-title"
+						headingSecondary="create a profile"
+					/>
 				</div>
 				<div className="account__profile-card">
-					<Topography classname="account__card-title" headingTertiary="Change Avatar" />
+					<Topography
+						classname="account__card-title"
+						headingTertiary="Change Avatar"
+					/>
 					<hr />
 					<SelectAvatar
 						avatarSelect={this.state.avatarSelect}
@@ -66,11 +123,20 @@ class Account extends Component {
 						handleOnSubmit={this.handleOnSubmit}
 					/>
 					<hr />
-					<Topography classname="account__card-title" headingTertiary="Add Biography" />
+					<Topography
+						classname="account__card-title"
+						headingTertiary="Add Biography"
+					/>
 					<hr />
-					<AccountBioForm handleOnChange={this.handleOnChange} handleOnSubmit={this.handleOnSubmit} />
+					<AccountBioForm
+						handleOnChange={this.handleOnChange}
+						handleOnSubmit={this.handleOnSubmit}
+					/>
 					<hr style={{ marginTop: '1rem' }} />
-					<Topography classname="account__card-title" headingTertiary="change username and/or password" />
+					<Topography
+						classname="account__card-title"
+						headingTertiary="change username and/or password"
+					/>
 					<hr />
 				</div>
 			</div>
@@ -78,7 +144,7 @@ class Account extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		user: state.users
 	};

@@ -1,4 +1,5 @@
 const usersDefaultState = {
+	creator: '',
 	username: '',
 	isLoggedIn: false,
 	avatarSelect: 'default-avatar',

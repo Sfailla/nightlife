@@ -8,7 +8,13 @@ const styles = {
 
 const CheckGroup = ({ name, checked, labelName, handleCBChange }) => (
 	<div style={styles}>
-		<input id={name} name={name} type="checkbox" checked={checked} onChange={handleCBChange} />
+		<input
+			id={name}
+			name={name}
+			type="checkbox"
+			checked={checked}
+			onChange={handleCBChange}
+		/>
 		<label htmlFor={name}>{labelName}</label>
 	</div>
 );

@@ -46,7 +46,8 @@ class Register extends Component {
 
 		if (form !== null || form !== undefined) {
 			this.setState(() => ({
-				formType: this.state.formType === 'password' ? 'text' : 'password',
+				formType:
+					this.state.formType === 'password' ? 'text' : 'password',
 				checked: this.state.checked === false ? true : false
 			}));
 		}
@@ -58,13 +59,15 @@ class Register extends Component {
 		const { register, setToken } = this.Auth;
 		const { username, password } = this.state;
 
-		return register(username, password).then((res) => res.json()).then((res) => {
-			const token = res.tokens[0].token;
-			setToken(token);
-			this.props.dispatch(getUsername(res.username));
-			this.props.dispatch(isLoggedIn(true));
-			this.props.history.push('/dashboard');
-		});
+		return register(username, password)
+			.then((res) => res.json())
+			.then((res) => {
+				const token = res.tokens[0].token;
+				setToken(token);
+				this.props.dispatch(getUsername(res.username));
+				this.props.dispatch(isLoggedIn(true));
+				this.props.history.push('/dashboard');
+			});
 	};
 
 	componentDidMount = () => {};
@@ -72,7 +75,10 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Topography addStyles={styles.heading} headingPrimary="Sign up to see who is going out tonite!" />
+				<Topography
+					addStyles={styles.heading}
+					headingPrimary="Sign up to see who is going out tonite!"
+				/>
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>

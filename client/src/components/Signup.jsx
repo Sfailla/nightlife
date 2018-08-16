@@ -32,7 +32,12 @@ const Signup = (props) => (
 				Sign Up
 			</div>
 			<div>
-				<BorderlessForm type="text" name="username" label="username" handleOnChange={props.handleOnChange} />
+				<BorderlessForm
+					type="text"
+					name="username"
+					label="username"
+					handleOnChange={props.handleOnChange}
+				/>
 				<BorderlessForm
 					addStyles={styles.form}
 					type={props.formType}

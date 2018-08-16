@@ -8,7 +8,11 @@ const defaultButtonStyles = {
 // button types are: button, submit, reset
 const Button = ({ addStyles, name, onClick, btnType }) => {
 	return (
-		<button type={btnType} onClick={onClick} style={{ ...defaultButtonStyles, ...addStyles }}>
+		<button
+			type={btnType}
+			onClick={onClick}
+			style={{ ...defaultButtonStyles, ...addStyles }}
+		>
 			{name}
 		</button>
 	);

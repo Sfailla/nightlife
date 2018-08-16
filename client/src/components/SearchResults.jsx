@@ -15,26 +15,58 @@ const styles = {
 	}
 };
 
-const SearchResComponent = ({ imageSrc, imageAlt, name, location, isLoggedIn }) => (
+const SearchResComponent = ({
+	imageSrc,
+	imageAlt,
+	name,
+	location,
+	isLoggedIn
+}) => (
 	<div className="results__container">
 		<div className="results__card">
 			<div className="results__card--left">
-				<img src={imageSrc !== '' && typeof imageSrc === 'string' ? imageSrc : defaultImgSrc} alt={imageAlt} />
+				<img
+					src={
+						imageSrc !== '' && typeof imageSrc === 'string' ? (
+							imageSrc
+						) : (
+							defaultImgSrc
+						)
+					}
+					alt={imageAlt}
+				/>
 			</div>
 			<div className="results__card--right">
 				<div className="results__inner-container">
 					<div className="results__name-location-wrapper">
-						<h2 className="heading-secondary results__name">{truncateRes(name)}</h2>
+						<h2 className="heading-secondary results__name">
+							{truncateRes(name)}
+						</h2>
 						<p className="results__location">{location}</p>
 					</div>
 					{isLoggedIn && (
 						<div className="results__buttons">
-							<Button addStyles={styles.button} type="submit" name="Add to Favorites" />
-							<Button addStyles={styles.button} name="going here" />
+							<Button
+								addStyles={styles.button}
+								type="submit"
+								name="Add to Favorites"
+							/>
+							<Button
+								addStyles={styles.button}
+								name="going here"
+							/>
 						</div>
 					)}
-					{isLoggedIn && <div className="results__lower-box">Number of people attending: 0</div>}
-					{!isLoggedIn && <div className="results__lower-box">Sign in to see whose going where</div>}
+					{isLoggedIn && (
+						<div className="results__lower-box">
+							Number of people attending: 0
+						</div>
+					)}
+					{!isLoggedIn && (
+						<div className="results__lower-box">
+							Sign in to see whose going where
+						</div>
+					)}
 				</div>
 			</div>
 		</div>

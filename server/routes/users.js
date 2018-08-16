@@ -16,30 +16,38 @@ server.get('/me', authenticate, (req, res) => {
 server.post('/sign-up', (req, res) => {
 	const { username, password } = req.body;
 
-	const user = new User();
-	user.username = username;
-	user.password = password;
-	user.location = null;
-	user.description = null;
-	user.email = null;
-	user.avatar = null;
+	const users = new User();
+	users.username = username;
+	users.password = password;
+	users.location = null;
+	users.description = null;
+	users.email = null;
+	users.avatar = null;
 
-	user
+	users
 		.save()
-		.then((user) => {
-			user.generateAuthToken().then((token) => res.header('x-auth', token).status(200).send(user));
+		.then(user => {
+			user
+				.generateAuthToken()
+				.then(token =>
+					res.header('x-auth', token).status(200).send(user)
+				);
 		})
-		.catch((err) => res.status(400).send(err));
+		.catch(err => res.status(400).send(err));
 });
 
 server.post('/sign-in', (req, res) => {
 	const { username, password } = req.body;
 
 	User.findByCredentials(username, password)
-		.then((user) => {
-			return user.generateAuthToken().then((token) => res.header('x-auth', token).status(200).send(user));
+		.then(user => {
+			return user
+				.generateAuthToken()
+				.then(token =>
+					res.header('x-auth', token).status(200).send(user)
+				);
 		})
-		.catch((err) => res.status(400).send(err));
+		.catch(err => res.status(400).send(err));
 });
 
 server.delete('/token', authenticate, (req, res) => {

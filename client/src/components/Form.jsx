@@ -1,11 +1,19 @@
 import React, { Fragment } from 'react';
 
-export const BorderlessForm = ({ addStyles, handleOnChange, autocomplete, name, type, label }) => (
+export const BorderlessForm = ({
+	addStyles,
+	handleOnChange,
+	autocomplete,
+	name,
+	type,
+	label
+}) => (
 	<Fragment>
 		<div className="form-group borderless-form">
 			<input
 				style={{ ...addStyles }}
 				type={type}
+				id={name}
 				name={name}
 				placeholder={label}
 				autoComplete={autocomplete ? 'on' : 'off'}
@@ -18,12 +26,20 @@ export const BorderlessForm = ({ addStyles, handleOnChange, autocomplete, name, 
 	</Fragment>
 );
 
-const Form = ({ handleOnChange, addStyles, autocomplete, label, type, name }) => (
+export const Form = ({
+	handleOnChange,
+	addStyles,
+	autocomplete,
+	label,
+	type,
+	name
+}) => (
 	<Fragment>
 		<div className="form-group form">
 			<input
 				className="search-input"
 				style={{ ...addStyles }}
+				id={name}
 				name={name}
 				type={type}
 				autoComplete={autocomplete ? 'on' : 'off'}
@@ -36,5 +52,3 @@ const Form = ({ handleOnChange, addStyles, autocomplete, label, type, name }) =>
 		</div>
 	</Fragment>
 );
-
-export default Form;

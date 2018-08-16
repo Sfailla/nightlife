@@ -17,7 +17,12 @@ import Auth from '../utils/AuthComponent';
 const AuthRoute = ({ component: Component, rest }) => (
 	<Route
 		{...rest}
-		render={(props) => (checkAuth() ? <Component {...props} /> : <Redirect to={{ pathname: '/sign-in' }} />)}
+		render={(props) =>
+			checkAuth() ? (
+				<Component {...props} />
+			) : (
+				<Redirect to={{ pathname: '/sign-in' }} />
+			)}
 	/>
 );
 
@@ -33,17 +38,36 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div className="home__grid-container home__homepage-container">
-				<MainHeader logout={this.logout} isLoggedIn={this.props.user.isLoggedIn} />
+				<MainHeader
+					logout={this.logout}
+					isLoggedIn={this.props.user.isLoggedIn}
+				/>
 				<div className="home__side-nav">
 					<MainSideNav isLoggedIn={this.props.user.isLoggedIn} />
 				</div>
 				<div className="home__main-page-area">
 					<Switch>
 						<Route exact path="/" component={() => <Search />} />
-						<AuthRoute exact path="/dashboard" component={() => <Dashboard />} />
-						<AuthRoute exact path="/account" component={() => <Account />} />
-						<Route exact path="/sign-in" component={() => <Login />} />
-						<Route exact path="/sign-up" component={() => <Register />} />
+						<AuthRoute
+							exact
+							path="/dashboard"
+							component={() => <Dashboard />}
+						/>
+						<AuthRoute
+							exact
+							path="/account"
+							component={() => <Account />}
+						/>
+						<Route
+							exact
+							path="/sign-in"
+							component={() => <Login />}
+						/>
+						<Route
+							exact
+							path="/sign-up"
+							component={() => <Register />}
+						/>
 					</Switch>
 				</div>
 			</div>

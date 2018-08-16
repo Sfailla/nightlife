@@ -10,10 +10,18 @@ const MainHeaderList = (props) => {
 			{props.isLoggedIn && <li>{props.user.username}</li>}
 			{props.isLoggedIn && (
 				<li>
-					<img className="app-header-list__avatar-img" src={props.user.avatar} alt="avatar-profile" />
+					<img
+						className="app-header-list__avatar-img"
+						src={props.user.avatar}
+						alt="avatar-profile"
+					/>
 				</li>
 			)}
-			{props.isLoggedIn ? <Logout logout={props.logout} /> : <LinkToLogin />}
+			{props.isLoggedIn ? (
+				<Logout logout={props.logout} />
+			) : (
+				<LinkToLogin />
+			)}
 		</ul>
 	);
 };
@@ -34,7 +42,12 @@ const Logout = (props) => {
 	};
 	return (
 		<li>
-			<Button btnType="submit" addStyles={styles} name="sign out" onClick={props.logout} />
+			<Button
+				btnType="submit"
+				addStyles={styles}
+				name="sign out"
+				onClick={props.logout}
+			/>
 		</li>
 	);
 };

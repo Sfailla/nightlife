@@ -9,8 +9,12 @@ class Dashboard extends Component {
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__title-wrapper">
-					<div className="dashboard__title heading-primary">Dashboard</div>
-					<div className="dashboard__sub-title heading-secondary">What would you like to do?</div>
+					<div className="dashboard__title heading-primary">
+						Dashboard
+					</div>
+					<div className="dashboard__sub-title heading-secondary">
+						What would you like to do?
+					</div>
 				</div>
 				<div className="dashboard__selection">
 					<DashOptions />
