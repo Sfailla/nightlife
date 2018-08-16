@@ -17,7 +17,7 @@ import Auth from '../utils/AuthComponent';
 const AuthRoute = ({ component: Component, rest }) => (
 	<Route
 		{...rest}
-		render={(props) =>
+		render={props =>
 			checkAuth() ? (
 				<Component {...props} />
 			) : (
@@ -75,7 +75,7 @@ class HomePage extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		user: state.users
 	};

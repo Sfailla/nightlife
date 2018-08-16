@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // good config for react, express full stack projects
-
 module.exports = {
 	entry: {
 		app: './client/src/app.js'
@@ -11,7 +10,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'public'),
 		filename: 'bundle.js',
-		publicPath: '/'
+		publicPath: './public'
 	},
 	module: {
 		rules: [
@@ -21,7 +20,10 @@ module.exports = {
 				exclude: /node_modules/,
 				query: {
 					presets: [ 'react', 'env', 'es2017' ],
-					plugins: [ 'transform-class-properties', 'transform-object-rest-spread' ]
+					plugins: [
+						'transform-class-properties',
+						'transform-object-rest-spread'
+					]
 				}
 			},
 			{
@@ -46,7 +48,8 @@ module.exports = {
 	devtool: 'cheap-module-source-map',
 	watch: true,
 	devServer: {
-		contentBase: path.resolve(__dirname, './public'),
+		publicPath: '/',
+		contentBase: path.resolve(__dirname, 'public'),
 		hot: true,
 		inline: true,
 		historyApiFallback: true,

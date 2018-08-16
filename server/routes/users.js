@@ -22,7 +22,8 @@ server.post('/sign-up', (req, res) => {
 	users.location = null;
 	users.description = null;
 	users.email = null;
-	users.avatar = null;
+	users.settings.avatar = null;
+	users.settings.avatarSelect = null;
 
 	users
 		.save()
@@ -59,6 +60,47 @@ server.delete('/token', authenticate, (req, res) => {
 			return res.status(400).send();
 		}
 	);
+});
+
+server.get('/settings/avatar', authenticate, (req, res) => {
+	User.find({ _id: req.user.id }).then(user => {
+		res.send(user);
+	});
+});
+
+server.patch('/settings/initialize-avatar', authenticate, (req, res) => {
+	const avatar = '/22acd1da9b455b7ce7196bb89f01127a.jpg';
+	const avatarSelect = 'default-avatar';
+	const creator = req.user.id;
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{ $set: { avatar, avatarSelect, creator } },
+		{ new: true }
+	).then(user => {
+		console.log(user);
+		if (!user) {
+			return res.status(404).send();
+		} else {
+			res.send(user);
+		}
+	});
+});
+
+server.patch('/settings/avatar', authenticate, (req, res) => {
+	const { avatar, avatarSelect } = req.body;
+
+	User.findOneAndUpdate(
+		{ creator: req.user.id },
+		{ $set: { avatar, avatarSelect } },
+		{ new: true }
+	).then(doc => {
+		if (!doc) {
+			return res.status(404).send();
+		} else {
+			res.send(doc);
+		}
+	});
 });
 
 module.exports = server;

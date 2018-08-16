@@ -3,8 +3,40 @@ import React, { Component } from 'react';
 import DashOptions from '../objects/DashOptions';
 import DashLowerContent from '../objects/DashContent';
 import GoingOut from '../components/GoingOut';
+import Auth from '../utils/AuthComponent';
 
 class Dashboard extends Component {
+	Auth = new Auth();
+
+	loadAvatar = () => {
+		this.Auth
+			.authFetch('/users/settings/avatar', { method: 'GET' })
+			.then(user => user.json())
+			.then(user => {
+				console.log(user[0]);
+				if (user[0].settings.avatar === null) {
+					this.initializeAvatar();
+				}
+				if (typeof user[0].settings.avatar === 'string') {
+				}
+			});
+	};
+
+	initializeAvatar = () => {
+		this.Auth
+			.authFetch('/users/settings/initialize-avatar', {
+				method: 'PATCH'
+			})
+			.then(res => res.json())
+			.then(res => {
+				console.log(res);
+			});
+	};
+
+	componentWillMount = () => {
+		this.loadAvatar();
+	};
+
 	render() {
 		return (
 			<div className="dashboard__container">

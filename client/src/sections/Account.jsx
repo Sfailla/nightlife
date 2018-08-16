@@ -30,16 +30,7 @@ class Account extends Component {
 	handleOnSubmit = evt => {
 		evt.preventDefault();
 
-		const { avatar, avatarSelect } = this.state;
-		this.Auth
-			.authFetch('/settings/avatar', {
-				method: 'PATCH',
-				body: JSON.stringify({ avatar, avatarSelect })
-			})
-			.then(user => user.json())
-			.then(user => {
-				console.log(user);
-			});
+		this.updateAvatar();
 	};
 
 	handleSelectAvatar = () => {
@@ -63,23 +54,27 @@ class Account extends Component {
 
 	initializeAvatar = () => {
 		this.Auth
-			.authFetch('/settings/avatar', { method: 'POST' })
-			.then(avatar => avatar.json())
-			.then(avatar => {
-				let avatar = avatar[0].avatar;
-				let avatarSelect = avatar[0].avatarSelect;
-				console.log(avatar);
-				this.setState(() => ({ avatar, avatarSelect }));
+			.authFetch('/users/settings/avatar', { method: 'GET' })
+			.then(user => user.json())
+			.then(user => {
+				console.log(user);
+				// let avatar = user[0].settings.avatar;
+				// let avatarSelect = user[0].settings.avatarSelect;
+				// this.setState(() => ({ avatar, avatarSelect }));
 			});
 	};
 
-	updateAvatar = async () => {
-		await this.Auth
-			.authFetch('/settings/avatar', { method: 'GET' })
+	updateAvatar = () => {
+		const { avatar, avatarSelect } = this.state;
+		this.Auth
+			.authFetch('/users/settings/avatar', {
+				method: 'PATCH',
+				body: JSON.stringify({ avatar, avatarSelect })
+			})
 			.then(user => user.json())
 			.then(user => {
-				let avatar = user[0].avatar;
-				let avatarSelect = user[0].avatarSelect;
+				let avatar = user[0].settings.avatar;
+				let avatarSelect = user[0].settings.avatarSelect;
 				this.setState(() => ({ avatar, avatarSelect }));
 			});
 	};
@@ -89,9 +84,9 @@ class Account extends Component {
 		// console.log(this.state.avatarSelect);
 	};
 
-	componentDidMount = async () => {
-		await this.updateAvatar();
-		await console.log(this.state.avatarSelect);
+	componentDidMount = () => {
+		this.initializeAvatar();
+		console.log(this.state.avatarSelect);
 		// typeof this.state.avatar === null
 		// 	? console.log('first render')
 		// 	: console.log('already rendered');
