@@ -1,13 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
 
 import api from '../api/yelpAPI.json';
-import { Form } from '../components/Form';
+import SearchCard from '../components/SearchCard';
 import SearchResults from '../components/SearchResults';
-import Topography from '../components/Topography';
+import Typography from '../components/Typography';
+import Button from '../components/Button';
 
-class Search extends Component {
+const styles = {
+	button: {
+		width: '18rem',
+		height: '3.5rem',
+		background: 'var(--primary-color)',
+		color: 'white',
+		margin: '2rem auto'
+	}
+};
+
+class Search extends React.Component {
 	state = {
 		searchVal: '',
 		results: [],
@@ -15,7 +26,7 @@ class Search extends Component {
 		isLoading: false
 	};
 
-	handleOnSubmit = (evt) => {
+	handleOnSubmit = evt => {
 		evt.preventDefault();
 
 		if (this.state.searchVal.length) {
@@ -29,7 +40,7 @@ class Search extends Component {
 		}
 	};
 
-	handleOnChange = (evt) => {
+	handleOnChange = evt => {
 		const { value } = evt.target;
 		this.setState(() => ({ searchVal: value, errors: '' }));
 	};
@@ -50,13 +61,11 @@ class Search extends Component {
 				}
 			}
 		)
-			.then((res) => {
+			.then(res => {
 				if (res.status >= 200 && res.status <= 300) {
-					console.log(res);
 					return res.json();
 				} else {
 					if (res.status > 300) {
-						console.log(res);
 						return this.setState(() => ({
 							errors:
 								'** Sorry that wont work. Try an area near you! **'
@@ -64,8 +73,9 @@ class Search extends Component {
 					}
 				}
 			})
-			.then((res) => {
+			.then(res => {
 				if (res.businesses.length > 0) {
+					console.log(res);
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,
@@ -80,46 +90,38 @@ class Search extends Component {
 			});
 	};
 
-	componentDidMount = () => {};
+	handleClearSearch = () => {
+		this.setState(() => ({ results: [] }));
+	};
 
 	render() {
 		return (
 			<div className="search">
-				<Topography
+				<Typography
 					headingPrimary="See whose going out tonight!"
 					classname="search__heading u-center-text u-mt-25"
 				/>
-				<div className="search__search-card">
-					<div className="search__search-container">
-						<Topography
-							headingSecondary="Search any area for bars and clubs!"
-							classname="search__heading-secondary u-center-text"
-						/>
-						<Topography
-							headingTertiary="Please enter City, State, and/or Zip"
-							classname="search__heading-secondary--sub u-center-text u-mb-25"
-						/>
-						<form onSubmit={this.handleOnSubmit}>
-							<Form
-								className="search__search-form"
-								name="search"
-								type="text"
-								label="Enter location"
-								autocomplete={false}
-								handleOnChange={this.handleOnChange}
-							/>
-
-							{this.state.errors && <p>{this.state.errors}</p>}
-						</form>
-					</div>
-				</div>
+				<SearchCard
+					handleOnChange={this.handleOnChange}
+					handleOnSubmit={this.handleOnSubmit}
+					errors={this.state.errors}
+				/>
 				<br />
+
+				{this.state.results.length > 0 && (
+					<Button
+						addStyles={styles.button}
+						type="button"
+						name="Clear Search Results"
+						onClick={this.handleClearSearch}
+					/>
+				)}
 
 				<div className="results">
 					{this.state.isLoading && <h3>Loading...</h3>}
 					<ul>
 						{this.state.results.length ? (
-							this.state.results.map((data) => {
+							this.state.results.map(data => {
 								return (
 									<SearchResults
 										key={data.id}
@@ -134,7 +136,7 @@ class Search extends Component {
 						) : null}
 					</ul>
 
-					{this.state.results.length > 0 ? (
+					{this.state.results.length > 0 && (
 						<a
 							href="#app-header"
 							style={{ display: 'block' }}
@@ -142,14 +144,14 @@ class Search extends Component {
 						>
 							back to top
 						</a>
-					) : null}
+					)}
 				</div>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	user: state.users
 });
 

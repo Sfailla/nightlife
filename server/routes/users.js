@@ -2,7 +2,6 @@ const express = require('express');
 
 const User = require('../models/user');
 const mongoose = require('../db/mongoose');
-
 const authenticate = require('../middleware/authenticate');
 
 const server = express.Router();
@@ -22,9 +21,6 @@ server.post('/sign-up', (req, res) => {
 	users.location = null;
 	users.description = null;
 	users.email = null;
-	users.settings.avatar = null;
-	users.settings.avatarSelect = null;
-
 	users
 		.save()
 		.then(user => {
@@ -62,23 +58,22 @@ server.delete('/token', authenticate, (req, res) => {
 	);
 });
 
-server.get('/settings/avatar', authenticate, (req, res) => {
+server.get('/settings', authenticate, (req, res) => {
 	User.find({ _id: req.user.id }).then(user => {
 		res.send(user);
 	});
 });
 
-server.patch('/settings/initialize-avatar', authenticate, (req, res) => {
-	const avatar = '/22acd1da9b455b7ce7196bb89f01127a.jpg';
-	const avatarSelect = 'default-avatar';
-	const creator = req.user.id;
-
+server.patch('/settings/initialize', authenticate, (req, res) => {
 	User.findOneAndUpdate(
 		{ _id: req.user.id },
-		{ $set: { avatar, avatarSelect, creator } },
+		{
+			$set: {
+				'utilities.initialRender': false
+			}
+		},
 		{ new: true }
 	).then(user => {
-		console.log(user);
 		if (!user) {
 			return res.status(404).send();
 		} else {
@@ -91,8 +86,13 @@ server.patch('/settings/avatar', authenticate, (req, res) => {
 	const { avatar, avatarSelect } = req.body;
 
 	User.findOneAndUpdate(
-		{ creator: req.user.id },
-		{ $set: { avatar, avatarSelect } },
+		{ _id: req.user.id },
+		{
+			$set: {
+				'settings.avatar': avatar,
+				'settings.avatarSelect': avatarSelect
+			}
+		},
 		{ new: true }
 	).then(doc => {
 		if (!doc) {

@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { render } from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import appReducer from '../src/store/appReducer';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Header from './components/Header';
-import HomePage from './pages/HomePage';
+import Layout from './layouts/MainLayout';
 import { reduxDT } from './reduxDT/reduxDevtool';
 import { saveState, loadState } from './localStorage/localStorage';
 
@@ -20,12 +19,7 @@ store.subscribe(() => {
 	console.log(store.getState().users);
 });
 
-const App = () => (
-	<div>
-		<Header />
-		<HomePage />
-	</div>
-);
+const App = () => <Layout />;
 
 const app = (
 	<Provider store={store}>

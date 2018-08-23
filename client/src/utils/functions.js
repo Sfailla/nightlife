@@ -3,7 +3,7 @@ import decode from 'jwt-decode';
 // function for truncating names of search results
 export const truncateRes = str => {
 	if (typeof str === 'string' && str.length > 30) {
-		str = str.slice(0, 30);
+		str = str.slice(0, 25);
 		str += '...';
 		return str;
 	} else {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Topography = ({
+const Typography = ({
 	headingPrimary,
 	headingSecondary,
 	headingTertiary,
@@ -51,4 +51,4 @@ const Topography = ({
 	}
 };
 
-export default Topography;
+export default Typography;

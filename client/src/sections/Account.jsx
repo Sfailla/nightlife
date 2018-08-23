@@ -1,124 +1,64 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-import Auth from '../utils/AuthComponent';
-
-import { setAvatar } from '../actions/users';
-import guyAvatar from '../images/male-avatar.png';
-import girlAvatar from '../images/female-avatar.png';
-import defaultAvatar from '../images/default-avatar.jpg';
-import Topography from '../components/Topography';
-import SelectAvatar from '../components/SelectAvatar';
+import Typography from '../components/Typography';
+import AvatarComponent from '../components/AvatarComponent';
 import AccountBioForm from '../components/AccountBioForm';
+import Button from '../components/Button';
 
-class Account extends Component {
+const styles = {
+	button: {
+		width: '15rem',
+		height: '4rem',
+		background: 'var(--primary-color)',
+		color: 'white',
+		fontWeight: 'bold',
+		margin: '2rem auto'
+	}
+};
+
+class Account extends React.Component {
 	state = {
-		email: null,
-		location: null,
-		description: null,
-		avatar: '',
-		avatarSelect: ''
+		company: '',
+		email: '',
+		location: '',
+		Biography: ''
 	};
 
-	Auth = new Auth();
+	handleOnSubmit = event => {
+		event.preventDefault();
+	};
 
-	handleOnChange = evt => {
-		const { name, value } = evt.target;
+	handleOnChange = event => {
+		const { name, value } = event.target;
+		console.log({ [name]: value });
 		this.setState(() => ({ [name]: value }));
 	};
 
-	handleOnSubmit = evt => {
-		evt.preventDefault();
-
-		this.updateAvatar();
-	};
-
-	handleSelectAvatar = () => {
-		let avatar = defaultAvatar;
-
-		switch (this.state.avatarSelect) {
-			case 'male-avatar':
-				avatar = guyAvatar;
-				break;
-			case 'female-avatar':
-				avatar = girlAvatar;
-				break;
-			case 'default-avatar':
-				avatar = defaultAvatar;
-				break;
-			default:
-				return avatar;
-		}
-		return avatar;
-	};
-
-	initializeAvatar = () => {
-		this.Auth
-			.authFetch('/users/settings/avatar', { method: 'GET' })
-			.then(user => user.json())
-			.then(user => {
-				console.log(user);
-				// let avatar = user[0].settings.avatar;
-				// let avatarSelect = user[0].settings.avatarSelect;
-				// this.setState(() => ({ avatar, avatarSelect }));
-			});
-	};
-
-	updateAvatar = () => {
-		const { avatar, avatarSelect } = this.state;
-		this.Auth
-			.authFetch('/users/settings/avatar', {
-				method: 'PATCH',
-				body: JSON.stringify({ avatar, avatarSelect })
-			})
-			.then(user => user.json())
-			.then(user => {
-				let avatar = user[0].settings.avatar;
-				let avatarSelect = user[0].settings.avatarSelect;
-				this.setState(() => ({ avatar, avatarSelect }));
-			});
-	};
-
-	componentDidUpdate = (prevProps, prevState) => {
-		// console.log(prevState.avatarSelect);
-		// console.log(this.state.avatarSelect);
-	};
-
-	componentDidMount = () => {
-		this.initializeAvatar();
-		console.log(this.state.avatarSelect);
-		// typeof this.state.avatar === null
-		// 	? console.log('first render')
-		// 	: console.log('already rendered');
-	};
+	componentDidMount = () => {};
 
 	render() {
 		return (
 			<div className="account">
 				<div style={{ display: 'flex' }}>
-					<Topography
+					<Typography
 						classname="account__title"
 						headingPrimary="Account"
 					/>
-					<Topography
+					<Typography
 						classname="account__sub-title"
 						headingSecondary="create a profile"
 					/>
 				</div>
 				<div className="account__profile-card">
-					<Topography
+					<Typography
 						classname="account__card-title"
 						headingTertiary="Change Avatar"
 					/>
 					<hr />
-					<SelectAvatar
-						avatarSelect={this.state.avatarSelect}
-						handleSelectAvatar={this.handleSelectAvatar}
-						handleOnChange={this.handleOnChange}
-						handleOnSubmit={this.handleOnSubmit}
-					/>
+					<AvatarComponent />
 					<hr />
-					<Topography
+					<Typography
 						classname="account__card-title"
 						headingTertiary="Add Biography"
 					/>
@@ -127,12 +67,13 @@ class Account extends Component {
 						handleOnChange={this.handleOnChange}
 						handleOnSubmit={this.handleOnSubmit}
 					/>
-					<hr style={{ marginTop: '1rem' }} />
-					<Topography
-						classname="account__card-title"
-						headingTertiary="change username and/or password"
+
+					<Button
+						addStyles={styles.button}
+						type="button"
+						name="Save Bio"
+						onClick={this.handleSaveBio}
 					/>
-					<hr />
 				</div>
 			</div>
 		);

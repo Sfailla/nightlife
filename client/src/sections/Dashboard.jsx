@@ -1,40 +1,48 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { setAvatar } from '../actions/users';
 import DashOptions from '../objects/DashOptions';
 import DashLowerContent from '../objects/DashContent';
 import GoingOut from '../components/GoingOut';
-import Auth from '../utils/AuthComponent';
+import Auth from '../utils/AuthClass';
 
 class Dashboard extends Component {
+	state = { username: '' };
 	Auth = new Auth();
 
-	loadAvatar = () => {
-		this.Auth
-			.authFetch('/users/settings/avatar', { method: 'GET' })
-			.then(user => user.json())
-			.then(user => {
-				console.log(user[0]);
-				if (user[0].settings.avatar === null) {
-					this.initializeAvatar();
-				}
-				if (typeof user[0].settings.avatar === 'string') {
-				}
-			});
-	};
+	// checkAvatar = () => {
+	// 	this.Auth
+	// 		.authFetch('/users/settings')
+	// 		.then(res => res.json())
+	// 		.then(res => {
+	// 			const response = res[0];
+	// 			// console.log(response);
+	// 			if (response.utilities.initialRender === true) {
+	// 				this.initializeAvatar();
+	// 			}
+	// 			if (response.utilities.initialRender === false) {
+	// 				// console.log('non-initial', response);
+	// 			}
+	// 		});
+	// };
 
-	initializeAvatar = () => {
-		this.Auth
-			.authFetch('/users/settings/initialize-avatar', {
-				method: 'PATCH'
-			})
-			.then(res => res.json())
-			.then(res => {
-				console.log(res);
-			});
-	};
+	// initializeAvatar = () => {
+	// 	this.Auth
+	// 		.authFetch('/users/settings/initialize', {
+	// 			method: 'PATCH'
+	// 		})
+	// 		.then(result => result.json())
+	// 		.then(result => {
+	// 			return result;
+	// 		})
+	// 		.catch(err => {
+	// 			throw err;
+	// 		});
+	// };
 
-	componentWillMount = () => {
-		this.loadAvatar();
+	componentDidMount = () => {
+		// this.checkAvatar();
 	};
 
 	render() {
@@ -64,4 +72,4 @@ class Dashboard extends Component {
 	}
 }
 
-export default Dashboard;
+export default connect()(Dashboard);

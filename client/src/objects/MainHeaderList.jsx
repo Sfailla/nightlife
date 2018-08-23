@@ -4,17 +4,15 @@ import { connect } from 'react-redux';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
-const MainHeaderList = (props) => {
+import Avatar from '../components/Avatar';
+
+const MainHeaderList = props => {
 	return (
 		<ul className="app-header-list">
 			{props.isLoggedIn && <li>{props.user.username}</li>}
 			{props.isLoggedIn && (
 				<li>
-					<img
-						className="app-header-list__avatar-img"
-						src={props.user.avatar}
-						alt="avatar-profile"
-					/>
+					<Avatar avatar={props.user.avatar} />
 				</li>
 			)}
 			{props.isLoggedIn ? (
@@ -32,7 +30,7 @@ const LinkToLogin = () => (
 	</li>
 );
 
-const Logout = (props) => {
+const Logout = props => {
 	const styles = {
 		display: 'inline-block',
 		width: '10rem',
@@ -52,7 +50,7 @@ const Logout = (props) => {
 	);
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		user: state.users
 	};

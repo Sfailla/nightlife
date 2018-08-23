@@ -9,10 +9,10 @@ import Search from '../sections/Search';
 import Account from '../sections/Account';
 import Dashboard from '../sections/Dashboard';
 import Register from '../sections/Register';
-import Login from '../Components/Login';
+import Login from '../components/Login';
 
 import { checkAuth } from '../utils/functions';
-import Auth from '../utils/AuthComponent';
+import Auth from '../utils/AuthClass';
 
 const AuthRoute = ({ component: Component, rest }) => (
 	<Route
@@ -51,12 +51,12 @@ class HomePage extends Component {
 						<AuthRoute
 							exact
 							path="/dashboard"
-							component={() => <Dashboard />}
+							component={props => <Dashboard {...props} />}
 						/>
 						<AuthRoute
 							exact
 							path="/account"
-							component={() => <Account />}
+							component={props => <Account {...props} />}
 						/>
 						<Route
 							exact

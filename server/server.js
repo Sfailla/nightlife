@@ -7,7 +7,6 @@ const path = require('path');
 const cors = require('cors');
 
 const users = require('./routes/users');
-const userSettings = require('./routes/userSettings');
 
 const app = express();
 
@@ -21,7 +20,6 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/users', users);
-app.use('/settings', userSettings);
 
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public/index.html'), err => {

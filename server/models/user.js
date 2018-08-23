@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
-const { ObjectId } = mongoose.Schema.Types;
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -29,18 +28,16 @@ const UserSchema = new mongoose.Schema({
 			}
 		}
 	],
-	created_at: {
-		type: Date,
-		default: Date.now
-	},
 	settings: {
-		creator: {
-			type: ObjectId
-		},
 		avatar: {
-			type: String
+			type: String,
+			default: '/22acd1da9b455b7ce7196bb89f01127a.jpg'
 		},
 		avatarSelect: {
+			type: String,
+			default: 'default-avatar'
+		},
+		company: {
 			type: String
 		},
 		description: {
@@ -49,6 +46,10 @@ const UserSchema = new mongoose.Schema({
 		location: {
 			type: String
 		}
+	},
+	created_at: {
+		type: Date,
+		default: Date.now
 	}
 });
 
@@ -118,10 +119,6 @@ UserSchema.statics = {
 				});
 			});
 		});
-	},
-
-	initializeAvatar: function() {
-		return User.findOneAndUpdate({ _id: '' });
 	},
 
 	findByToken: token => {

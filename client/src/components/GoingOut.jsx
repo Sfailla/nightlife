@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 
-const GoingOut = (props) => (
+import Typography from './Typography';
+
+const GoingOut = props => (
 	<Fragment>
-		<div className="heading-tertiary">Check whose going out</div>
+		<Typography headingTertiary={'Check whose going out'} />
 	</Fragment>
 );
 

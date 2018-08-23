@@ -2,7 +2,7 @@ import React from 'react';
 
 const defaultButtonStyles = {
 	display: 'block',
-	width: '15rem',
+	width: 'auto',
 	height: '3rem'
 };
 // button types are: button, submit, reset

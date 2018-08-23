@@ -4,13 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // good config for react, express full stack projects
 module.exports = {
-	entry: {
-		app: './client/src/app.js'
-	},
+	entry: './client/src/app.js',
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		filename: 'bundle.js',
-		publicPath: './public'
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
@@ -28,6 +25,7 @@ module.exports = {
 			},
 			{
 				test: /\.s?css$/,
+				exclude: /node_modules/,
 				use: [ 'style-loader', 'css-loader', 'sass-loader' ]
 			},
 			{
@@ -43,21 +41,22 @@ module.exports = {
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({ template: 'public/index.html' })
+		new HtmlWebpackPlugin({
+			template: './public/index.html',
+			filename: './public/index.html'
+		})
 	],
 	devtool: 'cheap-module-source-map',
 	watch: true,
 	devServer: {
-		publicPath: '/',
-		contentBase: path.resolve(__dirname, 'public'),
+		contentBase: './public/index.html',
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
 		proxy: {
 			'*': {
 				target: 'http://localhost:3001',
-				secure: false,
-				changeOrigin: true
+				secure: false
 			}
 		}
 	}

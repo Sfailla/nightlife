@@ -6,7 +6,7 @@ export default class Auth {
 			},
 			method: 'POST',
 			body: JSON.stringify({ username, password })
-		}).then((res) => {
+		}).then(res => {
 			return new Promise((resolve, reject) => {
 				if (!res) {
 					return reject();
@@ -24,7 +24,7 @@ export default class Auth {
 			},
 			method: 'POST',
 			body: JSON.stringify({ username, password })
-		}).then((res) => {
+		}).then(res => {
 			return new Promise((resolve, reject) => {
 				if (!res) {
 					return reject();
@@ -43,7 +43,7 @@ export default class Auth {
 		return fetch(url, {
 			headers,
 			...options
-		}).then((res) => {
+		}).then(res => {
 			return new Promise((resolve, reject) => {
 				if (!res) {
 					return reject();
@@ -54,26 +54,24 @@ export default class Auth {
 		});
 	};
 
-	// isTokenExpired(token) {
-	//     try {
-	//         const decoded = decode(token);
-	//         if (decoded.exp < Date.now() / 1000) { // Checking if token is expired
-	//             return true;
-	//         }
-	//         else
-	//             return false;
-	//     }
-	//     catch (err) {
-	//         return false;
-	//     }
-	// }
+	isTokenExpired(token) {
+		try {
+			const decoded = decode(token);
+			if (decoded.exp < Date.now() / 1000) {
+				// Checking if token is expired
+				return true;
+			} else return false;
+		} catch (err) {
+			return false;
+		}
+	}
 
 	isLoggedIn = () => {
 		const token = this.getToken();
-		return !!token;
+		return !!token && this.isTokenExpired(token);
 	};
 
-	setToken = (token) => {
+	setToken = token => {
 		localStorage.setItem('TOKEN', token);
 	};
 
@@ -92,10 +90,10 @@ export default class Auth {
 		this.removeToken();
 	};
 
-	checkStatus(response) {
+	_checkStatus(response) {
 		// raises an error in case response status is not a success
 		if (res.status >= 200 && res.status < 300) {
-			return res;
+			return res.json();
 		} else {
 			var error = new Error(res.statusText);
 			error.res = response;
