@@ -22,8 +22,8 @@ class Search extends React.Component {
 	state = {
 		searchVal: '',
 		results: [],
-		errors: '',
-		isLoading: false
+		isLoading: false,
+		errors: ''
 	};
 
 	handleOnSubmit = evt => {
@@ -75,7 +75,6 @@ class Search extends React.Component {
 			})
 			.then(res => {
 				if (res.businesses.length > 0) {
-					console.log(res);
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,
@@ -106,6 +105,7 @@ class Search extends React.Component {
 					handleOnSubmit={this.handleOnSubmit}
 					errors={this.state.errors}
 				/>
+
 				<br />
 
 				{this.state.results.length > 0 && (

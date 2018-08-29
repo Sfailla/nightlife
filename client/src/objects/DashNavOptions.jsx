@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-const DashSelect = () => (
-	<div className="select">
+const DashNavOptions = () => (
+	<Fragment>
 		<div className="select__container">
 			<div className="select__card">
 				<a href="#">
@@ -28,7 +28,7 @@ const DashSelect = () => (
 				</a>
 			</div>
 		</div>
-	</div>
+	</Fragment>
 );
 
-export default DashSelect;
+export default DashNavOptions;

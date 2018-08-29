@@ -4,6 +4,7 @@ export const BorderlessForm = ({
 	addStyles,
 	handleOnChange,
 	autocomplete,
+	value,
 	name,
 	type,
 	label
@@ -14,6 +15,7 @@ export const BorderlessForm = ({
 				style={{ ...addStyles }}
 				type={type}
 				id={name}
+				value={value}
 				name={name}
 				placeholder={label}
 				autoComplete={autocomplete ? 'on' : 'off'}
@@ -30,6 +32,7 @@ export const Form = ({
 	handleOnChange,
 	addStyles,
 	autocomplete,
+	value,
 	label,
 	type,
 	name
@@ -41,6 +44,7 @@ export const Form = ({
 				style={{ ...addStyles }}
 				id={name}
 				name={name}
+				value={value}
 				type={type}
 				autoComplete={autocomplete ? 'on' : 'off'}
 				placeholder={label}

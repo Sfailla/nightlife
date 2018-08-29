@@ -70,13 +70,16 @@
 		margin-top: 6px;
 
 		& textarea {
+			color: var(--primary-text-color);
+			font-weight: bold;
+			font-family: 'Roboto', sans-serif;
 			display: block;
 			width: 100%;
 			padding: 1rem;
 			resize: none;
 			font-family: inherit;
 			font-size: inherit;
-			border: 1px solid var(--primary-color);
+			border: 2px solid var(--primary-color);
 
 			&:focus {
 				outline: none;

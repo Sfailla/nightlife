@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Auth from '../utils/AuthClass';
 
 import Typography from '../components/Typography';
 import AvatarComponent from '../components/AvatarComponent';
@@ -25,17 +26,50 @@ class Account extends React.Component {
 		Biography: ''
 	};
 
+	Auth = new Auth();
+
 	handleOnSubmit = event => {
 		event.preventDefault();
 	};
 
 	handleOnChange = event => {
 		const { name, value } = event.target;
-		console.log({ [name]: value });
 		this.setState(() => ({ [name]: value }));
 	};
 
-	componentDidMount = () => {};
+	handleUpdateUserInfo = () => {
+		const { company, email, location, description } = this.state;
+
+		this.Auth
+			.authFetch('/users/settings/biography', {
+				method: 'PATCH',
+				body: JSON.stringify({ company, email, location, description })
+			})
+			.then(res => res.json())
+			.then(res => {
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
+			});
+	};
+
+	componentDidMount = () => {
+		this.Auth
+			.authFetch('/users/me', { method: 'GET' })
+			.then(res => res.json())
+			.then(res => {
+				console.log(res);
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
+			});
+	};
 
 	render() {
 		return (
@@ -60,19 +94,23 @@ class Account extends React.Component {
 					<hr />
 					<Typography
 						classname="account__card-title"
-						headingTertiary="Add Biography"
+						headingTertiary="Add User Info"
 					/>
 					<hr />
 					<AccountBioForm
 						handleOnChange={this.handleOnChange}
 						handleOnSubmit={this.handleOnSubmit}
+						company={this.state.company}
+						email={this.state.email}
+						location={this.state.location}
+						description={this.state.description}
 					/>
 
 					<Button
 						addStyles={styles.button}
 						type="button"
 						name="Save Bio"
-						onClick={this.handleSaveBio}
+						onClick={this.handleUpdateUserInfo}
 					/>
 				</div>
 			</div>

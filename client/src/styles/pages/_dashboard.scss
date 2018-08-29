@@ -1,94 +1,27 @@
 .dashboard {
+	&__container {
+		height: 100%;
+		padding: 4rem;
+	}
 
-    &__container {
-        height: 100%;
-        padding: 4rem;
-        display: grid;
-        grid-template-rows: repeat(2, min-content) 1fr;
-        grid-gap: 3rem;
-    }
+	&__title-wrapper {
+		display: flex;
+		justify-content: space-between;
+	}
 
-    &__title {
-        font-size: 3.5rem;
-        color: var(--primary-color);
-    }
+	&__title {
+		font-size: 3.5rem;
+		color: var(--primary-color);
+	}
 
-    &__sub-title {
-        color: var(--text-secondary);
-    }
+	&__sub-title {
+		color: var(--text-secondary);
+	}
+
+	&__avatar-card {
+		width: 25rem;
+		height: 25rem;
+		background: white;
+		box-shadow: var(--box-shadow-md-l);
+	}
 }
-
-.dash-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 8rem;
-
-    & .lower-box {
-
-        & img {
-            min-height: 100%;
-            min-width: 100%;
-            object-fit: cover;
-        }
-    }
-
-    &__pic-box {
-        display: grid;
-        grid-template-columns: repeat(2, 22rem);
-        grid-template-rows: repeat(2, 16rem);
-        grid-gap: .5rem;
-    }
-
-    &__content-box {
-        padding: 1rem;
-        background: white;
-        border-bottom: 3px solid var(--primary-color);
-        box-shadow: var(--box-shadow-md-l);
-
-        &--heading {
-            color: var(--primary-color);
-        }
-
-        &--sub-heading {
-            color: var(--color-gold);
-        }
-    }
-
-    &__list {
-        color: var(--text-secondary);
-    }
-}
-
-.select {
-    height: auto;
-
-    &__container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    &__card {
-        width: 18rem;
-        height: 18rem;
-        border-radius: 3px;
-        box-shadow: var(--box-shadow-md-l);
-        background-color: #fff;
-        border-bottom: 3px solid var(--primary-color);
-
-        & a {
-            display: block;
-            height: 100%;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        &--title {}
-        &--icon {}
-    }
-}
-
-

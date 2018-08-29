@@ -39,12 +39,18 @@ const Typography = ({
 			</p>
 		);
 	}
-	if (headingTertiary) {
+	if (headingTertiary && classname) {
 		return (
 			<p
 				style={{ ...addStyles }}
 				className={`heading-tertiary ${classname}`}
 			>
+				{headingTertiary}
+			</p>
+		);
+	} else if (headingTertiary) {
+		return (
+			<p style={{ ...addStyles }} className={`heading-tertiary`}>
 				{headingTertiary}
 			</p>
 		);

@@ -18,9 +18,10 @@ server.post('/sign-up', (req, res) => {
 	const users = new User();
 	users.username = username;
 	users.password = password;
-	users.location = null;
-	users.description = null;
 	users.email = null;
+	users.settings.location = null;
+	users.settings.description = null;
+	users.settings.company = null;
 	users
 		.save()
 		.then(user => {
@@ -58,6 +59,8 @@ server.delete('/token', authenticate, (req, res) => {
 	);
 });
 
+// User Routes for USER SETTINGS ex. AVATAR, BIO
+
 server.get('/settings', authenticate, (req, res) => {
 	User.find({ _id: req.user.id }).then(user => {
 		res.send(user);
@@ -91,6 +94,30 @@ server.patch('/settings/avatar', authenticate, (req, res) => {
 			$set: {
 				'settings.avatar': avatar,
 				'settings.avatarSelect': avatarSelect
+			}
+		},
+		{ new: true }
+	).then(doc => {
+		if (!doc) {
+			return res.status(404).send();
+		} else {
+			res.send(doc);
+		}
+	});
+});
+
+server.patch('/settings/biography', authenticate, (req, res) => {
+	console.log(req.body.company);
+	const { company, email, location, description } = req.body;
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				email,
+				'settings.company': company,
+				'settings.location': location,
+				'settings.description': description
 			}
 		},
 		{ new: true }

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Typography from '../components/Typography';
 
 const DashLowerContent = () => (
-	<div>
+	<Fragment>
 		<div className="heading-secondary dash-content__content-box--heading">
 			Search anywhere for bars and clubs
 		</div>
@@ -13,7 +14,7 @@ const DashLowerContent = () => (
 			<li>Keep track of your events</li>
 			<li>Let people know where your going</li>
 		</ul>
-	</div>
+	</Fragment>
 );
 
 export default DashLowerContent;

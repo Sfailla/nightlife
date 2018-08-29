@@ -31,7 +31,7 @@ const AccountBioForm = props => {
 					/>
 
 					<textarea
-						className="u-mt-25"
+						className="account__textarea u-mt-25"
 						value={props.description || ''}
 						name="description"
 						rows={5}

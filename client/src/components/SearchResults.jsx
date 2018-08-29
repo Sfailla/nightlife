@@ -40,7 +40,7 @@ const SearchResComponent = ({
 				<div className="results__inner-container">
 					<div className="results__name-location-wrapper">
 						<h2 className="heading-secondary results__name">
-							{truncateRes(name)}
+							{truncateRes(name, 25)}
 						</h2>
 						<p className="results__location">{location}</p>
 					</div>

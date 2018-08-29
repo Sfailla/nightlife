@@ -1,9 +1,10 @@
 import decode from 'jwt-decode';
 
 // function for truncating names of search results
-export const truncateRes = str => {
-	if (typeof str === 'string' && str.length > 30) {
-		str = str.slice(0, 25);
+// takes in a str and it's max length allowed.
+export const truncateRes = (str, len) => {
+	if (typeof str === 'string' && str.length > len) {
+		str = str.slice(0, len);
 		str += '...';
 		return str;
 	} else {
