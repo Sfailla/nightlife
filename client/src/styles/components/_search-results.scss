@@ -76,6 +76,6 @@
 		height: 10rem;
 		color: white;
 
-		@include flex-center;
+		@include flex-center(center, center);
 	}
 }

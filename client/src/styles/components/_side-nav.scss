@@ -26,7 +26,7 @@
 			width: 100%;
 			height: 6rem;
 			list-style: none;
-			@include flex-center;
+			@include flex-center(center, center);
 		}
 
 		& li:not(:last-of-type) {
