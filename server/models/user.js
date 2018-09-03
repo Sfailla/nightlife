@@ -28,6 +28,7 @@ const UserSchema = new mongoose.Schema({
 			}
 		}
 	],
+	events: [],
 	settings: {
 		avatar: {
 			type: String,

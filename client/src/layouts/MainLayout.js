@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 
 import Header from '../components/Header';
 import HomePage from '../pages/HomePage';
 
-export default class MainLayout extends Component {
+export default class MainLayout extends React.Component {
 	render() {
 		return (
-			<div>
+			<Fragment>
 				<Header />
 				<HomePage />
-			</div>
+			</Fragment>
 		);
 	}
 }

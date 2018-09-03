@@ -59,6 +59,27 @@ server.delete('/token', authenticate, (req, res) => {
 	);
 });
 
+server.patch('/events', authenticate, (req, res) => {
+	const events = req.body.events;
+	console.log('events', events);
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				events
+			}
+		},
+		{ new: true }
+	).then(user => {
+		if (!user) {
+			return res.status(404).send();
+		} else {
+			res.send(user);
+		}
+	});
+	res.send(events);
+});
+
 // User Routes for USER SETTINGS ex. AVATAR, BIO
 
 server.get('/settings', authenticate, (req, res) => {

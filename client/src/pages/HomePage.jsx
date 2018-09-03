@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
@@ -27,6 +28,11 @@ const AuthRoute = ({ component: Component, rest }) => (
 );
 
 class HomePage extends Component {
+	static propTypes = {
+		isLoggedIn: PropTypes.bool,
+		logout: PropTypes.func
+	};
+
 	Auth = new Auth();
 
 	logout = () => {
@@ -51,7 +57,9 @@ class HomePage extends Component {
 						<AuthRoute
 							exact
 							path="/dashboard"
-							component={props => <Dashboard {...props} />}
+							component={props => (
+								<Dashboard {...props} logout={this.logout} />
+							)}
 						/>
 						<AuthRoute
 							exact

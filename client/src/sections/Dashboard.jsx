@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Auth from '../utils/AuthClass';
 
-import UserDetailsList from '../components/UserDetailsList';
+import UserOptions from '../components/UserOptions';
 import Typography from '../components/Typography';
+import MyEvents from '../components/MyEvents';
 
 class Dashboard extends React.Component {
 	state = {
@@ -10,11 +12,25 @@ class Dashboard extends React.Component {
 		company: '',
 		location: '',
 		email: '',
-		description: ''
+		description: '',
+		logout: this.props.logout
 	};
+
 	Auth = new Auth();
 
-	componentDidMount = () => {};
+	componentDidMount = () => {
+		this.Auth
+			.authFetch('/users/me', { method: 'GET' })
+			.then(res => res.json())
+			.then(res => {
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
+			});
+	};
 
 	render() {
 		return (
@@ -30,40 +46,23 @@ class Dashboard extends React.Component {
 					/>
 				</div>
 				<div className="dashboard__layout">
-					<div className="dashboard__options-component">
-						<div className="options__box-container">
-							<div className="options__box">SEARCH</div>
-							<div className="options__box">SETTINGS</div>
-							<div className="options__box">HIDE EVENTS</div>
-							<div className="options__box">LOG OFF</div>
-						</div>
-						<div className="options__big-box-container">
-							<div className="options__big-box">
-								<Typography
-									headingTertiary="User Info"
-									classname="u-center-text u-mb-10"
-								/>
-								<hr />
-
-								<UserDetailsList />
-							</div>
-						</div>
-					</div>
-					<div className="dashboard__event-component">
-						<div className="event event__event-container">
-							<div className="event__box">
-								<Typography
-									headingTertiary="Events"
-									classname="u-center-text u-mb-10"
-								/>
-								<hr />
-							</div>
-						</div>
-					</div>
+					<UserOptions
+						username={this.state.username}
+						company={this.state.company}
+						location={this.state.location}
+						description={this.state.description}
+						email={this.state.email}
+						logout={this.props.logout}
+					/>
+					<MyEvents />
 				</div>
 			</div>
 		);
 	}
 }
+
+Dashboard.propTypes = {
+	logout: PropTypes.func
+};
 
 export default Dashboard;

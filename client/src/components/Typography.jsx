@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Typography = ({
 	headingPrimary,
@@ -55,6 +56,14 @@ const Typography = ({
 			</p>
 		);
 	}
+};
+
+Typography.propTypes = {
+	headingPrimary: PropTypes.string,
+	headingSecondary: PropTypes.string,
+	headingTertiary: PropTypes.string,
+	addStyles: PropTypes.object,
+	classname: PropTypes.string
 };
 
 export default Typography;

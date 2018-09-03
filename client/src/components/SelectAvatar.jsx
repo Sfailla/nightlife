@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { setAvatar } from '../actions/users';
+
 import Button from './Button';
 import RadioGroup from './RadioGroup';
 
