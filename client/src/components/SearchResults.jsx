@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Auth from '../utils/AuthClass';
 
+import Auth from '../utils/AuthClass';
 import defaultImgSrc from '../images/bar-default-img.jpg';
 import Button from './Button';
 import { truncateRes } from '../utils/functions';
@@ -20,23 +20,25 @@ const styles = {
 class SearchResComponent extends React.Component {
 	state = { events: [] };
 	Auth = new Auth();
+
 	addEvent = () => {
-		const events = this.props.name;
+		const name = this.props.name;
 		this.Auth
-			.authFetch('/users/events', {
-				method: 'PATCH',
-				body: JSON.stringify({ events })
+			.authFetch('/events', {
+				method: 'POST',
+				body: JSON.stringify({ name })
 			})
 			.then(data => data.json())
 			.then(data => {
-				this.setState(() => ({ events: data.events }));
+				console.log(data);
+				this.setState(() => ({ events: data.name }));
+				this.props.history.push('/dashboard');
 			})
 			.catch(err => console.log(err));
 	};
 	componentDidMount = () => {};
 
 	render() {
-		// console.log(this.state.events);
 		return (
 			<div className="results__container">
 				<div className="results__card">
@@ -97,7 +99,6 @@ class SearchResComponent extends React.Component {
 
 SearchResComponent.propTypes = {
 	isLoggedIn: PropTypes.bool,
-	location: PropTypes.string,
 	imageSrc: PropTypes.string,
 	imageAlt: PropTypes.string,
 	addEvent: PropTypes.func,

@@ -28,7 +28,6 @@ const UserSchema = new mongoose.Schema({
 			}
 		}
 	],
-	events: [],
 	settings: {
 		avatar: {
 			type: String,
@@ -89,8 +88,9 @@ UserSchema.methods = {
 
 		return this.save().then(() => token);
 	},
+
 	removeToken: function(token) {
-		return this.update({
+		return this.updateOne({
 			$pull: {
 				tokens: { token }
 			}
@@ -104,18 +104,17 @@ UserSchema.statics = {
 	findByCredentials: (username, password) => {
 		return User.findOne({ username }).then(user => {
 			if (!user) {
-				console.log('there is no user in database with that name');
-				return Promise.reject();
+				let error = 'there is no user in database with that name';
+				return Promise.reject(error);
 			}
 			return new Promise((resolve, reject) => {
 				bcrypt.compare(password, user.password, (err, res) => {
 					if (res) {
 						resolve(user);
 					} else {
-						console.log(
-							'sorry wrong password for that user, please try again'
-						);
-						reject(err);
+						let error =
+							'sorry wrong password for that user, please try again';
+						reject(error);
 					}
 				});
 			});

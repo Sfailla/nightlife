@@ -65,19 +65,20 @@ server.patch('/events', authenticate, (req, res) => {
 	User.findOneAndUpdate(
 		{ _id: req.user.id },
 		{
-			$set: {
-				events
+			$push: {
+				'events.name': events
 			}
 		},
 		{ new: true }
-	).then(user => {
-		if (!user) {
-			return res.status(404).send();
-		} else {
-			res.send(user);
-		}
-	});
-	res.send(events);
+	)
+		.then(event => {
+			if (!event) {
+				return res.status(404).send();
+			} else {
+				res.send(event);
+			}
+		})
+		.catch(err => res.status(404).send(err));
 });
 
 // User Routes for USER SETTINGS ex. AVATAR, BIO

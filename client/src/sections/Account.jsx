@@ -1,22 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Auth from '../utils/AuthClass';
 
 import Typography from '../components/Typography';
 import AvatarComponent from '../components/AvatarComponent';
 import AccountBioForm from '../components/AccountBioForm';
-import Button from '../components/Button';
-
-const styles = {
-	button: {
-		width: '15rem',
-		height: '4rem',
-		background: 'var(--primary-color)',
-		color: 'white',
-		fontWeight: 'bold',
-		margin: '2rem auto'
-	}
-};
 
 class Account extends React.Component {
 	state = {
@@ -30,6 +17,9 @@ class Account extends React.Component {
 
 	handleOnSubmit = event => {
 		event.preventDefault();
+		this.initializeUserData();
+		this.handleUpdateUserInfo();
+		this.props.history.push('/dashboard');
 	};
 
 	handleOnChange = event => {
@@ -43,8 +33,28 @@ class Account extends React.Component {
 		this.Auth
 			.authFetch('/users/settings/biography', {
 				method: 'PATCH',
-				body: JSON.stringify({ company, email, location, description })
+				body: JSON.stringify({
+					company,
+					email,
+					location,
+					description
+				})
 			})
+			.then(res => res.json())
+			.then(res => {
+				console.log(res);
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
+			});
+	};
+
+	initializeUserData = () => {
+		this.Auth
+			.authFetch('/users/me', { method: 'GET' })
 			.then(res => res.json())
 			.then(res => {
 				this.setState(() => ({
@@ -57,18 +67,7 @@ class Account extends React.Component {
 	};
 
 	componentDidMount = () => {
-		this.Auth
-			.authFetch('/users/me', { method: 'GET' })
-			.then(res => res.json())
-			.then(res => {
-				console.log(res);
-				this.setState(() => ({
-					company: res.settings.company,
-					email: res.email,
-					location: res.settings.location,
-					description: res.settings.description
-				}));
-			});
+		this.initializeUserData();
 	};
 
 	render() {
@@ -98,19 +97,12 @@ class Account extends React.Component {
 					/>
 					<hr />
 					<AccountBioForm
-						handleOnChange={this.handleOnChange}
-						handleOnSubmit={this.handleOnSubmit}
 						company={this.state.company}
 						email={this.state.email}
 						location={this.state.location}
 						description={this.state.description}
-					/>
-
-					<Button
-						addStyles={styles.button}
-						type="button"
-						name="Save Bio"
-						onClick={this.handleUpdateUserInfo}
+						handleOnChange={this.handleOnChange}
+						handleOnSubmit={this.handleOnSubmit}
 					/>
 				</div>
 			</div>
@@ -118,10 +110,4 @@ class Account extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		user: state.users
-	};
-};
-
-export default connect(mapStateToProps)(Account);
+export default Account;

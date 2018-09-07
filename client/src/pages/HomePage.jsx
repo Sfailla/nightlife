@@ -53,7 +53,11 @@ class HomePage extends Component {
 				</div>
 				<div className="home__main-page-area">
 					<Switch>
-						<Route exact path="/" component={() => <Search />} />
+						<Route
+							exact
+							path="/"
+							render={props => <Search {...props} />}
+						/>
 						<AuthRoute
 							exact
 							path="/dashboard"
@@ -66,15 +70,11 @@ class HomePage extends Component {
 							path="/account"
 							component={props => <Account {...props} />}
 						/>
-						<Route
-							exact
-							path="/sign-in"
-							component={() => <Login />}
-						/>
+						<Route exact path="/sign-in" render={() => <Login />} />
 						<Route
 							exact
 							path="/sign-up"
-							component={() => <Register />}
+							render={() => <Register />}
 						/>
 					</Switch>
 				</div>

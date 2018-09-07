@@ -1,7 +1,9 @@
 import React from 'react';
 import Typography from './Typography';
+import Button from './Button';
+import { truncateRes } from '../utils/functions';
 
-const MyEvents = () => {
+const MyEvents = props => {
 	const styles = {
 		content: {
 			height: 'auto',
@@ -10,17 +12,19 @@ const MyEvents = () => {
 		ul: {},
 		li: {
 			listStyle: 'none',
-			height: '3rem',
+			letterSpacing: '2px',
+			textTransform: 'uppercase'
+		},
+		eventWrapper: {
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'center',
+			height: '3.5rem',
 			width: '100%',
 			marginTop: '1rem',
-			paddingLeft: '1rem',
+			padding: '0 1rem',
 			background: 'var(--primary-color)',
-			color: 'var(--color-gold)',
-			display: 'flex',
-			justifyContent: 'left',
-			alignItems: 'center',
-			letterSpacing: '2px',
-			textTransform: 'uppercase',
+			color: 'var(--secondary-color)',
 			boxShadow: 'var(--box-shadow-md-d)'
 		}
 	};
@@ -34,16 +38,34 @@ const MyEvents = () => {
 					/>
 					<hr />
 					<div style={styles.content} className="event__content">
-						<ul>
-							<li className="event__li" style={styles.li}>
-								JAY'S PUB
-							</li>
-							<li className="event__li" style={styles.li}>
-								MATRIX CLUB
-							</li>
-							<li className="event__li" style={styles.li}>
-								123 MADEUP CLUB
-							</li>
+						<ul style={styles.ul}>
+							{props.events.length > 0 ? (
+								props.events.map(event => {
+									return (
+										<div
+											key={event._id}
+											style={styles.eventWrapper}
+										>
+											<li
+												className="event__li"
+												style={styles.li}
+											>
+												{truncateRes(event.name, 15)}
+											</li>
+											<Button
+												name="delete"
+												type="button"
+												onClick={() =>
+													props.handleRemoveEvent(
+														event._id
+													)}
+											/>
+										</div>
+									);
+								})
+							) : (
+								<h3>Sorry No Events</h3>
+							)}
 						</ul>
 					</div>
 				</div>

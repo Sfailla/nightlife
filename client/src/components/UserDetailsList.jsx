@@ -16,7 +16,7 @@ const styles = {
 		display: 'flex',
 		justifyContent: 'left',
 		alignItems: 'center',
-		color: 'var(--primary-color)'
+		color: 'var(--primary-text-color)'
 	},
 	wordWrap: {
 		display: 'flex'

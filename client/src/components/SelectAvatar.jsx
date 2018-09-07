@@ -1,44 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { setAvatar } from '../actions/users';
+import React, { Fragment } from 'react';
 
-import Button from './Button';
 import RadioGroup from './RadioGroup';
 
-const styles = {
-	button: {
-		width: '15rem',
-		background: 'var(--primary-color)',
-		color: 'white',
-		marginTop: '1.5rem',
-		fontSize: '1.4rem',
-		fontFamily: 'Roboto'
-	}
-};
-
 const SelectAvatar = ({
-	handleOnSubmit,
 	handleOnChange,
 	handleSelectAvatar,
-	updateAvatar,
 	avatarSelect,
 	dispatch
 }) => (
-	<form onSubmit={handleOnSubmit} className="account__avatar-wrapper">
+	<Fragment>
 		<div className="account__avatar">
 			<img
 				className="app-header-list__avatar-img"
 				src={handleSelectAvatar()}
 				alt="avatar-profile"
-			/>
-			<Button
-				type="submit"
-				name="Save Avatar"
-				onClick={() => {
-					updateAvatar();
-					dispatch(setAvatar(avatarSelect, handleSelectAvatar()));
-				}}
-				addStyles={styles.button}
 			/>
 		</div>
 		<div className="account__checkboxes">
@@ -69,7 +44,7 @@ const SelectAvatar = ({
 				name="avatarSelect"
 			/>
 		</div>
-	</form>
+	</Fragment>
 );
 
-export default connect()(SelectAvatar);
+export default SelectAvatar;

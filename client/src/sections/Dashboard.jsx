@@ -13,12 +13,23 @@ class Dashboard extends React.Component {
 		location: '',
 		email: '',
 		description: '',
-		logout: this.props.logout
+		events: []
 	};
 
 	Auth = new Auth();
 
-	componentDidMount = () => {
+	handleRemoveEvent = id => {
+		this.Auth
+			.authFetch(`/events/${id}`, { method: 'DELETE' })
+			.then(res => res.json())
+			.then(res => {
+				this.setState(prevState => ({
+					events: prevState.events.filter(event => event._id !== id)
+				}));
+			});
+	};
+
+	initializeUserData = () => {
 		this.Auth
 			.authFetch('/users/me', { method: 'GET' })
 			.then(res => res.json())
@@ -29,7 +40,29 @@ class Dashboard extends React.Component {
 					location: res.settings.location,
 					description: res.settings.description
 				}));
+			})
+			.catch(err => console.log(err));
+	};
+
+	initializeEventData = () => {
+		this.Auth
+			.authFetch('/events', {
+				method: 'GET'
+			})
+			.then(events => events.json())
+			.then(events => {
+				const mappedEvents = events.map(event => {
+					return event;
+				});
+				return this.setState(prevState => ({
+					events: prevState.events.concat(mappedEvents)
+				}));
 			});
+	};
+
+	componentDidMount = () => {
+		this.initializeUserData();
+		this.initializeEventData();
 	};
 
 	render() {
@@ -54,7 +87,10 @@ class Dashboard extends React.Component {
 						email={this.state.email}
 						logout={this.props.logout}
 					/>
-					<MyEvents />
+					<MyEvents
+						events={this.state.events}
+						handleRemoveEvent={this.handleRemoveEvent}
+					/>
 				</div>
 			</div>
 		);

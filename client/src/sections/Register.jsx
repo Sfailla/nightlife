@@ -15,7 +15,6 @@ const styles = {
 	},
 	card: {
 		maxWidth: '70%',
-
 		minHeight: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',

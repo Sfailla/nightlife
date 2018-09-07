@@ -1,5 +1,18 @@
 import React from 'react';
 import { BorderlessForm } from './Form';
+import Button from './Button';
+
+const styles = {
+	button: {
+		width: '15rem',
+		height: '4rem',
+		background: 'var(--primary-color)',
+		color: 'white',
+		letterSpacing: '2px',
+		fontWeight: 'bold',
+		margin: '2rem auto'
+	}
+};
 
 const AccountBioForm = props => {
 	return (
@@ -35,8 +48,19 @@ const AccountBioForm = props => {
 						value={props.description || ''}
 						name="description"
 						rows={5}
+						style={{
+							color: 'var(--primary-text-color)',
+							fontWeight: '500',
+							fontFamily: 'inherit'
+						}}
 						placeholder="Add-Biography"
 						onChange={props.handleOnChange}
+					/>
+
+					<Button
+						addStyles={styles.button}
+						type="submit"
+						name="Save Info"
 					/>
 				</form>
 			</div>

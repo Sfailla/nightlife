@@ -94,16 +94,13 @@ class Search extends React.Component {
 						errors: '** Sorry no results for that area **'
 					}));
 				}
-			});
+			})
+			.catch(err => console.log(err));
 	};
 
 	handleClearSearch = () => {
 		this.setState(() => ({ results: [] }));
 	};
-
-	// componentDidMount = () => {
-	// 	console.log(this.state.events);
-	// };
 
 	render() {
 		return (
@@ -142,6 +139,7 @@ class Search extends React.Component {
 										imageSrc={data.image_url}
 										imageAlt="bar images"
 										isLoggedIn={this.props.user.isLoggedIn}
+										history={this.props.history}
 									/>
 								);
 							})

@@ -40,15 +40,17 @@
 
 		& li a,
 		& li a:link {
+			width: 100%;
+			height: 100%;
+			outline: none;
 			text-decoration: none;
 			color: white;
-			display: flex;
-			justify-content: right;
-			margin-right: 3rem;
-			align-items: center;
-			height: 100%;
-			width: 100%;
-			outline: none;
+			@include flex-center(center, center);
+		}
+
+		& li a:hover,
+		& li a:link:hover {
+			color: var(--primary-color);
 		}
 	}
 

@@ -16,10 +16,11 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				query: {
-					presets: [ 'react', 'env', 'es2017' ],
+					presets: [ 'react', 'env' ],
 					plugins: [
 						'transform-class-properties',
-						'transform-object-rest-spread'
+						'transform-object-rest-spread',
+						'transform-runtime'
 					]
 				}
 			},
@@ -36,7 +37,7 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx' ]
+		extensions: [ '.js', '.jsx', '.json' ]
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),

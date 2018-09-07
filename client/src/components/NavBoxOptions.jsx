@@ -10,15 +10,15 @@ const NavBoxOptions = props => {
 		button: {
 			width: '12rem',
 			height: '12rem',
-			color: 'blue',
+			color: 'var(--color-gold)',
 			outline: 'none',
 			border: 'none',
 			fontSize: 'inherit',
 			fontFamily: 'inherit',
 			fontWeight: 'inherit',
-			background: 'white',
-			borderBottom: '3px solid var(--primary-color)',
-			boxShadow: 'var(--box-shadow-sm-l)'
+			background: 'var(--primary-color)',
+			// borderBottom: '3px solid var(--color-gold)',
+			boxShadow: 'var(--box-shadow-md-d)'
 		},
 		a: {
 			textDecoration: 'none',

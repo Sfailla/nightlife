@@ -1,16 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { setAvatar } from '../actions/users';
+
 import Auth from '../utils/AuthClass';
 
 import guyAvatar from '../images/male-avatar.png';
 import girlAvatar from '../images/female-avatar.png';
 import defaultAvatar from '../images/default-avatar.jpg';
 import SelectAvatar from '../components/SelectAvatar';
+import Button from '../components/Button';
 
-export class AvatarComponent extends Component {
+const styles = {
+	button: {
+		width: '15rem',
+		height: '4rem',
+		background: 'var(--primary-color)',
+		color: 'white',
+		letterSpacing: '2px',
+		fontWeight: 'bold',
+		margin: '2rem auto'
+	}
+};
+
+export class AvatarComponent extends React.Component {
 	state = {
 		avatar: '',
 		avatarSelect: ''
 	};
+	_isMounted = false;
 
 	Auth = new Auth();
 
@@ -19,8 +36,13 @@ export class AvatarComponent extends Component {
 		this.setState(() => ({ [name]: value }));
 	};
 
-	handleOnSubmit = evt => {
-		evt.preventDefault();
+	handleOnSubmit = event => {
+		event.preventDefault();
+		this.updateAvatar();
+		this.props.dispatch(
+			setAvatar(this.state.avatarSelect, this.handleSelectAvatar())
+		);
+		this.props.history.push('/dashboard');
 	};
 
 	initializeAvatar = () => {
@@ -45,15 +67,14 @@ export class AvatarComponent extends Component {
 			})
 			.then(res => res.json())
 			.then(res => {
+				console.log('updated', res);
 				const response = res;
 				let avatar = response.settings.avatar;
 				let avatarSelect = response.settings.avatarSelect;
-				this.setState(() => ({ avatar, avatarSelect }));
+				if (this._isMounted) {
+					this.setState(() => ({ avatar, avatarSelect }));
+				}
 			});
-	};
-
-	componentDidMount = () => {
-		this.initializeAvatar();
 	};
 
 	handleSelectAvatar = () => {
@@ -75,20 +96,35 @@ export class AvatarComponent extends Component {
 		return avatar;
 	};
 
+	componentDidMount = () => {
+		this.initializeAvatar();
+		this._isMounted = true;
+	};
+
+	componentWillUnmount = () => {
+		this._isMounted = false;
+	};
+
 	render() {
 		return (
-			<div>
+			<form
+				onSubmit={this.handleOnSubmit}
+				className="account__avatar-wrapper"
+			>
 				<SelectAvatar
 					avatar={this.state.avatar}
-					updateAvatar={this.updateAvatar}
 					avatarSelect={this.state.avatarSelect}
 					handleSelectAvatar={this.handleSelectAvatar}
 					handleOnChange={this.handleOnChange}
-					handleOnSubmit={this.handleOnSubmit}
 				/>
-			</div>
+				<Button
+					type="SUBMIT"
+					name="Save Avatar"
+					addStyles={styles.button}
+				/>
+			</form>
 		);
 	}
 }
 
-export default AvatarComponent;
+export default connect()(AvatarComponent);
