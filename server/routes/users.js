@@ -2,7 +2,6 @@ const express = require('express');
 
 const User = require('../models/user');
 const mongoose = require('../db/mongoose');
-
 const authenticate = require('../middleware/authenticate');
 
 const server = express.Router();
@@ -19,11 +18,10 @@ server.post('/sign-up', (req, res) => {
 	const users = new User();
 	users.username = username;
 	users.password = password;
-	users.location = null;
-	users.description = null;
 	users.email = null;
-	users.avatar = null;
-
+	users.settings.location = null;
+	users.settings.description = null;
+	users.settings.company = null;
 	users
 		.save()
 		.then(user => {
@@ -59,6 +57,99 @@ server.delete('/token', authenticate, (req, res) => {
 			return res.status(400).send();
 		}
 	);
+});
+
+server.patch('/events', authenticate, (req, res) => {
+	const events = req.body.events;
+	console.log('events', events);
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$push: {
+				'events.name': events
+			}
+		},
+		{ new: true }
+	)
+		.then(event => {
+			if (!event) {
+				return res.status(404).send();
+			} else {
+				res.send(event);
+			}
+		})
+		.catch(err => res.status(404).send(err));
+});
+
+// User Routes for USER SETTINGS ex. AVATAR, BIO
+
+server.get('/settings', authenticate, (req, res) => {
+	User.find({ _id: req.user.id }).then(user => {
+		res.send(user);
+	});
+});
+
+server.patch('/settings/initialize', authenticate, (req, res) => {
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				'utilities.initialRender': false
+			}
+		},
+		{ new: true }
+	).then(user => {
+		if (!user) {
+			return res.status(404).send();
+		} else {
+			res.send(user);
+		}
+	});
+});
+
+server.patch('/settings/avatar', authenticate, (req, res) => {
+	const { avatar, avatarSelect } = req.body;
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				'settings.avatar': avatar,
+				'settings.avatarSelect': avatarSelect
+			}
+		},
+		{ new: true }
+	).then(doc => {
+		if (!doc) {
+			return res.status(404).send();
+		} else {
+			res.send(doc);
+		}
+	});
+});
+
+server.patch('/settings/biography', authenticate, (req, res) => {
+	console.log(req.body.company);
+	const { company, email, location, description } = req.body;
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				email,
+				'settings.company': company,
+				'settings.location': location,
+				'settings.description': description
+			}
+		},
+		{ new: true }
+	).then(doc => {
+		if (!doc) {
+			return res.status(404).send();
+		} else {
+			res.send(doc);
+		}
+	});
 });
 
 module.exports = server;

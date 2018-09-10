@@ -1,35 +1,114 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import Auth from '../utils/AuthClass';
 
-import DashOptions from '../objects/DashOptions';
-import DashLowerContent from '../objects/DashContent';
-import GoingOut from '../components/GoingOut';
+import UserOptions from '../components/UserOptions';
+import Typography from '../components/Typography';
+import MyEvents from '../components/MyEvents';
 
-class Dashboard extends Component {
+class Dashboard extends React.Component {
+	state = {
+		details: {
+			username: '',
+			company: '',
+			location: '',
+			email: '',
+			description: ''
+		},
+		events: []
+	};
+
+	Auth = new Auth();
+
+	handleRemoveEvent = id => {
+		this.Auth
+			.authFetch(`/events/${id}`, { method: 'DELETE' })
+			.then(res => res.json())
+			.then(res => {
+				this.setState(prevState => ({
+					events: prevState.events.filter(event => event._id !== id)
+				}));
+			});
+	};
+
+	initializeUserData = () => {
+		this.Auth
+			.authFetch('/users/me', { method: 'GET' })
+			.then(res => res.json())
+			.then(res => {
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
+			})
+			.catch(err => console.log(err));
+	};
+
+	initializeEventData = () => {
+		this.Auth
+			.authFetch('/events', {
+				method: 'GET'
+			})
+			.then(events => events.json())
+			.then(events => {
+				const mappedEvents = events.map(event => event);
+				return this.setState(prevState => ({
+					events: prevState.events.concat(mappedEvents)
+				}));
+			});
+	};
+
+	componentDidMount = () => {
+		this.initializeUserData();
+		this.initializeEventData();
+	};
+
+	shouldComponentUpdate = (prevState) => {
+	  if (prevState.details !== this.state.details) {
+		//   this.initializeUserData();
+		  return true;
+	  } else {
+		  return false;
+	  }
+	}
+
 	render() {
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__title-wrapper">
-					<div className="dashboard__title heading-primary">
-						Dashboard
-					</div>
-					<div className="dashboard__sub-title heading-secondary">
-						What would you like to do?
-					</div>
+					<Typography
+						headingPrimary="Dashboard"
+						classname="dashboard__title"
+						addStyles={{color: 'var(--primary-text-color)'}}
+					/>
+					<Typography
+						headingSecondary="What would you like to do?"
+						classname="dashboard__sub-title"
+					/>
 				</div>
-				<div className="dashboard__selection">
-					<DashOptions />
-				</div>
-				<div className="dash-content">
-					<div className="lower-box dash-content__content-box">
-						<GoingOut />
-					</div>
-					<div className="lower-box dash-content__content-box">
-						<DashLowerContent />
-					</div>
+				<div className="dashboard__layout">
+					<UserOptions
+						username={this.state.username}
+						company={this.state.company}
+						location={this.state.location}
+						description={this.state.description}
+						email={this.state.email}
+						logout={this.props.logout}
+					/>
+					<MyEvents
+						events={this.state.events}
+						handleRemoveEvent={this.handleRemoveEvent}
+					/>
 				</div>
 			</div>
 		);
 	}
 }
+
+Dashboard.propTypes = {
+	logout: PropTypes.func
+};
 
 export default Dashboard;

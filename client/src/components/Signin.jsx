@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Topography from '../components/Topography';
-import { BorderlessForm } from '../components/Form';
-import Button from '../components/Button';
+import Typography from './Typography';
+import { BorderlessForm } from './Form';
+import Button from './Button';
 
 const styles = {
 	title: {
@@ -34,7 +34,7 @@ const styles = {
 const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
 		<div className="signup__signup-container">
-			<Topography addStyles={styles.title} headingSecondary="Sign In" />
+			<Typography addStyles={styles.title} headingSecondary="Sign In" />
 			{errors && <p style={styles.error}>** {errors} **</p>}
 			<div style={{ marginBottom: '2rem' }}>
 				<BorderlessForm

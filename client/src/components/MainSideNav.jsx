@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const MainSideNav = (props) => (
+const MainSideNav = props => (
 	<div className="side-nav">
 		<div className="side-nav__nav-list-group">
 			<div className="side-nav__logo">NL</div>
@@ -21,7 +22,7 @@ const MainSideNav = (props) => (
 				{props.isLoggedIn && (
 					<li>
 						<Link to="/account">
-							<span>Account</span>
+							<span>SETTINGS</span>
 						</Link>
 					</li>
 				)}
@@ -41,5 +42,9 @@ const MainSideNav = (props) => (
 		</div>
 	</div>
 );
+
+MainSideNav.propTypes = {
+	isLoggedIn: PropTypes.bool
+};
 
 export default MainSideNav;

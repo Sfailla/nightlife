@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { isLoggedIn, getUsername } from '../actions/users';
-import Topography from '../components/Topography';
-import Auth from '../utils/AuthComponent';
+import { isLoggedIn, getUsername, setAvatar } from '../actions/users';
+import Topography from '../components/Typography';
+import Auth from '../utils/AuthClass';
 import Signup from '../components/Signup';
 
 const styles = {
@@ -15,7 +15,6 @@ const styles = {
 	},
 	card: {
 		maxWidth: '70%',
-
 		minHeight: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
@@ -36,7 +35,7 @@ class Register extends Component {
 
 	Auth = new Auth();
 
-	handleOnChange = (evt) => {
+	handleOnChange = evt => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value }));
 	};
@@ -53,19 +52,22 @@ class Register extends Component {
 		}
 	};
 
-	handleOnSubmit = (evt) => {
+	handleOnSubmit = evt => {
 		evt.preventDefault();
 
 		const { register, setToken } = this.Auth;
 		const { username, password } = this.state;
 
 		return register(username, password)
-			.then((res) => res.json())
-			.then((res) => {
+			.then(res => res.json())
+			.then(res => {
 				const token = res.tokens[0].token;
 				setToken(token);
 				this.props.dispatch(getUsername(res.username));
 				this.props.dispatch(isLoggedIn(true));
+				this.props.dispatch(
+					setAvatar(res.settings.avatarSelect, res.settings.avatar)
+				);
 				this.props.history.push('/dashboard');
 			});
 	};

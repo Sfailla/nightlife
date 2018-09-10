@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { BorderlessForm } from '../components/Form';
-import CheckGroup from '../components/CheckGroup';
-import Button from '../components/Button';
+import { BorderlessForm } from './Form';
+import CheckGroup from './CheckGroup';
+import Button from './Button';
+import Typography from './Typography';
 
 const styles = {
 	title: {
@@ -25,12 +26,10 @@ const styles = {
 	}
 };
 
-const Signup = (props) => (
+const Signup = props => (
 	<div className="signup">
 		<div className="signup__signup-container">
-			<div className="heading-secondary" style={styles.title}>
-				Sign Up
-			</div>
+			<Typography headingSecondary="Sign Up" addStyles={styles.title} />
 			<div>
 				<BorderlessForm
 					type="text"

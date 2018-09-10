@@ -2,26 +2,25 @@
 	&__container {
 		max-width: 70rem;
 		margin: 0 auto;
-		margin-top: 3rem;
-		margin-bottom: 7rem;
-		padding: 3rem;
-		background: white;
-		border-left: 3px solid var(--primary-color);
-		box-shadow: var(--box-shadow-md-l);
-
-		&:not(:last-child) {
-			margin-bottom: 2rem;
-		}
 	}
 
 	&__card {
 		width: 100%;
 		min-height: 35rem;
-		background: inherit;
+		margin-top: 3rem;
+		margin-bottom: 7rem;
+		padding: 3rem;
+		background: white;
+		border-bottom: 3px solid var(--primary-color);
+		box-shadow: var(--box-shadow-md-l);
 
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		grid-column-gap: 2rem;
+
+		&:not(:last-child) {
+			margin-bottom: 2rem;
+		}
 
 		&--left {
 			border: 2px solid var(--primary-color);
@@ -41,9 +40,6 @@
 	}
 
 	&__inner-container {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
 		padding: 2rem;
 		height: 100%;
 		border: 1px solid white;
@@ -51,31 +47,31 @@
 
 	&__name-location-wrapper {
 		height: 10rem;
-		display: flex;
-		justify-content: center;
-		flex-direction: column;
 	}
 
 	&__name {
 		color: cadetblue;
+		text-align: center;
 	}
 
 	&__location {
 		padding-top: 2px;
+		text-align: center;
 	}
 
-	&__buttons {
-		height: 5rem;
-		display: flex;
-		justify-content: space-between;
-	}
+	// &__buttons {
+	// 	height: 5rem;
+	// 	display: flex;
+	// 	justify-content: space-between;
+	// }
 
 	&__lower-box {
 		background: dimgray;
 		width: 100%;
+		padding: 1rem;
 		height: 10rem;
 		color: white;
 
-		@include flex-center;
+		@include flex-center(center, center);
 	}
 }

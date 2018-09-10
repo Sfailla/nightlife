@@ -1,68 +1,60 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import Auth from '../utils/AuthClass';
 
-import Auth from '../utils/AuthComponent';
-
-import { setAvatar } from '../actions/users';
-import guyAvatar from '../images/male-avatar.png';
-import girlAvatar from '../images/female-avatar.png';
-import defaultAvatar from '../images/default-avatar.jpg';
-import Topography from '../components/Topography';
-import SelectAvatar from '../components/SelectAvatar';
+import Typography from '../components/Typography';
+import AvatarComponent from '../components/AvatarComponent';
 import AccountBioForm from '../components/AccountBioForm';
 
-class Account extends Component {
+class Account extends React.Component {
 	state = {
-		email: null,
-		location: null,
-		description: null,
-		avatar: '',
-		avatarSelect: ''
+		company: '',
+		email: '',
+		location: '',
+		Biography: ''
 	};
 
 	Auth = new Auth();
 
-	handleOnChange = evt => {
-		const { name, value } = evt.target;
+	handleOnSubmit = event => {
+		event.preventDefault();
+		this.initializeUserData();
+		this.handleUpdateUserInfo();
+		this.props.history.push('/dashboard');
+	};
+
+	handleOnChange = event => {
+		const { name, value } = event.target;
 		this.setState(() => ({ [name]: value }));
 	};
 
-	handleOnSubmit = evt => {
-		evt.preventDefault();
+	handleUpdateUserInfo = () => {
+		const { company, email, location, description } = this.state;
 
-		const { avatar, avatarSelect } = this.state;
 		this.Auth
-			.authFetch('/settings/avatar', {
+			.authFetch('/users/settings/biography', {
 				method: 'PATCH',
-				body: JSON.stringify({ avatar, avatarSelect })
+				body: JSON.stringify({
+					company,
+					email,
+					location,
+					description
+				})
 			})
-			.then(user => user.json())
-			.then(user => {
-				console.log(user);
+			.then(res => res.json())
+			.then(res => {
+				console.log(res);
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
 			});
 	};
 
-	handleSelectAvatar = () => {
-		let avatar = defaultAvatar;
-
-		switch (this.state.avatarSelect) {
-			case 'male-avatar':
-				avatar = guyAvatar;
-				break;
-			case 'female-avatar':
-				avatar = girlAvatar;
-				break;
-			case 'default-avatar':
-				avatar = defaultAvatar;
-				break;
-			default:
-				return avatar;
-		}
-		return avatar;
-	};
-
-	initializeAvatar = () => {
+	initializeUserData = () => {
 		this.Auth
+<<<<<<< HEAD
 			.authFetch('/settings/avatar', { method: 'POST' })
 			.then(results => results.json())
 			.then(results => {
@@ -70,84 +62,64 @@ class Account extends Component {
 				let avatarSelect = results[0].avatarSelect;
 				console.log(avatar);
 				this.setState(() => ({ avatar, avatarSelect }));
+=======
+			.authFetch('/users/me', { method: 'GET' })
+			.then(res => res.json())
+			.then(res => {
+				this.setState(() => ({
+					company: res.settings.company,
+					email: res.email,
+					location: res.settings.location,
+					description: res.settings.description
+				}));
+>>>>>>> development
 			});
 	};
 
-	updateAvatar = async () => {
-		await this.Auth
-			.authFetch('/settings/avatar', { method: 'GET' })
-			.then(user => user.json())
-			.then(user => {
-				let avatar = user[0].avatar;
-				let avatarSelect = user[0].avatarSelect;
-				this.setState(() => ({ avatar, avatarSelect }));
-			});
-	};
-
-	componentDidUpdate = (prevProps, prevState) => {
-		// console.log(prevState.avatarSelect);
-		// console.log(this.state.avatarSelect);
-	};
-
-	componentDidMount = async () => {
-		await this.updateAvatar();
-		await console.log(this.state.avatarSelect);
-		// typeof this.state.avatar === null
-		// 	? console.log('first render')
-		// 	: console.log('already rendered');
+	componentDidMount = () => {
+		this.initializeUserData();
 	};
 
 	render() {
 		return (
 			<div className="account">
 				<div style={{ display: 'flex' }}>
-					<Topography
-						classname="account__title"
+					<Typography
 						headingPrimary="Account"
+						classname="account__title"
+						addStyles={{color: 'var(--primary-text-color)'}}
 					/>
-					<Topography
+					<Typography
 						classname="account__sub-title"
 						headingSecondary="create a profile"
+						addStyles={{color: 'var(--text-secondary)'}}
 					/>
 				</div>
 				<div className="account__profile-card">
-					<Topography
+					<Typography
 						classname="account__card-title"
 						headingTertiary="Change Avatar"
 					/>
 					<hr />
-					<SelectAvatar
-						avatarSelect={this.state.avatarSelect}
-						handleSelectAvatar={this.handleSelectAvatar}
-						handleOnChange={this.handleOnChange}
-						handleOnSubmit={this.handleOnSubmit}
-					/>
+					<AvatarComponent />
 					<hr />
-					<Topography
+					<Typography
 						classname="account__card-title"
-						headingTertiary="Add Biography"
+						headingTertiary="Add User Info"
 					/>
 					<hr />
 					<AccountBioForm
+						company={this.state.company}
+						email={this.state.email}
+						location={this.state.location}
+						description={this.state.description}
 						handleOnChange={this.handleOnChange}
 						handleOnSubmit={this.handleOnSubmit}
 					/>
-					<hr style={{ marginTop: '1rem' }} />
-					<Topography
-						classname="account__card-title"
-						headingTertiary="change username and/or password"
-					/>
-					<hr />
 				</div>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = state => {
-	return {
-		user: state.users
-	};
-};
-
-export default connect(mapStateToProps)(Account);
+export default Account;

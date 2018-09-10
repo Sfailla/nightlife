@@ -1,21 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
+import { Link } from 'react-router-dom';
 
+import { Icon25 } from '../components/Icon';
 import api from '../api/yelpAPI.json';
-import { Form } from '../components/Form';
+import SearchCard from '../components/SearchCard';
 import SearchResults from '../components/SearchResults';
-import Topography from '../components/Topography';
+import Typography from '../components/Typography';
+import Button from '../components/Button';
+import Loader from '../components/Loader';
 
-class Search extends Component {
+const styles = {
+	position: 'relative',
+	button: {
+		width: '18rem',
+		height: '3.5rem',
+		background: 'var(--primary-color)',
+		color: 'white',
+		margin: '2rem auto'
+	}
+};
+
+class Search extends React.Component {
 	state = {
 		searchVal: '',
 		results: [],
-		errors: '',
-		isLoading: false
+		events: [],
+		isLoading: false,
+		errors: ''
 	};
 
-	handleOnSubmit = (evt) => {
+	handleOnSubmit = evt => {
 		evt.preventDefault();
 
 		if (this.state.searchVal.length) {
@@ -29,7 +45,7 @@ class Search extends Component {
 		}
 	};
 
-	handleOnChange = (evt) => {
+	handleOnChange = evt => {
 		const { value } = evt.target;
 		this.setState(() => ({ searchVal: value, errors: '' }));
 	};
@@ -38,11 +54,15 @@ class Search extends Component {
 		return api.yelp.token;
 	};
 
+	addEvent = event => {
+		this.setState(() => ({ events: [ ...this.state.events, event ] }));
+	};
+
 	handleFetchData = () => {
 		this.setState(() => ({ isLoading: true }));
 		fetch(
 			`${api.yelp.baseURL}location=${this.state
-				.searchVal}&limit=10&term=bars`,
+				.searchVal}&limit=10&term=nightclubs, bars`,
 			{
 				method: 'get',
 				headers: {
@@ -50,13 +70,11 @@ class Search extends Component {
 				}
 			}
 		)
-			.then((res) => {
+			.then(res => {
 				if (res.status >= 200 && res.status <= 300) {
-					console.log(res);
 					return res.json();
 				} else {
 					if (res.status > 300) {
-						console.log(res);
 						return this.setState(() => ({
 							errors:
 								'** Sorry that wont work. Try an area near you! **'
@@ -64,7 +82,7 @@ class Search extends Component {
 					}
 				}
 			})
-			.then((res) => {
+			.then(res => {
 				if (res.businesses.length > 0) {
 					this.setState(() => ({
 						results: res.businesses,
@@ -77,79 +95,77 @@ class Search extends Component {
 						errors: '** Sorry no results for that area **'
 					}));
 				}
-			});
+			})
+			.catch(err => console.log(err));
 	};
 
-	componentDidMount = () => {};
+	handleClearSearch = () => {
+		this.setState(() => ({ results: [] }));
+	};	
 
 	render() {
 		return (
-			<div className="search">
-				<Topography
+			<div style={styles} className="search">
+				<Typography
 					headingPrimary="See whose going out tonight!"
 					classname="search__heading u-center-text u-mt-25"
 				/>
-				<div className="search__search-card">
-					<div className="search__search-container">
-						<Topography
-							headingSecondary="Search any area for bars and clubs!"
-							classname="search__heading-secondary u-center-text"
-						/>
-						<Topography
-							headingTertiary="Please enter City, State, and/or Zip"
-							classname="search__heading-secondary--sub u-center-text u-mb-25"
-						/>
-						<form onSubmit={this.handleOnSubmit}>
-							<Form
-								className="search__search-form"
-								name="search"
-								type="text"
-								label="Enter location"
-								autocomplete={false}
-								handleOnChange={this.handleOnChange}
-							/>
+				<SearchCard
+					handleOnChange={this.handleOnChange}
+					handleOnSubmit={this.handleOnSubmit}
+					errors={this.state.errors}
+				/>
 
-							{this.state.errors && <p>{this.state.errors}</p>}
-						</form>
-					</div>
-				</div>
 				<br />
 
-				<div className="results">
-					{this.state.isLoading && <h3>Loading...</h3>}
-					<ul>
-						{this.state.results.length ? (
-							this.state.results.map((data) => {
-								return (
-									<SearchResults
-										key={data.id}
-										name={data.name}
-										location={data.location.address1}
-										imageSrc={data.image_url}
-										imageAlt="bar images"
-										isLoggedIn={this.props.user.isLoggedIn}
-									/>
-								);
-							})
-						) : null}
-					</ul>
+				{this.state.results.length > 0 && (
+					<Button
+						addStyles={styles.button}
+						type="button"
+						name="Clear Search Results"
+						onClick={this.handleClearSearch}
+					/>
+				)}
 
-					{this.state.results.length > 0 ? (
-						<a
-							href="#app-header"
+				<div className="results">
+					<div className="results__container">
+
+						{this.state.isLoading && <Loader />}
+						<ul>
+							{this.state.results.length ? (
+								this.state.results.map(data => {
+									return (
+										<SearchResults
+											key={data.id}
+											name={data.name}
+											location={data.location.address1}
+											imageSrc={data.image_url}
+											imageAlt="bar images"
+											isLoggedIn={this.props.user.isLoggedIn}
+											history={this.props.history}
+										/>
+									);
+								})
+							) : null}
+						</ul>
+
+					{this.state.results.length > 0 && (
+						<Link
+							to="#app-header"
 							style={{ display: 'block' }}
 							className="u-center-text"
 						>
 							back to top
-						</a>
-					) : null}
+						</Link>
+					)}
+					</div>
 				</div>
 			</div>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	user: state.users
 });
 

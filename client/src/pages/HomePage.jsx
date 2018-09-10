@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
@@ -9,15 +10,15 @@ import Search from '../sections/Search';
 import Account from '../sections/Account';
 import Dashboard from '../sections/Dashboard';
 import Register from '../sections/Register';
-import Login from '../Components/Login';
+import Login from '../components/Login';
 
 import { checkAuth } from '../utils/functions';
-import Auth from '../utils/AuthComponent';
+import Auth from '../utils/AuthClass';
 
 const AuthRoute = ({ component: Component, rest }) => (
 	<Route
 		{...rest}
-		render={(props) =>
+		render={props =>
 			checkAuth() ? (
 				<Component {...props} />
 			) : (
@@ -27,13 +28,18 @@ const AuthRoute = ({ component: Component, rest }) => (
 );
 
 class HomePage extends Component {
+	static propTypes = {
+		isLoggedIn: PropTypes.bool,
+		logout: PropTypes.func
+	};
+
 	Auth = new Auth();
 
 	logout = () => {
 		this.Auth.logout();
 		this.props.dispatch(isLoggedIn(false));
 		this.props.history.push('/');
-	};
+	};	
 
 	render() {
 		return (
@@ -47,26 +53,28 @@ class HomePage extends Component {
 				</div>
 				<div className="home__main-page-area">
 					<Switch>
-						<Route exact path="/" component={() => <Search />} />
+						<Route
+							exact
+							path="/"
+							render={props => <Search {...props} />}
+						/>
 						<AuthRoute
 							exact
 							path="/dashboard"
-							component={() => <Dashboard />}
+							component={props => (
+								<Dashboard {...props} logout={this.logout} />
+							)}
 						/>
 						<AuthRoute
 							exact
 							path="/account"
-							component={() => <Account />}
+							component={props => <Account {...props} />}
 						/>
-						<Route
-							exact
-							path="/sign-in"
-							component={() => <Login />}
-						/>
+						<Route exact path="/sign-in" render={() => <Login />} />
 						<Route
 							exact
 							path="/sign-up"
-							component={() => <Register />}
+							render={() => <Register />}
 						/>
 					</Switch>
 				</div>
@@ -75,7 +83,7 @@ class HomePage extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		user: state.users
 	};

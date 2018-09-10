@@ -1,58 +1,41 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-import Button from '../components/Button';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const MainHeaderList = (props) => {
-	return (
-		<ul className="app-header-list">
-			{props.isLoggedIn && <li>{props.user.username}</li>}
-			{props.isLoggedIn && (
-				<li>
-					<img
-						className="app-header-list__avatar-img"
-						src={props.user.avatar}
-						alt="avatar-profile"
-					/>
-				</li>
-			)}
-			{props.isLoggedIn ? (
-				<Logout logout={props.logout} />
-			) : (
-				<LinkToLogin />
-			)}
-		</ul>
-	);
-};
+import Avatar from '../components/Avatar';
+import LogoutButton from '../components/LogoutButton';
 
-const LinkToLogin = () => (
-	<li>
-		<Link to="/sign-in">sign in</Link>
-	</li>
-);
-
-const Logout = (props) => {
+const MainHeaderList = props => {
 	const styles = {
-		display: 'inline-block',
-		width: '10rem',
-		fontWeight: 'bold',
-		color: 'white',
-		background: 'var(--primary-color)'
+		list: {
+			width: props.isLoggedIn ? '22rem' : 'auto',
+			display: 'flex',
+			justifyContent: 'space-between',
+			alignItems: 'center'
+		}
 	};
 	return (
-		<li>
-			<Button
-				btnType="submit"
-				addStyles={styles}
-				name="sign out"
-				onClick={props.logout}
-			/>
-		</li>
+		<div style={styles.list}>
+			{props.isLoggedIn && props.user.username}
+			{props.isLoggedIn && <Avatar avatar={props.user.avatar} />}
+			{props.isLoggedIn ? (
+				<LogoutButton name="sign out" logout={props.logout} />
+			) : (
+				<Link to="/sign-in">sign in</Link>
+			)}
+		</div>
 	);
 };
 
-const mapStateToProps = (state) => {
+MainHeaderList.propTypes = {
+	isLoggedIn: PropTypes.bool,
+	logout: PropTypes.func,
+	user: PropTypes.object
+};
+
+const mapStateToProps = state => {
 	return {
 		user: state.users
 	};

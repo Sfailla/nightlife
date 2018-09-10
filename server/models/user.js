@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
 	username: {
@@ -16,15 +16,6 @@ const UserSchema = new mongoose.Schema({
 	email: {
 		type: String
 	},
-	avatar: {
-		type: String
-	},
-	location: {
-		type: String
-	},
-	description: {
-		type: String
-	},
 	tokens: [
 		{
 			access: {
@@ -37,6 +28,25 @@ const UserSchema = new mongoose.Schema({
 			}
 		}
 	],
+	settings: {
+		avatar: {
+			type: String,
+			default: '/22acd1da9b455b7ce7196bb89f01127a.jpg'
+		},
+		avatarSelect: {
+			type: String,
+			default: 'default-avatar'
+		},
+		company: {
+			type: String
+		},
+		description: {
+			type: String
+		},
+		location: {
+			type: String
+		}
+	},
 	created_at: {
 		type: Date,
 		default: Date.now
@@ -92,25 +102,26 @@ UserSchema.methods = {
 
 UserSchema.statics = {
 	findByCredentials: (username, password) => {
-		return User.findOne({ username }).then((user) => {
+		return User.findOne({ username }).then(user => {
 			if (!user) {
-				console.log('there is no user in database with that name');
-				return Promise.reject();
+				let error = 'there is no user in database with that name';
+				return Promise.reject(error);
 			}
 			return new Promise((resolve, reject) => {
 				bcrypt.compare(password, user.password, (err, res) => {
 					if (res) {
 						resolve(user);
 					} else {
-						console.log('sorry wrong password for that user, please try again');
-						reject(err);
+						let error =
+							'sorry wrong password for that user, please try again';
+						reject(error);
 					}
 				});
 			});
 		});
 	},
 
-	findByToken: (token) => {
+	findByToken: token => {
 		let decoded;
 
 		try {

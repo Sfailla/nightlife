@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Auth from '../utils/AuthComponent';
+import Auth from '../utils/AuthClass';
 
-import Topography from '../components/Topography';
+import Typography from './Typography';
 import Signin from './Signin';
-import { isLoggedIn, getUsername } from '../actions/users';
+import { isLoggedIn, getUsername, setAvatar } from '../actions/users';
 
 const styles = {
 	heading: {
@@ -35,12 +35,12 @@ export class Login extends Component {
 
 	Auth = new Auth();
 
-	handleOnChange = (event) => {
+	handleOnChange = event => {
 		const { name, value } = event.target;
 		this.setState(() => ({ [name]: value, errors: '' }));
 	};
 
-	handleOnSubmit = (event) => {
+	handleOnSubmit = event => {
 		event.preventDefault();
 
 		const { username, password } = this.state;
@@ -49,12 +49,17 @@ export class Login extends Component {
 		if (username.length && password.length) {
 			this.setState(() => ({ errors: '' }));
 			return login(username, password)
-				.then((res) => res.json())
-				.then((res) => {
-					const token = res.tokens[0].token;
-					setToken(token);
+				.then(res => res.json())
+				.then(res => {
+					setToken(res.tokens[0].token);
 					this.props.dispatch(getUsername(res.username));
 					this.props.dispatch(isLoggedIn(true));
+					this.props.dispatch(
+						setAvatar(
+							res.settings.avatarSelect,
+							res.settings.avatar
+						)
+					);
 					this.props.history.push('/dashboard');
 				});
 		} else {
@@ -66,7 +71,7 @@ export class Login extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Topography
+				<Typography
 					addStyles={styles.heading}
 					headingPrimary="sign in below for more options"
 				/>

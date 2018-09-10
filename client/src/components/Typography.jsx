@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Topography = ({
+const Typography = ({
 	headingPrimary,
 	headingSecondary,
 	headingTertiary,
@@ -39,7 +40,7 @@ const Topography = ({
 			</p>
 		);
 	}
-	if (headingTertiary) {
+	if (headingTertiary && classname) {
 		return (
 			<p
 				style={{ ...addStyles }}
@@ -48,7 +49,21 @@ const Topography = ({
 				{headingTertiary}
 			</p>
 		);
+	} else if (headingTertiary) {
+		return (
+			<p style={{ ...addStyles }} className={`heading-tertiary`}>
+				{headingTertiary}
+			</p>
+		);
 	}
 };
 
-export default Topography;
+Typography.propTypes = {
+	headingPrimary: PropTypes.string,
+	headingSecondary: PropTypes.string,
+	headingTertiary: PropTypes.string,
+	addStyles: PropTypes.object,
+	classname: PropTypes.string
+};
+
+export default Typography;

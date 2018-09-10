@@ -1,28 +1,28 @@
-import React from 'react';
-import Button from '../components/Button';
-import RadioGroup from '../components/RadioGroup';
+import React, { Fragment } from 'react';
 
-const styles = {
-	background: 'var(--primary-color)',
-	color: 'white',
-	marginTop: '1.5rem',
-	fontSize: '1.4rem',
-	fontFamily: 'Roboto'
-};
+import RadioGroup from './RadioGroup';
 
-const SelectAvatar = (props) => (
-	<form onSubmit={props.handleOnSubmit} className="account__avatar-wrapper">
+const SelectAvatar = ({
+	handleOnChange,
+	handleSelectAvatar,
+	avatarSelect,
+	dispatch
+}) => (
+	<Fragment>
 		<div className="account__avatar">
-			<img src={props.handleSelectAvatar()} alt="no-avatar" />
-			<Button type="submit" name="Save Avatar" addStyles={styles} />
+			<img
+				className="app-header-list__avatar-img"
+				src={handleSelectAvatar()}
+				alt="avatar-profile"
+			/>
 		</div>
 		<div className="account__checkboxes">
 			<RadioGroup
 				labelName="male-avatar"
 				type="radio"
 				id="male-avatar"
-				handleChecked={props.avatarSelect === 'male-avatar'}
-				handleOnChange={props.handleOnChange}
+				handleChecked={avatarSelect === 'male-avatar'}
+				handleOnChange={handleOnChange}
 				name="avatarSelect"
 			/>
 
@@ -30,8 +30,8 @@ const SelectAvatar = (props) => (
 				labelName="female-avatar"
 				type="radio"
 				id="female-avatar"
-				handleChecked={props.avatarSelect === 'female-avatar'}
-				handleOnChange={props.handleOnChange}
+				handleChecked={avatarSelect === 'female-avatar'}
+				handleOnChange={handleOnChange}
 				name="avatarSelect"
 			/>
 
@@ -39,12 +39,12 @@ const SelectAvatar = (props) => (
 				labelName="default-avatar"
 				type="radio"
 				id="default-avatar"
-				handleChecked={props.avatarSelect === 'default-avatar'}
-				handleOnChange={props.handleOnChange}
+				handleChecked={avatarSelect === 'default-avatar'}
+				handleOnChange={handleOnChange}
 				name="avatarSelect"
 			/>
 		</div>
-	</form>
+	</Fragment>
 );
 
 export default SelectAvatar;

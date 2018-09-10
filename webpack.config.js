@@ -3,15 +3,11 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // good config for react, express full stack projects
-
 module.exports = {
-	entry: {
-		app: './client/src/app.js'
-	},
+	entry: './client/src/app.js',
 	output: {
 		path: path.resolve(__dirname, 'public'),
-		filename: 'bundle.js',
-		publicPath: '/'
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
@@ -20,12 +16,17 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				query: {
-					presets: [ 'react', 'env', 'es2017' ],
-					plugins: [ 'transform-class-properties', 'transform-object-rest-spread' ]
+					presets: [ 'react', 'env' ],
+					plugins: [
+						'transform-class-properties',
+						'transform-object-rest-spread',
+						'transform-runtime'
+					]
 				}
 			},
 			{
 				test: /\.s?css$/,
+				exclude: /node_modules/,
 				use: [ 'style-loader', 'css-loader', 'sass-loader' ]
 			},
 			{
@@ -36,25 +37,27 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: [ '.js', '.jsx' ]
+		extensions: [ '.js', '.jsx', '.json' ]
 	},
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({ template: 'public/index.html' })
+		new HtmlWebpackPlugin({
+			template: './public/index.html',
+			filename: './public/index.html'
+		})
 	],
 	devtool: 'cheap-module-source-map',
 	watch: true,
 	devServer: {
-		contentBase: path.resolve(__dirname, './public'),
+		contentBase: './public/index.html',
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
 		proxy: {
 			'*': {
 				target: 'http://localhost:3001',
-				secure: false,
-				changeOrigin: true
+				secure: false
 			}
 		}
 	}

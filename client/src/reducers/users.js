@@ -1,11 +1,8 @@
 const usersDefaultState = {
-	creator: '',
 	username: '',
 	isLoggedIn: false,
 	avatarSelect: 'default-avatar',
-	avatar: '/22acd1da9b455b7ce7196bb89f01127a.jpg',
-	customAvatar: null,
-	selectEvent: []
+	avatar: '/22acd1da9b455b7ce7196bb89f01127a.jpg'
 };
 
 const usersReducer = (state = usersDefaultState, action) => {
@@ -25,11 +22,6 @@ const usersReducer = (state = usersDefaultState, action) => {
 				...state,
 				avatarSelect: action.avatarSelect,
 				avatar: action.avatar
-			};
-		case 'SET_AVATAR_IMAGE':
-			return {
-				...state,
-				avatar: action.avatarImage
 			};
 		default:
 			return state;
