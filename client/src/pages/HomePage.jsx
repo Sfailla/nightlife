@@ -39,7 +39,7 @@ class HomePage extends Component {
 		this.Auth.logout();
 		this.props.dispatch(isLoggedIn(false));
 		this.props.history.push('/');
-	};
+	};	
 
 	render() {
 		return (

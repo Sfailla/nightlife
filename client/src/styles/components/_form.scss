@@ -18,7 +18,7 @@ div {
 		margin-top: 1.5rem;
 	}
 
-	& .form input {
+	& div.form input {
 		width: 100%;
 		height: 4.5rem;
 		padding: 0 2rem 0 1rem;
@@ -41,7 +41,13 @@ div {
 		}
 	}
 
-	& .borderless-form input {
+	& .form input.search-input:placeholder-shown + label {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-4rem);
+	}
+
+	& .form-group input.borderless-form {
 		width: 100%;
 		padding: 0 2rem 0 1rem;
 		border: none;
@@ -60,16 +66,12 @@ div {
 		order: 1;
 	}
 
-	& input.search-input:placeholder-shown + label {
+	
+
+	& input.borderless-form:placeholder-shown + label {
 		opacity: 0;
 		visibility: hidden;
 		transform: translateY(4rem);
-	}
-
-	& input:placeholder-shown + label {
-		opacity: 0;
-		visibility: hidden;
-		transform: translateY(-4rem);
 	}
 
 	& input[type="submit"] {

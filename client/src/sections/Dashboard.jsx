@@ -8,11 +8,13 @@ import MyEvents from '../components/MyEvents';
 
 class Dashboard extends React.Component {
 	state = {
-		username: '',
-		company: '',
-		location: '',
-		email: '',
-		description: '',
+		details: {
+			username: '',
+			company: '',
+			location: '',
+			email: '',
+			description: ''
+		},
 		events: []
 	};
 
@@ -51,9 +53,7 @@ class Dashboard extends React.Component {
 			})
 			.then(events => events.json())
 			.then(events => {
-				const mappedEvents = events.map(event => {
-					return event;
-				});
+				const mappedEvents = events.map(event => event);
 				return this.setState(prevState => ({
 					events: prevState.events.concat(mappedEvents)
 				}));
@@ -65,6 +65,15 @@ class Dashboard extends React.Component {
 		this.initializeEventData();
 	};
 
+	shouldComponentUpdate = (prevState) => {
+	  if (prevState.details !== this.state.details) {
+		//   this.initializeUserData();
+		  return true;
+	  } else {
+		  return false;
+	  }
+	}
+
 	render() {
 		return (
 			<div className="dashboard__container">
@@ -72,6 +81,7 @@ class Dashboard extends React.Component {
 					<Typography
 						headingPrimary="Dashboard"
 						classname="dashboard__title"
+						addStyles={{color: 'var(--primary-text-color)'}}
 					/>
 					<Typography
 						headingSecondary="What would you like to do?"

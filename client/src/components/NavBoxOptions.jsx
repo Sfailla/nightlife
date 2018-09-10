@@ -34,12 +34,12 @@ const NavBoxOptions = props => {
 				<Link to="/account" style={styles.a}>
 					<div className="options__box">SETTINGS</div>
 				</Link>
-				<Button addStyles={styles.button} name="Hide Events" />
 				<LogoutButton
 					name="SIGN OUT"
 					logout={props.logout}
 					addStyles={styles.button}
 				/>
+				<Button addStyles={styles.button} name="Remove Events" />
 			</div>
 		</Fragment>
 	);

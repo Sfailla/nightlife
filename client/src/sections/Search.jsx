@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
 import { Link } from 'react-router-dom';
 
+import { Icon25 } from '../components/Icon';
 import api from '../api/yelpAPI.json';
 import SearchCard from '../components/SearchCard';
 import SearchResults from '../components/SearchResults';
@@ -100,7 +101,7 @@ class Search extends React.Component {
 
 	handleClearSearch = () => {
 		this.setState(() => ({ results: [] }));
-	};
+	};	
 
 	render() {
 		return (
@@ -127,24 +128,26 @@ class Search extends React.Component {
 				)}
 
 				<div className="results">
-					{this.state.isLoading && <Loader />}
-					<ul>
-						{this.state.results.length ? (
-							this.state.results.map(data => {
-								return (
-									<SearchResults
-										key={data.id}
-										name={data.name}
-										location={data.location.address1}
-										imageSrc={data.image_url}
-										imageAlt="bar images"
-										isLoggedIn={this.props.user.isLoggedIn}
-										history={this.props.history}
-									/>
-								);
-							})
-						) : null}
-					</ul>
+					<div className="results__container">
+
+						{this.state.isLoading && <Loader />}
+						<ul>
+							{this.state.results.length ? (
+								this.state.results.map(data => {
+									return (
+										<SearchResults
+											key={data.id}
+											name={data.name}
+											location={data.location.address1}
+											imageSrc={data.image_url}
+											imageAlt="bar images"
+											isLoggedIn={this.props.user.isLoggedIn}
+											history={this.props.history}
+										/>
+									);
+								})
+							) : null}
+						</ul>
 
 					{this.state.results.length > 0 && (
 						<Link
@@ -155,6 +158,7 @@ class Search extends React.Component {
 							back to top
 						</Link>
 					)}
+					</div>
 				</div>
 			</div>
 		);

@@ -7,10 +7,19 @@ import Button from './Button';
 import { truncateRes } from '../utils/functions';
 
 const styles = {
-	button: {
-		width: '15rem',
+	eventButton: {
+		width: '100%',
+		height: '4rem',
 		border: 'none',
-		borderRadius: '2px',
+		color: 'white',
+		fontWeight: 'bold',
+		marginBottom: '1.5rem',
+		background: 'var(--secondary-color)'
+	},
+	detailsButton: {
+		width: '100%',
+		height: '4rem',
+		border: 'none',
 		color: 'white',
 		fontWeight: 'bold',
 		background: 'var(--secondary-color)'
@@ -40,7 +49,7 @@ class SearchResComponent extends React.Component {
 
 	render() {
 		return (
-			<div className="results__container">
+		
 				<div className="results__card">
 					<div className="results__card--left">
 						<img
@@ -66,33 +75,34 @@ class SearchResComponent extends React.Component {
 								</p>
 							</div>
 							{this.props.isLoggedIn && (
-								<div className="results__buttons">
+								<div className="button-wrapper">
 									<Button
-										addStyles={styles.button}
+										addStyles={styles.eventButton}
 										type="submit"
 										onClick={this.addEvent}
 										name="Add to My Events"
 									/>
-									<Button
-										addStyles={styles.button}
-										name="going here"
+									<Button 
+										type="submit" 
+										addStyles={styles.detailsButton} 
+										name="See more details" 
 									/>
-								</div>
+								</div>								
 							)}
-							{this.props.isLoggedIn && (
+						    {/* {this.props.isLoggedIn && (
 								<div className="results__lower-box">
 									Number of people attending: 0
 								</div>
-							)}
+							)} */}
 							{!this.props.isLoggedIn && (
 								<div className="results__lower-box">
-									Sign in to see whose going where
+									Sign in to see more details and keep track of events
 								</div>
 							)}
 						</div>
 					</div>
 				</div>
-			</div>
+			
 		);
 	}
 }

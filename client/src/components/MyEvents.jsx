@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from './Typography';
 import Button from './Button';
+import { Icon25 } from './Icon';
 import { truncateRes } from '../utils/functions';
 
 const MyEvents = props => {
@@ -9,11 +10,19 @@ const MyEvents = props => {
 			height: 'auto',
 			width: '100%'
 		},
-		ul: {},
 		li: {
 			listStyle: 'none',
 			letterSpacing: '2px',
 			textTransform: 'uppercase'
+		},
+		svg: {
+			background: 'var(--primary-color)',
+			outline: 'none',
+			border: 'none',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			fill: 'var(--secondary-color)'
 		},
 		eventWrapper: {
 			display: 'flex',
@@ -24,7 +33,7 @@ const MyEvents = props => {
 			marginTop: '1rem',
 			padding: '0 1rem',
 			background: 'var(--primary-color)',
-			color: 'var(--secondary-color)',
+			color: 'white',
 			boxShadow: 'var(--box-shadow-md-d)'
 		}
 	};
@@ -42,18 +51,13 @@ const MyEvents = props => {
 							{props.events.length > 0 ? (
 								props.events.map(event => {
 									return (
-										<div
-											key={event._id}
-											style={styles.eventWrapper}
-										>
-											<li
-												className="event__li"
-												style={styles.li}
-											>
-												{truncateRes(event.name, 15)}
+										<div key={event._id} style={styles.eventWrapper}>
+											<li	className="event__li" style={styles.li}>
+												{truncateRes(event.name, 20)}
 											</li>
 											<Button
-												name="delete"
+												name={<Icon25 icon="trash" />}
+												addStyles={styles.svg}
 												type="button"
 												onClick={() =>
 													props.handleRemoveEvent(

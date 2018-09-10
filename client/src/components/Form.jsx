@@ -10,8 +10,9 @@ export const BorderlessForm = ({
 	label
 }) => (
 	<Fragment>
-		<div className="form-group borderless-form">
+		<div className="form-group">
 			<input
+				className="borderless-form"
 				style={{ ...addStyles }}
 				type={type}
 				id={name}

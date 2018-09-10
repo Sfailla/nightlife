@@ -61,7 +61,7 @@ const UserDetailsList = props => {
 				</li>
 				<li style={styles.li}>
 					<div style={styles.wordWrap}>
-						<div style={styles.wordBox}>Description:</div>
+						<div style={styles.wordBox}>About:</div>
 						<p style={styles.p}>{props.description || 'NONE'}</p>
 					</div>
 				</li>

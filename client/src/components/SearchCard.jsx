@@ -17,7 +17,6 @@ const SearchCard = ({ handleOnChange, handleOnSubmit, errors }) => {
 				/>
 				<form onSubmit={handleOnSubmit}>
 					<Form
-						className="search__search-form"
 						name="search"
 						type="text"
 						label="Enter location"
