@@ -64,10 +64,10 @@ class Account extends Component {
 	initializeAvatar = () => {
 		this.Auth
 			.authFetch('/settings/avatar', { method: 'POST' })
-			.then(avatar => avatar.json())
-			.then(avatar => {
-				let avatar = avatar[0].avatar;
-				let avatarSelect = avatar[0].avatarSelect;
+			.then(results => results.json())
+			.then(results => {
+				let avatar = results[0].avatar;
+				let avatarSelect = results[0].avatarSelect;
 				console.log(avatar);
 				this.setState(() => ({ avatar, avatarSelect }));
 			});
