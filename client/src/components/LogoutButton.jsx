@@ -8,8 +8,10 @@ const LogoutButton = props => {
 			display: 'inline-block',
 			width: '10rem',
 			height: '3rem',
+			fontSize: '1.4rem',
 			fontWeight: 'bold',
-			color: 'white',
+			border: '1px solid var(--color-gold)',
+			color: 'var(--color-gold)',
 			background: 'var(--primary-color)'
 		}
 	};

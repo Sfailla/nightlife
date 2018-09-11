@@ -36,6 +36,7 @@
 
 		& li:hover {
 			background: var(--secondary-color);
+			transition: .2s ease-in;
 		}
 
 		& li a,
@@ -44,18 +45,19 @@
 			height: 100%;
 			outline: none;
 			text-decoration: none;
-			color: white;
+			color: var(--color-gold);
 			@include flex-center(center, center);
 		}
 
 		& li a:hover,
 		& li a:link:hover {
-			color: var(--primary-color);
+			color: white;
+			transition: .2s ease-in-out;
 		}
 	}
 
 	&__yelp-tag {
-		color: var(--color-gold);
+		color: var(--secondary-color);
 		margin-bottom: 2rem;
 	}
 }

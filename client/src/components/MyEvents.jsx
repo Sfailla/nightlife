@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from './Typography';
 import Button from './Button';
 import { Icon25 } from './Icon';
-import { truncateRes } from '../utils/functions';
+import { truncate } from '../utils/functions';
 
 const MyEvents = props => {
 	const styles = {
@@ -52,8 +52,8 @@ const MyEvents = props => {
 								props.events.map(event => {
 									return (
 										<div key={event._id} style={styles.eventWrapper}>
-											<li	className="event__li" style={styles.li}>
-												{truncateRes(event.name, 20)}
+											<li className="event__li" style={styles.li}>
+												{truncate(event.name, 20)}
 											</li>
 											<Button
 												name={<Icon25 icon="trash" />}
@@ -68,8 +68,8 @@ const MyEvents = props => {
 									);
 								})
 							) : (
-								<h3>Sorry No Events</h3>
-							)}
+									<h3>Sorry No Events</h3>
+								)}
 						</ul>
 					</div>
 				</div>

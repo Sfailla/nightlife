@@ -65,13 +65,12 @@ class Dashboard extends React.Component {
 		this.initializeEventData();
 	};
 
-	shouldComponentUpdate = (prevState) => {
-	  if (prevState.details !== this.state.details) {
-		//   this.initializeUserData();
-		  return true;
-	  } else {
-		  return false;
-	  }
+	shouldComponentUpdate = (prevProps) => {
+		if (prevProps.details !== this.state.details) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	render() {
@@ -81,7 +80,7 @@ class Dashboard extends React.Component {
 					<Typography
 						headingPrimary="Dashboard"
 						classname="dashboard__title"
-						addStyles={{color: 'var(--primary-text-color)'}}
+						addStyles={{ color: 'var(--primary-text-color)' }}
 					/>
 					<Typography
 						headingSecondary="What would you like to do?"

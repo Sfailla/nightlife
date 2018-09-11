@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Auth from '../utils/AuthClass';
 import defaultImgSrc from '../images/bar-default-img.jpg';
 import Button from './Button';
-import { truncateRes } from '../utils/functions';
+import { truncate } from '../utils/functions';
 
 const styles = {
 	eventButton: {
@@ -19,10 +19,14 @@ const styles = {
 	detailsButton: {
 		width: '100%',
 		height: '4rem',
-		border: 'none',
+		border: '2px solid var(--secondary-color)',
 		color: 'white',
 		fontWeight: 'bold',
-		background: 'var(--secondary-color)'
+		background: 'var(--primary-color)'
+	},
+	rating: {
+		padding: '2rem 0',
+		textAlign: 'center',
 	}
 };
 
@@ -45,64 +49,64 @@ class SearchResComponent extends React.Component {
 			})
 			.catch(err => console.log(err));
 	};
-	componentDidMount = () => {};
+	componentDidMount = () => { };
 
 	render() {
 		return (
-		
-				<div className="results__card">
-					<div className="results__card--left">
-						<img
-							src={
-								this.props.imageSrc !== '' &&
+
+			<div className="results__card">
+				<div className="results__card--left">
+					<img
+						src={
+							this.props.imageSrc !== '' &&
 								typeof this.props.imageSrc === 'string' ? (
 									this.props.imageSrc
 								) : (
 									defaultImgSrc
 								)
-							}
-							alt={this.props.imageAlt}
-						/>
-					</div>
-					<div className="results__card--right">
-						<div className="results__inner-container">
-							<div className="results__name-location-wrapper">
-								<h2 className="heading-secondary results__name">
-									{truncateRes(this.props.name, 25)}
-								</h2>
-								<p className="results__location">
-									{this.props.location}
-								</p>
-							</div>
-							{this.props.isLoggedIn && (
-								<div className="button-wrapper">
-									<Button
-										addStyles={styles.eventButton}
-										type="submit"
-										onClick={this.addEvent}
-										name="Add to My Events"
-									/>
-									<Button 
-										type="submit" 
-										addStyles={styles.detailsButton} 
-										name="See more details" 
-									/>
-								</div>								
-							)}
-						    {/* {this.props.isLoggedIn && (
-								<div className="results__lower-box">
-									Number of people attending: 0
-								</div>
-							)} */}
-							{!this.props.isLoggedIn && (
-								<div className="results__lower-box">
-									Sign in to see more details and keep track of events
-								</div>
-							)}
+						}
+						alt={this.props.imageAlt}
+
+					/>
+				</div>
+				<div className="results__card--right">
+					<div className="results__inner-container">
+						<div className="results__name-location-wrapper">
+							<h2 className="heading-secondary results__name">
+								{truncate(this.props.name, 25)}
+							</h2>
+							<p className="results__location">
+								{this.props.location}
+							</p>
+							<p style={styles.rating}>{this.props.rating}</p>
+							{/* <p>{this.props.moreInfoLink}</p> */}
 						</div>
+						{this.props.isLoggedIn && (
+							<div className="button-wrapper">
+								<Button
+									addStyles={styles.eventButton}
+									type="submit"
+									onClick={this.addEvent}
+									name="Add to My Events"
+								/>
+								<a href={this.props.moreInfoLink} target="_blank">
+									<Button
+										type="submit"
+										addStyles={styles.detailsButton}
+										name="See more details"
+										onClick={this.getMoreInfo}
+									/>
+								</a>
+							</div>
+						)}
+						{!this.props.isLoggedIn && (
+							<div className="results__lower-box">
+								Sign in to see more details and keep track of events
+								</div>
+						)}
 					</div>
 				</div>
-			
+			</div>
 		);
 	}
 }

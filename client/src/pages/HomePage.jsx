@@ -4,7 +4,7 @@ import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
 
-import MainHeader from '../objects/MainHeader';
+import MainHeader from '../components/MainHeader';
 import MainSideNav from '../components/MainSideNav';
 import Search from '../sections/Search';
 import Account from '../sections/Account';
@@ -22,8 +22,8 @@ const AuthRoute = ({ component: Component, rest }) => (
 			checkAuth() ? (
 				<Component {...props} />
 			) : (
-				<Redirect to={{ pathname: '/sign-in' }} />
-			)}
+					<Redirect to={{ pathname: '/sign-in' }} />
+				)}
 	/>
 );
 
@@ -39,7 +39,7 @@ class HomePage extends Component {
 		this.Auth.logout();
 		this.props.dispatch(isLoggedIn(false));
 		this.props.history.push('/');
-	};	
+	};
 
 	render() {
 		return (

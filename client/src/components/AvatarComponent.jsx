@@ -27,6 +27,7 @@ export class AvatarComponent extends React.Component {
 		avatar: '',
 		avatarSelect: ''
 	};
+
 	_isMounted = false;
 
 	Auth = new Auth();

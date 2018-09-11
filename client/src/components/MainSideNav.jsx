@@ -36,7 +36,7 @@ const MainSideNav = props => (
 			</ul>
 
 			<div className="side-nav__yelp-tag">
-				<span>Hosted by </span>
+				<span>Powered by </span>
 				<span>Yelp</span>
 			</div>
 		</div>

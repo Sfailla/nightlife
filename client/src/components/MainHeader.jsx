@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainHeaderList from './MainHeaderList';
+import MainHeaderList from '../components/MainHeaderList';
 
 const MainHeader = ({ isLoggedIn, logout }) => (
 	<div className="home__app-header">

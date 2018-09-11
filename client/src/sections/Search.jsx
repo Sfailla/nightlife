@@ -55,7 +55,7 @@ class Search extends React.Component {
 	};
 
 	addEvent = event => {
-		this.setState(() => ({ events: [ ...this.state.events, event ] }));
+		this.setState(() => ({ events: [...this.state.events, event] }));
 	};
 
 	handleFetchData = () => {
@@ -84,6 +84,7 @@ class Search extends React.Component {
 			})
 			.then(res => {
 				if (res.businesses.length > 0) {
+					console.log(res.businesses)
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,
@@ -101,7 +102,7 @@ class Search extends React.Component {
 
 	handleClearSearch = () => {
 		this.setState(() => ({ results: [] }));
-	};	
+	};
 
 	render() {
 		return (
@@ -139,6 +140,8 @@ class Search extends React.Component {
 											key={data.id}
 											name={data.name}
 											location={data.location.address1}
+											rating={data.rating}
+											moreInfoLink={data.url}
 											imageSrc={data.image_url}
 											imageAlt="bar images"
 											isLoggedIn={this.props.user.isLoggedIn}
@@ -149,15 +152,15 @@ class Search extends React.Component {
 							) : null}
 						</ul>
 
-					{this.state.results.length > 0 && (
-						<Link
-							to="#app-header"
-							style={{ display: 'block' }}
-							className="u-center-text"
-						>
-							back to top
+						{this.state.results.length > 0 && (
+							<Link
+								to="#app-header"
+								style={{ display: 'block' }}
+								className="u-center-text"
+							>
+								back to top
 						</Link>
-					)}
+						)}
 					</div>
 				</div>
 			</div>
