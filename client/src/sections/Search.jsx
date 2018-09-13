@@ -62,7 +62,7 @@ class Search extends React.Component {
 		this.setState(() => ({ isLoading: true }));
 		fetch(
 			`${api.yelp.baseURL}location=${this.state
-				.searchVal}&limit=10&term=nightclubs, bars`,
+				.searchVal}&limit=15&term=nightclubs, bars`,
 			{
 				method: 'get',
 				headers: {

@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
 
 const LogoutButton = props => {
 	const styles = {
 		button: {
-			display: 'inline-block',
+			display: 'flex',
+			justifyContent: 'center',
+			flexDirection: 'column',
+			alignItems: 'center',
 			width: '10rem',
 			height: '3rem',
 			fontSize: '1.4rem',
@@ -13,6 +15,10 @@ const LogoutButton = props => {
 			border: '1px solid var(--color-gold)',
 			color: 'var(--color-gold)',
 			background: 'var(--primary-color)'
+		},
+		icon: {
+			fill: 'var(--color-gold)',
+			marginBottom: '1rem',
 		}
 	};
 	return (
@@ -21,6 +27,7 @@ const LogoutButton = props => {
 			style={{ ...styles.button, ...props.addStyles }}
 			onClick={props.logout}
 		>
+			{props.icon}
 			{props.name}
 		</button>
 	);

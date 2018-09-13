@@ -37,37 +37,40 @@ const styles = {
 	}
 };
 
-const UserDetailsList = props => {
-	return (
-		<Fragment>
-			<ul style={styles.ul}>
-				<li style={styles.li}>
-					<div style={styles.wordWrap}>
-						<div style={styles.wordBox}>Company:</div>
-						<p style={styles.p}>{props.company || 'NONE'}</p>
-					</div>
-				</li>
-				<li style={styles.li}>
-					<div style={styles.wordWrap}>
-						<div style={styles.wordBox}>Location:</div>
-						<p style={styles.p}>{props.location || 'NONE'}</p>
-					</div>
-				</li>
-				<li style={styles.li}>
-					<div style={styles.wordWrap}>
-						<div style={styles.wordBox}>Email:</div>
-						<p style={styles.p}>{props.email || 'NONE'}</p>
-					</div>
-				</li>
-				<li style={styles.li}>
-					<div style={styles.wordWrap}>
-						<div style={styles.wordBox}>About:</div>
-						<p style={styles.p}>{props.description || 'NONE'}</p>
-					</div>
-				</li>
-			</ul>
-		</Fragment>
-	);
-};
+class UserDetailsList extends React.Component {
+
+	render() {
+		return (
+			<Fragment>
+				<ul style={styles.ul}>
+					<li style={styles.li}>
+						<div style={styles.wordWrap}>
+							<div style={styles.wordBox}>Company:</div>
+							<p style={styles.p}>{this.props.company || 'NONE'}</p>
+						</div>
+					</li>
+					<li style={styles.li}>
+						<div style={styles.wordWrap}>
+							<div style={styles.wordBox}>Location:</div>
+							<p style={styles.p}>{this.props.location || 'NONE'}</p>
+						</div>
+					</li>
+					<li style={styles.li}>
+						<div style={styles.wordWrap}>
+							<div style={styles.wordBox}>Email:</div>
+							<p style={styles.p}>{this.props.email || 'NONE'}</p>
+						</div>
+					</li>
+					<li style={styles.li}>
+						<div style={styles.wordWrap}>
+							<div style={styles.wordBox}>About:</div>
+							<p style={styles.p}>{this.props.description || 'NONE'}</p>
+						</div>
+					</li>
+				</ul>
+			</Fragment>
+		);
+	};
+}
 
 export default UserDetailsList;

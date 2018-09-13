@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from './Typography';
 import Button from './Button';
-import { Icon25 } from './Icon';
+import { Icon } from './Icon';
 import { truncate } from '../utils/functions';
 
 const MyEvents = props => {
@@ -56,7 +56,7 @@ const MyEvents = props => {
 												{truncate(event.name, 20)}
 											</li>
 											<Button
-												name={<Icon25 icon="trash" />}
+												name={<Icon size={25} icon="trash" />}
 												addStyles={styles.svg}
 												type="button"
 												onClick={() =>

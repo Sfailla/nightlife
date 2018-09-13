@@ -27,6 +27,10 @@ const styles = {
 	rating: {
 		padding: '2rem 0',
 		textAlign: 'center',
+	},
+	a: {
+		textDecoration: 'none',
+
 	}
 };
 
@@ -89,7 +93,7 @@ class SearchResComponent extends React.Component {
 									onClick={this.addEvent}
 									name="Add to My Events"
 								/>
-								<a href={this.props.moreInfoLink} target="_blank">
+								<a style={styles.a} href={this.props.moreInfoLink} target="_blank" rel="noopener">
 									<Button
 										type="submit"
 										addStyles={styles.detailsButton}
@@ -102,7 +106,7 @@ class SearchResComponent extends React.Component {
 						{!this.props.isLoggedIn && (
 							<div className="results__lower-box">
 								Sign in to see more details and keep track of events
-								</div>
+							</div>
 						)}
 					</div>
 				</div>

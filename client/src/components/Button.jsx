@@ -2,7 +2,7 @@ import React from 'react';
 
 
 // button types are: button, submit, reset
-const Button = ({ addStyles, name, onClick, btnType, disabled }) => {
+const Button = ({ addStyles, name, onClick, btnType, disabled, icon }) => {
 	const defaultButtonStyles = {
 		display: 'block',
 		width: 'auto',
@@ -16,6 +16,7 @@ const Button = ({ addStyles, name, onClick, btnType, disabled }) => {
 			onClick={onClick}
 			style={{ ...defaultButtonStyles, ...addStyles }}
 		>
+			{icon ? icon : null}
 			{name}
 		</button>
 	);

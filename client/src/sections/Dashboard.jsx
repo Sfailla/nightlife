@@ -65,14 +65,6 @@ class Dashboard extends React.Component {
 		this.initializeEventData();
 	};
 
-	shouldComponentUpdate = (prevProps) => {
-		if (prevProps.details !== this.state.details) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	render() {
 		return (
 			<div className="dashboard__container">
@@ -89,12 +81,10 @@ class Dashboard extends React.Component {
 				</div>
 				<div className="dashboard__layout">
 					<UserOptions
-						username={this.state.username}
 						company={this.state.company}
 						location={this.state.location}
 						description={this.state.description}
 						email={this.state.email}
-						logout={this.props.logout}
 					/>
 					<MyEvents
 						events={this.state.events}
