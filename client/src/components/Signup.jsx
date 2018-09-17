@@ -23,6 +23,13 @@ const styles = {
 	},
 	form: {
 		marginBottom: '1rem'
+	},
+	error: {
+		color: 'red',
+		position: 'absolute',
+		top: '30%',
+		left: '50%',
+		transform: 'translateX(-50%)'
 	}
 };
 
@@ -30,6 +37,7 @@ const Signup = props => (
 	<div className="signup">
 		<div className="signup__signup-container">
 			<Typography headingSecondary="Sign Up" addStyles={styles.title} />
+			{props.errors && <p style={styles.error}>** {props.errors} **</p>}
 			<div>
 				<BorderlessForm
 					type="text"

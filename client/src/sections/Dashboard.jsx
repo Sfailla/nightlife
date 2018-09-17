@@ -8,13 +8,11 @@ import MyEvents from '../components/MyEvents';
 
 class Dashboard extends React.Component {
 	state = {
-		details: {
-			username: '',
-			company: '',
-			location: '',
-			email: '',
-			description: ''
-		},
+		username: '',
+		company: '',
+		location: '',
+		email: '',
+		description: '',
 		events: []
 	};
 
@@ -60,9 +58,15 @@ class Dashboard extends React.Component {
 			});
 	};
 
+	componentWillReceiveProps(prevProps) {
+		console.log(prevProps)
+	}
+
 	componentDidMount = () => {
-		this.initializeUserData();
 		this.initializeEventData();
+		setTimeout(() => {
+			this.initializeUserData();
+		}, 200)
 	};
 
 	render() {
@@ -85,6 +89,7 @@ class Dashboard extends React.Component {
 						location={this.state.location}
 						description={this.state.description}
 						email={this.state.email}
+						logout={this.props.logout}
 					/>
 					<MyEvents
 						events={this.state.events}

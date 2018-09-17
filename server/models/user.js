@@ -110,7 +110,9 @@ UserSchema.statics = {
 		}).then(user => {
 			if (!user) {
 				let error = 'there is no user in database with that name';
-				return Promise.reject(error);
+				return Promise.reject({
+					error
+				});
 			}
 			return new Promise((resolve, reject) => {
 				bcrypt.compare(password, user.password, (err, res) => {
@@ -118,8 +120,10 @@ UserSchema.statics = {
 						resolve(user);
 					} else {
 						let error =
-							'sorry wrong password for that user, please try again';
-						reject(error);
+							'sorry wrong password, please try again';
+						reject({
+							error
+						});
 					}
 				});
 			});

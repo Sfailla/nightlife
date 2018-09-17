@@ -51,7 +51,8 @@ export class AvatarComponent extends React.Component {
 			.authFetch('/users/settings', { method: 'GET' })
 			.then(res => res.json())
 			.then(res => {
-				const response = res[0];
+				console.log(res)
+				const response = res;
 				let avatar = response.settings.avatar;
 				let avatarSelect = response.settings.avatarSelect;
 				this.setState(() => ({ avatar, avatarSelect }));

@@ -35,7 +35,10 @@ const styles = {
 };
 
 class SearchResComponent extends React.Component {
-	state = { events: [] };
+	state = {
+		events: [],
+		name: '',
+	};
 	Auth = new Auth();
 
 	addEvent = () => {
@@ -47,7 +50,7 @@ class SearchResComponent extends React.Component {
 			})
 			.then(data => data.json())
 			.then(data => {
-				console.log(data);
+				console.log(data)
 				this.setState(() => ({ events: data.name }));
 				this.props.history.push('/dashboard');
 			})
@@ -83,7 +86,6 @@ class SearchResComponent extends React.Component {
 								{this.props.location}
 							</p>
 							<p style={styles.rating}>{this.props.rating}</p>
-							{/* <p>{this.props.moreInfoLink}</p> */}
 						</div>
 						{this.props.isLoggedIn && (
 							<div className="button-wrapper">

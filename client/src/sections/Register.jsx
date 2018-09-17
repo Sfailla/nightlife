@@ -20,7 +20,8 @@ const styles = {
 		margin: '0 auto',
 		marginTop: '4rem',
 		marginBottom: '4rem',
-		boxShadow: 'var(--box-shadow-md-l)'
+		boxShadow: 'var(--box-shadow-md-l)',
+		position: 'relative'
 	}
 };
 
@@ -37,7 +38,7 @@ class Register extends Component {
 
 	handleOnChange = evt => {
 		const { name, value } = evt.target;
-		this.setState(() => ({ [name]: value }));
+		this.setState(() => ({ [name]: value, errors: '' }));
 	};
 
 	handleCBChange = () => {
@@ -58,21 +59,46 @@ class Register extends Component {
 		const { register, setToken } = this.Auth;
 		const { username, password } = this.state;
 
-		return register(username, password)
-			.then(res => res.json())
-			.then(res => {
-				const token = res.tokens[0].token;
-				setToken(token);
-				this.props.dispatch(getUsername(res.username));
-				this.props.dispatch(isLoggedIn(true));
-				this.props.dispatch(
-					setAvatar(res.settings.avatarSelect, res.settings.avatar)
-				);
-				this.props.history.push('/dashboard');
-			});
+
+		if (username !== null && password !== null) {
+			if (username.length > 3) {
+
+				this.setState(() => ({ errors: '' }));
+				return register(username, password)
+					.then(res => res.json())
+					.then(res => {
+						if (res.error) {
+							this.setState(() => ({ errors: res.error }))
+						} else {
+							setToken(res.tokens[0].token);
+							this.props.dispatch(getUsername(res.username));
+							this.props.dispatch(isLoggedIn(true));
+							this.props.dispatch(
+								setAvatar(
+									res.settings.avatarSelect,
+									res.settings.avatar
+								)
+							);
+							this.props.history.push('/dashboard');
+						}
+					})
+					.catch(err => {
+						if (err) {
+							this.setState(() => ({ errors: 'there is an registration error' }))
+							return;
+						}
+					})
+			} else {
+				this.setState(() => ({ errors: 'username must be more than 3 letters' }))
+			}
+		} else {
+			this.setState(() => ({
+				errors: 'Please fill out form completely'
+			}));
+		}
 	};
 
-	componentDidMount = () => {};
+	componentDidMount = () => { };
 
 	render() {
 		return (
@@ -85,6 +111,7 @@ class Register extends Component {
 					<div className="signup__container">
 						<form onSubmit={this.handleOnSubmit}>
 							<Signup
+								errors={this.state.errors}
 								formType={this.state.formType}
 								checked={this.state.checked}
 								handleCBChange={this.handleCBChange}

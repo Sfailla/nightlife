@@ -42,7 +42,6 @@ class Account extends React.Component {
 			})
 			.then(res => res.json())
 			.then(res => {
-				console.log(res);
 				this.setState(() => ({
 					company: res.settings.company,
 					email: res.email,
@@ -77,12 +76,12 @@ class Account extends React.Component {
 					<Typography
 						headingPrimary="Account"
 						classname="account__title"
-						addStyles={{color: 'var(--primary-text-color)'}}
+						addStyles={{ color: 'var(--primary-text-color)' }}
 					/>
 					<Typography
 						classname="account__sub-title"
 						headingSecondary="create a profile"
-						addStyles={{color: 'var(--text-secondary)'}}
+						addStyles={{ color: 'var(--text-secondary)' }}
 					/>
 				</div>
 				<div className="account__profile-card">

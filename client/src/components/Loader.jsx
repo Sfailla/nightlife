@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import spinner from '../images/spinner(ai).png'
 
 const styles = {
 	spinner: {
@@ -26,7 +27,7 @@ const Loader = () => {
 			<div className="spinner" style={styles.spinner}>
 				<img
 					style={styles.logo}
-					src="https://image.flaticon.com/icons/svg/23/23630.svg"
+					src={spinner}
 					alt="..."
 				/>
 			</div>

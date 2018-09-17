@@ -51,17 +51,27 @@ export class Login extends Component {
 			return login(username, password)
 				.then(res => res.json())
 				.then(res => {
-					setToken(res.tokens[0].token);
-					this.props.dispatch(getUsername(res.username));
-					this.props.dispatch(isLoggedIn(true));
-					this.props.dispatch(
-						setAvatar(
-							res.settings.avatarSelect,
-							res.settings.avatar
-						)
-					);
-					this.props.history.push('/dashboard');
-				});
+					if (res.error) {
+						this.setState(() => ({ errors: res.error }))
+					} else {
+
+						setToken(res.tokens[0].token);
+						this.props.dispatch(getUsername(res.username));
+						this.props.dispatch(isLoggedIn(true));
+						this.props.dispatch(
+							setAvatar(
+								res.settings.avatarSelect,
+								res.settings.avatar
+							)
+						);
+						this.props.history.push('/dashboard');
+					}
+				})
+				.catch(err => {
+					if (err) {
+						return;
+					}
+				})
 		} else {
 			this.setState(() => ({
 				errors: 'Please fill out form completely'

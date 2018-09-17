@@ -56,7 +56,7 @@ const MyEvents = props => {
 												{truncate(event.name, 20)}
 											</li>
 											<Button
-												name={<Icon size={25} icon="trash" />}
+												name={<Icon size={25} view={25} icon="trash" />}
 												addStyles={styles.svg}
 												type="button"
 												onClick={() =>

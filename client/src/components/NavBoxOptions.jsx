@@ -28,30 +28,38 @@ const NavBoxOptions = props => {
 			textDecoration: 'none',
 		},
 		icon: {
-			fill: 'var(--color-gold)',
+			fill: 'var(--secondary-color)',
 			fontSize: '3rem',
 			marginBottom: '1rem',
 		},
 		wrapper: {
+			position: 'relative',
 			display: 'flex',
 			color: 'white'
+		},
+		events: {
+			position: 'absolute',
+			bottom: '0',
+			left: '50%',
+			transform: 'translateX(-50% )',
+			paddingBottom: '8px',
 		}
 	};
 
-	const icon = <Icon addStyles={styles.icon} size={25} icon="logout" />;
+	const icon = <Icon addStyles={styles.icon} view={25} size={25} icon="logout" />;
 
 	return (
 		<Fragment>
 			<div className="options__box-container">
 				<Link to="/" style={styles.link}>
 					<div className="options__box" style={styles.wrapper}>
-						<Icon size={25} addStyles={styles.icon} icon="search" />
+						<Icon size={25} view={25} addStyles={styles.icon} icon="search" />
 						<p>SEARCH</p>
 					</div>
 				</Link>
 				<Link to="/account" style={styles.link}>
 					<div className="options__box" style={styles.wrapper}>
-						<Icon size={25} addStyles={styles.icon} icon="settings" />
+						<Icon size={25} view={25} addStyles={styles.icon} icon="settings" />
 						<p>SETTINGS</p>
 					</div>
 				</Link>
@@ -63,13 +71,14 @@ const NavBoxOptions = props => {
 						addStyles={styles.button}
 					/>
 				</div>
-				<div style={styles.wrapper}>
+				{/* <div style={styles.wrapper}>
 					<Button
-						name="Remove Events"
-						icon={<Icon size={25} icon="trash" addStyles={styles.icon} />}
+						name="Remove"
+						icon={<Icon size={25} view={25} icon="trash" addStyles={styles.icon} />}
 						addStyles={styles.button}
 					/>
-				</div>
+					<p style={styles.events}>EVENTS</p>
+				</div> */}
 			</div>
 		</Fragment>
 	);

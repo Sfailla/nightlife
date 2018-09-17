@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
 import { Link } from 'react-router-dom';
 
-import { Icon25 } from '../components/Icon';
 import api from '../api/yelpAPI.json';
 import SearchCard from '../components/SearchCard';
 import SearchResults from '../components/SearchResults';
@@ -64,7 +63,7 @@ class Search extends React.Component {
 			`${api.yelp.baseURL}location=${this.state
 				.searchVal}&limit=15&term=nightclubs, bars`,
 			{
-				method: 'get',
+				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${this.getToken()}`
 				}
@@ -130,7 +129,6 @@ class Search extends React.Component {
 
 				<div className="results">
 					<div className="results__container">
-
 						{this.state.isLoading && <Loader />}
 						<ul>
 							{this.state.results.length ? (
