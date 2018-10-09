@@ -53,6 +53,15 @@ class Account extends React.Component {
 
 	initializeUserData = () => {
 		this.Auth
+<<<<<<< HEAD
+			.authFetch('/settings/avatar', { method: 'POST' })
+			.then(results => results.json())
+			.then(results => {
+				let avatar = results[0].avatar;
+				let avatarSelect = results[0].avatarSelect;
+				console.log(avatar);
+				this.setState(() => ({ avatar, avatarSelect }));
+=======
 			.authFetch('/users/me', { method: 'GET' })
 			.then(res => res.json())
 			.then(res => {
@@ -62,6 +71,7 @@ class Account extends React.Component {
 					location: res.settings.location,
 					description: res.settings.description
 				}));
+>>>>>>> development
 			});
 	};
 
