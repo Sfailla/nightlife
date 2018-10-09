@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // good config for react, express full stack projects
@@ -54,8 +53,6 @@ module.exports = {
 		extensions: [ '.js', '.jsx', '.json' ]
 	},
 	plugins: [
-		new webpack.NamedModulesPlugin(),
-		new webpack.HotModuleReplacementPlugin(),
 		new MiniCssExtractPlugin({
 			sourceMap: true,
 			filename: 'style.css'
@@ -65,7 +62,6 @@ module.exports = {
 	watch: true,
 	devServer: {
 		contentBase: path.join(__dirname, 'public'),
-		hot: true,
 		inline: true,
 		historyApiFallback: true,
 		proxy: {

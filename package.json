@@ -49,6 +49,7 @@
 		"babel-preset-env": "^1.7.0",
 		"babel-preset-es2017": "^6.24.1",
 		"babel-preset-react": "^6.24.1",
+		"css-hot-loader": "^1.4.2",
 		"css-loader": "^0.28.11",
 		"expect": "^22.3.0",
 		"file-loader": "^1.1.11",

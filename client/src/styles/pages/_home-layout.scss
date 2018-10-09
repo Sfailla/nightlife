@@ -11,12 +11,21 @@
 		color: blue;
 		background-color: var(--color-white);
 		z-index: 1;
+
+		// @media (max-width: 1300px) {
+		// 	grid-column: 1 / -1;
+		// }
 	}
 
 	&__side-nav {
 		grid-column: 1 / 2;
 		grid-row: 1 / -1;
 		background: var(--primary-color);
+
+		@media (max-width: 1300px) {
+			grid-column: 1 / -1;
+			grid-row: 1 / 2;
+		}
 	}
 
 	&__main-page-area {

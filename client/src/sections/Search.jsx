@@ -54,7 +54,7 @@ class Search extends React.Component {
 	};
 
 	addEvent = event => {
-		this.setState(() => ({ events: [...this.state.events, event] }));
+		this.setState(() => ({ events: [ ...this.state.events, event ] }));
 	};
 
 	handleFetchData = () => {
@@ -75,15 +75,14 @@ class Search extends React.Component {
 				} else {
 					if (res.status > 300) {
 						return this.setState(() => ({
-							errors:
-								'** Sorry that wont work. Try an area near you! **'
+							errors: '** Sorry that wont work. Try an area near you! **'
 						}));
 					}
 				}
 			})
 			.then(res => {
 				if (res.businesses.length > 0) {
-					console.log(res.businesses)
+					console.log(res.businesses);
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,
@@ -157,7 +156,7 @@ class Search extends React.Component {
 								className="u-center-text"
 							>
 								back to top
-						</Link>
+							</Link>
 						)}
 					</div>
 				</div>

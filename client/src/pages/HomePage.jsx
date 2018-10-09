@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -27,7 +27,7 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 	/>
 );
 
-class HomePage extends Component {
+class HomePage extends React.Component {
 	static propTypes = {
 		isLoggedIn: PropTypes.bool,
 		logout: PropTypes.func
