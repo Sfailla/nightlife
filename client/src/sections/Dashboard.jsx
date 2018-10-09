@@ -52,21 +52,21 @@ class Dashboard extends React.Component {
 			.then(events => events.json())
 			.then(events => {
 				const mappedEvents = events.map(event => event);
-				return this.setState(prevState => ({
+				this.setState(prevState => ({
 					events: prevState.events.concat(mappedEvents)
 				}));
 			});
 	};
 
 	componentWillReceiveProps(prevProps) {
-		console.log(prevProps)
+		console.log(prevProps);
 	}
 
 	componentDidMount = () => {
 		this.initializeEventData();
 		setTimeout(() => {
 			this.initializeUserData();
-		}, 200)
+		}, 200);
 	};
 
 	render() {

@@ -1,9 +1,9 @@
-export const getUsername = (username) => ({
+export const getUsername = username => ({
 	type: 'GET_USERNAME',
 	username
 });
 
-export const isLoggedIn = (bool) => ({
+export const isLoggedIn = bool => ({
 	type: 'IS_LOGGED_IN',
 	payload: bool
 });
@@ -12,8 +12,4 @@ export const setAvatar = (avatarSelect, avatar) => ({
 	type: 'SET_AVATAR',
 	avatarSelect,
 	avatar
-});
-
-export const setCustomAvatar = (customImg) => ({
-	type: 'SET_CUSTOM_AVATAR'
 });

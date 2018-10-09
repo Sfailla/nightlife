@@ -14,6 +14,10 @@ const MainHeaderList = props => {
 			display: 'flex',
 			justifyContent: 'space-between',
 			alignItems: 'center'
+		},
+		link: {
+			textDecoration: 'none',
+			color: 'blue'
 		}
 	};
 	return (
@@ -23,7 +27,9 @@ const MainHeaderList = props => {
 			{props.isLoggedIn ? (
 				<LogoutButton name="sign out" logout={props.logout} />
 			) : (
-				<Link to="/sign-in">sign in</Link>
+				<Link style={styles.link} to="/sign-in">
+					SIGN IN
+				</Link>
 			)}
 		</div>
 	);

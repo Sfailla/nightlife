@@ -25,9 +25,11 @@ const styles = {
 	error: {
 		color: 'red',
 		position: 'absolute',
-		top: '30%',
+		top: '25%',
 		left: '50%',
-		transform: 'translateX(-50%)'
+		transform: 'translateX(-50%)',
+		width: '39rem',
+		textAlign: 'center'
 	}
 };
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Auth from '../utils/AuthClass';
 import defaultImgSrc from '../images/bar-default-img.jpg';
 import Button from './Button';
-import { truncate } from '../utils/functions';
+import { truncate, changeNumToStar } from '../utils/functions';
 
 const styles = {
 	eventButton: {
@@ -26,18 +26,17 @@ const styles = {
 	},
 	rating: {
 		padding: '2rem 0',
-		textAlign: 'center',
+		textAlign: 'center'
 	},
 	a: {
-		textDecoration: 'none',
-
+		textDecoration: 'none'
 	}
 };
 
 class SearchResComponent extends React.Component {
 	state = {
 		events: [],
-		name: '',
+		name: ''
 	};
 	Auth = new Auth();
 
@@ -50,30 +49,28 @@ class SearchResComponent extends React.Component {
 			})
 			.then(data => data.json())
 			.then(data => {
-				console.log(data)
+				console.log(data);
 				this.setState(() => ({ events: data.name }));
 				this.props.history.push('/dashboard');
 			})
 			.catch(err => console.log(err));
 	};
-	componentDidMount = () => { };
+	componentDidMount = () => {};
 
 	render() {
 		return (
-
 			<div className="results__card">
 				<div className="results__card--left">
 					<img
 						src={
 							this.props.imageSrc !== '' &&
-								typeof this.props.imageSrc === 'string' ? (
-									this.props.imageSrc
-								) : (
-									defaultImgSrc
-								)
+							typeof this.props.imageSrc === 'string' ? (
+								this.props.imageSrc
+							) : (
+								defaultImgSrc
+							)
 						}
 						alt={this.props.imageAlt}
-
 					/>
 				</div>
 				<div className="results__card--right">
@@ -82,10 +79,8 @@ class SearchResComponent extends React.Component {
 							<h2 className="heading-secondary results__name">
 								{truncate(this.props.name, 25)}
 							</h2>
-							<p className="results__location">
-								{this.props.location}
-							</p>
-							<p style={styles.rating}>{this.props.rating}</p>
+							<p className="results__location">{this.props.location}</p>
+							<p style={styles.rating}>{changeNumToStar(this.props.rating)}</p>
 						</div>
 						{this.props.isLoggedIn && (
 							<div className="button-wrapper">
@@ -95,7 +90,12 @@ class SearchResComponent extends React.Component {
 									onClick={this.addEvent}
 									name="Add to My Events"
 								/>
-								<a style={styles.a} href={this.props.moreInfoLink} target="_blank" rel="noopener">
+								<a
+									style={styles.a}
+									href={this.props.moreInfoLink}
+									target="_blank"
+									rel="noopener"
+								>
 									<Button
 										type="submit"
 										addStyles={styles.detailsButton}

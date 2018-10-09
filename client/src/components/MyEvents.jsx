@@ -34,7 +34,7 @@ const MyEvents = props => {
 			padding: '0 1rem',
 			background: 'var(--primary-color)',
 			color: 'white',
-			boxShadow: 'var(--box-shadow-md-d)'
+			boxShadow: 'var(--box-shadow-sm-d)'
 		}
 	};
 	return (
@@ -59,17 +59,14 @@ const MyEvents = props => {
 												name={<Icon size={25} view={25} icon="trash" />}
 												addStyles={styles.svg}
 												type="button"
-												onClick={() =>
-													props.handleRemoveEvent(
-														event._id
-													)}
+												onClick={() => props.handleRemoveEvent(event._id)}
 											/>
 										</div>
 									);
 								})
 							) : (
-									<h3>Sorry No Events</h3>
-								)}
+								<h3>Sorry No Events</h3>
+							)}
 						</ul>
 					</div>
 				</div>

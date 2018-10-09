@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // good config for react, express full stack projects
 module.exports = {
@@ -26,8 +26,22 @@ module.exports = {
 			},
 			{
 				test: /\.s?css$/,
-				exclude: /node_modules/,
-				use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+				use: [
+					'style-loader',
+					MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					}
+				]
 			},
 			{
 				test: /\.(gif|png|jpe?g)$/i,
@@ -42,15 +56,15 @@ module.exports = {
 	plugins: [
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
-		new HtmlWebpackPlugin({
-			template: './public/index.html',
-			filename: './public/index.html'
+		new MiniCssExtractPlugin({
+			sourceMap: true,
+			filename: 'style.css'
 		})
 	],
-	devtool: 'cheap-module-source-map',
+	devtool: 'inline-cheap-module-source-map ',
 	watch: true,
 	devServer: {
-		contentBase: './public/index.html',
+		contentBase: path.join(__dirname, 'public'),
 		hot: true,
 		inline: true,
 		historyApiFallback: true,

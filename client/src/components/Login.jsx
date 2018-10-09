@@ -15,8 +15,8 @@ const styles = {
 		color: 'var(--primary-text-color)'
 	},
 	card: {
-		maxWidth: '70%',
-		minHeight: '45rem',
+		maxWidth: '50rem',
+		minHeight: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
 		marginTop: '4rem',
@@ -52,17 +52,13 @@ export class Login extends Component {
 				.then(res => res.json())
 				.then(res => {
 					if (res.error) {
-						this.setState(() => ({ errors: res.error }))
+						this.setState(() => ({ errors: res.error }));
 					} else {
-
 						setToken(res.tokens[0].token);
 						this.props.dispatch(getUsername(res.username));
 						this.props.dispatch(isLoggedIn(true));
 						this.props.dispatch(
-							setAvatar(
-								res.settings.avatarSelect,
-								res.settings.avatar
-							)
+							setAvatar(res.settings.avatarSelect, res.settings.avatar)
 						);
 						this.props.history.push('/dashboard');
 					}
@@ -71,7 +67,7 @@ export class Login extends Component {
 					if (err) {
 						return;
 					}
-				})
+				});
 		} else {
 			this.setState(() => ({
 				errors: 'Please fill out form completely'
@@ -83,7 +79,7 @@ export class Login extends Component {
 			<div className="signup">
 				<Typography
 					addStyles={styles.heading}
-					headingPrimary="sign in below for more options"
+					headingPrimary="sign in for access to nightlife features"
 				/>
 				<div style={styles.card}>
 					<div className="signup__container">

@@ -1,4 +1,4 @@
-import decode from 'jwt-decode';
+// import decode from 'jwt-decode';
 
 // function for truncating names of search results
 // takes in a str and it's max length allowed.
@@ -30,4 +30,18 @@ export const checkAuth = () => {
 	// 	return false;
 	// }
 	return true;
+};
+
+export const changeNumToStar = num => {
+	if (num <= 0) {
+		return '';
+	} else {
+		let str = '*';
+		let newStr = '';
+		while (num > 0) {
+			newStr += str;
+			num--;
+		}
+		return newStr;
+	}
 };

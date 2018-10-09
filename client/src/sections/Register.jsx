@@ -14,7 +14,7 @@ const styles = {
 		color: 'var(--primary-color)'
 	},
 	card: {
-		maxWidth: '70%',
+		maxWidth: '50rem',
 		minHeight: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
@@ -46,8 +46,7 @@ class Register extends Component {
 
 		if (form !== null || form !== undefined) {
 			this.setState(() => ({
-				formType:
-					this.state.formType === 'password' ? 'text' : 'password',
+				formType: this.state.formType === 'password' ? 'text' : 'password',
 				checked: this.state.checked === false ? true : false
 			}));
 		}
@@ -59,37 +58,36 @@ class Register extends Component {
 		const { register, setToken } = this.Auth;
 		const { username, password } = this.state;
 
-
 		if (username !== null && password !== null) {
 			if (username.length > 3) {
-
 				this.setState(() => ({ errors: '' }));
 				return register(username, password)
 					.then(res => res.json())
 					.then(res => {
 						if (res.error) {
-							this.setState(() => ({ errors: res.error }))
+							this.setState(() => ({ errors: res.error }));
 						} else {
 							setToken(res.tokens[0].token);
 							this.props.dispatch(getUsername(res.username));
 							this.props.dispatch(isLoggedIn(true));
 							this.props.dispatch(
-								setAvatar(
-									res.settings.avatarSelect,
-									res.settings.avatar
-								)
+								setAvatar(res.settings.avatarSelect, res.settings.avatar)
 							);
 							this.props.history.push('/dashboard');
 						}
 					})
 					.catch(err => {
 						if (err) {
-							this.setState(() => ({ errors: 'there is an registration error' }))
+							this.setState(() => ({
+								errors: 'there is an registration error'
+							}));
 							return;
 						}
-					})
+					});
 			} else {
-				this.setState(() => ({ errors: 'username must be more than 3 letters' }))
+				this.setState(() => ({
+					errors: 'username must be more than 3 letters'
+				}));
 			}
 		} else {
 			this.setState(() => ({
@@ -98,7 +96,7 @@ class Register extends Component {
 		}
 	};
 
-	componentDidMount = () => { };
+	componentDidMount = () => {};
 
 	render() {
 		return (

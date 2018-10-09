@@ -15,15 +15,15 @@ import Login from '../components/Login';
 import { checkAuth } from '../utils/functions';
 import Auth from '../utils/AuthClass';
 
-const AuthRoute = ({ component: Component, rest }) => (
+const AuthRoute = ({ component: Component, ...rest }) => (
 	<Route
 		{...rest}
 		render={props =>
 			checkAuth() ? (
 				<Component {...props} />
 			) : (
-					<Redirect to={{ pathname: '/sign-in' }} />
-				)}
+				<Redirect to={{ pathname: '/sign-in' }} />
+			)}
 	/>
 );
 
@@ -42,6 +42,7 @@ class HomePage extends Component {
 	};
 
 	render() {
+		console.log(this.props.user);
 		return (
 			<div className="home__grid-container home__homepage-container">
 				<MainHeader
@@ -53,17 +54,11 @@ class HomePage extends Component {
 				</div>
 				<div className="home__main-page-area">
 					<Switch>
-						<Route
-							exact
-							path="/"
-							render={props => <Search {...props} />}
-						/>
+						<Route exact path="/" render={props => <Search {...props} />} />
 						<AuthRoute
 							exact
 							path="/dashboard"
-							component={props => (
-								<Dashboard {...props} logout={this.logout} />
-							)}
+							component={props => <Dashboard {...props} logout={this.logout} />}
 						/>
 						<AuthRoute
 							exact
@@ -71,11 +66,7 @@ class HomePage extends Component {
 							component={props => <Account {...props} />}
 						/>
 						<Route exact path="/sign-in" render={() => <Login />} />
-						<Route
-							exact
-							path="/sign-up"
-							render={() => <Register />}
-						/>
+						<Route exact path="/sign-up" render={() => <Register />} />
 					</Switch>
 				</div>
 			</div>

@@ -1,13 +1,13 @@
-const usersDefaultState = {
+const defaultState = {
 	username: '',
 	isLoggedIn: false,
 	avatarSelect: 'default-avatar',
 	avatar: '/22acd1da9b455b7ce7196bb89f01127a.jpg'
 };
 
-const usersReducer = (state = usersDefaultState, action) => {
+const usersReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case 'GET_USERNAME':
+		case 'SET_USERNAME':
 			return {
 				...state,
 				username: action.username
