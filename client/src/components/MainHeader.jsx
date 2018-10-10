@@ -1,4 +1,5 @@
 import React from 'react';
+import { Icon } from '../components/SVGComponent';
 
 import MainHeaderList from '../components/MainHeaderList';
 

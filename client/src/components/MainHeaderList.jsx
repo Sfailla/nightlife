@@ -16,8 +16,7 @@ const MainHeaderList = props => {
 			alignItems: 'center'
 		},
 		link: {
-			textDecoration: 'none',
-			color: 'blue'
+			textDecoration: 'none'
 		}
 	};
 	return (
@@ -27,7 +26,7 @@ const MainHeaderList = props => {
 			{props.isLoggedIn ? (
 				<LogoutButton name="sign out" logout={props.logout} />
 			) : (
-				<Link style={styles.link} to="/sign-in">
+				<Link style={styles.link} className="link" to="/sign-in">
 					SIGN IN
 				</Link>
 			)}
@@ -48,3 +47,18 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(MainHeaderList);
+
+const tabView = `
+	.link {
+		color: blue;
+		font-size: 2rem;
+	}
+	@media (max-width: 1300px) {
+		.link {
+			color: white;
+		}
+	}
+`;
+document.head.appendChild(
+	document.createElement('style')
+).textContent = tabView;

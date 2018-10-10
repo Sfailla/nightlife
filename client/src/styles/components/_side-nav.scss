@@ -17,10 +17,22 @@
 		font-size: 5rem;
 		text-align: center;
 		margin-top: 1rem;
+
+		@media (max-width: 81.25em) {
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin-top: 0;
+		}
 	}
 
 	&__nav-items {
 		width: 100%;
+
+		@media (max-width: 1300px) {
+			display: none;
+		}
 
 		& li {
 			width: 100%;
@@ -59,6 +71,10 @@
 	&__yelp-tag {
 		color: var(--secondary-color);
 		margin-bottom: 2rem;
+
+		@media (max-width: 1300px) {
+			display: none;
+		}
 	}
 }
 

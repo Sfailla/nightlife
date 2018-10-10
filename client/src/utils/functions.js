@@ -1,4 +1,6 @@
 // import decode from 'jwt-decode';
+import React from 'react';
+import { Icon } from '../components/SVGComponent';
 
 // function for truncating names of search results
 // takes in a str and it's max length allowed.
@@ -34,7 +36,7 @@ export const checkAuth = () => {
 
 export const changeNumToStar = num => {
 	if (num <= 0) {
-		return '';
+		return 'n/a';
 	} else {
 		let str = '*';
 		let newStr = '';

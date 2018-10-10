@@ -121,7 +121,7 @@ class Search extends React.Component {
 					<Button
 						addStyles={styles.button}
 						type="button"
-						name="Clear Search Results"
+						name="Clear Results"
 						onClick={this.handleClearSearch}
 					/>
 				)}

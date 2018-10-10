@@ -5,6 +5,7 @@ import Auth from '../utils/AuthClass';
 import defaultImgSrc from '../images/bar-default-img.jpg';
 import Button from './Button';
 import { truncate, changeNumToStar } from '../utils/functions';
+import { Icon } from '../components/SVGComponent';
 
 const styles = {
 	eventButton: {

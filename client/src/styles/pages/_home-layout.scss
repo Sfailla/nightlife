@@ -12,9 +12,11 @@
 		background-color: var(--color-white);
 		z-index: 1;
 
-		// @media (max-width: 1300px) {
-		// 	grid-column: 1 / -1;
-		// }
+		@media (max-width: 81.25em) {
+			grid-column: 2 / -1;
+			background-color: var(--primary-color);
+			box-shadow: none;
+		}
 	}
 
 	&__side-nav {
@@ -22,7 +24,7 @@
 		grid-row: 1 / -1;
 		background: var(--primary-color);
 
-		@media (max-width: 1300px) {
+		@media (max-width: 81.25em) {
 			grid-column: 1 / -1;
 			grid-row: 1 / 2;
 		}
@@ -34,6 +36,10 @@
 
 		overflow-y: auto;
 		background: var(--color-light-grey);
+
+		@media (max-width: 1300px) {
+			grid-column: 1 / -1;
+		}
 	}
 
 	&__homepage-container {
@@ -49,8 +55,11 @@
 
 		height: 80vh;
 		margin-top: 4rem;
-		margin-bottom: 3rem;
 		background-color: #fff;
+
+		@media (max-width: 81.25em) {
+			margin: 4rem 2rem 0 2rem;
+		}
 	}
 }
 
