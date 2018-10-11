@@ -8,7 +8,7 @@ const LogoutButton = props => {
 			justifyContent: 'center',
 			flexDirection: 'column',
 			alignItems: 'center',
-			width: '10rem',
+			width: '100%',
 			height: '3rem',
 			fontSize: '1.4rem',
 			fontWeight: 'bold',
@@ -18,11 +18,12 @@ const LogoutButton = props => {
 		},
 		icon: {
 			fill: 'var(--color-gold)',
-			marginBottom: '1rem',
+			marginBottom: '1rem'
 		}
 	};
 	return (
 		<button
+			className="options__link-logout"
 			type="submit"
 			style={{ ...styles.button, ...props.addStyles }}
 			onClick={props.logout}

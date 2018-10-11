@@ -7,6 +7,11 @@
 	&__title-wrapper {
 		margin-bottom: 4rem;
 		@include flex-center(space-between, center);
+
+		@media (max-width: 50em) {
+			display: block;
+			text-align: center;
+		}
 	}
 
 	&__title {
@@ -30,6 +35,12 @@
 		grid-template-columns: minmax(min-content, 1fr) 35rem;
 		grid-template-rows: max-content;
 		grid-column-gap: 2rem;
+
+		@media (max-width: 56.25em) {
+			grid-template-columns: 1fr;
+			grid-template-rows: min-content min-content max-content;
+			grid-row-gap: 2rem;
+		}
 	}
 
 	&__options-component {

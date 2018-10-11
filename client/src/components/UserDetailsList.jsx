@@ -10,12 +10,12 @@ const styles = {
 	},
 	p: {
 		width: '100%',
-		height: '3rem',
+		// height: '3rem',
 		paddingLeft: '1rem',
-		marginLeft: '2rem',
-		display: 'flex',
-		justifyContent: 'left',
-		alignItems: 'center',
+		// marginLeft: '2rem',
+		// display: 'flex',
+		// justifyContent: 'left',
+		// alignItems: 'center',
 		color: 'var(--primary-text-color)'
 	},
 	wordWrap: {
@@ -34,10 +34,15 @@ const styles = {
 		display: 'flex',
 		justifyContent: 'right',
 		alignItems: 'center'
+	},
+	textArea: {
+		width: '100%',
+		height: '8rem',
+		overflowY: 'auto'
 	}
 };
 
-const UserDetailsList = (props) => {
+const UserDetailsList = props => {
 	return (
 		<Fragment>
 			<ul style={styles.ul}>
@@ -62,7 +67,9 @@ const UserDetailsList = (props) => {
 				<li style={styles.li}>
 					<div style={styles.wordWrap}>
 						<div style={styles.wordBox}>About:</div>
-						<p style={styles.p}>{props.description || 'NONE'}</p>
+						<div style={styles.textArea}>
+							<p style={styles.p}>{props.description || 'NONE'}</p>
+						</div>
 					</div>
 				</li>
 			</ul>

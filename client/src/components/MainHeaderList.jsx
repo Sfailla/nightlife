@@ -24,10 +24,14 @@ const MainHeaderList = props => {
 			{props.isLoggedIn && props.user.username}
 			{props.isLoggedIn && <Avatar avatar={props.user.avatar} />}
 			{props.isLoggedIn ? (
-				<LogoutButton name="sign out" logout={props.logout} />
+				<LogoutButton
+					addStyles={{ width: '10rem' }}
+					name="sign out"
+					logout={props.logout}
+				/>
 			) : (
-				<Link style={styles.link} className="link" to="/sign-in">
-					SIGN IN
+				<Link style={styles.link} className="app-header__link" to="/sign-in">
+					LOGIN
 				</Link>
 			)}
 		</div>

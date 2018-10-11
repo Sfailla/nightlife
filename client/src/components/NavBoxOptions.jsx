@@ -4,12 +4,11 @@ import { Link } from 'react-router-dom';
 
 import { Icon } from './Icon';
 import LogoutButton from './LogoutButton';
-import Button from './Button';
 
 const NavBoxOptions = props => {
 	const styles = {
 		button: {
-			width: '12rem',
+			// width: '15rem',
 			height: '12rem',
 			color: 'white',
 			outline: 'none',
@@ -25,12 +24,12 @@ const NavBoxOptions = props => {
 			boxShadow: 'var(--box-shadow-md-d)'
 		},
 		link: {
-			textDecoration: 'none',
+			textDecoration: 'none'
 		},
 		icon: {
 			fill: 'var(--secondary-color)',
 			fontSize: '3rem',
-			marginBottom: '1rem',
+			marginBottom: '1rem'
 		},
 		wrapper: {
 			position: 'relative',
@@ -42,28 +41,30 @@ const NavBoxOptions = props => {
 			bottom: '0',
 			left: '50%',
 			transform: 'translateX(-50% )',
-			paddingBottom: '8px',
+			paddingBottom: '8px'
 		}
 	};
 
-	const icon = <Icon addStyles={styles.icon} view={25} size={25} icon="logout" />;
+	const icon = (
+		<Icon addStyles={styles.icon} view={25} size={25} icon="logout" />
+	);
 
 	return (
 		<Fragment>
 			<div className="options__box-container">
-				<Link to="/" style={styles.link}>
+				<Link to="/" className="options__link" style={styles.link}>
 					<div className="options__box" style={styles.wrapper}>
 						<Icon size={25} view={25} addStyles={styles.icon} icon="search" />
 						<p>SEARCH</p>
 					</div>
 				</Link>
-				<Link to="/account" style={styles.link}>
+				<Link to="/account" className="options__link" style={styles.link}>
 					<div className="options__box" style={styles.wrapper}>
 						<Icon size={25} view={25} addStyles={styles.icon} icon="settings" />
 						<p>SETTINGS</p>
 					</div>
 				</Link>
-				<div style={styles.wrapper}>
+				<div className="options__link-logout" style={styles.wrapper}>
 					<LogoutButton
 						name="SIGN OUT"
 						icon={icon}

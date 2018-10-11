@@ -42,7 +42,6 @@ class HomePage extends React.Component {
 	};
 
 	render() {
-		console.log(this.props.user);
 		return (
 			<div className="home__grid-container home__homepage-container">
 				<MainHeader
