@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import spinner from '../images/spinner(ai).png'
+import spinner from '../images/spinner(ai).png';
 
 const styles = {
 	spinner: {
@@ -25,16 +24,10 @@ const Loader = () => {
 	return (
 		<Fragment>
 			<div className="spinner" style={styles.spinner}>
-				<img
-					style={styles.logo}
-					src={spinner}
-					alt="..."
-				/>
+				<img style={styles.logo} src={spinner} alt="..." />
 			</div>
 		</Fragment>
 	);
 };
-
-Loader.propTypes = {};
 
 export default Loader;

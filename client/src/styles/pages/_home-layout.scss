@@ -18,6 +18,9 @@
 			box-shadow: none;
 			color: white;
 		}
+		@media (max-width: 31.25em) {
+			justify-content: right;
+		}
 	}
 
 	&__side-nav {

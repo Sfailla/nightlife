@@ -56,7 +56,10 @@
 	}
 
 	&__search-card:nth-last-child(3) {
-		
 		color: red;
+	}
+
+	&__error {
+		text-align: center;
 	}
 }

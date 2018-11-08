@@ -23,7 +23,7 @@ const SearchCard = ({ handleOnChange, handleOnSubmit, errors }) => {
 						autocomplete={false}
 						handleOnChange={handleOnChange}
 					/>
-					{errors && <p>{errors}</p>}
+					{errors && <p className="search__error">{errors}</p>}
 				</form>
 			</div>
 		</div>

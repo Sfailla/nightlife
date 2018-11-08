@@ -79,9 +79,14 @@
 // main header list component
 .app-header__link {
 	color: var(--color-gold);
+	text-decoration: none;
 
 	&:hover {
 		color: var(--secondary-color);
 		transition: color .2s ease-in-out;
 	}
+
+	// @media (min-width: 81.25) {
+	// 	display: none;
+	// }
 }
