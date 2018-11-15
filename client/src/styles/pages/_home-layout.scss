@@ -39,11 +39,24 @@
 		grid-row: 2 / -1;
 
 		overflow-y: auto;
+		overflow-x: hidden;
 		background: var(--color-light-grey);
+		position: relative;
 
 		@media (max-width: 1300px) {
 			grid-column: 1 / -1;
 		}
+	}
+
+	&__navigation {
+		display: flex;
+
+		@media (max-width: 31.25em) {
+			display: none;
+		}
+		// @media (min-width: 31.25em) {
+		// 	display: none;
+		// }
 	}
 
 	&__homepage-container {
@@ -80,5 +93,23 @@
 		width: 4rem;
 		height: 4rem;
 		border-radius: 100%;
+	}
+}
+
+@keyframes slide-in {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-out {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(100%);
 	}
 }

@@ -11,6 +11,8 @@ import Account from '../sections/Account';
 import Dashboard from '../sections/Dashboard';
 import Register from '../sections/Register';
 import Login from '../components/Login';
+import SideDrawer from '../components/SideDrawer';
+import Backdrop from '../components/Backdrop';
 
 import { checkAuth } from '../utils/functions';
 import Auth from '../utils/AuthClass';
@@ -33,6 +35,22 @@ class HomePage extends React.Component {
 		logout: PropTypes.func
 	};
 
+	state = {
+		openDrawer: false
+	};
+
+	handleOpenDrawer = () => {
+		this.setState(prevState => {
+			return {
+				openDrawer: !prevState.openDrawer
+			};
+		});
+	};
+
+	handleCloseDrawer = () => {
+		this.setState({ openDrawer: false });
+	};
+
 	Auth = new Auth();
 
 	logout = () => {
@@ -42,16 +60,24 @@ class HomePage extends React.Component {
 	};
 
 	render() {
+		let backdrop;
+		if (this.state.openDrawer) {
+			backdrop = <Backdrop closeDrawer={this.handleCloseDrawer} />;
+		}
 		return (
 			<div className="home__grid-container home__homepage-container">
 				<MainHeader
 					logout={this.logout}
 					isLoggedIn={this.props.user.isLoggedIn}
+					isOpen={this.state.openDrawer}
+					openDrawer={this.handleOpenDrawer}
 				/>
 				<div className="home__side-nav">
 					<MainSideNav isLoggedIn={this.props.user.isLoggedIn} />
 				</div>
 				<div className="home__main-page-area">
+					<SideDrawer showDrawer={this.state.openDrawer} />
+					{backdrop}
 					<Switch>
 						<Route exact path="/" render={props => <Search {...props} />} />
 						<AuthRoute

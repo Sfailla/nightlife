@@ -7,16 +7,6 @@ const navStyle = `
   .nav-ul {
 		display: flex;
 	}
-	@media (max-width: 31.25em) {
-    .nav-ul {
-      display: none;
-    }
-  }
-  @media (min-width: 81.25em) {
-    .nav-ul {
-      display: none;
-    }
-	}
   .nav-li {
     list-style: none;
   }

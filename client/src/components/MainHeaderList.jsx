@@ -6,21 +6,9 @@ import { Link } from 'react-router-dom';
 
 import Avatar from './Avatar';
 import LogoutButton from './LogoutButton';
-
-import MobileNavMenu from './MobileNavMenu';
 import HamburgerMenu from 'react-hamburger-menu';
 
 class MainHeaderList extends React.Component {
-	state = {
-		openMenu: false
-	};
-
-	handleClick = openMenu => {
-		this.setState(() => {
-			openMenu: !this.state.openMenu;
-		});
-	};
-
 	render() {
 		const styles = {
 			list: {
@@ -28,6 +16,7 @@ class MainHeaderList extends React.Component {
 				marginRight: '3rem'
 			}
 		};
+
 		return (
 			<Fragment>
 				<div className="mobile-nav list" style={styles.list}>
@@ -47,8 +36,8 @@ class MainHeaderList extends React.Component {
 				</div>
 				<div className="mobile-nav-menu">
 					<HamburgerMenu
-						isOpen={this.state.openMenu}
-						menuClicked={this.handleClick}
+						isOpen={this.props.isOpen}
+						menuClicked={this.props.openDrawer}
 						width={40}
 						height={30}
 						strokeWidth={2}
@@ -57,7 +46,6 @@ class MainHeaderList extends React.Component {
 						borderRadius={0}
 						animationDuration={0.5}
 					/>
-					{/* <MobileNavMenu /> */}
 				</div>
 			</Fragment>
 		);
@@ -104,7 +92,7 @@ const tabView = `
 
 	@media (min-width: 31.25em) {
 		.mobile-nav {
-			display: block;
+			display: flex;
 		}
 	}
 `;
