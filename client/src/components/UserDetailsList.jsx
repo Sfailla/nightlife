@@ -10,12 +10,7 @@ const styles = {
 	},
 	p: {
 		width: '100%',
-		// height: '3rem',
 		paddingLeft: '1rem',
-		// marginLeft: '2rem',
-		// display: 'flex',
-		// justifyContent: 'left',
-		// alignItems: 'center',
 		color: 'var(--primary-text-color)'
 	},
 	wordWrap: {

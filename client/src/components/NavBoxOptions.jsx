@@ -8,7 +8,6 @@ import LogoutButton from './LogoutButton';
 const NavBoxOptions = props => {
 	const styles = {
 		button: {
-			// width: '15rem',
 			height: '12rem',
 			color: 'white',
 			outline: 'none',
@@ -72,14 +71,6 @@ const NavBoxOptions = props => {
 						addStyles={styles.button}
 					/>
 				</div>
-				{/* <div style={styles.wrapper}>
-					<Button
-						name="Remove"
-						icon={<Icon size={25} view={25} icon="trash" addStyles={styles.icon} />}
-						addStyles={styles.button}
-					/>
-					<p style={styles.events}>EVENTS</p>
-				</div> */}
 			</div>
 		</Fragment>
 	);

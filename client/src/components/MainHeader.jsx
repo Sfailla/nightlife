@@ -8,9 +8,6 @@ const MainHeader = ({ isLoggedIn, logout, openDrawer, isOpen }) => (
 		<div className="home__navigation">
 			<Navigation />
 		</div>
-		<div style={{ fontSize: '2.5rem' }} className="home__icon">
-			{/* 🍸 */}
-		</div>
 		<MainHeaderList
 			logout={logout}
 			isLoggedIn={isLoggedIn}

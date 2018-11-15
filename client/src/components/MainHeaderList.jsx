@@ -12,11 +12,12 @@ class MainHeaderList extends React.Component {
 	render() {
 		const styles = {
 			list: {
-				width: this.props.isLoggedIn ? '22rem' : 'auto',
-				marginRight: '3rem'
+				width: this.props.isLoggedIn ? '22rem' : 'auto'
 			}
 		};
-
+		let index = {
+			zIndex: '10'
+		};
 		return (
 			<Fragment>
 				<div className="mobile-nav list" style={styles.list}>
@@ -34,8 +35,9 @@ class MainHeaderList extends React.Component {
 						</Link>
 					)}
 				</div>
-				<div className="mobile-nav-menu">
+				<div className="mobile-nav-menu" style={{ zIndex: '100' }}>
 					<HamburgerMenu
+						style={index}
 						isOpen={this.props.isOpen}
 						menuClicked={this.props.openDrawer}
 						width={40}
@@ -73,6 +75,10 @@ const tabView = `
 
 	.link {
 		text-decoration: none;
+	}
+
+	.mobile-nav-menu {
+		z-index: 10;
 	}
 	
 	@media (max-width: 31.25em) {

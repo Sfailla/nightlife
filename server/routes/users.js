@@ -13,10 +13,7 @@ server.get('/me', authenticate, (req, res) => {
 });
 
 server.post('/sign-up', (req, res) => {
-	const {
-		username,
-		password
-	} = req.body;
+	const { username, password } = req.body;
 
 	const users = new User();
 	users.username = username;
@@ -31,43 +28,35 @@ server.post('/sign-up', (req, res) => {
 			if (user) {
 				user
 					.generateAuthToken()
-					.then(token =>
-						res.header('x-auth', token).status(200).send(user)
-					);
+					.then(token => res.header('x-auth', token).status(200).send(user));
 			} else {
 				res.status(400).send({
 					error: 'oops, there was a problem with sign up.'
-				})
+				});
 			}
 		})
 		.catch(err => res.status(400).send(err));
 });
 
 server.post('/sign-in', (req, res) => {
-	const {
-		username,
-		password
-	} = req.body;
+	const { username, password } = req.body;
 
 	User.findByCredentials(username, password)
 		.then(user => {
-			console.log(user)
 			if (user) {
 				return user
 					.generateAuthToken()
-					.then(token =>
-						res.header('x-auth', token).status(200).send(user)
-					);
+					.then(token => res.header('x-auth', token).status(200).send(user));
 			}
 		})
 		.catch(err => {
-			console.log(err)
-			return res.status(400).send(err)
+			return res.status(400).send(err);
 		});
 });
 
 server.delete('/token', authenticate, (req, res) => {
-	req.user.removeToken(req.token)
+	req.user
+		.removeToken(req.token)
 		.then(
 			() => {
 				return res.status(200).send();
@@ -76,21 +65,21 @@ server.delete('/token', authenticate, (req, res) => {
 				return res.status(400).send();
 			}
 		)
-		.catch(err => console.log(err))
+		.catch(err => console.log(err));
 });
 
 server.patch('/events', authenticate, (req, res) => {
 	const events = req.body.events;
 
-	User.findOneAndUpdate({
-			_id: req.user.id
-		}, {
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
 			$push: {
 				'events.name': events
 			}
-		}, {
-			new: true
-		})
+		},
+		{ new: true }
+	)
 		.then(event => {
 			if (!event) {
 				return res.status(404).send();
@@ -111,40 +100,19 @@ server.get('/settings', authenticate, (req, res) => {
 	});
 });
 
-// server.patch('/settings/initialize', authenticate, (req, res) => {
-// 	User.findOneAndUpdate({
-// 		_id: req.user.id
-// 	}, {
-// 		$set: {
-// 			'utilities.initialRender': false
-// 		}
-// 	}, {
-// 		new: true
-// 	}).then(user => {
-// 		if (!user) {
-// 			return res.status(404).send();
-// 		} else {
-// 			res.send(user);
-// 		}
-// 	});
-// });
-
 server.patch('/settings/avatar', authenticate, (req, res) => {
-	const {
-		avatar,
-		avatarSelect
-	} = req.body;
+	const { avatar, avatarSelect } = req.body;
 
-	User.findOneAndUpdate({
-		_id: req.user.id
-	}, {
-		$set: {
-			'settings.avatar': avatar,
-			'settings.avatarSelect': avatarSelect
-		}
-	}, {
-		new: true
-	}).then(doc => {
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				'settings.avatar': avatar,
+				'settings.avatarSelect': avatarSelect
+			}
+		},
+		{ new: true }
+	).then(doc => {
 		if (!doc) {
 			return res.status(404).send();
 		} else {
@@ -154,26 +122,20 @@ server.patch('/settings/avatar', authenticate, (req, res) => {
 });
 
 server.patch('/settings/biography', authenticate, (req, res) => {
-	console.log(req.body.company);
-	const {
-		company,
-		email,
-		location,
-		description
-	} = req.body;
+	const { company, email, location, description } = req.body;
 
-	User.findOneAndUpdate({
-		_id: req.user.id
-	}, {
-		$set: {
-			email,
-			'settings.company': company,
-			'settings.location': location,
-			'settings.description': description
-		}
-	}, {
-		new: true
-	}).then(doc => {
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				email,
+				'settings.company': company,
+				'settings.location': location,
+				'settings.description': description
+			}
+		},
+		{ new: true }
+	).then(doc => {
 		if (!doc) {
 			return res.status(404).send();
 		} else {

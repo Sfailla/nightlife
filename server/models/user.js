@@ -16,16 +16,18 @@ const UserSchema = new mongoose.Schema({
 	email: {
 		type: String
 	},
-	tokens: [{
-		access: {
-			type: String,
-			required: true
-		},
-		token: {
-			type: String,
-			required: true
+	tokens: [
+		{
+			access: {
+				type: String,
+				required: true
+			},
+			token: {
+				type: String,
+				required: true
+			}
 		}
-	}],
+	],
 	settings: {
 		avatar: {
 			type: String,
@@ -53,7 +55,7 @@ const UserSchema = new mongoose.Schema({
 
 // Presave Method
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
 	if (this.isModified('password')) {
 		bcrypt.genSalt(10, (err, salt) => {
 			bcrypt.hash(this.password, salt, (err, hash) => {
@@ -69,16 +71,16 @@ UserSchema.pre('save', function (next) {
 // METHODS
 
 UserSchema.methods = {
-	generateAuthToken: function () {
+	generateAuthToken: function() {
 		const access = 'auth';
 		const token = jwt
-			.sign({
+			.sign(
+				{
 					_id: this._id.toHexString(),
 					access
 				},
-				process.env.JWT_SECRET, {
-					expiresIn: '1hr'
-				}
+				process.env.JWT_SECRET,
+				{ expiresIn: '1hr' }
 			)
 			.toString();
 		this.tokens = [];
@@ -90,7 +92,7 @@ UserSchema.methods = {
 		return this.save().then(() => token);
 	},
 
-	removeToken: function (token) {
+	removeToken: function(token) {
 		return this.updateOne({
 			$pull: {
 				tokens: {
@@ -119,8 +121,7 @@ UserSchema.statics = {
 					if (res) {
 						resolve(user);
 					} else {
-						let error =
-							'sorry wrong password, please try again';
+						let error = 'sorry wrong password, please try again';
 						reject({
 							error
 						});

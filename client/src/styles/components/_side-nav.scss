@@ -9,6 +9,10 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
+
+		@media (max-width: 81.25em) {
+			width: auto;
+		}
 	}
 
 	&__logo {
@@ -22,7 +26,7 @@
 			height: 100%;
 			display: flex;
 			justify-content: left;
-			padding-left: 2rem;
+			padding: 0 2rem;
 			align-items: center;
 			margin-top: 0;
 		}
