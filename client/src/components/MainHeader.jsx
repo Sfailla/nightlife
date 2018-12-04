@@ -4,7 +4,7 @@ import Navigation from '../components/Navigation';
 import MainHeaderList from '../components/MainHeaderList';
 
 const MainHeader = ({ isLoggedIn, logout, openDrawer, isOpen }) => (
-	<div className="home__app-header">
+	<div id="app-header" className="home__app-header">
 		<div className="home__navigation">
 			<Navigation />
 		</div>

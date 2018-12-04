@@ -104,7 +104,7 @@ class Search extends React.Component {
 
 	render() {
 		return (
-			<div style={styles} className="search">
+			<div style={styles} id="search" className="search">
 				<Typography
 					headingPrimary="See whose going out tonight!"
 					classname="search__heading u-center-text u-mt-25"
@@ -150,13 +150,13 @@ class Search extends React.Component {
 						</ul>
 
 						{this.state.results.length > 0 && (
-							<Link
-								to="#app-header"
+							<a
+								href="#search"
 								style={{ display: 'block' }}
 								className="u-center-text"
 							>
 								back to top
-							</Link>
+							</a>
 						)}
 					</div>
 				</div>

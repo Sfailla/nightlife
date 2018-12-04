@@ -10,6 +10,7 @@ html {
 	font-size: 62.5%;
 	font-family: sans-serif;
 	box-sizing: border-box;
+	scroll-behavior: smooth;
 
 	@media (max-width: 62.5em) {
 		font-size: 56.25%;
