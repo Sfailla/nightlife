@@ -16,7 +16,7 @@ const navStyle = `
   .nav-link {
     text-align: left;
     text-decoration: none;
-    color: var(--color-gold);
+    color: var(--color-white);
   }
   .nav-link:hover {
     color: var(--secondary-color);

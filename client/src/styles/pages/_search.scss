@@ -1,11 +1,12 @@
 // @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 .search {
-	padding: 2rem;
+	height: 100%;
+	padding: 2rem 0rem;
 
 	&__heading {
 		font-size: 4rem;
-		color: var(--primary-text-color);
+		color: white;
 	}
 
 	&__heading-secondary {
@@ -26,17 +27,19 @@
 	}
 
 	&__search-card {
-		max-width: 70rem;
+		width: 75%;
 		height: 35rem;
-		margin: 0 auto;
-		margin-top: 5rem;
-		border-radius: none;
 		border-bottom: 4px solid var(--primary-color);
 		background: var(--color-white);
-		box-shadow: var(--box-shadow-sm-l);
+		box-shadow: var(--box-shadow-md-l);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 
 	&__search-container {
+		height: 100%;
 		padding: 4rem 1rem 1rem 1rem;
 	}
 

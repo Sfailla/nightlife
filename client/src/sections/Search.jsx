@@ -9,17 +9,7 @@ import SearchResults from '../components/SearchResults';
 import Typography from '../components/Typography';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
-
-const styles = {
-	position: 'relative',
-	button: {
-		width: '18rem',
-		height: '3.5rem',
-		background: 'var(--primary-color)',
-		color: 'white',
-		margin: '2rem auto'
-	}
-};
+import nightlifeBG from '../images/pexels-bg.jpg';
 
 class Search extends React.Component {
 	state = {
@@ -103,11 +93,43 @@ class Search extends React.Component {
 	};
 
 	render() {
+		const styles = {
+			height: '100%',
+			position: 'relative',
+			button: {
+				width: '18rem',
+				height: '3.5rem',
+				background: 'var(--primary-color)',
+				color: 'white',
+				margin: '2rem auto',
+				marginTop: '50rem'
+			},
+			background: {
+				backgroundImage: `url(${nightlifeBG})`,
+				backgroudSize: 'cover',
+				backgroundPosition: 'center center',
+				backgroundRepeat: 'repeat-y',
+				backgroundAttachment: 'scroll'
+			},
+			spinner: {
+				width: '10rem',
+				height: '10rem',
+				background: 'transparent',
+				position: 'absolute',
+				left: '50%',
+				bottom: '3rem',
+				transform: 'translate(-50%, 0%)',
+
+				display: this.state.isLoading ? 'flex' : 'none',
+				justifyContent: 'center',
+				alignItems: 'center'
+			}
+		};
 		return (
-			<div style={styles} id="search" className="search">
+			<div style={styles.background} id="search" className="search">
 				<Typography
 					headingPrimary="See whose going out tonight!"
-					classname="search__heading u-center-text u-mt-25"
+					classname="search__heading u-center-text"
 				/>
 				<SearchCard
 					handleOnChange={this.handleOnChange}
@@ -126,9 +148,11 @@ class Search extends React.Component {
 					/>
 				)}
 
-				<div className="results">
+				<div style={styles.background} className="results">
 					<div className="results__container">
-						{this.state.isLoading && <Loader />}
+						<div style={styles.spinner}>
+							{this.state.isLoading && <Loader />}
+						</div>
 						<ul>
 							{this.state.results.length ? (
 								this.state.results.map(data => {
@@ -150,11 +174,7 @@ class Search extends React.Component {
 						</ul>
 
 						{this.state.results.length > 0 && (
-							<a
-								href="#search"
-								style={{ display: 'block' }}
-								className="u-center-text"
-							>
+							<a href="#search" style={styles.button} className="u-center-text">
 								back to top
 							</a>
 						)}
