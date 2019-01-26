@@ -111,7 +111,7 @@ UserSchema.statics = {
 			username
 		}).then(user => {
 			if (!user) {
-				let error = 'there is no user in database with that name';
+				let error = 'Sorry that user was not found';
 				return Promise.reject({
 					error
 				});
@@ -121,7 +121,7 @@ UserSchema.statics = {
 					if (res) {
 						resolve(user);
 					} else {
-						let error = 'sorry wrong password, please try again';
+						let error = 'Incorrect Password';
 						reject({
 							error
 						});

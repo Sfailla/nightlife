@@ -107,7 +107,7 @@ class SearchResComponent extends React.Component {
 						)}
 						{!this.props.isLoggedIn && (
 							<div className="results__lower-box">
-								Sign in to see more details and keep track of events
+								Register for more options
 							</div>
 						)}
 					</div>

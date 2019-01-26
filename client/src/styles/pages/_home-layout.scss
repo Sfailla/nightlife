@@ -17,6 +17,7 @@
 			background-color: var(--primary-color);
 			box-shadow: none;
 			color: white;
+			border-bottom: 1px solid gold;
 		}
 		@media (max-width: 31.25em) {
 			justify-content: right;
@@ -66,7 +67,7 @@
 		display: grid;
 		grid-template-columns: 15rem repeat(3, 1fr);
 		grid-template-rows: 7rem 1fr;
-		box-shadow: var(--box-shadow-lg-l);
+		box-shadow: 5px 5px 12px 3px rgba(0, 0, 0, .6);
 
 		height: 80vh;
 		margin-top: 4rem;

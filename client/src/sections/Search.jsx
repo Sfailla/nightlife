@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { isLoggedIn } from '../actions/users';
-import { Link } from 'react-router-dom';
+// import { isLoggedIn } from '../actions/users';
+// import { Link } from 'react-router-dom';
 
 import api from '../api/yelpAPI.json';
 import SearchCard from '../components/SearchCard';
@@ -102,7 +102,7 @@ class Search extends React.Component {
 				background: 'var(--primary-color)',
 				color: 'white',
 				margin: '2rem auto',
-				marginTop: '50rem'
+				marginTop: '45rem'
 			},
 			background: {
 				backgroundImage: `url(${nightlifeBG})`,
@@ -185,8 +185,10 @@ class Search extends React.Component {
 	}
 }
 
-const mapStateToProps = state => ({
-	user: state.users
-});
+const mapStateToProps = state => {
+	return {
+		user: state.users
+	};
+};
 
 export default connect(mapStateToProps)(Search);

@@ -8,7 +8,7 @@ const styles = {
 		color: 'white',
 		padding: '0 1rem 0 1rem',
 		backgroundColor: 'var(--primary-color)',
-		boxShadow: '0 .5rem 1.2rem rgba(0, 0, 0, .45)'
+		boxShadow: '.5rem .5rem 1.2rem .3rem rgba(0, 0, 0, .6)'
 	},
 	headerElements: {
 		height: '6rem',

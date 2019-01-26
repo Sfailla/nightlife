@@ -12,14 +12,14 @@ const LogoutButton = props => {
 			height: '3rem',
 			fontSize: '1.4rem',
 			fontWeight: 'bold',
-			border: '1px solid var(--color-gold)',
-			color: 'var(--color-gold)',
+			border: '1px solid gold',
+			color: 'gold',
 			background: 'var(--primary-color)'
-		},
-		icon: {
-			fill: 'var(--color-gold)',
-			marginBottom: '1rem'
 		}
+		// icon: {
+		// 	fill: 'var(--color-gold)',
+		// 	marginBottom: '1rem'
+		// }
 	};
 	return (
 		<button
