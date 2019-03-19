@@ -12,7 +12,7 @@ const styles = {
 	heading: {
 		textAlign: 'center',
 		marginTop: '5rem',
-		color: 'var(--primary-text-color)'
+		// color: 'var(--primary-text-color)'
 	},
 	card: {
 		maxWidth: '50rem',

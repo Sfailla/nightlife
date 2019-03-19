@@ -7,7 +7,7 @@ import Button from './Button';
 const styles = {
 	title: {
 		textAlign: 'center',
-		color: 'blue',
+		color: 'var(--primary-color)',
 		fontWeight: 'bold'
 	},
 	borderlessForm: {
@@ -36,7 +36,7 @@ const styles = {
 const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
 		<div className="signup__signup-container">
-			<Typography addStyles={styles.title} headingSecondary="Sign In" />
+			<Typography addStyles={styles.title} headingSecondary="Login" />
 			{errors && <p style={styles.error}>** {errors} **</p>}
 			<div style={{ marginBottom: '2rem' }}>
 				<BorderlessForm

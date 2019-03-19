@@ -73,15 +73,10 @@ class Account extends React.Component {
 		return (
 			<div className="account">
 				<div style={{ display: 'flex' }}>
-					<Typography
-						headingPrimary="Account"
-						classname="account__title"
-						addStyles={{ color: 'var(--primary-text-color)' }}
-					/>
+					<Typography headingPrimary="Account" classname="account__title" />
 					<Typography
 						classname="account__sub-title"
 						headingSecondary="create a profile"
-						addStyles={{ color: 'var(--text-secondary)' }}
 					/>
 				</div>
 				<div className="account__profile-card">

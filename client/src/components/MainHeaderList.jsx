@@ -13,10 +13,11 @@ class MainHeaderList extends React.Component {
 		const styles = {
 			list: {
 				width: this.props.isLoggedIn ? '22rem' : 'auto'
+			},
+			index: {
+				zIndex: '10',
+				cursor: 'pointer'
 			}
-		};
-		let index = {
-			zIndex: '10'
 		};
 		return (
 			<Fragment>
@@ -37,7 +38,7 @@ class MainHeaderList extends React.Component {
 				</div>
 				<div className="mobile-nav-menu" style={{ zIndex: '100' }}>
 					<HamburgerMenu
-						style={index}
+						style={styles.index}
 						isOpen={this.props.isOpen}
 						menuClicked={this.props.openDrawer}
 						width={40}
@@ -81,7 +82,7 @@ const tabView = `
 		z-index: 10;
 	}
 	
-	@media (max-width: 31.25em) {
+	@media (max-width: 33.12em) {
 		.mobile-nav-menu {
 			display: flex;
 		}
@@ -90,13 +91,13 @@ const tabView = `
 		}
 	}
 
-	@media (min-width: 31.25em) {
+	@media (min-width: 33.12em) {
 		.mobile-nav-menu {
 			display: none;
 		}
 	}
 
-	@media (min-width: 31.25em) {
+	@media (min-width: 33.12em) {
 		.mobile-nav {
 			display: flex;
 		}

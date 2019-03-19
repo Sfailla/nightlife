@@ -11,6 +11,15 @@ body {
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 3px;
+	color: transparent;
+	background-image: linear-gradient(
+		to right,
+		var(--secondary-color),
+		var(--primary-color),
+		var(--secondary-color)
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
 }
 
 .heading-secondary {

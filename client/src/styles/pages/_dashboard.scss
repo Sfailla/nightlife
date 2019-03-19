@@ -16,7 +16,6 @@
 
 	&__title {
 		font-size: 3.5rem;
-		color: var(--primary-color);
 	}
 
 	&__sub-title {
@@ -49,12 +48,9 @@
 		grid-template-columns: minmax(min-content, 1fr);
 		grid-template-rows: repeat(2, max-content);
 		grid-row-gap: 5rem;
-
-		// background: white;
 	}
 
 	&__event-component {
 		padding: 1rem;
-		// background: white;
 	}
 }

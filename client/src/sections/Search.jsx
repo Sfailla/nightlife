@@ -1,7 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { isLoggedIn } from '../actions/users';
-// import { Link } from 'react-router-dom';
 
 import api from '../api/yelpAPI.json';
 import SearchCard from '../components/SearchCard';
@@ -9,7 +7,6 @@ import SearchResults from '../components/SearchResults';
 import Typography from '../components/Typography';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
-import nightlifeBG from '../images/pexels-bg.jpg';
 
 class Search extends React.Component {
 	state = {
@@ -101,15 +98,7 @@ class Search extends React.Component {
 				height: '3.5rem',
 				background: 'var(--primary-color)',
 				color: 'white',
-				margin: '2rem auto',
-				marginTop: '45rem'
-			},
-			background: {
-				backgroundImage: `url(${nightlifeBG})`,
-				backgroudSize: 'cover',
-				backgroundPosition: 'center center',
-				backgroundRepeat: 'repeat-y',
-				backgroundAttachment: 'scroll'
+				margin: '2rem auto'
 			},
 			spinner: {
 				width: '10rem',
@@ -123,6 +112,14 @@ class Search extends React.Component {
 				display: this.state.isLoading ? 'flex' : 'none',
 				justifyContent: 'center',
 				alignItems: 'center'
+			},
+			backToTop: {
+				padding: '2rem',
+				color: 'var(--primary-color)'
+			},
+			btnWrapper: {
+				marginTop: '2rem',
+				textAlign: 'center'
 			}
 		};
 		return (
@@ -137,8 +134,6 @@ class Search extends React.Component {
 					errors={this.state.errors}
 				/>
 
-				<br />
-
 				{this.state.results.length > 0 && (
 					<Button
 						addStyles={styles.button}
@@ -148,7 +143,7 @@ class Search extends React.Component {
 					/>
 				)}
 
-				<div style={styles.background} className="results">
+				<div className="results">
 					<div className="results__container">
 						<div style={styles.spinner}>
 							{this.state.isLoading && <Loader />}
@@ -173,10 +168,16 @@ class Search extends React.Component {
 							) : null}
 						</ul>
 
+						<div className="search__yelp-tag-wrapper">
+							<h1 className="search__yelp-tag">Powered By Yelp</h1>
+						</div>
+
 						{this.state.results.length > 0 && (
-							<a href="#search" style={styles.button} className="u-center-text">
-								back to top
-							</a>
+							<div style={styles.btnWrapper}>
+								<a href="#search" style={styles.backToTop}>
+									back to top
+								</a>
+							</div>
 						)}
 					</div>
 				</div>

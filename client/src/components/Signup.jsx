@@ -8,8 +8,7 @@ import Typography from './Typography';
 const styles = {
 	title: {
 		textAlign: 'center',
-		fontWeight: 'bold',
-		color: 'blue'
+		fontWeight: 'bold'
 	},
 	button: {
 		order: '2',

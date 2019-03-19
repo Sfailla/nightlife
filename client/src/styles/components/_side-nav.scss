@@ -12,7 +12,6 @@
 
 		@media (max-width: 81.25em) {
 			width: auto;
-			border-bottom: 1px solid gold;
 		}
 	}
 
@@ -63,7 +62,7 @@
 			height: 100%;
 			outline: none;
 			text-decoration: none;
-			color: var(--color-gold);
+			color: white;
 			@include flex-center(center, center);
 		}
 
@@ -108,8 +107,5 @@
 }
 
 .spinner {
-	// position: absolute;
-	// bottom: 5rem;
-	// left: 50%;
 	animation: spinner 2500ms infinite linear;
 }

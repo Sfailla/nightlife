@@ -32,7 +32,8 @@ const MyEvents = props => {
 			width: '100%',
 			marginTop: '1rem',
 			padding: '0 1rem',
-			background: 'var(--primary-color)',
+			backgroundImage:
+				'linear-gradient(to right, var(--secondary-color), var(--primary-color))',
 			color: 'white',
 			boxShadow: 'var(--box-shadow-sm-d)'
 		}

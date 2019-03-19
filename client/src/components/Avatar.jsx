@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 
-const Avatar = props => {
+const Avatar = ({ avatar }) => {
 	return (
 		<Fragment>
 			<img
 				className="app-header-list__avatar-img"
-				src={props.avatar}
+				src={avatar}
 				alt="avatar-profile"
 			/>
 		</Fragment>

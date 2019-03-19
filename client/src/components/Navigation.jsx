@@ -19,7 +19,7 @@ const navStyle = `
     color: var(--color-white);
   }
   .nav-link:hover {
-    color: var(--secondary-color);
+    color: var(--link-color);
     transition: color .2s ease-in-out;
   }
 `;

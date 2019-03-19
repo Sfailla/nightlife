@@ -73,11 +73,7 @@ class Dashboard extends React.Component {
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__title-wrapper">
-					<Typography
-						headingPrimary="Dashboard"
-						classname="dashboard__title"
-						addStyles={{ color: 'var(--primary-text-color)' }}
-					/>
+					<Typography headingPrimary="Dashboard" classname="dashboard__title" />
 					<Typography
 						headingSecondary="What would you like to do?"
 						classname="dashboard__sub-title"

@@ -10,8 +10,7 @@ import Signup from '../components/Signup';
 const styles = {
 	heading: {
 		textAlign: 'center',
-		marginTop: '5rem',
-		color: 'var(--primary-color)'
+		marginTop: '5rem'
 	},
 	card: {
 		maxWidth: '50rem',
@@ -68,10 +67,11 @@ class Register extends Component {
 							this.setState(() => ({ errors: res.error }));
 						} else {
 							setToken(res.tokens[0].token);
-							this.props.dispatch(getUsername(res.username));
-							this.props.dispatch(isLoggedIn(true));
-							this.props.dispatch(
-								setAvatar(res.settings.avatarSelect, res.settings.avatar)
+							this.props.getUsername(res.username);
+							this.props.isLoggedIn(true);
+							this.props.setAvatar(
+								res.settings.avatarSelect,
+								res.settings.avatar
 							);
 							this.props.history.push('/dashboard');
 						}
@@ -123,4 +123,8 @@ class Register extends Component {
 	}
 }
 
-export default withRouter(connect()(Register));
+const RegisterWithRouter = withRouter(Register);
+
+export default connect(null, { getUsername, isLoggedIn, setAvatar })(
+	RegisterWithRouter
+);
