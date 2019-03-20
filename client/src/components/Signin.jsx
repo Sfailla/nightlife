@@ -3,6 +3,7 @@ import React from 'react';
 import Typography from './Typography';
 import { BorderlessForm } from './Form';
 import Button from './Button';
+import { Icon } from './Icon';
 
 const styles = {
 	title: {
@@ -36,6 +37,7 @@ const styles = {
 const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
 		<div className="signup__signup-container">
+			<Icon icon="puzzle" size={50} view1={26} view2={28} />
 			<Typography addStyles={styles.title} headingSecondary="Login" />
 			{errors && <p style={styles.error}>** {errors} **</p>}
 			<div style={{ marginBottom: '2rem' }}>

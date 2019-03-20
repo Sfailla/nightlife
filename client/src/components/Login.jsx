@@ -11,12 +11,11 @@ import { isLoggedIn, getUsername, setAvatar } from '../actions/users';
 const styles = {
 	heading: {
 		textAlign: 'center',
-		marginTop: '5rem',
-		// color: 'var(--primary-text-color)'
+		paddingTop: '3rem'
 	},
 	card: {
 		maxWidth: '50rem',
-		minHeight: '50rem',
+		height: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
 		marginTop: '4rem',
@@ -83,7 +82,7 @@ export class Login extends Component {
 				/>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<form onSubmit={this.handleOnSubmit}>
+						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
 							<Signin
 								errors={this.state.errors}
 								handleOnChange={this.handleOnChange}

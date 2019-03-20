@@ -23,7 +23,7 @@ export const checkAuth = () => {
 // function for truncating names of search results
 // takes in a str and it's max length allowed.
 export const truncate = (string, length) => {
-	if (typeof string === 'string' && string.lengthgth > length) {
+	if (typeof string === 'string' && string.length > length) {
 		string = string.slice(0, length);
 		string += '...';
 		return string;
