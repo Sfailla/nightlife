@@ -1,10 +1,17 @@
 .signup {
+	height: 100%;
+
 	&__signup-container {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
-		min-height: 50rem;
+		height: 100%;
 		padding: 2rem 5rem;
+
+		& svg {
+			margin: 0 auto;
+			fill: var(--secondary-color);
+		}
 	}
 
 	& input[type="password"],
@@ -22,4 +29,8 @@
 	& ::placeholder {
 		font-weight: normal;
 	}
+}
+
+.signup__container {
+	height: 100%;
 }

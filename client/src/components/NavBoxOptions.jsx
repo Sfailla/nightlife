@@ -45,7 +45,13 @@ const NavBoxOptions = props => {
 	};
 
 	const icon = (
-		<Icon addStyles={styles.icon} view={25} size={25} icon="logout" />
+		<Icon
+			addStyles={styles.icon}
+			view1={25}
+			view2={25}
+			size={25}
+			icon="logout"
+		/>
 	);
 
 	return (
@@ -53,13 +59,25 @@ const NavBoxOptions = props => {
 			<div className="options__box-container">
 				<Link to="/" className="options__link" style={styles.link}>
 					<div className="options__box" style={styles.wrapper}>
-						<Icon size={25} view={25} addStyles={styles.icon} icon="search" />
+						<Icon
+							size={25}
+							view1={25}
+							view2={25}
+							addStyles={styles.icon}
+							icon="search"
+						/>
 						<p>SEARCH</p>
 					</div>
 				</Link>
 				<Link to="/account" className="options__link" style={styles.link}>
 					<div className="options__box" style={styles.wrapper}>
-						<Icon size={25} view={25} addStyles={styles.icon} icon="settings" />
+						<Icon
+							size={25}
+							view1={25}
+							view2={25}
+							addStyles={styles.icon}
+							icon="settings"
+						/>
 						<p>SETTINGS</p>
 					</div>
 				</Link>

@@ -10,11 +10,11 @@ import Signup from '../components/Signup';
 const styles = {
 	heading: {
 		textAlign: 'center',
-		marginTop: '5rem'
+		paddingTop: '3rem'
 	},
 	card: {
 		maxWidth: '50rem',
-		minHeight: '50rem',
+		height: '50rem',
 		backgroundColor: 'white',
 		margin: '0 auto',
 		marginTop: '4rem',
@@ -107,7 +107,7 @@ class Register extends Component {
 				/>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<form onSubmit={this.handleOnSubmit}>
+						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
 							<Signup
 								errors={this.state.errors}
 								formType={this.state.formType}

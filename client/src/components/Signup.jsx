@@ -4,6 +4,7 @@ import { BorderlessForm } from './Form';
 import CheckGroup from './CheckGroup';
 import Button from './Button';
 import Typography from './Typography';
+import { Icon } from './Icon';
 
 const styles = {
 	title: {
@@ -37,6 +38,7 @@ const styles = {
 const Signup = props => (
 	<div className="signup">
 		<div className="signup__signup-container">
+			<Icon size={50} view1={16} view2={28} icon="code-branch" />
 			<Typography headingSecondary="Sign Up" addStyles={styles.title} />
 			{props.errors && <p style={styles.error}>** {props.errors} **</p>}
 			<div>
