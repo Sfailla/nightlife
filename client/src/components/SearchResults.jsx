@@ -77,7 +77,11 @@ class SearchResComponent extends React.Component {
 					<div className="results__inner-container">
 						<div className="results__name-location-wrapper">
 							<h2 className="heading-secondary results__name">
-								{truncate(this.props.name, 25)}
+								{window.innerWidth > 50 ? (
+									truncate(this.props.name, 25)
+								) : (
+									truncate(this.props.name, 5)
+								)}
 							</h2>
 							<p className="results__location">{this.props.location}</p>
 							<p style={styles.rating}>{changeNumToStar(this.props.rating)}</p>
