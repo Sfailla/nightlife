@@ -1,11 +1,11 @@
 .dashboard {
 	&__container {
+		padding: 0 2rem;
 		height: 100%;
-		padding: 4rem;
 	}
 
 	&__title-wrapper {
-		margin-bottom: 4rem;
+		padding: 4rem 0;
 		@include flex-center(space-between, center);
 
 		@media (max-width: 50em) {
@@ -30,27 +30,22 @@
 	}
 
 	&__layout {
+		min-height: 30rem;
 		display: grid;
-		grid-template-columns: minmax(min-content, 1fr) 35rem;
-		grid-template-rows: max-content;
+		grid-template-columns: 1fr 35rem;
 		grid-column-gap: 2rem;
 
 		@media (max-width: 56.25em) {
-			grid-template-columns: 1fr;
-			grid-template-rows: min-content min-content max-content;
-			grid-row-gap: 2rem;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr;
+			grid-gap: 2rem;
 		}
-	}
 
-	&__options-component {
-		padding: 1rem;
-		display: grid;
-		grid-template-columns: minmax(min-content, 1fr);
-		grid-template-rows: repeat(2, max-content);
-		grid-row-gap: 5rem;
-	}
-
-	&__event-component {
-		padding: 1rem;
+		@media (max-width: 33.07em) {
+			min-height: 60rem;
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr 1fr;
+			grid-gap: 2rem;
+		}
 	}
 }

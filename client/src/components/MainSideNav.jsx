@@ -29,7 +29,7 @@ const MainSideNav = props => (
 				{props.isLoggedIn ? null : (
 					<li>
 						<Link to="/sign-up">
-							<span>Sign Up</span>
+							<span>Register</span>
 						</Link>
 					</li>
 				)}

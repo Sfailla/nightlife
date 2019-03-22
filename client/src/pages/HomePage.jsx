@@ -31,7 +31,7 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 
 class HomePage extends React.Component {
 	static propTypes = {
-		isLoggedIn: PropTypes.bool,
+		// isLoggedIn: PropTypes.bool,
 		logout: PropTypes.func
 	};
 
@@ -55,7 +55,7 @@ class HomePage extends React.Component {
 
 	logout = () => {
 		this.Auth.logout();
-		this.props.dispatch(isLoggedIn(false));
+		this.props.isLoggedIn(false);
 		this.props.history.push('/');
 	};
 
@@ -79,19 +79,15 @@ class HomePage extends React.Component {
 					<SideDrawer showDrawer={this.state.openDrawer} />
 					{backdrop}
 					<Switch>
-						<Route exact path="/" render={props => <Search {...props} />} />
+						<Route exact path="/" component={Search} />
 						<AuthRoute
 							exact
 							path="/dashboard"
 							component={props => <Dashboard {...props} logout={this.logout} />}
 						/>
-						<AuthRoute
-							exact
-							path="/account"
-							component={props => <Account {...props} />}
-						/>
-						<Route exact path="/sign-in" render={() => <Login />} />
-						<Route exact path="/sign-up" render={() => <Register />} />
+						<AuthRoute exact path="/account" component={() => <Account />} />
+						<Route exact path="/sign-in" component={Login} />
+						<Route exact path="/sign-up" component={Register} />
 					</Switch>
 				</div>
 			</div>
@@ -105,4 +101,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps)(HomePage));
+export default withRouter(connect(mapStateToProps, { isLoggedIn })(HomePage));

@@ -129,7 +129,7 @@ class Search extends React.Component {
 		return (
 			<div style={styles.background} id="search" className="search">
 				<Typography
-					headingPrimary="See whose going out tonight!"
+					headingPrimary="Welcome To NightLife Search"
 					classname="search__heading u-center-text"
 				/>
 				<SearchCard
