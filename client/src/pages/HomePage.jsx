@@ -83,7 +83,13 @@ class HomePage extends React.Component {
 						<AuthRoute
 							exact
 							path="/dashboard"
-							component={props => <Dashboard {...props} logout={this.logout} />}
+							component={props => (
+								<Dashboard
+									{...props}
+									currentUser={this.props.user}
+									logout={this.logout}
+								/>
+							)}
 						/>
 						<AuthRoute exact path="/account" component={() => <Account />} />
 						<Route exact path="/sign-in" component={Login} />
@@ -96,6 +102,7 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => {
+	console.log(state.users);
 	return {
 		user: state.users
 	};

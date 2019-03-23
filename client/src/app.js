@@ -16,7 +16,6 @@ const store = createStore(appReducer, persistedData, reduxDT());
 
 store.subscribe(() => {
 	saveState(store.getState());
-	console.log(store.getState().users);
 });
 
 const App = () => <Layout />;

@@ -15,7 +15,7 @@ const styles = {
 		marginBottom: '3px'
 	},
 	button: {
-		width: '18rem',
+		width: '100%',
 		height: '4rem',
 		color: 'white',
 		fontSize: '1.5rem',
@@ -36,11 +36,9 @@ const styles = {
 
 const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
-		<div className="signup__signup-container">
-			<Icon icon="puzzle" size={50} view1={26} view2={28} />
-			<Typography addStyles={styles.title} headingSecondary="Login" />
+		<div className="signup__signup-card">
 			{errors && <p style={styles.error}>** {errors} **</p>}
-			<div style={{ marginBottom: '2rem' }}>
+			<div style={{ paddingBottom: '7rem' }}>
 				<BorderlessForm
 					addStyles={styles.borderlessForm}
 					type="text"

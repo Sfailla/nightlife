@@ -1,9 +1,8 @@
 import React, { Fragment } from 'react';
 
-import UserDetailsList from './UserDetailsList';
 import Typography from './Typography';
 
-const UserOptionsComponent = props => {
+const ShowUsers = props => {
 	return (
 		<Fragment>
 			<div className="dashboard__users-card">
@@ -14,7 +13,7 @@ const UserOptionsComponent = props => {
 							classname="u-center-text u-pb-10"
 						/>
 						<hr />
-						{/* <UserDetailsList {...props} /> */}
+						{/* USERS LIST */}
 					</div>
 				</div>
 			</div>
@@ -22,4 +21,4 @@ const UserOptionsComponent = props => {
 	);
 };
 
-export default UserOptionsComponent;
+export default ShowUsers;

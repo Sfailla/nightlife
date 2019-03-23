@@ -16,6 +16,7 @@ server.post('/sign-up', (req, res) => {
 	const { username, password } = req.body;
 
 	const users = new User();
+
 	users.username = username;
 	users.password = password;
 	users.email = null;
@@ -31,7 +32,7 @@ server.post('/sign-up', (req, res) => {
 					.then(token => res.header('x-auth', token).status(200).send(user));
 			} else {
 				res.status(400).send({
-					error: 'oops, there was a problem with sign up.'
+					error: 'there was a problem with sign up.'
 				});
 			}
 		})
@@ -118,6 +119,13 @@ server.patch('/settings/avatar', authenticate, (req, res) => {
 		} else {
 			res.send(doc);
 		}
+	});
+});
+
+server.get('/usersList', (req, res) => {
+	User.find({}, (err, users) => {
+		if (err) return res.send(err);
+		res.send(users);
 	});
 });
 

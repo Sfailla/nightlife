@@ -3,6 +3,10 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
+	// _id: {
+	// 	type: Number,
+	// 	required: true
+	// },
 	username: {
 		type: String,
 		required: true,
@@ -80,7 +84,7 @@ UserSchema.methods = {
 					access
 				},
 				process.env.JWT_SECRET,
-				{ expiresIn: '1hr' }
+				{ expiresIn: '3hr' }
 			)
 			.toString();
 		this.tokens = [];

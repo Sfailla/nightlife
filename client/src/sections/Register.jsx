@@ -2,23 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { isLoggedIn, getUsername, setAvatar } from '../actions/users';
-import Topography from '../components/Typography';
+import { isLoggedIn, setUser, setUsername, setAvatar } from '../actions/users';
+import Typography from '../components/Typography';
 import Auth from '../utils/AuthClass';
 import Signup from '../components/Signup';
+import { Icon } from '../components/Icon';
 
 const styles = {
+	title: {
+		textAlign: 'center',
+		fontWeight: 'bold'
+	},
 	heading: {
 		textAlign: 'center',
 		paddingTop: '3rem'
 	},
 	card: {
 		maxWidth: '50rem',
-		height: '50rem',
+		height: 'auto',
 		backgroundColor: 'white',
 		margin: '0 auto',
-		marginTop: '4rem',
-		marginBottom: '4rem',
+		marginTop: '3rem',
 		boxShadow: 'var(--box-shadow-md-l)',
 		position: 'relative'
 	}
@@ -67,12 +71,13 @@ class Register extends Component {
 							this.setState(() => ({ errors: res.error }));
 						} else {
 							setToken(res.tokens[0].token);
-							this.props.getUsername(res.username);
+							this.props.setUser(res);
+							this.props.setUsername(this.state.username);
 							this.props.isLoggedIn(true);
-							this.props.setAvatar(
-								res.settings.avatarSelect,
-								res.settings.avatar
-							);
+							// this.props.setAvatar(
+							// 	res.settings.avatarSelect,
+							// 	res.settings.avatar
+							// );
 							this.props.history.push('/dashboard');
 						}
 					})
@@ -101,10 +106,20 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Topography
+				<Typography
 					addStyles={styles.heading}
 					headingPrimary="Sign up to see who is going out tonite!"
 				/>
+				<div className="signup__sub-heading" style={styles.heading}>
+					<Icon
+						addStyles={{ fill: 'var(--primary-color)' }}
+						size={100}
+						view1={16}
+						view2={28}
+						icon="code-branch"
+					/>
+					<Typography headingSecondary="Sign Up" addStyles={styles.title} />
+				</div>
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
@@ -123,8 +138,8 @@ class Register extends Component {
 	}
 }
 
-const RegisterWithRouter = withRouter(Register);
-
-export default connect(null, { getUsername, isLoggedIn, setAvatar })(
-	RegisterWithRouter
+const RegisterWithRouter = withRouter(
+	connect(null, { setUser, setUsername, isLoggedIn, setAvatar })(Register)
 );
+
+export default RegisterWithRouter;

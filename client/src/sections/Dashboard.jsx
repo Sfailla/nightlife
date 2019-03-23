@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Auth from '../utils/AuthClass';
 
-import UserOptions from '../components/UserOptions';
+import ShowUsers from '../components/ShowUsers';
 import Typography from '../components/Typography';
 import MyEvents from '../components/MyEvents';
 
@@ -13,7 +13,9 @@ class Dashboard extends React.Component {
 		location: '',
 		email: '',
 		description: '',
-		events: []
+		events: [],
+		users: [],
+		currentUser: this.props.currentUser
 	};
 
 	Auth = new Auth();
@@ -51,22 +53,40 @@ class Dashboard extends React.Component {
 			})
 			.then(events => events.json())
 			.then(events => {
-				const mappedEvents = events.map(event => event);
-				this.setState(prevState => ({
-					events: prevState.events.concat(mappedEvents)
-				}));
+				// console.log(events);
+				this.setState({
+					events
+				});
 			});
 	};
 
-	componentWillReceiveProps(prevProps) {
-		console.log(prevProps);
-	}
+	initializeShowUsers = () => {
+		const uid = this.state.currentUser.currentUser._id;
+		let loadedUsers = [];
+
+		fetch('/users/usersList', {
+			method: 'GET'
+		})
+			.then(users => users.json())
+			.then(users => {
+				users.map(user => {
+					if (user._id !== uid) {
+						loadedUsers.push(user.username);
+						// console.log(loadedUsers);
+						this.setState({
+							users: loadedUsers
+						});
+					}
+				});
+			});
+	};
 
 	componentDidMount = () => {
 		this.initializeEventData();
+		this.initializeShowUsers();
 		setTimeout(() => {
-			this.initializeUserData();
-		}, 200);
+			console.log(this.state.users);
+		}, 500);
 	};
 
 	render() {
@@ -80,7 +100,8 @@ class Dashboard extends React.Component {
 					/>
 				</div>
 				<div className="dashboard__layout">
-					<UserOptions
+					<ShowUsers
+						users={this.state.users}
 						company={this.state.company}
 						location={this.state.location}
 						description={this.state.description}

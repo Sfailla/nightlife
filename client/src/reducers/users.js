@@ -1,8 +1,7 @@
 const defaultState = {
-	username: '',
+	currentUser: null,
 	isLoggedIn: false,
-	avatarSelect: 'default-avatar',
-	avatar: '/22acd1da9b455b7ce7196bb89f01127a.jpg'
+	username: ''
 };
 
 const usersReducer = (state = defaultState, action) => {
@@ -12,16 +11,15 @@ const usersReducer = (state = defaultState, action) => {
 				...state,
 				username: action.username
 			};
+		case 'SET_USER':
+			return {
+				...state,
+				currentUser: action.payload.currentUser
+			};
 		case 'IS_LOGGED_IN':
 			return {
 				...state,
 				isLoggedIn: action.payload
-			};
-		case 'SET_AVATAR':
-			return {
-				...state,
-				avatarSelect: action.avatarSelect,
-				avatar: action.avatar
 			};
 		default:
 			return state;
