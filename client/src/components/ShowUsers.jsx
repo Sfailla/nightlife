@@ -5,14 +5,16 @@ import Typography from './Typography';
 const ShowUsers = props => {
 	return (
 		<Fragment>
-			<div className="dashboard__user-card">
-				<div className="dashboard__user-card-container">
+			<div className="show-users__user-card">
+				<div className="show-users__user-card-container">
 					<Typography
 						headingTertiary="Users"
 						classname="u-center-text u-pb-10"
 					/>
 					<hr />
-					{/* USERS LIST */}
+					<div className="show-users__bottom-card">
+						<ul className="show-users__content">{props.displayUsers()}</ul>
+					</div>
 				</div>
 			</div>
 		</Fragment>

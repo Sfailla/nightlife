@@ -40,7 +40,7 @@ export class AvatarComponent extends React.Component {
 	handleOnSubmit = event => {
 		event.preventDefault();
 		this.updateAvatar();
-		this.props.dispatch(setAvatar(this.handleSelectAvatar()));
+		this.props.setAvatar(this.handleSelectAvatar());
 		this.props.history.push('/dashboard');
 	};
 
@@ -120,4 +120,4 @@ export class AvatarComponent extends React.Component {
 	}
 }
 
-export default connect()(AvatarComponent);
+export default connect(null, { setAvatar })(AvatarComponent);

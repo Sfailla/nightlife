@@ -68,9 +68,7 @@ class HomePage extends React.Component {
 		return (
 			<div className="home__grid-container home__homepage-container">
 				<MainHeader
-					avatar={this.state.avatar}
 					logout={this.logout}
-					initializeAvatar={this.initializeAvatar}
 					isLoggedIn={this.props.user.isLoggedIn}
 					isOpen={this.state.openDrawer}
 					openDrawer={this.handleOpenDrawer}
@@ -105,7 +103,6 @@ class HomePage extends React.Component {
 }
 
 const mapStateToProps = state => {
-	console.log(state.users);
 	return {
 		user: state.users
 	};

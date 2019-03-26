@@ -5,6 +5,7 @@ import Auth from '../utils/AuthClass';
 import ShowUsers from '../components/ShowUsers';
 import Typography from '../components/Typography';
 import MyEvents from '../components/MyEvents';
+import Avatar from '../components/Avatar';
 
 class Dashboard extends React.Component {
 	state = {
@@ -15,7 +16,7 @@ class Dashboard extends React.Component {
 		description: '',
 		events: [],
 		users: [],
-		currentUser: this.props.currentUser
+		user: this.props.currentUser
 	};
 
 	Auth = new Auth();
@@ -25,13 +26,14 @@ class Dashboard extends React.Component {
 			.authFetch(`/events/${id}`, { method: 'DELETE' })
 			.then(res => res.json())
 			.then(res => {
+				console.log('removed event', res);
 				this.setState(prevState => ({
 					events: prevState.events.filter(event => event._id !== id)
 				}));
 			});
 	};
 
-	initializeUserData = () => {
+	initializeUserBio = () => {
 		this.Auth
 			.authFetch('/users/me', { method: 'GET' })
 			.then(res => res.json())
@@ -61,7 +63,7 @@ class Dashboard extends React.Component {
 	};
 
 	initializeShowUsers = () => {
-		const uid = this.state.currentUser.currentUser._id;
+		const uid = this.state.user.currentUser._id;
 		let loadedUsers = [];
 
 		fetch('/users/usersList', {
@@ -71,8 +73,7 @@ class Dashboard extends React.Component {
 			.then(users => {
 				users.map(user => {
 					if (user._id !== uid) {
-						loadedUsers.push(user.username);
-						// console.log(loadedUsers);
+						loadedUsers.push(user);
 						this.setState({
 							users: loadedUsers
 						});
@@ -81,15 +82,24 @@ class Dashboard extends React.Component {
 			});
 	};
 
+	displayUsers = () =>
+		this.state.users.length > 0 &&
+		this.state.users.map(user => (
+			<li key={user._id}>
+				<div className="show-users__flex-container">
+					<Avatar avatar={user.settings.avatar} />
+					{user.username}
+				</div>
+			</li>
+		));
+
 	componentDidMount = () => {
 		this.initializeEventData();
 		this.initializeShowUsers();
-		setTimeout(() => {
-			console.log(this.state.users);
-		}, 500);
 	};
 
 	render() {
+		this.state.users && console.log(this.state.users);
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__title-wrapper">
@@ -99,15 +109,19 @@ class Dashboard extends React.Component {
 						classname="dashboard__sub-title"
 					/>
 				</div>
-				<div className="dashboard__user-card-layout">
-					<ShowUsers
-						users={this.state.users}
-						company={this.state.company}
-						location={this.state.location}
-						description={this.state.description}
-						email={this.state.email}
-						logout={this.props.logout}
-					/>
+				<div className="dashboard__dashboard-card-layout">
+					{this.state.users && (
+						<ShowUsers
+							displayUsers={this.displayUsers}
+							users={this.state.users}
+							company={this.state.company}
+							location={this.state.location}
+							description={this.state.description}
+							email={this.state.email}
+							logout={this.props.logout}
+						/>
+					)}
+
 					<MyEvents
 						events={this.state.events}
 						handleRemoveEvent={this.handleRemoveEvent}

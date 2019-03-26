@@ -7,7 +7,7 @@ import Auth from '../utils/AuthClass';
 import { Icon } from './Icon';
 import Typography from './Typography';
 import SignIn from './Signin';
-import { isLoggedIn, setUsername, setUser } from '../actions/users';
+import { isLoggedIn, setUsername, setUser, setAvatar } from '../actions/users';
 
 const styles = {
 	heading: {
@@ -58,6 +58,7 @@ export class Login extends Component {
 						setToken(res.tokens[0].token);
 						this.props.setUser(res);
 						this.props.setUsername(res.username);
+						this.props.setAvatar(res.settings.avatar);
 						this.props.isLoggedIn(true);
 						this.props.history.push('/dashboard');
 					}
@@ -103,7 +104,7 @@ export class Login extends Component {
 }
 
 const LoginWithRouter = withRouter(
-	connect(null, { setUser, setUsername, isLoggedIn })(Login)
+	connect(null, { setUser, setUsername, isLoggedIn, setAvatar })(Login)
 );
 
 export default LoginWithRouter;
