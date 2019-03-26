@@ -99,7 +99,7 @@ class Dashboard extends React.Component {
 						classname="dashboard__sub-title"
 					/>
 				</div>
-				<div className="dashboard__layout">
+				<div className="dashboard__user-card-layout">
 					<ShowUsers
 						users={this.state.users}
 						company={this.state.company}

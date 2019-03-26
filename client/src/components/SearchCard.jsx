@@ -8,7 +8,7 @@ const SearchCard = ({ handleOnChange, handleOnSubmit, errors }) => {
 		<div className="search__search-card">
 			<div className="search__search-container">
 				<Typography
-					headingSecondary="See whose going out tonight!"
+					headingSecondary="See what's going on tonight!"
 					classname="search__heading-secondary u-center-text"
 				/>
 				<Typography

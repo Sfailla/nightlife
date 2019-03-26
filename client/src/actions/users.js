@@ -12,5 +12,14 @@ export const setUsername = username => ({
 
 export const isLoggedIn = bool => ({
 	type: 'IS_LOGGED_IN',
-	payload: bool
+	payload: {
+		bool
+	}
+});
+
+export const setAvatar = avatar => ({
+	type: 'SET_AVATAR',
+	payload: {
+		avatar
+	}
 });

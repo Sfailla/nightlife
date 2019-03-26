@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
+import { checkAuth } from '../utils/functions';
 
 import MainHeader from '../components/MainHeader';
 import MainSideNav from '../components/MainSideNav';
@@ -13,8 +15,6 @@ import Register from '../sections/Register';
 import Login from '../components/Login';
 import SideDrawer from '../components/SideDrawer';
 import Backdrop from '../components/Backdrop';
-
-import { checkAuth } from '../utils/functions';
 import Auth from '../utils/AuthClass';
 
 const AuthRoute = ({ component: Component, ...rest }) => (
@@ -31,13 +31,14 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 
 class HomePage extends React.Component {
 	static propTypes = {
-		// isLoggedIn: PropTypes.bool,
 		logout: PropTypes.func
 	};
 
 	state = {
 		openDrawer: false
 	};
+
+	Auth = new Auth();
 
 	handleOpenDrawer = () => {
 		this.setState(prevState => {
@@ -67,7 +68,9 @@ class HomePage extends React.Component {
 		return (
 			<div className="home__grid-container home__homepage-container">
 				<MainHeader
+					avatar={this.state.avatar}
 					logout={this.logout}
+					initializeAvatar={this.initializeAvatar}
 					isLoggedIn={this.props.user.isLoggedIn}
 					isOpen={this.state.openDrawer}
 					openDrawer={this.handleOpenDrawer}
@@ -91,7 +94,7 @@ class HomePage extends React.Component {
 								/>
 							)}
 						/>
-						<AuthRoute exact path="/account" component={() => <Account />} />
+						<AuthRoute exact path="/account" component={Account} />
 						<Route exact path="/sign-in" component={Login} />
 						<Route exact path="/sign-up" component={Register} />
 					</Switch>
@@ -108,4 +111,8 @@ const mapStateToProps = state => {
 	};
 };
 
-export default withRouter(connect(mapStateToProps, { isLoggedIn })(HomePage));
+const HomePageWithRouter = withRouter(
+	connect(mapStateToProps, { isLoggedIn })(HomePage)
+);
+
+export default HomePageWithRouter;

@@ -6,8 +6,8 @@ import Auth from '../utils/AuthClass';
 
 import { Icon } from './Icon';
 import Typography from './Typography';
-import Signin from './Signin';
-import { isLoggedIn, setUsername, setAvatar } from '../actions/users';
+import SignIn from './Signin';
+import { isLoggedIn, setUsername, setUser } from '../actions/users';
 
 const styles = {
 	heading: {
@@ -54,12 +54,11 @@ export class Login extends Component {
 					if (res.error) {
 						this.setState(() => ({ errors: res.error }));
 					} else {
+						console.log(res);
 						setToken(res.tokens[0].token);
-						this.props.dispatch(setUsername(res.username));
-						this.props.dispatch(isLoggedIn(true));
-						this.props.dispatch(
-							setAvatar(res.settings.avatarSelect, res.settings.avatar)
-						);
+						this.props.setUser(res);
+						this.props.setUsername(res.username);
+						this.props.isLoggedIn(true);
 						this.props.history.push('/dashboard');
 					}
 				})
@@ -91,7 +90,7 @@ export class Login extends Component {
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
-							<Signin
+							<SignIn
 								errors={this.state.errors}
 								handleOnChange={this.handleOnChange}
 							/>
@@ -103,4 +102,8 @@ export class Login extends Component {
 	}
 }
 
-export default withRouter(connect()(Login));
+const LoginWithRouter = withRouter(
+	connect(null, { setUser, setUsername, isLoggedIn })(Login)
+);
+
+export default LoginWithRouter;

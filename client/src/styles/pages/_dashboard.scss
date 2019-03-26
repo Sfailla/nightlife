@@ -29,7 +29,7 @@
 		box-shadow: var(--box-shadow-md-l);
 	}
 
-	&__layout {
+	&__user-card-layout {
 		min-height: 30rem;
 		display: grid;
 		grid-template-columns: 1fr 35rem;
@@ -47,5 +47,14 @@
 			grid-template-rows: 1fr 1fr;
 			grid-gap: 2rem;
 		}
+	}
+
+	&__user-card-container {
+		width: 100%;
+		height: 100%;
+		background: white;
+		padding: 1rem;
+		border-bottom: 3px solid var(--primary-color);
+		box-shadow: var(--box-shadow-sm-l);
 	}
 }

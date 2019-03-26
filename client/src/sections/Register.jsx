@@ -74,10 +74,7 @@ class Register extends Component {
 							this.props.setUser(res);
 							this.props.setUsername(this.state.username);
 							this.props.isLoggedIn(true);
-							// this.props.setAvatar(
-							// 	res.settings.avatarSelect,
-							// 	res.settings.avatar
-							// );
+							this.props.setAvatar(res.settings.avatar);
 							this.props.history.push('/dashboard');
 						}
 					})

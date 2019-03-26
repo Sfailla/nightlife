@@ -43,7 +43,7 @@ const MyEvents = props => {
 			<div className="event event__event-container">
 				<div className="event__box">
 					<Typography
-						headingTertiary="Events"
+						headingTertiary="My Events"
 						classname="u-center-text u-mb-10"
 					/>
 					<hr />
