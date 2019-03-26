@@ -99,7 +99,6 @@ class Dashboard extends React.Component {
 	};
 
 	render() {
-		this.state.users && console.log(this.state.users);
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__title-wrapper">

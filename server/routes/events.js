@@ -16,6 +16,10 @@ server.post('/', authenticate, (req, res) => {
 		.catch(err => res.status(400).send(err));
 });
 
+server.get('/allEvents', (req, res) => {
+	Events.find({}).then(event => res.send(event));
+});
+
 server.get('/', authenticate, (req, res) => {
 	Events.find({ creator: req.user._id }).then(event => res.send(event));
 });

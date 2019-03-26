@@ -58,6 +58,9 @@ class SearchResComponent extends React.Component {
 	componentDidMount = () => {};
 
 	render() {
+		this.state.events.map(event => {
+			console.log(event);
+		});
 		return (
 			<div className="results__card">
 				<div className="results__card--left">
@@ -91,6 +94,9 @@ class SearchResComponent extends React.Component {
 								<Button
 									addStyles={styles.eventButton}
 									type="submit"
+									// disabled={this.state.events.map(event => {
+									// 	event.name === this.props.name ? true : false;
+									// })}
 									onClick={this.addEvent}
 									name="Add to My Events"
 								/>

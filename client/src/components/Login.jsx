@@ -54,7 +54,6 @@ export class Login extends Component {
 					if (res.error) {
 						this.setState(() => ({ errors: res.error }));
 					} else {
-						console.log(res);
 						setToken(res.tokens[0].token);
 						this.props.setUser(res);
 						this.props.setUsername(res.username);

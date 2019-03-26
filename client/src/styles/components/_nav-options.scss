@@ -46,19 +46,6 @@
 	}
 }
 
-.event {
-	padding: 1rem;
-	border-bottom: 3px solid var(--primary-color);
-	box-shadow: var(--box-shadow-sm-l);
-
-	&__event-container,
-	&__box {
-		background: white;
-		width: 100%;
-		height: 100%;
-	}
-}
-
 // main header list component
 .app-header__link {
 	color: var(--color-white);

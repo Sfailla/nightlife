@@ -39,9 +39,9 @@ const MyEvents = props => {
 		}
 	};
 	return (
-		<div className="dashboard__event-component">
-			<div className="event event__event-container">
-				<div className="event__box">
+		<div className="events__event-card">
+			<div className="events__event-card-container">
+				<div className="events__my-events">
 					<Typography
 						headingTertiary="My Events"
 						classname="u-center-text u-mb-10"
@@ -72,6 +72,13 @@ const MyEvents = props => {
 							)}
 						</ul>
 					</div>
+				</div>
+				<div className="events__show-people">
+					<Typography
+						headingTertiary="People Going"
+						classname="u-center-text u-mb-10"
+					/>
+					<hr />
 				</div>
 			</div>
 		</div>
