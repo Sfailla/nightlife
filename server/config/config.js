@@ -4,12 +4,12 @@ let env = process.env.NODE_ENV || 'development';
 console.log('node_env === ', env);
 
 if (env === 'development' || env === 'test') {
-    let config = require('./config.json');
-    let envConfig = config[env];
+	let config = require('./config.json');
+	let envConfig = config[env];
 
-    Object.keys(envConfig).map((key) => {
-        process.env[key] = envConfig[key];
-    });
+	Object.keys(envConfig).map(key => {
+		process.env[key] = envConfig[key];
+	});
 }
 
 module.exports = env;

@@ -44,7 +44,7 @@ const MyEvents = props => {
 				<div className="events__my-events">
 					<Typography
 						headingTertiary="My Events"
-						classname="u-center-text u-mb-10"
+						classname="u-center-text u-pb-10"
 					/>
 					<hr />
 					<div style={styles.content} className="event__content">
@@ -76,7 +76,7 @@ const MyEvents = props => {
 				<div className="events__show-people">
 					<Typography
 						headingTertiary="People Going"
-						classname="u-center-text u-mb-10"
+						classname="u-center-text u-pb-10"
 					/>
 					<hr />
 				</div>

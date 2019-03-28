@@ -8,7 +8,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 
 const users = require('./routes/users');
-const events = require('./routes/events');
+const events = require('./routes/users');
 
 const app = express();
 

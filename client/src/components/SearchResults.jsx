@@ -35,22 +35,24 @@ const styles = {
 
 class SearchResComponent extends React.Component {
 	state = {
-		events: [],
-		name: ''
+		events: []
 	};
 	Auth = new Auth();
 
 	addEvent = () => {
-		const name = this.props.name;
+		let name = this.props.name;
+		let rating = this.props.rating;
+		let image = this.props.image;
+
 		this.Auth
-			.authFetch('/events', {
-				method: 'POST',
-				body: JSON.stringify({ name })
+			.authFetch('/users/events', {
+				method: 'PATCH',
+				body: JSON.stringify({ name, rating, image })
 			})
 			.then(data => data.json())
 			.then(data => {
 				console.log(data);
-				this.setState(() => ({ events: data.name }));
+				this.setState(() => ({ events: data }));
 				this.props.history.push('/dashboard');
 			})
 			.catch(err => console.log(err));
@@ -66,9 +68,9 @@ class SearchResComponent extends React.Component {
 				<div className="results__card--left">
 					<img
 						src={
-							this.props.imageSrc !== '' &&
-							typeof this.props.imageSrc === 'string' ? (
-								this.props.imageSrc
+							this.props.image !== '' &&
+							typeof this.props.image === 'string' ? (
+								this.props.image
 							) : (
 								defaultImgSrc
 							)

@@ -3,10 +3,6 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-	// _id: {
-	// 	type: Number,
-	// 	required: true
-	// },
 	username: {
 		type: String,
 		required: true,
@@ -29,6 +25,23 @@ const UserSchema = new mongoose.Schema({
 			token: {
 				type: String,
 				required: true
+			}
+		}
+	],
+	events: [
+		{
+			name: {
+				type: String
+			},
+			image: {
+				type: String
+			},
+			rating: {
+				type: Number
+			},
+			createdAt: {
+				type: Date,
+				default: Date.now
 			}
 		}
 	],

@@ -23,6 +23,7 @@ server.post('/sign-up', (req, res) => {
 	users.settings.location = null;
 	users.settings.description = null;
 	users.settings.company = null;
+	users.events = [];
 	users
 		.save()
 		.then(user => {
@@ -69,30 +70,29 @@ server.delete('/token', authenticate, (req, res) => {
 		.catch(err => console.log(err));
 });
 
-server.patch('/events', authenticate, (req, res) => {
-	const events = req.body.events;
+// server.patch('/events', authenticate, (req, res) => {
+// 	const events = req.body.events;
 
-	User.findOneAndUpdate(
-		{ _id: req.user.id },
-		{
-			$push: {
-				'events.name': events
-			}
-		},
-		{ new: true }
-	)
-		.then(event => {
-			if (!event) {
-				return res.status(404).send();
-			} else {
-				res.send(event);
-			}
-		})
-		.catch(err => res.status(404).send(err));
-});
+// 	User.findOneAndUpdate(
+// 		{ _id: req.user.id },
+// 		{
+// 			$push: {
+// 				'events.name': events
+// 			}
+// 		},
+// 		{ new: true }
+// 	)
+// 		.then(event => {
+// 			if (!event) {
+// 				return res.status(404).send();
+// 			} else {
+// 				res.send(event);
+// 			}
+// 		})
+// 		.catch(err => res.status(404).send(err));
+// });
 
 // User Routes for USER SETTINGS ex. AVATAR, BIO
-
 server.get('/settings', authenticate, (req, res) => {
 	User.findOne({
 		_id: req.user.id
@@ -127,6 +127,24 @@ server.get('/usersList', (req, res) => {
 		if (err) return res.send(err);
 		res.send(users);
 	});
+});
+
+server.post('/events', authenticate, (req, res) => {
+	const { name, image, rating } = req.body;
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				'events.name': name,
+				'events.image': image,
+				'events.rating': rating
+			}
+		},
+		{ new: true }
+	)
+		.then(doc => res.send(doc))
+		.catch(err => res.status(400).send(err));
 });
 
 server.patch('/settings/biography', authenticate, (req, res) => {

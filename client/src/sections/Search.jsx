@@ -162,7 +162,7 @@ class Search extends React.Component {
 											location={data.location.address1}
 											rating={data.rating}
 											moreInfoLink={data.url}
-											imageSrc={data.image_url}
+											image={data.image_url}
 											imageAlt="bar images"
 											isLoggedIn={this.props.user.isLoggedIn}
 											history={this.props.history}

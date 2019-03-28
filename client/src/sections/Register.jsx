@@ -70,6 +70,7 @@ class Register extends Component {
 						if (res.error) {
 							this.setState(() => ({ errors: res.error }));
 						} else {
+							console.log('works');
 							setToken(res.tokens[0].token);
 							this.props.setUser(res);
 							this.props.setUsername(this.state.username);

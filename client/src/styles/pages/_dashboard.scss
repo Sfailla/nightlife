@@ -106,12 +106,11 @@
 	}
 
 	&__my-events {
-		padding: .5rem;
+		padding-bottom: 1rem;
 		grid-column: 1 / 2;
 	}
 
 	&__show-people {
-		padding: .5rem;
 		grid-column: 2 / 3;
 	}
 }

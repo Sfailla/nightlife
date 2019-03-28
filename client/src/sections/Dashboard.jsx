@@ -94,7 +94,7 @@ class Dashboard extends React.Component {
 		));
 
 	componentDidMount = () => {
-		this.initializeEventData();
+		// this.initializeEventData();
 		this.initializeShowUsers();
 	};
 
