@@ -4,7 +4,6 @@ import { withRouter } from 'react-router-dom';
 
 import Auth from '../utils/AuthClass';
 
-import { Icon } from './Icon';
 import Typography from './Typography';
 import SignIn from './Signin';
 import { isLoggedIn, setUsername, setUser, setAvatar } from '../actions/users';
@@ -80,13 +79,6 @@ export class Login extends Component {
 					addStyles={styles.heading}
 					headingPrimary="sign in for access to nightlife features"
 				/>
-				<div className="signup__sub-heading" style={styles.heading}>
-					<Icon icon="puzzle" size={100} view1={26} view2={28} />
-					<Typography
-						addStyles={styles.title}
-						headingSecondary="Login to NightLife"
-					/>
-				</div>
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>

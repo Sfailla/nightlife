@@ -108,16 +108,7 @@ class Register extends Component {
 					addStyles={styles.heading}
 					headingPrimary="Sign up to see who is going out tonite!"
 				/>
-				<div className="signup__sub-heading" style={styles.heading}>
-					<Icon
-						addStyles={{ fill: 'var(--primary-color)' }}
-						size={100}
-						view1={16}
-						view2={28}
-						icon="code-branch"
-					/>
-					<Typography headingSecondary="Sign Up" addStyles={styles.title} />
-				</div>
+
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>

@@ -1,9 +1,10 @@
 import React from 'react';
 
 import Typography from './Typography';
+import { Icon } from './Icon';
+
 import { BorderlessForm } from './Form';
 import Button from './Button';
-import { Icon } from './Icon';
 
 const styles = {
 	title: {
@@ -37,6 +38,11 @@ const styles = {
 const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
 		<div className="signup__signup-card">
+			<Icon icon="puzzle" size={100} view1={26} view2={28} />
+			<Typography
+				addStyles={styles.title}
+				headingSecondary="Login to NightLife"
+			/>
 			{errors && <p style={styles.error}>** {errors} **</p>}
 			<div style={{ paddingBottom: '7rem' }}>
 				<BorderlessForm

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { Icon } from './Icon';
+import Typography from './Typography';
+
 import { BorderlessForm } from './Form';
 import CheckGroup from './CheckGroup';
 import Button from './Button';
@@ -33,6 +36,18 @@ const styles = {
 const Signup = props => (
 	<div className="signup">
 		<div className="signup__signup-card">
+			<Icon
+				addStyles={{ fill: 'var(--primary-color)' }}
+				size={100}
+				view1={16}
+				view2={28}
+				icon="code-branch"
+			/>
+			<Typography
+				className="u-center-text"
+				headingSecondary="Sign Up For NightLife"
+				addStyles={styles.title}
+			/>
 			{props.errors && <p style={styles.error}>** {props.errors} **</p>}
 			<div>
 				<BorderlessForm
