@@ -46,7 +46,7 @@ class SearchResComponent extends React.Component {
 
 		this.Auth
 			.authFetch('/users/events', {
-				method: 'PATCH',
+				method: 'POST',
 				body: JSON.stringify({ name, rating, image })
 			})
 			.then(data => data.json())
@@ -60,9 +60,7 @@ class SearchResComponent extends React.Component {
 	componentDidMount = () => {};
 
 	render() {
-		this.state.events.map(event => {
-			console.log(event);
-		});
+		this.state.events && console.log(this.state.events);
 		return (
 			<div className="results__card">
 				<div className="results__card--left">

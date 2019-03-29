@@ -1,15 +1,22 @@
 const express = require('express');
+const mongoose = require('../db/mongoose');
 
 const User = require('../models/user');
-const mongoose = require('../db/mongoose');
 const authenticate = require('../middleware/authenticate');
 
 const server = express.Router();
 
 // USER Routes for signing up and signing in
 
-server.get('/me', authenticate, (req, res) => {
-	res.send(req.user);
+// server.get('/me', authenticate, (req, res) => {
+// 	res.send(req.user);
+// });
+
+server.get('/usersList', (req, res) => {
+	User.find({}, (err, users) => {
+		if (err) return res.send(err);
+		res.send(users);
+	});
 });
 
 server.post('/sign-up', (req, res) => {
@@ -70,28 +77,6 @@ server.delete('/token', authenticate, (req, res) => {
 		.catch(err => console.log(err));
 });
 
-// server.patch('/events', authenticate, (req, res) => {
-// 	const events = req.body.events;
-
-// 	User.findOneAndUpdate(
-// 		{ _id: req.user.id },
-// 		{
-// 			$push: {
-// 				'events.name': events
-// 			}
-// 		},
-// 		{ new: true }
-// 	)
-// 		.then(event => {
-// 			if (!event) {
-// 				return res.status(404).send();
-// 			} else {
-// 				res.send(event);
-// 			}
-// 		})
-// 		.catch(err => res.status(404).send(err));
-// });
-
 // User Routes for USER SETTINGS ex. AVATAR, BIO
 server.get('/settings', authenticate, (req, res) => {
 	User.findOne({
@@ -122,31 +107,6 @@ server.patch('/settings/avatar', authenticate, (req, res) => {
 	});
 });
 
-server.get('/usersList', (req, res) => {
-	User.find({}, (err, users) => {
-		if (err) return res.send(err);
-		res.send(users);
-	});
-});
-
-server.post('/events', authenticate, (req, res) => {
-	const { name, image, rating } = req.body;
-
-	User.findOneAndUpdate(
-		{ _id: req.user.id },
-		{
-			$set: {
-				'events.name': name,
-				'events.image': image,
-				'events.rating': rating
-			}
-		},
-		{ new: true }
-	)
-		.then(doc => res.send(doc))
-		.catch(err => res.status(400).send(err));
-});
-
 server.patch('/settings/biography', authenticate, (req, res) => {
 	const { company, email, location, description } = req.body;
 
@@ -168,6 +128,52 @@ server.patch('/settings/biography', authenticate, (req, res) => {
 			res.send(doc);
 		}
 	});
+});
+
+// User Routes for Events
+server.post('/events', authenticate, (req, res) => {
+	const { name, image, rating } = req.body;
+
+	let event = {
+		name,
+		rating,
+		image
+	};
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$push: {
+				events: event
+			}
+		}
+	)
+		.then(event => {
+			console.log(event);
+			res.send(event);
+		})
+		.catch(err => res.status(400).send(err));
+});
+
+server.delete('/events/:id', authenticate, (req, res) => {
+	const id = req.params.id;
+	const uid = req.user.id;
+
+	User.findOneAndUpdate(
+		{ _id: uid },
+		{
+			$pull: {
+				events: { _id: id }
+			}
+		}
+	)
+		.then(event => {
+			res.send(event);
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(400).send(err);
+		});
 });
 
 module.exports = server;

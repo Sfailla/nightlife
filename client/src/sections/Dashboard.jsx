@@ -23,10 +23,11 @@ class Dashboard extends React.Component {
 
 	handleRemoveEvent = id => {
 		this.Auth
-			.authFetch(`/events/${id}`, { method: 'DELETE' })
+			.authFetch(`/users/events/${id}`, { method: 'DELETE' })
 			.then(res => res.json())
 			.then(res => {
 				console.log('removed event', res);
+
 				this.setState(prevState => ({
 					events: prevState.events.filter(event => event._id !== id)
 				}));
@@ -50,12 +51,12 @@ class Dashboard extends React.Component {
 
 	initializeEventData = () => {
 		this.Auth
-			.authFetch('/events', {
+			.authFetch('/users/settings', {
 				method: 'GET'
 			})
-			.then(events => events.json())
-			.then(events => {
-				// console.log(events);
+			.then(event => event.json())
+			.then(event => {
+				let events = event.events;
 				this.setState({
 					events
 				});
@@ -94,7 +95,7 @@ class Dashboard extends React.Component {
 		));
 
 	componentDidMount = () => {
-		// this.initializeEventData();
+		this.initializeEventData();
 		this.initializeShowUsers();
 	};
 
