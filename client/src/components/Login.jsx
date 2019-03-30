@@ -54,6 +54,7 @@ export class Login extends Component {
 						this.setState(() => ({ errors: res.error }));
 					} else {
 						setToken(res.tokens[0].token);
+						this.setUserPresence(true);
 						this.props.setUser(res);
 						this.props.setUsername(res.username);
 						this.props.setAvatar(res.settings.avatar);
@@ -72,6 +73,20 @@ export class Login extends Component {
 			}));
 		}
 	};
+
+	setUserPresence = isLoggedIn => {
+		this.Auth
+			.authFetch('/users/presence', {
+				method: 'PATCH',
+				body: JSON.stringify({ isLoggedIn })
+			})
+			.then(doc => doc.json())
+			.then(doc => {
+				console.log(doc);
+			})
+			.catch(err => console.error(err));
+	};
+
 	render() {
 		return (
 			<div className="signup">

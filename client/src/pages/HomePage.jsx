@@ -52,9 +52,23 @@ class HomePage extends React.Component {
 		this.setState({ openDrawer: false });
 	};
 
+	setUserPresence = isLoggedIn => {
+		this.Auth
+			.authFetch('/users/presence', {
+				method: 'PATCH',
+				body: JSON.stringify({ isLoggedIn })
+			})
+			.then(doc => doc.json())
+			.then(doc => {
+				console.log(doc);
+			})
+			.catch(err => console.error(err));
+	};
+
 	Auth = new Auth();
 
 	logout = () => {
+		this.setUserPresence(false);
 		this.Auth.logout();
 		this.props.isLoggedIn(false);
 		this.props.history.push('/');

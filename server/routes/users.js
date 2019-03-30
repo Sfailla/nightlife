@@ -31,6 +31,7 @@ server.post('/sign-up', (req, res) => {
 	users.settings.description = null;
 	users.settings.company = null;
 	users.events = [];
+	users.isLoggedIn = true;
 	users
 		.save()
 		.then(user => {
@@ -75,6 +76,25 @@ server.delete('/token', authenticate, (req, res) => {
 			}
 		)
 		.catch(err => console.log(err));
+});
+
+server.patch('/presence', authenticate, (req, res) => {
+	const { isLoggedIn } = req.body;
+
+	console.log(isLoggedIn);
+
+	User.findOneAndUpdate(
+		{ _id: req.user.id },
+		{
+			$set: {
+				isLoggedIn
+			}
+		}
+	)
+		.then(doc => {
+			res.status(200).send(doc);
+		})
+		.catch(err => res.send(err));
 });
 
 // User Routes for USER SETTINGS ex. AVATAR, BIO

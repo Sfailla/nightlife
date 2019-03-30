@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
 	email: {
 		type: String
 	},
+	isLoggedIn: {
+		type: Boolean,
+		default: true
+	},
 	tokens: [
 		{
 			access: {

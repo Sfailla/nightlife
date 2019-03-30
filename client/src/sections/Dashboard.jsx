@@ -6,6 +6,7 @@ import ShowUsers from '../components/ShowUsers';
 import Typography from '../components/Typography';
 import MyEvents from '../components/MyEvents';
 import Avatar from '../components/Avatar';
+import { Icon } from '../components/Icon';
 
 class Dashboard extends React.Component {
 	state = {
@@ -85,14 +86,32 @@ class Dashboard extends React.Component {
 
 	displayUsers = () =>
 		this.state.users.length > 0 &&
-		this.state.users.map(user => (
-			<li key={user._id}>
-				<div className="show-users__flex-container">
-					<Avatar avatar={user.settings.avatar} />
-					{user.username}
-				</div>
-			</li>
-		));
+		this.state.users.map(user => {
+			let styles = {
+				svg: {
+					fill: user.isLoggedIn ? 'green' : 'red'
+				}
+			};
+			return (
+				<li key={user._id}>
+					<div className="show-users__flex-container">
+						<div className="show-users__flex-container">
+							<Avatar avatar={user.settings.avatar} />
+							{user.username}
+						</div>
+						<div>
+							<Icon
+								icon="circle"
+								addStyles={styles.svg}
+								size={20}
+								view1={24}
+								view2={28}
+							/>
+						</div>
+					</div>
+				</li>
+			);
+		});
 
 	componentDidMount = () => {
 		this.initializeEventData();
@@ -127,6 +146,7 @@ class Dashboard extends React.Component {
 						handleRemoveEvent={this.handleRemoveEvent}
 					/>
 				</div>
+				<div>content</div>
 			</div>
 		);
 	}

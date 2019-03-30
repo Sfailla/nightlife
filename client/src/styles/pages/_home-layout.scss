@@ -25,11 +25,11 @@
 		}
 
 		@media (min-width: 81.25em) {
-			justify-content: right;
+			justify-content: flex-end;
 		}
 
 		@media (max-width: 33.13em) {
-			justify-content: right;
+			justify-content: flex-end;
 		}
 	}
 
@@ -61,6 +61,7 @@
 	}
 
 	&__navigation {
+		width: 100%;
 		display: flex;
 
 		@media (max-width: 33.07em) {

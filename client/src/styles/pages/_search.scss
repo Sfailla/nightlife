@@ -71,6 +71,7 @@
 			var(--primary-color),
 			var(--secondary-color)
 		);
+		-webkit-background-clip: text;
 		background-clip: text;
 	}
 }

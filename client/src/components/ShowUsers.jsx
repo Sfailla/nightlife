@@ -11,8 +11,8 @@ const ShowUsers = props => {
 						headingTertiary="Users"
 						classname="u-center-text u-pb-10"
 					/>
-					<hr />
 					<div className="show-users__bottom-card">
+						<hr />
 						<ul className="show-users__content">{props.displayUsers()}</ul>
 					</div>
 				</div>

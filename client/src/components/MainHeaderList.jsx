@@ -11,9 +11,6 @@ import HamburgerMenu from 'react-hamburger-menu';
 class MainHeaderList extends React.Component {
 	render() {
 		const styles = {
-			list: {
-				width: this.props.isLoggedIn ? '22rem' : 'auto'
-			},
 			index: {
 				zIndex: '10',
 				cursor: 'pointer'
@@ -21,7 +18,7 @@ class MainHeaderList extends React.Component {
 		};
 		return (
 			<Fragment>
-				<div className="mobile-nav list" style={styles.list}>
+				<div className="mobile-nav list">
 					{this.props.isLoggedIn && this.props.user.username}
 					{this.props.isLoggedIn && <Avatar avatar={this.props.user.avatar} />}
 					{this.props.isLoggedIn ? (
@@ -72,6 +69,7 @@ const tabView = `
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		gap: 1rem;
 	}
 
 	.link {
