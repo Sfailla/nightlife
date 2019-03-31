@@ -1,0 +1,56 @@
+.header {
+	&__nav-list-items {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+
+		& li {
+			list-style: none;
+		}
+
+		& li:not(:last-of-type) {
+			padding-right: 1rem;
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+	}
+
+	&__nav-list-menu {
+		z-index: 10;
+	}
+
+	@media (max-width: 33.12em) {
+		&__nav-list-menu {
+			display: flex;
+		}
+		&__nav-list-items {
+			display: none;
+		}
+	}
+
+	@media (min-width: 33.12em) {
+		&__nav-list-menu {
+			display: none;
+		}
+	}
+
+	@media (min-width: 33.12em) {
+		.mobile-nav {
+			display: flex;
+		}
+	}
+
+	// main header list component
+	&__link {
+		color: white;
+		text-decoration: none;
+
+		&:hover {
+			color: gold;
+			transition: color .2s ease-in-out;
+		}
+	}
+}

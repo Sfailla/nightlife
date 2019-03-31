@@ -89,7 +89,7 @@ class Dashboard extends React.Component {
 		this.state.users.map(user => {
 			let styles = {
 				svg: {
-					fill: user.isLoggedIn ? 'green' : 'red'
+					fill: user.isLoggedIn ? '#57e657' : '#ff0000'
 				}
 			};
 			return (

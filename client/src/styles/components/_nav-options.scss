@@ -45,14 +45,3 @@
 		}
 	}
 }
-
-// main header list component
-.app-header__link {
-	color: var(--color-white);
-	text-decoration: none;
-
-	&:hover {
-		color: var(--gold-color);
-		transition: color .2s ease-in-out;
-	}
-}

@@ -33,7 +33,7 @@
 	}
 
 	&__nav-items {
-		width: 100%;
+		// width: 100%;
 
 		@media (max-width: 1300px) {
 			display: none;
@@ -44,11 +44,6 @@
 			height: 6rem;
 			text-transform: uppercase;
 			list-style: none;
-			@include flex-center(center, center);
-		}
-
-		& li:not(:last-of-type) {
-			margin-bottom: 1rem;
 		}
 
 		& li:hover {
@@ -63,7 +58,7 @@
 			outline: none;
 			text-decoration: none;
 			color: white;
-			@include flex-center(center, center);
+			// @include flex-center(center, center);
 		}
 
 		& li a:hover,

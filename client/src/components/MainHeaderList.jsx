@@ -18,22 +18,30 @@ class MainHeaderList extends React.Component {
 		};
 		return (
 			<Fragment>
-				<div className="mobile-nav list">
-					{this.props.isLoggedIn && this.props.user.username}
-					{this.props.isLoggedIn && <Avatar avatar={this.props.user.avatar} />}
-					{this.props.isLoggedIn ? (
-						<LogoutButton
-							addStyles={{ width: '10rem' }}
-							name="sign out"
-							logout={this.props.logout}
-						/>
-					) : (
-						<Link className="app-header__link" to="/sign-in">
-							LOGIN
-						</Link>
-					)}
+				<div className="header">
+					<ul className="header__nav-list-items">
+						<li>{this.props.isLoggedIn && this.props.user.username}</li>
+						<li>
+							{this.props.isLoggedIn && (
+								<Avatar avatar={this.props.user.avatar} />
+							)}
+						</li>
+						<li>
+							{this.props.isLoggedIn ? (
+								<LogoutButton
+									addStyles={{ width: '10rem' }}
+									name="sign out"
+									logout={this.props.logout}
+								/>
+							) : (
+								<Link className="header__link" to="/sign-in">
+									LOGIN
+								</Link>
+							)}
+						</li>
+					</ul>
 				</div>
-				<div className="mobile-nav-menu" style={{ zIndex: '100' }}>
+				<div className="header__nav-list-menu" style={{ zIndex: '100' }}>
 					<HamburgerMenu
 						style={styles.index}
 						isOpen={this.props.isOpen}
@@ -63,46 +71,5 @@ const mapStateToProps = state => {
 		user: state.users
 	};
 };
-
-const tabView = `
-	.list {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 1rem;
-	}
-
-	.link {
-		text-decoration: none;
-	}
-
-	.mobile-nav-menu {
-		z-index: 10;
-	}
-	
-	@media (max-width: 33.12em) {
-		.mobile-nav-menu {
-			display: flex;
-		}
-		.list {
-			display: none;
-		}
-	}
-
-	@media (min-width: 33.12em) {
-		.mobile-nav-menu {
-			display: none;
-		}
-	}
-
-	@media (min-width: 33.12em) {
-		.mobile-nav {
-			display: flex;
-		}
-	}
-`;
-document.head.appendChild(
-	document.createElement('style')
-).textContent = tabView;
 
 export default connect(mapStateToProps)(MainHeaderList);
