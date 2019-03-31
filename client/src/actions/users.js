@@ -7,7 +7,9 @@ export const setUser = user => ({
 
 export const setUsername = username => ({
 	type: 'SET_USERNAME',
-	username
+	payload: {
+		username
+	}
 });
 
 export const isLoggedIn = bool => ({

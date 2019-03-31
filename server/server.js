@@ -6,9 +6,7 @@ const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
-
 const users = require('./routes/users');
-// const events = require('./routes/users');
 
 const app = express();
 
@@ -23,7 +21,6 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/users', users);
-// app.use('/events', events);
 
 app.get('/*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public/index.html'), err => {

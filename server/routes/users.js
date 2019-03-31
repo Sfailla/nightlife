@@ -81,8 +81,6 @@ server.delete('/token', authenticate, (req, res) => {
 server.patch('/presence', authenticate, (req, res) => {
 	const { isLoggedIn } = req.body;
 
-	console.log(isLoggedIn);
-
 	User.findOneAndUpdate(
 		{ _id: req.user.id },
 		{

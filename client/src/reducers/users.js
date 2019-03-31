@@ -10,7 +10,7 @@ const usersReducer = (state = defaultState, action) => {
 		case 'SET_USERNAME':
 			return {
 				...state,
-				username: action.username
+				username: action.payload.username
 			};
 		case 'SET_USER':
 			return {
