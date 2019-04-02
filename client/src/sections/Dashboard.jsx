@@ -99,7 +99,7 @@ class Dashboard extends React.Component {
 							<Avatar avatar={user.settings.avatar} />
 							{user.username}
 						</div>
-						<div>
+						<div className="show-users__icon-wrapper">
 							<Icon
 								icon="circle"
 								addStyles={styles.svg}

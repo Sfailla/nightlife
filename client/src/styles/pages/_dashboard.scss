@@ -33,11 +33,11 @@
 		width: 100%;
 		min-height: 30rem;
 		display: grid;
-		grid-template-columns: 25rem 1fr;
+		grid-template-columns: 25rem 40rem;
 		grid-column-gap: 2rem;
 
 		@media (max-width: 56.25em) {
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr;
 			grid-template-rows: 1fr;
 			grid-gap: 2rem;
 		}
@@ -61,7 +61,7 @@
 		height: 100%;
 		display: grid;
 		grid-template-columns: 1fr;
-		grid-template-rows: min-content 1fr;
+		grid-template-rows: repeat(2, min-content) 1fr;
 
 		background: white;
 		padding: 1rem;
@@ -82,13 +82,31 @@
 
 	&__flex-container {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 		align-items: center;
 		gap: 1rem;
 	}
 
+	&__heading-wrapper {
+		font-size: 1.6rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		& p {
+			font-size: 1.2rem;
+		}
+	}
+
+	&__icon-wrapper {
+		& svg {
+			margin-right: 2rem;
+		}
+	}
+
 	&__bottom-card {
 		& hr {
+			margin-top: 0.5rem;
 			opacity: .2;
 		}
 	}
@@ -98,22 +116,29 @@
 	&__event-card {
 		width: 100%;
 		height: 100%;
-		padding: 1rem;
-		background: white;
 		box-shadow: var(--box-shadow-sm-l);
+
+		& p {
+			font-size: 1.6rem;
+		}
+
+		& hr {
+			margin-top: .5rem;
+			opacity: .2;
+		}
 	}
 
 	&__event-card-container {
 		width: 100%;
 		height: 100%;
+		padding: 1rem;
+		background: white;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
 	}
 
 	&__my-events {
-		padding-bottom: 1rem;
-		grid-column: 1 / 2;
 	}
 
 	&__show-people {
