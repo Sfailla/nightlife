@@ -42,10 +42,7 @@ const MyEvents = props => {
 		<div className="events__event-card">
 			<div className="events__event-card-container">
 				<div className="events__my-events">
-					<Typography
-						headingTertiary="My Events"
-						classname="u-center-text u-pb-10"
-					/>
+					<Typography headingTertiary="My Events" classname="" />
 					<hr />
 					<div style={styles.content} className="event__content">
 						<ul style={styles.ul}>
@@ -73,13 +70,10 @@ const MyEvents = props => {
 						</ul>
 					</div>
 				</div>
-				<div className="events__show-people">
-					<Typography
-						headingTertiary="People Going"
-						classname="u-center-text u-pb-10"
-					/>
+				{/* <div className="events__show-people">
+					<Typography headingTertiary="People Going" />
 					<hr />
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

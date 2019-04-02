@@ -7,10 +7,13 @@ const ShowUsers = props => {
 		<Fragment>
 			<div className="show-users__user-card">
 				<div className="show-users__user-card-container">
-					<Typography
-						headingTertiary="Users"
-						classname="u-center-text u-pb-10"
-					/>
+					<div className="show-users__heading-wrapper">
+						<Typography
+							headingTertiary="Users"
+							addStyles={{ fontSize: '1.6rem' }}
+						/>
+						<p>online/offline</p>
+					</div>
 					<div className="show-users__bottom-card">
 						<hr />
 						<ul className="show-users__content">{props.displayUsers()}</ul>

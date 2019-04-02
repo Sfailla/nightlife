@@ -60,7 +60,6 @@ class SearchResComponent extends React.Component {
 	componentDidMount = () => {};
 
 	render() {
-		this.state.events && console.log(this.state.events);
 		return (
 			<div className="results__card">
 				<div className="results__card--left">
