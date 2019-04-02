@@ -7,11 +7,6 @@ const authenticate = require('../middleware/authenticate');
 const server = express.Router();
 
 // USER Routes for signing up and signing in
-
-// server.get('/me', authenticate, (req, res) => {
-// 	res.send(req.user);
-// });
-
 server.get('/usersList', (req, res) => {
 	User.find({}, (err, users) => {
 		if (err) return res.send(err);
