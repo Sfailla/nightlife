@@ -1,12 +1,15 @@
 .dashboard {
 	&__container {
-		padding: 0 2rem;
+		padding: 2rem;
 		height: 100%;
 	}
 
 	&__title-wrapper {
-		padding: 4rem 0;
+		background: white;
+		box-shadow: var(--box-shadow-sm-l);
+		padding: 4rem .5rem;
 		@include flex-center(space-between, center);
+		grid-column: 1 / -1;
 
 		@media (max-width: 50em) {
 			display: block;
@@ -15,10 +18,11 @@
 	}
 
 	&__title {
-		font-size: 3.5rem;
+		font-size: 2.5rem;
 	}
 
 	&__sub-title {
+		font-size: 1.5rem;
 		color: var(--text-secondary);
 	}
 
@@ -33,11 +37,12 @@
 		width: 100%;
 		min-height: 30rem;
 		display: grid;
-		grid-template-columns: 25rem 40rem;
-		grid-column-gap: 2rem;
+		grid-template-columns: 25rem 1fr;
+		grid-gap: 2rem;
+		grid-template-rows: max-content minmax(30rem, 1fr);
 
 		@media (max-width: 56.25em) {
-			grid-template-columns: 1fr;
+			grid-template-columns: 25rem 1fr;
 			grid-template-rows: 1fr;
 			grid-gap: 2rem;
 		}
@@ -102,6 +107,10 @@
 		& svg {
 			margin-right: 2rem;
 		}
+	}
+
+	&__name-wrapper {
+		display: block;
 	}
 
 	&__bottom-card {

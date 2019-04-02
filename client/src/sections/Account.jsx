@@ -3,14 +3,14 @@ import Auth from '../utils/AuthClass';
 
 import Typography from '../components/Typography';
 import AvatarComponent from '../components/AvatarComponent';
-import AccountBioForm from '../components/AccountBioForm';
+import AccountForm from '../components/AccountForm';
 
 class Account extends React.Component {
 	state = {
 		company: '',
 		email: '',
 		location: '',
-		Biography: ''
+		description: ''
 	};
 
 	Auth = new Auth();
@@ -98,7 +98,7 @@ class Account extends React.Component {
 						headingTertiary="Add User Info"
 					/>
 					<hr />
-					<AccountBioForm
+					<AccountForm
 						company={this.state.company}
 						email={this.state.email}
 						location={this.state.location}

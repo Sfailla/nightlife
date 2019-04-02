@@ -27,8 +27,6 @@ class Dashboard extends React.Component {
 			.authFetch(`/users/events/${id}`, { method: 'DELETE' })
 			.then(res => res.json())
 			.then(res => {
-				console.log('removed event', res);
-
 				this.setState(prevState => ({
 					events: prevState.events.filter(event => event._id !== id)
 				}));
@@ -121,14 +119,17 @@ class Dashboard extends React.Component {
 	render() {
 		return (
 			<div className="dashboard__container">
-				<div className="dashboard__title-wrapper">
-					<Typography headingPrimary="Dashboard" classname="dashboard__title" />
-					<Typography
-						headingSecondary="What would you like to do?"
-						classname="dashboard__sub-title"
-					/>
-				</div>
 				<div className="dashboard__dashboard-card-layout">
+					<div className="dashboard__title-wrapper">
+						<Typography
+							headingPrimary="Dashboard"
+							classname="dashboard__title"
+						/>
+						<Typography
+							headingSecondary="What would you like to do?"
+							classname="dashboard__sub-title"
+						/>
+					</div>
 					{this.state.users && (
 						<ShowUsers
 							displayUsers={this.displayUsers}
