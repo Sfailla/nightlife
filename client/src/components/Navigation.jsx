@@ -42,7 +42,7 @@ const Navigation = props => {
 				{props.user.isLoggedIn && (
 					<li className="nav-li">
 						<Link to="/account" className="nav-link">
-							SETTINGS
+							ACCOUNT
 						</Link>
 					</li>
 				)}

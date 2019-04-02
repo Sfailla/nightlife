@@ -22,7 +22,7 @@ const MainSideNav = props => (
 				{props.isLoggedIn && (
 					<li>
 						<Link to="/account">
-							<span>SETTINGS</span>
+							<span>Account</span>
 						</Link>
 					</li>
 				)}

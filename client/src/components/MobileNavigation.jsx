@@ -45,7 +45,7 @@ const MobileNavigation = props => {
 				{props.user.isLoggedIn && (
 					<li className="side-drawer__nav-li">
 						<Link to="/account" className="side-drawer__nav-link">
-							SETTINGS
+							ACCOUNT
 						</Link>
 					</li>
 				)}
