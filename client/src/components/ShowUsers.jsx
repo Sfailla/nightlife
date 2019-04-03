@@ -12,7 +12,7 @@ const ShowUsers = props => {
 							headingTertiary="Users"
 							addStyles={{ fontSize: '1.6rem' }}
 						/>
-						<p>online/offline</p>
+						<p style={{ paddingRight: '1.5rem' }}>online</p>
 					</div>
 					<div className="show-users__bottom-card">
 						<hr />

@@ -7,6 +7,7 @@ import Typography from '../components/Typography';
 import MyEvents from '../components/MyEvents';
 import Avatar from '../components/Avatar';
 import { Icon } from '../components/Icon';
+import UserDetails from '../components/UserDetails';
 
 class Dashboard extends React.Component {
 	state = {
@@ -114,6 +115,7 @@ class Dashboard extends React.Component {
 	componentDidMount = () => {
 		this.initializeEventData();
 		this.initializeShowUsers();
+		this.initializeUserBio();
 	};
 
 	render() {
@@ -134,11 +136,6 @@ class Dashboard extends React.Component {
 						<ShowUsers
 							displayUsers={this.displayUsers}
 							users={this.state.users}
-							company={this.state.company}
-							location={this.state.location}
-							description={this.state.description}
-							email={this.state.email}
-							logout={this.props.logout}
 						/>
 					)}
 
@@ -146,8 +143,14 @@ class Dashboard extends React.Component {
 						events={this.state.events}
 						handleRemoveEvent={this.handleRemoveEvent}
 					/>
+
+					<UserDetails
+						company={this.state.company}
+						location={this.state.location}
+						description={this.state.description}
+						email={this.state.email}
+					/>
 				</div>
-				<div>content</div>
 			</div>
 		);
 	}
