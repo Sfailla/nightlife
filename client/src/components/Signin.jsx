@@ -27,7 +27,7 @@ const styles = {
 	error: {
 		color: 'red',
 		position: 'absolute',
-		top: '25%',
+		bottom: '9rem',
 		left: '50%',
 		transform: 'translateX(-50%)',
 		width: '39rem',
