@@ -1,3 +1,4 @@
+// DASHBOARD STYLING
 .dashboard {
 	&__container {
 		padding: 2rem;
@@ -57,6 +58,7 @@
 	}
 }
 
+// SHOW_USERS COMPONENT STYLING
 .show-users {
 	&__user-card {
 		width: 100%;
@@ -122,6 +124,7 @@
 	}
 }
 
+// EVENT COMPONENT STYLING
 .events {
 	&__event-card {
 		width: 100%;
@@ -138,6 +141,20 @@
 		}
 	}
 
+	&__rating {
+		padding-top: 2rem;
+	}
+
+	&__button-wrapper {
+		width: 8rem;
+		height: 8rem;
+		background: transparent;
+		@include flex-center(center, center);
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
 	&__event-card-container {
 		width: 100%;
 		height: 100%;
@@ -148,7 +165,8 @@
 		grid-template-rows: 1fr;
 	}
 
-	&__my-events {
+	&__li {
+		position: relative;
 	}
 
 	&__show-people {
@@ -156,6 +174,7 @@
 	}
 }
 
+// USER DETAILS COMPONENT STYLING
 .user-info {
 	width: 100%;
 	height: 100%;

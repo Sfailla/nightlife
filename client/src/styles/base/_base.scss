@@ -22,7 +22,6 @@ html {
 
 body {
 	background: #fcfcfc;
-	// color: var(--text-primary);
 }
 
 img {
@@ -34,6 +33,8 @@ img {
 button {
 	cursor: pointer;
 	text-transform: uppercase;
+	outline: none;
+	border: none;
 }
 
 .container {

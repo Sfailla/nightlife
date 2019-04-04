@@ -2,43 +2,36 @@ import React from 'react';
 
 import Button from './Button';
 import { Icon } from './Icon';
-import { truncate } from '../utils/functions';
+import { truncate, changeNumToStar } from '../utils/functions';
 
 const Event = props => {
 	const styles = {
 		li: {
 			listStyle: 'none',
 			letterSpacing: '2px',
-			textTransform: 'uppercase'
+			textTransform: 'uppercase',
+			height: '8rem',
+			width: '100%',
+			marginTop: '1rem',
+			background: 'var(--primary-color)',
+			// backgroundImage:
+			// 	'linear-gradient(to right, var(--secondary-color), var(--primary-color))',
+			color: 'white',
+			boxShadow: 'var(--box-shadow-sm-l)',
+			display: 'flex',
+			borderRadius: '3px'
 		},
 		svg: {
-			background: 'var(--primary-color)',
-			outline: 'none',
-			border: 'none',
+			background: 'transparent',
 			display: 'flex',
 			justifyContent: 'center',
 			alignItems: 'center',
 			fill: 'var(--secondary-color)'
 		},
-		eventWrapper: {
-			display: 'flex',
-			// justifyContent: 'space-between',
-			// alignItems: 'center',
-			// borderRadius: '3px',
-			height: '8rem',
-			width: '100%',
-			marginTop: '1rem',
-			// background: 'var(--primary-color)',
-			backgroundImage:
-				'linear-gradient(to right, var(--secondary-color), var(--primary-color))',
-			color: 'white',
-			boxShadow: 'var(--box-shadow-sm-l)'
-		},
 		body: {
 			padding: '.5rem',
 			width: '80%',
 			height: '100%'
-			// background: 'lightpink'
 		},
 		imgWrapper: {
 			padding: '.5rem',
@@ -48,28 +41,32 @@ const Event = props => {
 		image: {
 			height: '100%',
 			borderRadius: '5px'
+		},
+		h3: {
+			paddingLeft: '4px',
+			fontWeight: '400',
+			fontSize: '2rem'
 		}
 	};
 	return (
-		<ul style={styles.ul}>
-			<li className="event__li" style={styles.li}>
-				<div style={styles.eventWrapper}>
-					<div style={styles.imgWrapper}>
-						<img style={styles.image} src={props.image} />
-					</div>
-					<div style={styles.body}>
-						{truncate(props.name, 20)}
+		<li className="events__li" style={styles.li}>
+			<div style={styles.imgWrapper}>
+				<img style={styles.image} src={props.image} />
+			</div>
+			<div style={styles.body}>
+				<h3 style={styles.h3}>{truncate(props.name, 20)}</h3>
+				<span className="events__rating">{changeNumToStar(props.rating)}</span>
 
-						<Button
-							name={<Icon size={25} view1={25} view2={25} icon="trash" />}
-							addStyles={styles.svg}
-							type="button"
-							onClick={() => props.handleRemoveEvent(porps.id)}
-						/>
-					</div>
+				<div className="events__button-wrapper">
+					<Button
+						name={<Icon size={25} view1={32} view2={32} icon="trash" />}
+						addStyles={styles.svg}
+						type="button"
+						onClick={() => props.handleRemoveEvent(props.id)}
+					/>
 				</div>
-			</li>
-		</ul>
+			</div>
+		</li>
 	);
 };
 

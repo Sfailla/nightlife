@@ -16,21 +16,25 @@ const MyEvents = props => {
 				<div className="events__my-events">
 					<Typography headingTertiary="My Events" classname="" />
 					<hr />
-					<div style={styles.content} className="event__content">
-						{props.events.length > 0 ? (
-							props.events.map(event => {
-								return (
-									<Event
-										key={event._id}
-										id={event._id}
-										image={event.image}
-										name={event.name}
-									/>
-								);
-							})
-						) : (
-							<h3>Sorry No Events</h3>
-						)}
+					<div style={styles.content} className="events__content">
+						<ul>
+							{props.events.length > 0 ? (
+								props.events.map(event => {
+									return (
+										<Event
+											key={event._id}
+											id={event._id}
+											image={event.image}
+											name={event.name}
+											rating={event.rating}
+											handleRemoveEvent={props.handleRemoveEvent}
+										/>
+									);
+								})
+							) : (
+								<h3>Sorry No Events</h3>
+							)}
+						</ul>
 					</div>
 				</div>
 			</div>
