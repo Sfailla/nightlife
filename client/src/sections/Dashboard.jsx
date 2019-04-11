@@ -9,7 +9,7 @@ import Avatar from '../components/Avatar';
 import { Icon } from '../components/Icon';
 import UserDetails from '../components/UserDetails';
 
-class Dashboard extends React.Component {
+class Dashboard extends React.PureComponent {
 	state = {
 		username: '',
 		company: '',
@@ -63,28 +63,28 @@ class Dashboard extends React.Component {
 			});
 	};
 
-	initializeShowUsers = () => {
+	initializeShowUsers = async () => {
 		const uid = this.state.user.currentUser._id;
 		let loadedUsers = [];
 
-		fetch('/users/usersList', {
+		const response = await fetch('/users/usersList', {
 			method: 'GET'
-		})
-			.then(users => users.json())
-			.then(users => {
-				users.map(user => {
-					if (user._id !== uid) {
-						loadedUsers.push(user);
-						this.setState({
-							users: loadedUsers
-						});
-					}
+		});
+
+		const users = await response.json();
+
+		users.map(async user => {
+			if (user._id !== uid) {
+				await loadedUsers.push(user);
+				await this.setState({
+					users: loadedUsers
 				});
-			});
+			}
+		});
 	};
 
 	displayUsers = () =>
-		this.state.users.length > 0 &&
+		this.state.users &&
 		this.state.users.map(user => {
 			let styles = {
 				svg: {
@@ -96,7 +96,7 @@ class Dashboard extends React.Component {
 					<div className="show-users__flex-container">
 						<div className="show-users__flex-container">
 							<Avatar avatar={user.settings.avatar} />
-							{user.username}
+							<Typography headingTertiary={user.username} />
 						</div>
 						<div className="show-users__icon-wrapper">
 							<Icon
@@ -119,6 +119,7 @@ class Dashboard extends React.Component {
 	};
 
 	render() {
+		this.state.users && console.log(this.state.users);
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__dashboard-card-layout">
@@ -132,12 +133,6 @@ class Dashboard extends React.Component {
 							classname="dashboard__sub-title"
 						/>
 					</div>
-					{this.state.users && (
-						<ShowUsers
-							displayUsers={this.displayUsers}
-							users={this.state.users}
-						/>
-					)}
 
 					<MyEvents
 						events={this.state.events}
@@ -150,6 +145,13 @@ class Dashboard extends React.Component {
 						description={this.state.description}
 						email={this.state.email}
 					/>
+
+					{this.state.users && (
+						<ShowUsers
+							displayUsers={this.displayUsers}
+							users={this.state.users}
+						/>
+					)}
 				</div>
 			</div>
 		);

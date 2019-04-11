@@ -17,7 +17,6 @@ class Account extends React.Component {
 
 	handleOnSubmit = event => {
 		event.preventDefault();
-		this.initializeUserData();
 		this.handleUpdateUserInfo();
 		this.props.history.push('/dashboard');
 	};

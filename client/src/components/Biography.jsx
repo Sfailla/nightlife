@@ -6,13 +6,11 @@ const Biography = ({ heading, content, large }) => {
 		<li className={large ? 'user-info__li--large' : 'user-info__li'}>
 			<div className="user-info__bio-heading">
 				<Typography headingTertiary={`${heading}`} />
-				<p className="user-info__bio-heading--sub-heading">
-					{content ? (
-						<Typography headingTertiary={`${content}`} />
-					) : (
-						'no company listed'
-					)}
-				</p>
+				{content ? (
+					<p className="user-info__bio-heading--sub-heading">{content}</p>
+				) : (
+					'no company listed'
+				)}
 			</div>
 		</li>
 	);

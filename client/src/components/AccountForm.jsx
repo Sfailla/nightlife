@@ -31,6 +31,7 @@ const AccountBioForm = props => {
 					type="email"
 					value={props.email || ''}
 					name="email"
+					addStyles={{ color: 'var(--secondary-color)' }}
 					label="Email"
 					handleOnChange={props.handleOnChange}
 				/>
@@ -40,16 +41,18 @@ const AccountBioForm = props => {
 					value={props.location || ''}
 					name="location"
 					label="Location"
+					addStyles={{ color: 'var(--secondary-color)' }}
 					handleOnChange={props.handleOnChange}
 				/>
 
 				<textarea
 					className="account__textarea u-mt-25"
 					value={props.description || ''}
+					label="description"
 					name="description"
 					rows={5}
 					style={{
-						color: 'var(--primary-text-color)',
+						color: 'var(--secondary-color)',
 						fontWeight: '500',
 						fontFamily: 'inherit'
 					}}

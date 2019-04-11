@@ -24,12 +24,13 @@
 
 	&__search-card .form-group {
 		width: 60%;
+		min-width: 30rem;
 		margin: 0 auto;
 	}
 
 	&__search-card {
 		width: 75%;
-		min-height: 35rem;
+		min-width: 35rem;
 		border-bottom: 4px solid var(--primary-color);
 		background: var(--color-white);
 		box-shadow: var(--box-shadow-md-l);

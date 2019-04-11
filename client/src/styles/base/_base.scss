@@ -11,6 +11,8 @@ html {
 	font-family: sans-serif;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
+	width: 100%;
+	min-width: 275px;
 
 	@media (max-width: 62.5em) {
 		font-size: 56.25%;
@@ -21,6 +23,7 @@ html {
 }
 
 body {
+	min-width: 275px;
 	background: #fcfcfc;
 }
 

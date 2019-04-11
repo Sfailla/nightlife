@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { truncate } from '../utils/functions';
 import Typography from './Typography';
 import Event from './Event';
 
@@ -25,7 +26,7 @@ const MyEvents = props => {
 											key={event._id}
 											id={event._id}
 											image={event.image}
-											name={event.name}
+											name={truncate(event.name, 15)}
 											rating={event.rating}
 											handleRemoveEvent={props.handleRemoveEvent}
 										/>

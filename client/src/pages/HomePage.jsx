@@ -29,9 +29,10 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 	/>
 );
 
-class HomePage extends React.Component {
+class HomePage extends React.PureComponent {
 	static propTypes = {
-		logout: PropTypes.func
+		logout: PropTypes.func,
+		isLoggedIn: PropTypes.func
 	};
 
 	state = {

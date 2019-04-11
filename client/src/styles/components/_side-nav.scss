@@ -40,11 +40,17 @@
 
 		& li {
 			width: 100%;
-			padding: 2rem 1rem;
+			height: 5rem;
 			font-size: 1.7rem;
+			padding-left: 1rem;
 			text-transform: uppercase;
-			text-align: center; // remove after icons are placed
 			list-style: none;
+			@include flex-center(center, center);
+
+			& svg {
+				fill: white;
+				margin-right: 1rem;
+			}
 		}
 
 		& li:not(:last-of-type) {
@@ -59,10 +65,11 @@
 		& li a,
 		& li a:link {
 			width: 100%;
-			display: block;
+			height: 100%;
 			outline: none;
 			text-decoration: none;
 			color: white;
+			@include flex-center(flex-start, center);
 		}
 
 		& li a:hover,
