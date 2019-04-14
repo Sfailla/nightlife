@@ -114,8 +114,7 @@ class Search extends React.Component {
 				alignItems: 'center'
 			},
 			background: {
-				backgroundImage: `linear-gradient(to right, rgba(232, 232, 232, .6), rgba(216, 82, 82, .6))`
-				// background: `url('https://images.pexels.com/photos/248427/pexels-photo-248427.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500') no-repeat center / cover`
+				// backgroundImage: `linear-gradient(to right, rgba(232, 232, 232, .6), rgba(216, 82, 82, .6))`
 			},
 			backToTop: {
 				padding: '2rem',

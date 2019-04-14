@@ -57,7 +57,6 @@ class SearchResComponent extends React.Component {
 			})
 			.catch(err => console.log(err));
 	};
-	componentDidMount = () => {};
 
 	render() {
 		return (
