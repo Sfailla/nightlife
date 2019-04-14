@@ -10,9 +10,10 @@ const SideDrawer = props => {
 	}
 	return (
 		<div className={drawerClass}>
-			<nav className="side-drawer__navigation">
+			<div className="side-drawer__avatar">avatar</div>
+			<div className="side-drawer__nav">
 				<MobileNavigation />
-			</nav>
+			</div>
 		</div>
 	);
 };
