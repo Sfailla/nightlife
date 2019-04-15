@@ -23,7 +23,7 @@ class MainHeaderList extends React.Component {
 						<li>{this.props.isLoggedIn && this.props.user.username}</li>
 						<li>
 							{this.props.isLoggedIn && (
-								<Avatar avatar={this.props.user.avatar} />
+								<Avatar avatar={this.props.user.avatar} size={'4rem'} />
 							)}
 						</li>
 						<li>
