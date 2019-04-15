@@ -76,6 +76,7 @@ class HomePage extends React.PureComponent {
 	};
 
 	render() {
+		console.log(this.props.user);
 		let backdrop;
 		if (this.state.openDrawer) {
 			backdrop = <Backdrop closeDrawer={this.handleCloseDrawer} />;
@@ -92,7 +93,13 @@ class HomePage extends React.PureComponent {
 					<MainSideNav isLoggedIn={this.props.user.isLoggedIn} />
 				</div>
 				<div className="home__main-page-area">
-					<SideDrawer showDrawer={this.state.openDrawer} />
+					<SideDrawer
+						username={this.props.user.username}
+						avatar={this.props.user.avatar}
+						isLoggedIn={this.props.user.isLoggedIn}
+						logout={this.logout}
+						showDrawer={this.state.openDrawer}
+					/>
 					{backdrop}
 					<Switch>
 						<Route exact path="/" component={Search} />
