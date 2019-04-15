@@ -2,35 +2,6 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-// const mobileNavStyle = `
-//   .side-drawer__li a {
-// 		display: block;
-//     font-size: 3rem;
-//     font-weight: bold;
-//   }
-//   .side-drawer__ul {
-//     display: flex;
-//     flex-direction: column;
-//   }
-//   .side-drawer__li {
-//     list-style: none;
-//     margin-bottom: 2rem;
-//   }
-//   .side-drawer__link {
-//     text-align: left;
-//     text-decoration: none;
-//     color: var(--color-gold);
-//   }
-//   .side-drawer__link:hover {
-//     color: var(--secondary-color);
-//     transition: color .2s ease-in-out;
-//   }
-// `;
-
-// document.head.appendChild(
-// 	document.createElement('style')
-// ).textContent = mobileNavStyle;
-
 const MobileNavigation = props => {
 	return (
 		<Fragment>
