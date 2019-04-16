@@ -6,7 +6,6 @@ import { isLoggedIn, setUser, setUsername, setAvatar } from '../actions/users';
 import Typography from '../components/Typography';
 import Auth from '../utils/AuthClass';
 import Signup from '../components/Signup';
-import { Icon } from '../components/Icon';
 
 const styles = {
 	title: {
