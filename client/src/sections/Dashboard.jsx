@@ -95,7 +95,7 @@ class Dashboard extends React.PureComponent {
 				<li key={user._id}>
 					<div className="show-users__flex-container">
 						<div className="show-users__flex-container">
-							<Avatar avatar={user.settings.avatar} />
+							<Avatar avatar={user.settings.avatar} size={'4rem'} />
 							<Typography headingTertiary={user.username} />
 						</div>
 						<div className="show-users__icon-wrapper">

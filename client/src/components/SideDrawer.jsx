@@ -13,26 +13,42 @@ const SideDrawer = props => {
 	}
 	return (
 		<div className={drawerClass}>
-			<div className="side-drawer__avatar">
+			<div className="side-drawer__avatar-section">
 				<div className="side-drawer__profile-wrapper">
-					<ul>
-						<li>
-							<Avatar avatar={props.avatar} size={'8rem'} />
-						</li>
-						<li>
-							<Typography headingTertiary={props.username} />
-						</li>
-						<li>
-							<LogoutButton
-								logout={props.logout}
-								addStyles={{ width: '10rem' }}
-								name="logout"
+					{props.isLoggedIn ? (
+						<ul>
+							<li>
+								<Avatar avatar={props.avatar} size={'8rem'} />
+							</li>
+							<li>
+								<Typography
+									addStyles={{ color: 'white' }}
+									headingTertiary={props.username}
+								/>
+							</li>
+							<li>
+								<LogoutButton
+									logout={props.logout}
+									addStyles={{ width: '12rem' }}
+									name="logout"
+								/>
+							</li>
+						</ul>
+					) : (
+						<div className="side-drawer__img-wrapper">
+							<div className="side-drawer__logo-wrapper">
+								<p>NIGHT</p>
+								<p>LIFE</p>
+							</div>
+							<img
+								className="side-drawer__img"
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzFCT8vZwhI1Vfxfr3GMMSsV1EKuLAxYK_hfwx2knuwiYK-buW"
 							/>
-						</li>
-					</ul>
+						</div>
+					)}
 				</div>
 			</div>
-			<div className="side-drawer__nav">
+			<div className="side-drawer__nav-section">
 				<MobileNavigation />
 			</div>
 		</div>

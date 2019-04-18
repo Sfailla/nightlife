@@ -2,8 +2,13 @@
 	width: 50%;
 	min-width: 20rem;
 	height: 100%;
-	background-color: white;
-	box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.9);
+	background-image: linear-gradient(
+		to bottom right,
+		var(--primary-color),
+		var(--secondary-color)
+	);
+	padding: .5rem;
+	box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.9);
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -12,7 +17,28 @@
 	transform: translateX(calc(100% + 10px));
 	transition: transform .4s ease-in-out;
 
+	&__avatar-section {
+		height: 30%;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 100%;
+
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+
+	&__nav-section {
+		height: 70%;
+		position: relative;
+		z-index: 100;
+	}
+
 	&__ul {
+		padding-top: 5rem;
 		display: flex;
 		flex-direction: column;
 	}
@@ -20,41 +46,95 @@
 	&__li {
 		list-style: none;
 		margin-bottom: 2rem;
+		background: var(--primary-color);
+		height: 6rem;
+		cursor: pointer;
+		color: var(--primary-color);
 		@include flex-center(flex-start, center);
+		transition: color .4s ease-in-out, fill .4s ease-in-out;
+
+		&:hover > .side-drawer__link,
+		&:hover > .side-drawer__link svg {
+			color: var(--secondary-color);
+			fill: var(--secondary-color);
+		}
 
 		& a {
+			width: 100%;
+			height: 100%;
 			display: block;
-			font-size: 3rem;
-			font-weight: bold;
+			font-size: 2.5rem;
+			font-weight: 400;
+			letter-spacing: 1px;
 		}
+
+		& span {
+			margin-left: .5rem;
+			transition: .4s ease-in-out;
+		}
+
+		& svg {
+			fill: white;
+			transition: .4s ease-in-out;
+		}
+	}
+
+	&__img-wrapper {
+		height: 100%;
+		width: 100%;
+
+		& p {
+			position: relative;
+			z-index: 5;
+			color: white;
+			font-size: 3rem;
+			font-weight: 400;
+			letter-spacing: 2px;
+		}
+	}
+
+	&__logo-wrapper {
+		width: 100%;
+		height: 100%;
+		@include flex-center(center, center);
+	}
+
+	&__img {
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	&__link-wrapper {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		height: 100%;
+		padding-left: 1rem;
 	}
 
 	&__link {
 		text-align: left;
 		text-decoration: none;
-		color: var(--color-gold);
+		color: white;
+		@include flex-center(center, center);
 
 		&:hover {
-			color: var(--secondary-color);
+			color: white;
 			transition: color .4s ease-in-out;
 		}
 	}
 
-	&__avatar {
-		height: 25%;
-		background: lightblue;
-		padding: 1rem;
-	}
-
-	&__nav {
-		height: 75%;
-		background: lightpink;
-		padding: 1rem;
+	&__search-title {
+		padding-left: 1px;
 	}
 
 	&__profile-wrapper {
 		width: 100%;
 		height: 100%;
+		position: relative;
+		z-index: 100;
 
 		& ul {
 			height: 100%;
