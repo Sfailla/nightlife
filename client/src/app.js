@@ -18,12 +18,10 @@ store.subscribe(() => {
 	saveState(store.getState());
 });
 
-const App = () => <Layout />;
-
 const app = (
 	<Provider store={store}>
 		<Router>
-			<App />
+			<Layout />
 		</Router>
 	</Provider>
 );

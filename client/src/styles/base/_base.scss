@@ -26,7 +26,10 @@ body {
 	width: 100vw;
 	height: 100vh;
 	min-width: 275px;
-	background: #fcfcfc;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-blend-mode: overlay;
 }
 
 img {

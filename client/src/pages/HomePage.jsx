@@ -16,6 +16,7 @@ import Login from '../components/Login';
 import SideDrawer from '../components/SideDrawer';
 import Backdrop from '../components/Backdrop';
 import Auth from '../utils/AuthClass';
+import BGImg from '../images/city-skyline.png';
 
 const AuthRoute = ({ component: Component, ...rest }) => (
 	<Route
@@ -75,8 +76,12 @@ class HomePage extends React.PureComponent {
 		this.props.history.push('/');
 	};
 
+	componentDidMount() {
+		const body = document.getElementsByTagName('body')[0];
+		body.style.backgroundImage = `url('${BGImg}')`;
+	}
+
 	render() {
-		console.log(this.props.user);
 		let backdrop;
 		if (this.state.openDrawer) {
 			backdrop = <Backdrop closeDrawer={this.handleCloseDrawer} />;
