@@ -9,7 +9,7 @@ export const BorderlessForm = ({
 	type,
 	label
 }) => (
-	<Fragment>
+	<div className="form">
 		<div className="form-group">
 			<input
 				className="borderless-form"
@@ -26,7 +26,7 @@ export const BorderlessForm = ({
 				{label}
 			</label>
 		</div>
-	</Fragment>
+	</div>
 );
 
 export const Form = ({
@@ -39,21 +39,23 @@ export const Form = ({
 	name
 }) => (
 	<Fragment>
-		<div className="form-group form">
-			<input
-				className="search-input"
-				style={{ ...addStyles }}
-				id={name}
-				name={name}
-				value={value}
-				type={type}
-				autoComplete={autocomplete ? 'on' : 'off'}
-				placeholder={label}
-				onChange={handleOnChange}
-			/>
-			<label className="form" htmlFor={name}>
-				{label}
-			</label>
+		<div className="form">
+			<div className="form-group">
+				<input
+					className="search-input"
+					style={{ ...addStyles }}
+					id={name}
+					name={name}
+					value={value}
+					type={type}
+					autoComplete={autocomplete ? 'on' : 'off'}
+					placeholder={label}
+					onChange={handleOnChange}
+				/>
+				<label className="form" htmlFor={name}>
+					{label}
+				</label>
+			</div>
 		</div>
 	</Fragment>
 );

@@ -13,7 +13,7 @@ const SearchCard = ({ handleOnChange, handleOnSubmit, errors }) => {
 				/>
 				<Typography
 					headingTertiary="Please enter City, State, and/or Zip"
-					classname="search__heading-secondary--sub u-center-text u-mb-25"
+					classname="search__heading-secondary--sub u-center-text"
 				/>
 				<form onSubmit={handleOnSubmit}>
 					<Form

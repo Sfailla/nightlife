@@ -128,9 +128,10 @@ class Search extends React.Component {
 		return (
 			<div style={styles.background} id="search" className="search">
 				<Typography
-					headingPrimary="Welcome To NightLife Search"
+					headingPrimary="Welcome To NightLife"
 					classname="search__heading u-center-text"
 				/>
+
 				<SearchCard
 					handleOnChange={this.handleOnChange}
 					handleOnSubmit={this.handleOnSubmit}
@@ -171,9 +172,9 @@ class Search extends React.Component {
 							) : null}
 						</ul>
 
-						<div className="search__yelp-tag-wrapper">
+						{/* <div className="search__yelp-tag-wrapper">
 							<h1 className="search__yelp-tag">Powered By Yelp</h1>
-						</div>
+						</div> */}
 
 						{this.state.results.length > 0 && (
 							<div style={styles.btnWrapper}>

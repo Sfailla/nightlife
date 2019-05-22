@@ -1,13 +1,11 @@
 import React from 'react';
 
 const styles = {
-	display: 'flex',
-	alignItems: 'center',
-	order: '1'
+	display: 'flex'
 };
 
 const CheckGroup = ({ name, checked, labelName, handleCBChange }) => (
-	<div style={styles}>
+	<div className="checkbox" style={styles}>
 		<input
 			id={name}
 			name={name}

@@ -30,6 +30,11 @@ const styles = {
 		transform: 'translateX(-50%)',
 		width: '39rem',
 		textAlign: 'center'
+	},
+	title: {
+		textAlign: 'center',
+		color: 'var(--primary-color)',
+		fontWeight: 'bold'
 	}
 };
 

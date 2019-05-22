@@ -5,7 +5,6 @@
 	padding: 2rem 0rem;
 
 	&__heading {
-		margin: 3rem 0;
 		padding-top: 2rem;
 		font-size: 4rem;
 	}
@@ -15,8 +14,7 @@
 		color: var(--primary-text-color);
 
 		&--sub {
-			padding-top: 1rem;
-			padding-bottom: 3rem;
+			padding-bottom: 1rem;
 			font-weight: 400;
 			color: blue;
 		}
@@ -24,7 +22,6 @@
 
 	&__search-card .form-group {
 		width: 60%;
-		height: 18rem;
 		min-width: 30rem;
 		margin: 0 auto;
 	}
@@ -32,16 +29,27 @@
 	&__search-card {
 		width: 75%;
 		min-width: 35rem;
+		height: 35rem;
 		border-radius: 5px;
 		border-bottom: 4px solid var(--primary-color);
 		background: var(--color-white);
 		box-shadow: var(--box-shadow-md-l);
-		margin: 3rem auto;
+		margin: 0 auto;
+
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		@media (max-width: 37.5em) {
+			width: 90%;
+		}
 	}
 
 	&__search-container {
-		height: 100%;
-		padding: 4rem 1rem 1rem 1rem;
+		height: auto;
+		line-height: 2;
+		padding: 7rem 1rem;
 	}
 
 	&__search-card label {
@@ -50,10 +58,7 @@
 	}
 
 	&__search-card input {
-		color: var(--color-grey-dark);
 		background: #fcfcfc;
-		font-size: inherit;
-		font-family: inherit;
 		border: 1px solid rgb(202, 202, 202);
 		box-shadow: var(--box-shadow-sm-l);
 	}

@@ -4,6 +4,7 @@
 		padding: 2rem;
 		display: block;
 		overflow: auto;
+		height: 100%;
 	}
 
 	&__title-wrapper {
@@ -40,7 +41,7 @@
 		min-height: 30rem;
 		margin-top: 4rem;
 		display: grid;
-		grid-template-columns: 1fr 1fr 20rem;
+		grid-template-columns: 1fr 1fr;
 		grid-gap: 2rem;
 		grid-template-rows: max-content minmax(30rem, 1fr);
 

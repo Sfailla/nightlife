@@ -119,7 +119,6 @@ class Dashboard extends React.PureComponent {
 	};
 
 	render() {
-		this.state.users && console.log(this.state.users);
 		return (
 			<div className="dashboard__container">
 				<div className="dashboard__dashboard-card-layout">
@@ -134,6 +133,13 @@ class Dashboard extends React.PureComponent {
 						/>
 					</div>
 
+					{this.state.users && (
+						<ShowUsers
+							displayUsers={this.displayUsers}
+							users={this.state.users}
+						/>
+					)}
+
 					<MyEvents
 						events={this.state.events}
 						handleRemoveEvent={this.handleRemoveEvent}
@@ -145,13 +151,6 @@ class Dashboard extends React.PureComponent {
 						description={this.state.description}
 						email={this.state.email}
 					/>
-
-					{this.state.users && (
-						<ShowUsers
-							displayUsers={this.displayUsers}
-							users={this.state.users}
-						/>
-					)}
 				</div>
 			</div>
 		);
