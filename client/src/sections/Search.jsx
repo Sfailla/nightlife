@@ -12,6 +12,7 @@ class Search extends React.Component {
 	state = {
 		searchVal: '',
 		results: [],
+		hasResults: false,
 		events: [],
 		isLoading: false,
 		errors: ''
@@ -46,16 +47,12 @@ class Search extends React.Component {
 
 	handleFetchData = () => {
 		this.setState(() => ({ isLoading: true }));
-		fetch(
-			`${api.yelp.baseURL}location=${this.state
-				.searchVal}&limit=15&term=nightclubs, bars`,
-			{
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${this.getToken()}`
-				}
+		fetch(`${api.yelp.baseURL}location=${this.state.searchVal}&limit=15&term=nightclubs, bars`, {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${this.getToken()}`
 			}
-		)
+		})
 			.then(res => {
 				if (res.status >= 200 && res.status <= 300) {
 					return res.json();
@@ -73,6 +70,7 @@ class Search extends React.Component {
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,
+						hasResults: true,
 						searchVal: '',
 						errors: ''
 					}));
@@ -86,8 +84,24 @@ class Search extends React.Component {
 	};
 
 	handleClearSearch = () => {
-		this.setState(() => ({ results: [] }));
+		this.setState(() => ({ results: [], hasResults: false }));
 	};
+
+	scrollToBottom = () => {
+		this.findResults.scrollIntoView({ behavior: 'smooth' });
+	};
+
+	stopAutoScroll = () => {
+		this.setState({ hasResults: false });
+	};
+
+	componentDidUpdate() {
+		if (this.state.hasResults) {
+			if (this.findResults) {
+				this.scrollToBottom();
+			}
+		}
+	}
 
 	render() {
 		const styles = {
@@ -127,31 +141,32 @@ class Search extends React.Component {
 		};
 		return (
 			<div style={styles.background} id="search" className="search">
-				<Typography
-					headingPrimary="Welcome To NightLife"
-					classname="search__heading u-center-text"
-				/>
-
-				<SearchCard
-					handleOnChange={this.handleOnChange}
-					handleOnSubmit={this.handleOnSubmit}
-					errors={this.state.errors}
-				/>
-
-				{this.state.results.length > 0 && (
-					<Button
-						addStyles={styles.button}
-						type="button"
-						name="Clear Results"
-						onClick={this.handleClearSearch}
-					/>
-				)}
+				<div className="search__container">
+					<div className="search__header">
+						<Typography headingPrimary="Welcome To NightLife" classname="search__heading" />
+					</div>
+					<div className="search__body">
+						<SearchCard
+							handleOnChange={this.handleOnChange}
+							handleOnSubmit={this.handleOnSubmit}
+							errors={this.state.errors}
+						/>
+					</div>
+				</div>
 
 				<div className="results">
 					<div className="results__container">
-						<div style={styles.spinner}>
-							{this.state.isLoading && <Loader />}
-						</div>
+						<div ref={node => (this.findResults = node)} />
+						<div style={styles.spinner}>{this.state.isLoading && <Loader />}</div>
+						{this.state.results.length > 0 && (
+							<Button
+								addStyles={styles.button}
+								type="button"
+								name="Clear Results"
+								onClick={this.handleClearSearch}
+							/>
+						)}
+
 						<ul>
 							{this.state.results.length ? (
 								this.state.results.map(data => {
@@ -178,7 +193,7 @@ class Search extends React.Component {
 
 						{this.state.results.length > 0 && (
 							<div style={styles.btnWrapper}>
-								<a href="#search" style={styles.backToTop}>
+								<a href="#search" onClick={this.stopAutoScroll} style={styles.backToTop}>
 									back to top
 								</a>
 							</div>

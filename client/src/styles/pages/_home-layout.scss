@@ -9,11 +9,7 @@
 		align-items: center;
 		box-shadow: var(--box-shadow-sm-l);
 		color: var(--link-color);
-		background-image: linear-gradient(
-			to right,
-			var(--secondary-color),
-			var(--primary-color)
-		);
+		background-image: linear-gradient(to right, var(--secondary-color), var(--primary-color));
 		z-index: 15;
 
 		@media (max-width: 81.31em) {
@@ -83,7 +79,7 @@
 		grid-template-rows: 7rem 1fr;
 		box-shadow: 5px 5px 12px 3px rgba(0, 0, 0, .6);
 
-		height: 80vh;
+		height: 80rem;
 		margin-top: 4rem;
 		background-color: #fff;
 
