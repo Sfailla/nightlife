@@ -138,7 +138,7 @@
 		box-shadow: var(--box-shadow-sm-l);
 
 		@media (max-width: 56.25em) {
-			grid-column: 1 / -1;
+			grid-column: 1 / 2;
 		}
 
 		& h3 {
@@ -192,6 +192,8 @@
 	background: white;
 	box-shadow: var(--box-shadow-sm-l);
 	padding: 1rem;
+
+	grid-column: 1 / 2;
 
 	& ul {
 		padding: 1rem 0;
