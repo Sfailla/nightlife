@@ -64,8 +64,7 @@ class SearchResComponent extends React.Component {
 				<div className="results__card--left">
 					<img
 						src={
-							this.props.image !== '' &&
-							typeof this.props.image === 'string' ? (
+							this.props.image !== '' && typeof this.props.image === 'string' ? (
 								this.props.image
 							) : (
 								defaultImgSrc
@@ -98,12 +97,7 @@ class SearchResComponent extends React.Component {
 									onClick={this.addEvent}
 									name="Add to My Events"
 								/>
-								<a
-									style={styles.a}
-									href={this.props.moreInfoLink}
-									target="_blank"
-									rel="noopener"
-								>
+								<a style={styles.a} href={this.props.moreInfoLink} target="_blank" rel="noopener">
 									<Button
 										type="submit"
 										addStyles={styles.detailsButton}
@@ -114,9 +108,7 @@ class SearchResComponent extends React.Component {
 							</div>
 						)}
 						{!this.props.isLoggedIn && (
-							<div className="results__lower-box">
-								Register for more options
-							</div>
+							<div className="results__lower-box">Register for more options</div>
 						)}
 					</div>
 				</div>
