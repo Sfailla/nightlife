@@ -11,43 +11,28 @@ import Loader from '../components/Loader';
 class Search extends React.Component {
 	state = {
 		searchVal: '',
-		results: [],
 		hasResults: false,
-		events: [],
 		isLoading: false,
+		results: [],
+		events: [],
 		errors: ''
-	};
-
-	handleOnSubmit = evt => {
-		evt.preventDefault();
-
-		if (this.state.searchVal.length) {
-			evt.target.elements[0].value = '';
-			this.setState(() => ({ errors: '' }));
-			this.handleFetchData();
-		} else {
-			this.setState(() => ({
-				errors: '** you must enter a location to search **'
-			}));
-		}
-	};
-
-	handleOnChange = evt => {
-		const { value } = evt.target;
-		this.setState(() => ({ searchVal: value, errors: '' }));
 	};
 
 	getToken = () => {
 		return api.yelp.token;
 	};
 
+	getSearchValue = value => {
+		this.setState({ searchVal: value });
+	};
+
 	addEvent = event => {
 		this.setState(() => ({ events: [ ...this.state.events, event ] }));
 	};
 
-	handleFetchData = () => {
+	handleFetchData = searchVal => {
 		this.setState(() => ({ isLoading: true }));
-		fetch(`${api.yelp.baseURL}location=${this.state.searchVal}&limit=15&term=nightclubs, bars`, {
+		fetch(`${api.yelp.baseURL}location=${searchVal}&limit=15&term=nightclubs, bars`, {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${this.getToken()}`
@@ -127,9 +112,6 @@ class Search extends React.Component {
 				justifyContent: 'center',
 				alignItems: 'center'
 			},
-			background: {
-				// backgroundImage: `linear-gradient(to right, rgba(232, 232, 232, .6), rgba(216, 82, 82, .6))`
-			},
 			backToTop: {
 				padding: '2rem',
 				color: 'var(--primary-color)'
@@ -139,6 +121,7 @@ class Search extends React.Component {
 				textAlign: 'center'
 			}
 		};
+		console.log(this.state.searchVal);
 		return (
 			<div style={styles.background} id="search" className="search">
 				<div className="search__container">
@@ -147,8 +130,10 @@ class Search extends React.Component {
 					</div>
 					<div className="search__body">
 						<SearchCard
+							getSearchValue={this.getSearchValue}
 							handleOnChange={this.handleOnChange}
 							handleOnSubmit={this.handleOnSubmit}
+							handleFetchData={this.handleFetchData}
 							errors={this.state.errors}
 						/>
 					</div>
