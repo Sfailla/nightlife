@@ -30,6 +30,8 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-blend-mode: overlay;
+
+	@include flex-center(center, center);
 }
 
 img {
