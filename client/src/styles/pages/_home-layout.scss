@@ -76,7 +76,7 @@
 		display: grid;
 		grid-template-columns: 15rem minmax(min-content, 120rem);
 		grid-template-rows: 7rem 1fr;
-		box-shadow: 5px 5px 12px 3px rgba(0, 0, 0, .6);
+		box-shadow: 0rem 0rem 1.2rem 1rem rgba(0, 0, 0, .6);
 
 		@media (max-width: 33.13em) {
 			height: 100vh;
