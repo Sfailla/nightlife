@@ -6,8 +6,8 @@
 	&__container {
 		width: 100%;
 		height: 100%;
-		display: flex;
-		flex-direction: column;
+		// display: flex;
+		// flex-direction: column;
 	}
 
 	&__header {
@@ -16,10 +16,10 @@
 		@include flex-center(center, center);
 	}
 
-	&__body {
-		flex-grow: 1;
-		@include flex-center(center, flex-start);
-	}
+	// &__body {
+	// 	flex-grow: 1;
+	// 	@include flex-center(center, flex-start);
+	// }
 
 	&__heading {
 		font-size: 4rem;

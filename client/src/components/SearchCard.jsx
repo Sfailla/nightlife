@@ -19,7 +19,6 @@ class SearchCard extends React.Component {
 
 		if (this.state.searchVal.length) {
 			evt.target.elements[0].value = '';
-			this.props.getSearchValue(this.state.searchVal);
 			this.props.handleFetchData(this.state.searchVal);
 			this.setState(() => ({ errors: '' }));
 		} else {

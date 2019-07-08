@@ -22,17 +22,13 @@ class Search extends React.Component {
 		return api.yelp.token;
 	};
 
-	getSearchValue = value => {
-		this.setState({ searchVal: value });
-	};
-
 	addEvent = event => {
 		this.setState(() => ({ events: [ ...this.state.events, event ] }));
 	};
 
 	handleFetchData = searchVal => {
-		this.setState(() => ({ isLoading: true }));
-		fetch(`${api.yelp.baseURL}location=${searchVal}&limit=15&term=nightclubs, bars`, {
+		this.setState(() => ({ isLoading: true, searchVal }));
+		fetch(`${api.yelp.baseURL}location=${searchVal}&limit=15&term=nightclubs,bars`, {
 			method: 'GET',
 			headers: {
 				Authorization: `Bearer ${this.getToken()}`
@@ -97,7 +93,7 @@ class Search extends React.Component {
 				height: '3.5rem',
 				background: 'var(--primary-color)',
 				color: 'white',
-				margin: '2rem auto'
+				margin: '5rem auto'
 			},
 			spinner: {
 				width: '10rem',
@@ -112,16 +108,21 @@ class Search extends React.Component {
 				justifyContent: 'center',
 				alignItems: 'center'
 			},
+			resultsTitle: {
+				textAlign: 'center',
+				fontSize: '4rem',
+				marginTop: '5rem'
+			},
 			backToTop: {
 				padding: '2rem',
-				color: 'var(--primary-color)'
+				color: 'var(--secondary-color)'
 			},
 			btnWrapper: {
 				marginTop: '2rem',
 				textAlign: 'center'
 			}
 		};
-		console.log(this.state.searchVal);
+
 		return (
 			<div style={styles.background} id="search" className="search">
 				<div className="search__container">
@@ -130,59 +131,60 @@ class Search extends React.Component {
 					</div>
 					<div className="search__body">
 						<SearchCard
-							getSearchValue={this.getSearchValue}
 							handleOnChange={this.handleOnChange}
 							handleOnSubmit={this.handleOnSubmit}
 							handleFetchData={this.handleFetchData}
 							errors={this.state.errors}
 						/>
-					</div>
-				</div>
 
-				<div className="results">
-					<div className="results__container">
-						<div ref={node => (this.findResults = node)} />
-						<div style={styles.spinner}>{this.state.isLoading && <Loader />}</div>
-						{this.state.results.length > 0 && (
-							<Button
-								addStyles={styles.button}
-								type="button"
-								name="Clear Results"
-								onClick={this.handleClearSearch}
-							/>
-						)}
+						<div className="results">
+							<div className="results__container">
+								<div ref={node => (this.findResults = node)} />
+								<div style={styles.spinner}>{this.state.isLoading && <Loader />}</div>
+								{this.state.results.length > 0 && (
+									<h1 class="heading-primary" style={styles.resultsTitle}>
+										search results ({this.state.results.length})
+									</h1>
+								)}
 
-						<ul>
-							{this.state.results.length ? (
-								this.state.results.map(data => {
-									return (
-										<SearchResults
-											key={data.id}
-											name={data.name}
-											location={data.location.address1}
-											rating={data.rating}
-											moreInfoLink={data.url}
-											image={data.image_url}
-											imageAlt="bar images"
-											isLoggedIn={this.props.user.isLoggedIn}
-											history={this.props.history}
-										/>
-									);
-								})
-							) : null}
-						</ul>
+								{this.state.results.length > 0 && (
+									<Button
+										addStyles={styles.button}
+										type="button"
+										name="Clear Results"
+										onClick={this.handleClearSearch}
+									/>
+								)}
 
-						{/* <div className="search__yelp-tag-wrapper">
-							<h1 className="search__yelp-tag">Powered By Yelp</h1>
-						</div> */}
+								<ul>
+									{this.state.results.length ? (
+										this.state.results.map(data => {
+											return (
+												<SearchResults
+													key={data.id}
+													name={data.name}
+													location={data.location.address1}
+													rating={data.rating}
+													moreInfoLink={data.url}
+													image={data.image_url}
+													imageAlt="bar images"
+													isLoggedIn={this.props.user.isLoggedIn}
+													history={this.props.history}
+												/>
+											);
+										})
+									) : null}
+								</ul>
 
-						{this.state.results.length > 0 && (
-							<div style={styles.btnWrapper}>
-								<a href="#search" onClick={this.stopAutoScroll} style={styles.backToTop}>
-									back to top
-								</a>
+								{this.state.results.length > 0 && (
+									<div style={styles.btnWrapper}>
+										<a href="#search" onClick={this.stopAutoScroll} style={styles.backToTop}>
+											back to top
+										</a>
+									</div>
+								)}
 							</div>
-						)}
+						</div>
 					</div>
 				</div>
 			</div>
