@@ -13,7 +13,7 @@ const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
 		</div>
 		<div className="account__checkboxes">
 			<RadioGroup
-				labelName="male-avatar"
+				labelName="male avatar"
 				type="radio"
 				id="male-avatar"
 				handleChecked={avatarSelect === 'male-avatar'}
@@ -22,7 +22,7 @@ const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
 			/>
 
 			<RadioGroup
-				labelName="female-avatar"
+				labelName="female avatar"
 				type="radio"
 				id="female-avatar"
 				handleChecked={avatarSelect === 'female-avatar'}
@@ -31,7 +31,7 @@ const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
 			/>
 
 			<RadioGroup
-				labelName="default-avatar"
+				labelName="default avatar"
 				type="radio"
 				id="default-avatar"
 				handleChecked={avatarSelect === 'default-avatar'}

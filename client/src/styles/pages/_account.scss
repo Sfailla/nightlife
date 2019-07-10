@@ -20,12 +20,23 @@
 
 	&__avatar {
 		justify-self: center;
+		grid-column: 1 / 2;
+		grid-row: 1 / 2;
 
 		& img {
 			width: 15rem;
 			height: 15rem;
 			border: 3px solid currentColor;
 		}
+	}
+
+	&__checkboxes {
+		grid-row: 1 / 3;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		height: 100%;
+		// background: lightpink;
 	}
 
 	&__avatar-wrapper {
@@ -42,12 +53,23 @@
 
 	&__form-group {
 		display: flex;
-		// align-items: center;
-		// margin: 0 0 1rem 0;
+		align-items: center;
+		margin-left: 1rem;
+		padding-left: 1rem;
 
-		// & input[type="radio"] {
-		// 	margin-right: .5rem;
-		// }
+		height: 4rem;
+		width: calc(100% - 2rem);
+		background: var(--primary-color);
+
+		& input[type="radio"] {
+			margin-right: .5rem;
+		}
+
+		& label {
+			color: gold;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+		}
 	}
 
 	&__content {
