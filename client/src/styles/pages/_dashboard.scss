@@ -44,7 +44,7 @@
 		justify-content: center;
 		grid-template-columns: minmax(600px, 800px);
 		grid-gap: 2rem;
-		grid-template-rows: max-content minmax(30rem, 1fr);
+		grid-template-rows: 1fr;
 
 		@media (max-width: 56.25em) {
 			grid-template-columns: minmax(400px, 600px);
