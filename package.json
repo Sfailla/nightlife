@@ -7,6 +7,7 @@
 		"dev": "concurrently -k \"npm run server\" \"npm run dev\"",
 		"dev:start": "start firefox http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
 		"start": "nodemon server/server.js",
+		"heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress",
 		"build": "webpack -p --progress",
 		"test-watch": "nodemon --exec \"npm test\"",
 		"test": "SET \"NODE_ENV=test\" && mocha server/**/*.test.js"
