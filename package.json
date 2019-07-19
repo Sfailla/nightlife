@@ -4,9 +4,10 @@
 	"description": "full stack project from FCC",
 	"main": "server.js",
 	"scripts": {
-		"start": "concurrently -k \"npm run server\" \"npm run dev\"",
-		"dev": "start firefox http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
-		"server": "nodemon server/server.js",
+		"dev": "concurrently -k \"npm run server\" \"npm run dev\"",
+		"dev:start": "start firefox http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
+		"start": "nodemon server/server.js",
+		"heroku-postbuild": "webpack -p",
 		"build": "webpack -p --progress",
 		"test-watch": "nodemon --exec \"npm test\"",
 		"test": "SET \"NODE_ENV=test\" && mocha server/**/*.test.js"
