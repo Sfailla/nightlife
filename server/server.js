@@ -22,13 +22,13 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/users', users);
 
-app.get('/*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public/index.html'), err => {
-		if (err) res.status(500).send(err);
-	});
-});
+// app.get('/*', (req, res) => {
+// 	res.sendFile(path.join(__dirname, '../public/index.html'), err => {
+// 		if (err) res.status(500).send(err);
+// 	});
+// });
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => console.log(`express server running on port: ${process.env.PORT}`));
 
