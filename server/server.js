@@ -23,12 +23,14 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/users', users);
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, 'client')));
+	app.use(express.static(path.join(__dirname, '../public')));
 }
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'public', 'index.html'));
+	res.sendFile(path.join(path.join(__dirname, '../public', 'index.html')));
 });
+
+console.log(path.join(__dirname, '../public', 'index.html'));
 
 const port = process.env.PORT || 3001;
 
