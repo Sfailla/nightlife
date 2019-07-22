@@ -16,10 +16,6 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// always gives me problems linking css because server.js is not in root dir
-// app.use(express.static(path.join(__dirname, '../client')));
-// app.use(express.static(path.join(__dirname, '../public')));
-
 app.use('/users', users);
 
 if (process.env.NODE_ENV === 'production') {
