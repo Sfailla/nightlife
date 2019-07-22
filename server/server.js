@@ -23,11 +23,11 @@ app.use(bodyParser.json());
 app.use('/users', users);
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '../public')));
+	app.use(express.static(path.join(__dirname, '../client', 'public', 'build')));
 }
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public', 'index.html'));
+	res.sendFile(path.join(__dirname, '../client', 'public', 'index.html'));
 });
 
 const port = process.env.PORT || 3001;

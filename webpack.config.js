@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
 	entry: './client/src/app.js',
 	output: {
-		path: path.resolve(__dirname, 'public'),
+		path: path.resolve(__dirname, 'public', 'build'),
 		filename: 'bundle.js'
 	},
 	module: {
@@ -61,13 +61,13 @@ module.exports = {
 	devtool: 'inline-cheap-module-source-map ',
 	watch: true,
 	devServer: {
-		contentBase: path.join(__dirname, 'public'),
+		contentBase: path.join(__dirname, 'client', 'public'),
 		inline: true,
 		historyApiFallback: true,
 		proxy: {
 			'*': {
 				target: 'http://localhost:3001',
-				secure: false
+				secure: true
 			}
 		}
 	}
