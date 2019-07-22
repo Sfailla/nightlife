@@ -58,7 +58,7 @@ module.exports = {
 			filename: 'style.css'
 		})
 	],
-	devtool: 'inline-cheap-module-source-map ',
+	devtool: 'source-map ',
 	watch: true,
 	devServer: {
 		contentBase: path.join(__dirname, 'client', 'public'),
