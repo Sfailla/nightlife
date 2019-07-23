@@ -16,7 +16,7 @@ module.exports = {
 			cacheGroups: {
 				styles: {
 					name: 'styles',
-					test: /\.css$/,
+					test: /\.s?css$/,
 					chunks: 'all',
 					enforce: true
 				}
@@ -42,11 +42,8 @@ module.exports = {
 				test: /\.(sa|sc|c)ss$/,
 				use: [
 					{
-						loader: MiniCssExtractPlugin.loader,
+						loader: !isProd ? 'style-loader' : MiniCssExtractPlugin.loader,
 						options: {
-							// you can specify a publicPath here
-							// by default it uses publicPath in webpackOptions.output
-							publicPath: '/build/',
 							hmr: !isProd
 						}
 					},
