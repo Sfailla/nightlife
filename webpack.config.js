@@ -1,12 +1,27 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+let isProd = process.env.NODE_ENV === 'production';
+
 // good config for react, express full stack projects
 module.exports = {
 	entry: './client/src/app.js',
 	output: {
 		path: path.resolve(__dirname, 'client', 'public', 'build'),
-		filename: 'bundle.js'
+		filename: 'bundle.js',
+		publicPath: '/build/'
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				styles: {
+					name: 'styles',
+					test: /\.css$/,
+					chunks: 'all',
+					enforce: true
+				}
+			}
+		}
 	},
 	module: {
 		rules: [
@@ -24,28 +39,29 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.s?css$/,
+				test: /\.(sa|sc|c)ss$/,
 				use: [
-					'style-loader',
-					MiniCssExtractPlugin.loader,
 					{
-						loader: 'css-loader',
+						loader: MiniCssExtractPlugin.loader,
 						options: {
-							sourceMap: true
+							// you can specify a publicPath here
+							// by default it uses publicPath in webpackOptions.output
+							publicPath: '/build/',
+							hmr: !isProd
 						}
 					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: true
-						}
-					}
+					'css-loader',
+					'sass-loader'
 				]
 			},
 			{
-				test: /\.(gif|png|jpe?g)$/i,
-				exclude: [ /node_modules/ ],
-				loaders: [ 'file-loader', 'image-webpack-loader' ]
+				test: /\.(gif|png|jpe?g|svg)$/i,
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader'
+					}
+				]
 			}
 		]
 	},
@@ -55,13 +71,15 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			sourceMap: true,
-			filename: 'style.css'
+			filename: 'style.css',
+			chunkFilename: !isProd ? '[id].css' : '[id].[hash].css'
 		})
 	],
-	devtool: 'source-map ',
+	devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
 	watch: true,
 	devServer: {
 		contentBase: path.join(__dirname, 'client', 'public'),
+		publicPath: '/build/',
 		inline: true,
 		historyApiFallback: true,
 		proxy: {

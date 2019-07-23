@@ -1,0 +1,17 @@
+{
+	"test": {
+		"PORT": 3000,
+		"MONGOOSE_URI": "mongodb://stevo99:nightlife1@ds231720.mlab.com:31720/night-test",
+		"JWT_SECRET": "ajfkldhfiuvoaifklwen"
+	},
+	"development": {
+		"PORT": 3001,
+		"MONGOOSE_URI": "mongodb://stevo99:nightlife1@ds259778.mlab.com:59778/night",
+		"JWT_SECRET": "lturvhlnhnlaveuahif"
+	},
+	"production": {
+		"PORT": 3002,
+		"MONGOOSE_URI": "mongodb://stevo99:nightlife1@ds259778.mlab.com:59778/night",
+		"JWT_SECRET": "lturvhlnhnlaveuahif"
+	}
+}

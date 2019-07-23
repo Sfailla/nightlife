@@ -22,6 +22,11 @@ if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.join(__dirname, '../client', 'public', 'build')));
 }
 
+let dpath = path.join(__dirname, '../client', 'public');
+console.log(dpath);
+
+app.use(express.static(path.join(__dirname, '../client', 'public')));
+
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client', 'public', 'index.html'));
 });
