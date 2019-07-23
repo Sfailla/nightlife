@@ -11,18 +11,6 @@ module.exports = {
 		filename: 'bundle.js',
 		publicPath: '/build/'
 	},
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				styles: {
-					name: 'styles',
-					test: /\.s?css$/,
-					chunks: 'all',
-					enforce: true
-				}
-			}
-		}
-	},
 	module: {
 		rules: [
 			{
@@ -42,13 +30,23 @@ module.exports = {
 				test: /\.(sa|sc|c)ss$/,
 				use: [
 					{
-						loader: !isProd ? 'style-loader' : MiniCssExtractPlugin.loader,
+						loader: 'style-loader',
 						options: {
-							hmr: !isProd
+							sourceMap: true
 						}
 					},
-					'css-loader',
-					'sass-loader'
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					}
 				]
 			},
 			{
@@ -65,13 +63,13 @@ module.exports = {
 	resolve: {
 		extensions: [ '.js', '.jsx', '.json' ]
 	},
-	plugins: [
-		new MiniCssExtractPlugin({
-			sourceMap: true,
-			filename: 'style.css',
-			chunkFilename: !isProd ? '[id].css' : '[id].[hash].css'
-		})
-	],
+	// plugins: [
+	// 	new MiniCssExtractPlugin({
+	// 		sourceMap: true,
+	// 		filename: 'style.css',
+	// 		chunkFilename: !isProd ? '[id].css' : '[id].[hash].css'
+	// 	})
+	// ],
 	devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
 	watch: true,
 	devServer: {
