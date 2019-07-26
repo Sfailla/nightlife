@@ -19,16 +19,13 @@ app.use(bodyParser.json());
 app.use('/users', users);
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '../client', 'public', 'build')));
+	app.use(express.static(path.join(__dirname, '../public')));
 }
 
-let dpath = path.join(__dirname, '../client', 'public');
-console.log(dpath);
-
-app.use(express.static(path.join(__dirname, '../client', 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../client', 'public', 'index.html'));
+	res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 const port = process.env.PORT || 3001;

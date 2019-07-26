@@ -7,21 +7,8 @@ let isProd = process.env.NODE_ENV === 'production';
 module.exports = {
 	entry: './client/src/app.js',
 	output: {
-		path: path.resolve(__dirname, 'client', 'public', 'build'),
-		filename: 'bundle.js',
-		publicPath: '/build/'
-	},
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				styles: {
-					name: 'styles',
-					test: /\.s?css$/,
-					chunks: 'all',
-					enforce: true
-				}
-			}
-		}
+		path: path.resolve(__dirname, 'public'),
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
@@ -39,26 +26,28 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.(sa|sc|c)ss$/,
+				test: /\.s?css$/,
 				use: [
+					'style-loader',
+					MiniCssExtractPlugin.loader,
 					{
-						loader: !isProd ? 'style-loader' : MiniCssExtractPlugin.loader,
+						loader: 'css-loader',
 						options: {
-							hmr: !isProd
+							sourceMap: true
 						}
 					},
-					'css-loader',
-					'sass-loader'
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					}
 				]
 			},
 			{
-				test: /\.(gif|png|jpe?g|svg)$/i,
-				use: [
-					'file-loader',
-					{
-						loader: 'image-webpack-loader'
-					}
-				]
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				exclude: [ /node_modules/ ],
+				loaders: [ 'file-loader', 'image-webpack-loader' ]
 			}
 		]
 	},
@@ -68,21 +57,19 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			sourceMap: true,
-			filename: 'style.css',
-			chunkFilename: !isProd ? '[id].css' : '[id].[hash].css'
+			filename: 'style.css'
 		})
 	],
-	devtool: isProd ? 'source-map' : 'eval-cheap-module-source-map',
+	devtool: isProd ? 'source-map' : 'inline-cheap-module-source-map ',
 	watch: true,
 	devServer: {
-		contentBase: path.join(__dirname, 'client', 'public'),
-		publicPath: '/build/',
+		contentBase: path.join(__dirname, 'public'),
 		inline: true,
 		historyApiFallback: true,
 		proxy: {
 			'*': {
 				target: 'http://localhost:3001',
-				secure: true
+				secure: false
 			}
 		}
 	}
