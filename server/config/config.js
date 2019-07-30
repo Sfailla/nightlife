@@ -1,9 +1,9 @@
 // ENV VARIABLES
 
-let env = process.env.NODE_ENV || 'development';
+let env = process.env.NODE_ENV || 'development' || 'production';
 console.log('node_env === ', env);
 
-if (env === 'development' || env === 'test') {
+if (env === 'development' || env === 'test' || env === 'production') {
 	let config = require('./config.json');
 	let envConfig = config[env];
 
