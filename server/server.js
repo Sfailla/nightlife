@@ -6,7 +6,6 @@ const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const users = require('./routes/users');
-const publicPath = path.join(__dirname, '..', 'public');
 
 const app = express();
 
@@ -17,10 +16,10 @@ app.use(bodyParser.json());
 
 app.use('/users', users);
 
-app.use(express.static(publicPath, 'build'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(publicPath, 'index.html'));
+	res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 const port = process.env.PORT || 3001;
