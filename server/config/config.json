@@ -8,10 +8,5 @@
 		"PORT": 3001,
 		"MONGOOSE_URI": "mongodb://stevo99:nightlife1@ds259778.mlab.com:59778/night",
 		"JWT_SECRET": "lturvhlnhnlaveuahif"
-	},
-	"production": {
-		"PORT": 3002,
-		"MONGOOSE_URI": "mongodb://stevo99:nightlife1@ds259778.mlab.com:59778/night",
-		"JWT_SECRET": "lturvhlnhnlaveuahif"
 	}
 }
