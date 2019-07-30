@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 
 app.use('/users', users);
 
-app.use(express.static(publicPath));
+app.use(express.static(publicPath, 'build'));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(publicPath, 'index.html'));
