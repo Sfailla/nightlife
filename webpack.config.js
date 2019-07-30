@@ -7,7 +7,7 @@ let isProd = process.env.NODE_ENV === 'production';
 module.exports = {
 	entry: './client/src/app.js',
 	output: {
-		path: path.resolve(__dirname, 'public'),
+		path: path.resolve(__dirname, 'build'),
 		filename: 'bundle.js'
 	},
 	module: {
@@ -45,8 +45,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(jpe?g|png|gif|svg)$/i,
-				exclude: [ /node_modules/ ],
+				test: /\.(gif|png|jpe?g|svg)$/i,
 				loaders: [ 'file-loader', 'image-webpack-loader' ]
 			}
 		]
@@ -56,15 +55,14 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			sourceMap: true,
 			filename: 'style.css'
 		})
 	],
-	devtool: isProd ? 'source-map' : 'inline-cheap-module-source-map ',
+	devtool: isProd ? 'source-map' : 'cheap-module-source-map',
 	watch: true,
 	devServer: {
-		contentBase: path.join(__dirname, 'public'),
-		inline: true,
+		contentBase: path.join(__dirname, 'build'),
+		compress: true,
 		historyApiFallback: true,
 		proxy: {
 			'*': {

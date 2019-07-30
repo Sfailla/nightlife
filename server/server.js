@@ -19,10 +19,8 @@ app.use(bodyParser.json());
 app.use('/users', users);
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '../public')));
+	app.use(express.static(path.join(__dirname, '../build')));
 }
-
-app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public', 'index.html'));
