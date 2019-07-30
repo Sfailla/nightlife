@@ -1,9 +1,3 @@
 node_modules
 
-public/*.png
-public/*.jpg
-
-public/bundle.js
-public/style.css
-
-public/build
+build

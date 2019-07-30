@@ -7,11 +7,10 @@
 		"dev:start": "concurrently -k \"npm run server\" \"npm run dev\"",
 		"dev": "start chrome http://localhost:8080/ & webpack-dev-server --config ./webpack.config.js --mode development",
 		"server": "nodemon server/server.js",
-		"build": "webpack -p --progress",
+		"build": "webpack -p --progress --mode production",
 		"test-watch": "nodemon --exec \"npm test\"",
 		"test": "SET \"NODE_ENV=test\" && mocha server/**/*.test.js",
-		"start": "node server/server.js",
-		"heroku-postbuild": "npm install && npm run build"
+		"start": "node server/server.js"
 	},
 	"author": "Steve Failla",
 	"license": "ISC",
