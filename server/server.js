@@ -2,28 +2,25 @@ require('./config/config');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const logger = require('morgan');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const users = require('./routes/users');
+const publicPath = path.join(__dirname, '..', 'public');
 
 const app = express();
 
 app.use(helmet());
 app.use(cors());
-app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/users', users);
 
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static(path.join(__dirname, '../build')));
-}
+app.use(express.static(publicPath));
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, '../public', 'index.html'));
+	res.sendFile(path.join(publicPath, 'index.html'));
 });
 
 const port = process.env.PORT || 3001;
