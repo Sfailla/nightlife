@@ -59,7 +59,7 @@ module.exports = {
 		})
 	],
 	devtool: isProd ? 'source-map' : 'cheap-module-source-map',
-	watch: true,
+	watch: isProd ? false : true,
 	devServer: {
 		contentBase: path.join(__dirname, 'build'),
 		compress: true,
