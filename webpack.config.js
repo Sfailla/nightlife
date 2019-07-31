@@ -1,5 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 let isProd = process.env.NODE_ENV === 'production';
 
@@ -56,6 +57,9 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: 'style.css'
+		}),
+		new HtmlWebpackPlugin({
+			template: './public/index.html'
 		})
 	],
 	devtool: isProd ? 'source-map' : 'cheap-module-source-map',
