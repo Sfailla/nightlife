@@ -1,4 +1,6 @@
-require('./config/config');
+if (process.env.NODE_ENV === 'development') {
+	require('./config/config');
+}
 
 const express = require('express');
 const bodyParser = require('body-parser');
