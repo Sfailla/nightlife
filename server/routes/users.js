@@ -36,9 +36,7 @@ server.post('/sign-up', (req, res) => {
 		.save()
 		.then(user => {
 			if (user) {
-				user
-					.generateAuthToken()
-					.then(token => res.header('x-auth', token).status(200).send(user));
+				user.generateAuthToken().then(token => res.header('x-auth', token).status(200).send(user));
 			} else {
 				res.status(400).send({
 					error: 'there was a problem with sign up.'
@@ -167,7 +165,6 @@ server.post('/events', authenticate, (req, res) => {
 		}
 	)
 		.then(event => {
-			console.log(event);
 			res.send(event);
 		})
 		.catch(err => res.status(400).send(err));

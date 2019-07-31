@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 let isProd = process.env.NODE_ENV === 'production';
 
-// good config for react, express full stack projects
 module.exports = {
 	entry: './client/src/app.js',
 	output: {

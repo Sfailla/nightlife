@@ -81,9 +81,7 @@ export class Login extends Component {
 				body: JSON.stringify({ isLoggedIn })
 			})
 			.then(doc => doc.json())
-			.then(doc => {
-				console.log(doc);
-			})
+			.then(doc => {})
 			.catch(err => console.error(err));
 	};
 
@@ -97,10 +95,7 @@ export class Login extends Component {
 				<div style={styles.card}>
 					<div className="signup__container">
 						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
-							<SignIn
-								errors={this.state.errors}
-								handleOnChange={this.handleOnChange}
-							/>
+							<SignIn errors={this.state.errors} handleOnChange={this.handleOnChange} />
 						</form>
 					</div>
 				</div>

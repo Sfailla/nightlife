@@ -47,7 +47,6 @@ class Search extends React.Component {
 			})
 			.then(res => {
 				if (res.businesses.length > 0) {
-					console.log(res.businesses);
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,

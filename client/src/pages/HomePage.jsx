@@ -57,9 +57,7 @@ class HomePage extends React.PureComponent {
 				body: JSON.stringify({ isLoggedIn })
 			})
 			.then(doc => doc.json())
-			.then(doc => {
-				console.log(doc);
-			})
+			.then(doc => {})
 			.catch(err => console.error(err));
 	};
 
