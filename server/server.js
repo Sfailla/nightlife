@@ -13,11 +13,10 @@ app.use(helmet());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.json());
 
 app.use('/users', users);
 
-app.use('../build', express.static(path.join(__dirname, '../build')));
+app.use(express.static('build'));
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '../public', 'index.html'));
