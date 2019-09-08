@@ -23,24 +23,31 @@ class Search extends React.Component {
 	};
 
 	addEvent = event => {
-		this.setState(() => ({ events: [ ...this.state.events, event ] }));
+		this.setState(() => ({
+			events: [ ...this.state.events, event ]
+		}));
 	};
 
 	handleFetchData = searchVal => {
 		this.setState(() => ({ isLoading: true, searchVal }));
-		fetch(`${api.yelp.baseURL}location=${searchVal}&limit=15&term=nightclubs,bars`, {
-			method: 'GET',
-			headers: {
-				Authorization: `Bearer ${this.getToken()}`
+		fetch(
+			`${api.yelp
+				.baseURL}location=${searchVal}&limit=15&term=nightclubs,bars`,
+			{
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${this.getToken()}`
+				}
 			}
-		})
+		)
 			.then(res => {
 				if (res.status >= 200 && res.status <= 300) {
 					return res.json();
 				} else {
 					if (res.status > 300) {
 						return this.setState(() => ({
-							errors: '** Sorry that wont work. Try an area near you! **'
+							errors:
+								'** Sorry that wont work. Try an area near you! **'
 						}));
 					}
 				}
@@ -126,7 +133,10 @@ class Search extends React.Component {
 			<div style={styles.background} id="search" className="search">
 				<div className="search__container">
 					<div className="search__header">
-						<Typography headingPrimary="Welcome To NightLife" classname="search__heading" />
+						<Typography
+							headingPrimary="Welcome To NightLife"
+							classname="search__heading"
+						/>
 					</div>
 					<div className="search__body">
 						<SearchCard
@@ -139,9 +149,14 @@ class Search extends React.Component {
 						<div className="results">
 							<div className="results__container">
 								<div ref={node => (this.findResults = node)} />
-								<div style={styles.spinner}>{this.state.isLoading && <Loader />}</div>
+								<div style={styles.spinner}>
+									{this.state.isLoading && <Loader />}
+								</div>
 								{this.state.results.length > 0 && (
-									<h1 class="heading-primary" style={styles.resultsTitle}>
+									<h1
+										className="heading-primary"
+										style={styles.resultsTitle}
+									>
 										search results ({this.state.results.length})
 									</h1>
 								)}
@@ -177,7 +192,11 @@ class Search extends React.Component {
 
 								{this.state.results.length > 0 && (
 									<div style={styles.btnWrapper}>
-										<a href="#search" onClick={this.stopAutoScroll} style={styles.backToTop}>
+										<a
+											href="#search"
+											onClick={this.stopAutoScroll}
+											style={styles.backToTop}
+										>
 											back to top
 										</a>
 									</div>
