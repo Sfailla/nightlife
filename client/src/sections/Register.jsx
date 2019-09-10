@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { isLoggedIn, setUser, setUsername, setAvatar } from '../actions/users';
+import {
+	isLoggedIn,
+	setUser,
+	setUsername,
+	setAvatar
+} from '../actions/users';
 import Typography from '../components/Typography';
 import Auth from '../utils/AuthClass';
 import Signup from '../components/Signup';
@@ -17,7 +22,7 @@ const styles = {
 		paddingTop: '3rem'
 	},
 	card: {
-		maxWidth: '50rem',
+		maxWidth: '70rem',
 		height: 'auto',
 		backgroundColor: 'white',
 		margin: '0 auto',
@@ -48,7 +53,8 @@ class Register extends Component {
 
 		if (form !== null || form !== undefined) {
 			this.setState(() => ({
-				formType: this.state.formType === 'password' ? 'text' : 'password',
+				formType:
+					this.state.formType === 'password' ? 'text' : 'password',
 				checked: this.state.checked === false ? true : false
 			}));
 		}
@@ -109,7 +115,10 @@ class Register extends Component {
 
 				<div style={styles.card}>
 					<div className="signup__container">
-						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
+						<form
+							style={{ height: '100%' }}
+							onSubmit={this.handleOnSubmit}
+						>
 							<Signup
 								errors={this.state.errors}
 								formType={this.state.formType}
@@ -126,7 +135,9 @@ class Register extends Component {
 }
 
 const RegisterWithRouter = withRouter(
-	connect(null, { setUser, setUsername, isLoggedIn, setAvatar })(Register)
+	connect(null, { setUser, setUsername, isLoggedIn, setAvatar })(
+		Register
+	)
 );
 
 export default RegisterWithRouter;

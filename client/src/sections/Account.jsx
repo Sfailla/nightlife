@@ -71,8 +71,11 @@ class Account extends React.Component {
 	render() {
 		return (
 			<div className="account">
-				<div style={{ display: 'flex' }}>
-					<Typography headingPrimary="Account" classname="account__title" />
+				<div className="account__title-wrapper">
+					<Typography
+						headingPrimary="Account"
+						classname="account__title"
+					/>
 					<Typography
 						classname="account__sub-title"
 						headingSecondary="create a profile"

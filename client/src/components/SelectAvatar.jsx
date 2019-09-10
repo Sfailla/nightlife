@@ -2,7 +2,11 @@ import React, { Fragment } from 'react';
 
 import RadioGroup from './RadioGroup';
 
-const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
+const SelectAvatar = ({
+	handleOnChange,
+	handleSelectAvatar,
+	avatarSelect
+}) => (
 	<Fragment>
 		<div className="account__avatar">
 			<img
@@ -13,7 +17,7 @@ const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
 		</div>
 		<div className="account__checkboxes">
 			<RadioGroup
-				labelName="male avatar"
+				labelName="male"
 				type="radio"
 				id="male-avatar"
 				handleChecked={avatarSelect === 'male-avatar'}
@@ -22,7 +26,7 @@ const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
 			/>
 
 			<RadioGroup
-				labelName="female avatar"
+				labelName="female"
 				type="radio"
 				id="female-avatar"
 				handleChecked={avatarSelect === 'female-avatar'}
@@ -31,7 +35,7 @@ const SelectAvatar = ({ handleOnChange, handleSelectAvatar, avatarSelect }) => (
 			/>
 
 			<RadioGroup
-				labelName="default avatar"
+				labelName="default"
 				type="radio"
 				id="default-avatar"
 				handleChecked={avatarSelect === 'default-avatar'}

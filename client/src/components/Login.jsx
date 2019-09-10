@@ -6,7 +6,12 @@ import Auth from '../utils/AuthClass';
 
 import Typography from './Typography';
 import SignIn from './Signin';
-import { isLoggedIn, setUsername, setUser, setAvatar } from '../actions/users';
+import {
+	isLoggedIn,
+	setUsername,
+	setUser,
+	setAvatar
+} from '../actions/users';
 
 const styles = {
 	heading: {
@@ -14,7 +19,7 @@ const styles = {
 		paddingTop: '3rem'
 	},
 	card: {
-		maxWidth: '50rem',
+		maxWidth: '70rem',
 		height: 'auto',
 		backgroundColor: 'white',
 		margin: '0 auto',
@@ -94,8 +99,14 @@ export class Login extends Component {
 				/>
 				<div style={styles.card}>
 					<div className="signup__container">
-						<form style={{ height: '100%' }} onSubmit={this.handleOnSubmit}>
-							<SignIn errors={this.state.errors} handleOnChange={this.handleOnChange} />
+						<form
+							style={{ height: '100%' }}
+							onSubmit={this.handleOnSubmit}
+						>
+							<SignIn
+								errors={this.state.errors}
+								handleOnChange={this.handleOnChange}
+							/>
 						</form>
 					</div>
 				</div>
@@ -105,7 +116,9 @@ export class Login extends Component {
 }
 
 const LoginWithRouter = withRouter(
-	connect(null, { setUser, setUsername, isLoggedIn, setAvatar })(Login)
+	connect(null, { setUser, setUsername, isLoggedIn, setAvatar })(
+		Login
+	)
 );
 
 export default LoginWithRouter;

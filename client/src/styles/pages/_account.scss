@@ -1,11 +1,41 @@
 .account {
+	height: 100vh;
 	padding: 3rem;
+
+	@media (max-width: 34.38em) {
+		padding: 0 0 5rem 0;
+		height: calc(100% - 79px);
+	}
+
+	&__title-wrapper {
+		display: flex;
+		align-items: center;
+		@media (max-width: 34.38em) {
+			justify-content: space-between;
+		}
+	}
 
 	&__title,
 	&__sub-title {
 		max-width: 80%;
 		margin: 0 auto;
-		margin-bottom: 1rem;
+		padding-bottom: 2rem;
+
+		@media (max-width: 34.38em) {
+			width: auto;
+			margin: 0;
+		}
+	}
+
+	&__title {
+		@media (max-width: 34.38em) {
+			margin: 3rem 0;
+			padding-left: 1rem;
+		}
+	}
+
+	&__sub-title {
+		padding-right: 1rem;
 	}
 
 	&__profile-card {
@@ -16,6 +46,11 @@
 		line-height: 1.7;
 		border-radius: 3px;
 		box-shadow: var(--box-shadow-md-l);
+
+		@media (max-width: 34.38em) {
+			width: 100%;
+			height: 100%;
+		}
 	}
 
 	&__avatar {
@@ -47,7 +82,7 @@
 		align-items: center;
 
 		@media (max-width: 34.38em) {
-			grid-template-columns: 1fr;
+			grid-template-columns: 1fr 1fr;
 		}
 	}
 
