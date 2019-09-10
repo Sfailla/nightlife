@@ -78,7 +78,7 @@ class Account extends React.Component {
 					/>
 					<Typography
 						classname="account__sub-title"
-						headingSecondary="create a profile"
+						headingSecondary="create profile"
 					/>
 				</div>
 				<div className="account__profile-card">
