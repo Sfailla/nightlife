@@ -101,7 +101,7 @@ UserSchema.methods = {
 					access
 				},
 				process.env.JWT_SECRET,
-				{ expiresIn: '3hr' }
+				{ expiresIn: '1d' }
 			)
 			.toString();
 		this.tokens = [];

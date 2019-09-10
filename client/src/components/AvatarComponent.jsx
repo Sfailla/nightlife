@@ -45,12 +45,15 @@ export class AvatarComponent extends React.Component {
 	};
 
 	initializeAvatar = () => {
-		this.Auth.authFetch('/users/settings', { method: 'GET' }).then(res => res.json()).then(res => {
-			const response = res;
-			let avatar = response.settings.avatar;
-			let avatarSelect = response.settings.avatarSelect;
-			this.setState(() => ({ avatar, avatarSelect }));
-		});
+		this.Auth
+			.authFetch('/users/settings', { method: 'GET' })
+			.then(res => res.json())
+			.then(res => {
+				const response = res;
+				let avatar = response.settings.avatar;
+				let avatarSelect = response.settings.avatarSelect;
+				this.setState(() => ({ avatar, avatarSelect }));
+			});
 	};
 
 	updateAvatar = () => {
@@ -102,14 +105,17 @@ export class AvatarComponent extends React.Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleOnSubmit} className="account__avatar-wrapper">
+			<form
+				onSubmit={this.handleOnSubmit}
+				className="account__avatar-wrapper"
+			>
 				<SelectAvatar
 					avatar={this.state.avatar}
 					avatarSelect={this.state.avatarSelect}
 					handleSelectAvatar={this.handleSelectAvatar}
 					handleOnChange={this.handleOnChange}
 				/>
-				<Button type="SUBMIT" name="Save Avatar" addStyles={styles.button} />
+				<Button type="SUBMIT" name="Save" addStyles={styles.button} />
 			</form>
 		);
 	}
