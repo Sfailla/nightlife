@@ -87,13 +87,7 @@ class Account extends React.Component {
 						headingTertiary="Change Avatar"
 					/>
 					<hr />
-					<AvatarComponent
-						avatar={this.props.avatar}
-						avatarSelect={this.props.avatarSelect}
-						updateAvatar={this.props.updateAvatar}
-						initializeAvatar={this.props.initializeAvatar}
-						handleSelectAvatar={this.handleSelectAvatar}
-					/>
+					<AvatarComponent />
 					<hr />
 					<Typography
 						classname="account__card-title"

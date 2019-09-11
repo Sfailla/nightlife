@@ -49,7 +49,7 @@ const SideDrawer = props => {
 				</div>
 			</div>
 			<div className="side-drawer__nav-section">
-				<MobileNavigation />
+				<MobileNavigation closeDrawer={props.handleCloseDrawer} />
 			</div>
 		</div>
 	);

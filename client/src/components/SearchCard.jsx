@@ -33,12 +33,8 @@ class SearchCard extends React.Component {
 			<div className="search__search-card">
 				<div className="search__search-container">
 					<Typography
-						headingSecondary="See what's going on tonight!"
-						classname="search__heading-secondary u-center-text"
-					/>
-					<Typography
 						headingTertiary="Please enter City, State, and/or Zip"
-						classname="search__heading-secondary--sub u-center-text"
+						classname="search__heading-secondary--sub u-center-text gradient-text"
 					/>
 					<form onSubmit={this.handleOnSubmit}>
 						<Form
@@ -49,7 +45,9 @@ class SearchCard extends React.Component {
 							autocomplete={false}
 							handleOnChange={this.handleOnChange}
 						/>
-						{this.state.errors && <p className="search__error">{this.state.errors}</p>}
+						{this.state.errors && (
+							<p className="search__error">{this.state.errors}</p>
+						)}
 					</form>
 				</div>
 			</div>

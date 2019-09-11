@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setAvatar } from '../actions/users';
+import { withRouter } from 'react-router-dom';
 
 import Auth from '../utils/AuthClass';
 
@@ -121,4 +122,6 @@ export class AvatarComponent extends React.Component {
 	}
 }
 
-export default connect(null, { setAvatar })(AvatarComponent);
+const AvatarWithHistory = withRouter(AvatarComponent);
+
+export default connect(null, { setAvatar })(AvatarWithHistory);

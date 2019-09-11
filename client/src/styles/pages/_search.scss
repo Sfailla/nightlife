@@ -6,20 +6,26 @@
 	&__container {
 		width: 100%;
 		height: 100%;
-		// display: flex;
-		// flex-direction: column;
+	}
+
+	&__background {
+		width: 100%;
+		height: 20rem;
+		background-image: url('http://www.abstract-living.com/wp-content/uploads/2015/05/bar-scene.jpg');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+		@include flex-center(center, center);
+		@media (max-width: 56.25em) {
+			height: 30rem;
+		}
 	}
 
 	&__header {
-		height: 20rem;
+		height: 15rem;
 		text-align: center;
 		@include flex-center(center, center);
 	}
-
-	// &__body {
-	// 	flex-grow: 1;
-	// 	@include flex-center(center, flex-start);
-	// }
 
 	&__heading {
 		font-size: 4rem;
@@ -27,39 +33,38 @@
 
 	&__heading-secondary {
 		font-size: 2.6rem;
-		color: var(--primary-text-color);
+		color: white;
+		@media (min-width: 31.25em) {
+			padding: 5px;
+			background-color: rgba(0, 0, 0, .9);
+		}
 
 		&--sub {
 			padding-bottom: 1rem;
 			font-weight: 400;
-			color: blue;
 		}
 	}
 
 	&__search-card .form-group {
-		width: 60%;
 		min-width: 30rem;
 		margin: 0 auto;
 	}
 
 	&__search-card {
-		width: 75rem;
-		min-width: 35rem;
-		height: 35rem;
-		border-radius: 5px;
-		border-bottom: 4px solid var(--primary-color);
-		background: var(--color-white);
-		box-shadow: var(--box-shadow-md-l);
-		margin: 0 auto;
-		@media (max-width: 37.5em) {
-			width: 90%;
+		width: 100%;
+		height: 20rem;
+		background: white;
+		padding: 0 1rem;
+		border-bottom: 2px solid grey;
+		@include flex-center(center, center);
+		@media (max-width: 56.25em) {
+			height: 30rem;
 		}
 	}
 
 	&__search-container {
 		height: auto;
 		line-height: 2;
-		padding: 7rem 1rem;
 	}
 
 	&__search-card label {
@@ -84,7 +89,11 @@
 	&__yelp-tag {
 		display: inline-block;
 		color: transparent;
-		background-image: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+		background-image: linear-gradient(
+			to right,
+			var(--primary-color),
+			var(--secondary-color)
+		);
 		-webkit-background-clip: text;
 		background-clip: text;
 	}

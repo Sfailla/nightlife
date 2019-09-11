@@ -22,11 +22,11 @@ class Search extends React.Component {
 		return api.yelp.token;
 	};
 
-	addEvent = event => {
-		this.setState(() => ({
-			events: [ ...this.state.events, event ]
-		}));
-	};
+	// addEvent = event => {
+	// 	this.setState(() => ({
+	// 		events: [ ...this.state.events, event ]
+	// 	}));
+	// };
 
 	handleFetchData = searchVal => {
 		this.setState(() => ({ isLoading: true, searchVal }));
@@ -138,6 +138,14 @@ class Search extends React.Component {
 							classname="search__heading"
 						/>
 					</div>
+
+					<div className="search__background">
+						<Typography
+							headingSecondary="See what's going on tonight!"
+							classname="search__heading-secondary u-center-text"
+						/>
+					</div>
+
 					<div className="search__body">
 						<SearchCard
 							handleOnChange={this.handleOnChange}
@@ -152,55 +160,41 @@ class Search extends React.Component {
 								<div style={styles.spinner}>
 									{this.state.isLoading && <Loader />}
 								</div>
-								{this.state.results.length > 0 && (
-									<h1
-										className="heading-primary"
-										style={styles.resultsTitle}
-									>
-										search results ({this.state.results.length})
-									</h1>
-								)}
-
-								{this.state.results.length > 0 && (
-									<Button
-										addStyles={styles.button}
-										type="button"
-										name="Clear Results"
-										onClick={this.handleClearSearch}
-									/>
-								)}
 
 								<ul>
 									{this.state.results.length ? (
-										this.state.results.map(data => {
-											return (
-												<SearchResults
-													key={data.id}
-													name={data.name}
-													location={data.location.address1}
-													rating={data.rating}
-													moreInfoLink={data.url}
-													image={data.image_url}
-													imageAlt="bar images"
-													isLoggedIn={this.props.user.isLoggedIn}
-													history={this.props.history}
-												/>
-											);
-										})
+										<div>
+											<Typography
+												headingPrimary={`search results (${this.state
+													.results.length})`}
+												addStyles={styles.resultsTitle}
+											/>
+
+											<Button
+												addStyles={styles.button}
+												type="button"
+												name="Clear Results"
+												onClick={this.handleClearSearch}
+											/>
+
+											<SearchResults
+												results={this.state.results}
+												isLoggedIn={this.props.user.isLoggedIn}
+												history={this.props.history}
+											/>
+
+											<div style={styles.btnWrapper}>
+												<a
+													href="#search"
+													onClick={this.stopAutoScroll}
+													style={styles.backToTop}
+												>
+													back to top
+												</a>
+											</div>
+										</div>
 									) : null}
 								</ul>
-
-								{this.state.results.length > 0 && (
-									<div style={styles.btnWrapper}>
-										<a
-											href="#search"
-											onClick={this.stopAutoScroll}
-											style={styles.backToTop}
-										>
-											back to top
-										</a>
-									</div>
-								)}
 							</div>
 						</div>
 					</div>

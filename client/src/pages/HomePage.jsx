@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withRouter, Switch, Route, Redirect } from 'react-router-dom';
+import {
+	withRouter,
+	Switch,
+	Route,
+	Redirect
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { isLoggedIn } from '../actions/users';
 import { checkAuth } from '../utils/functions';
@@ -22,7 +27,11 @@ const AuthRoute = ({ component: Component, ...rest }) => (
 	<Route
 		{...rest}
 		render={props =>
-			checkAuth() ? <Component {...props} /> : <Redirect to={{ pathname: '/sign-in' }} />}
+			checkAuth() ? (
+				<Component {...props} />
+			) : (
+				<Redirect to={{ pathname: '/sign-in' }} />
+			)}
 	/>
 );
 
@@ -61,8 +70,6 @@ class HomePage extends React.PureComponent {
 			.catch(err => console.error(err));
 	};
 
-	Auth = new Auth();
-
 	logout = () => {
 		this.setUserPresence(false);
 		this.Auth.logout();
@@ -98,6 +105,7 @@ class HomePage extends React.PureComponent {
 						isLoggedIn={this.props.user.isLoggedIn}
 						logout={this.logout}
 						showDrawer={this.state.openDrawer}
+						closeDrawer={this.handleCloseDrawer}
 					/>
 					{backdrop}
 					<Switch>
@@ -106,7 +114,11 @@ class HomePage extends React.PureComponent {
 							exact
 							path="/dashboard"
 							component={props => (
-								<Dashboard {...props} currentUser={this.props.user} logout={this.logout} />
+								<Dashboard
+									{...props}
+									currentUser={this.props.user}
+									logout={this.logout}
+								/>
 							)}
 						/>
 						<AuthRoute exact path="/account" component={Account} />
@@ -125,6 +137,8 @@ const mapStateToProps = state => {
 	};
 };
 
-const HomePageWithRouter = withRouter(connect(mapStateToProps, { isLoggedIn })(HomePage));
+const HomePageWithRouter = withRouter(
+	connect(mapStateToProps, { isLoggedIn })(HomePage)
+);
 
 export default HomePageWithRouter;

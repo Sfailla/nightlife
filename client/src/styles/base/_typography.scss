@@ -1,13 +1,26 @@
 body {
 	font-size: var(--font-size-default);
-	font-family: 'Roboto Condensed', 'Lucida Sans Regular', 'Lucida Grande',
-		sans-serif;
+	font-family: 'Roboto Condensed', 'Lucida Sans Regular',
+		'Lucida Grande', sans-serif;
 	font-weight: 700;
+}
+
+.gradient-text {
+	color: transparent;
+	background-image: linear-gradient(
+		to right,
+		var(--secondary-color),
+		var(--primary-color),
+		var(--secondary-color)
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
 }
 
 .heading-primary {
 	font-size: var(--font-size-xl);
-	font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+	font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande',
+		sans-serif;
 	font-weight: 600;
 	text-transform: uppercase;
 	letter-spacing: 3px;
@@ -24,7 +37,8 @@ body {
 
 .heading-secondary {
 	font-size: var(--font-size-lg);
-	font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+	font-family: 'Montserrat', 'Lucida Sans Regular', 'Lucida Grande',
+		sans-serif;
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -32,7 +46,8 @@ body {
 
 .heading-tertiary {
 	font-size: var(--font-size-md);
-	font-family: 'Cabin', 'Lucida Sans Regular', 'Lucida Grande', sans-serif;
+	font-family: 'Cabin', 'Lucida Sans Regular', 'Lucida Grande',
+		sans-serif;
 	text-transform: uppercase;
 	letter-spacing: 2px;
 }
