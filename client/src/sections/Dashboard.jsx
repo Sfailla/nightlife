@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 
 import ShowUsers from '../components/ShowUsers';
 import Typography from '../components/Typography';
@@ -21,10 +21,8 @@ class Dashboard extends React.PureComponent {
 		user: this.props.currentUser
 	};
 
-	Auth = new Auth();
-
 	handleRemoveEvent = id => {
-		this.Auth
+		authorize
 			.authFetch(`/users/events/${id}`, { method: 'DELETE' })
 			.then(res => res.json())
 			.then(res => {
@@ -35,7 +33,7 @@ class Dashboard extends React.PureComponent {
 	};
 
 	initializeUserBio = () => {
-		this.Auth
+		authorize
 			.authFetch('/users/me', { method: 'GET' })
 			.then(res => res.json())
 			.then(res => {
@@ -50,7 +48,7 @@ class Dashboard extends React.PureComponent {
 	};
 
 	initializeEventData = () => {
-		this.Auth
+		authorize
 			.authFetch('/users/settings', {
 				method: 'GET'
 			})

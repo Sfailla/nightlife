@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 
 import Typography from '../components/Typography';
 import AvatarComponent from '../components/AvatarComponent';
@@ -12,8 +12,6 @@ class Account extends React.Component {
 		location: '',
 		description: ''
 	};
-
-	Auth = new Auth();
 
 	handleOnSubmit = event => {
 		event.preventDefault();
@@ -29,7 +27,7 @@ class Account extends React.Component {
 	handleUpdateUserInfo = () => {
 		const { company, email, location, description } = this.state;
 
-		this.Auth
+		authorize
 			.authFetch('/users/settings/biography', {
 				method: 'PATCH',
 				body: JSON.stringify({
@@ -51,7 +49,7 @@ class Account extends React.Component {
 	};
 
 	initializeUserData = () => {
-		this.Auth
+		authorize
 			.authFetch('/users/me', { method: 'GET' })
 			.then(res => res.json())
 			.then(res => {

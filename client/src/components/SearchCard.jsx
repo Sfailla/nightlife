@@ -6,7 +6,7 @@ import Typography from './Typography';
 class SearchCard extends React.Component {
 	state = {
 		searchVal: '',
-		errors: this.props.errors
+		errors: null
 	};
 
 	handleOnChange = evt => {
@@ -45,8 +45,10 @@ class SearchCard extends React.Component {
 							autocomplete={false}
 							handleOnChange={this.handleOnChange}
 						/>
-						{this.state.errors && (
-							<p className="search__error">{this.state.errors}</p>
+						{this.props.errors && (
+							<p className="search__error-text">
+								{this.props.errors}
+							</p>
 						)}
 					</form>
 				</div>

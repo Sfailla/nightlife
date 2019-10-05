@@ -9,7 +9,7 @@ import {
 	setAvatar
 } from '../actions/users';
 import Typography from '../components/Typography';
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 import Signup from '../components/Signup';
 
 const styles = {
@@ -41,8 +41,6 @@ class Register extends Component {
 		errors: null
 	};
 
-	Auth = new Auth();
-
 	handleOnChange = evt => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value, errors: '' }));
@@ -63,7 +61,7 @@ class Register extends Component {
 	handleOnSubmit = evt => {
 		evt.preventDefault();
 
-		const { register, setToken } = this.Auth;
+		const { register, setToken } = authorize;
 		const { username, password } = this.state;
 
 		if (username !== null && password !== null) {

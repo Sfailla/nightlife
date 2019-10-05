@@ -3,7 +3,7 @@ import React from 'react';
 import defaultImgSrc from '../images/bar-default-img.jpg';
 import Button from './Button';
 import { truncate, changeNumToStar } from '../utils/functions';
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 
 const ResultCard = props => {
 	const styles = {
@@ -33,13 +33,11 @@ const ResultCard = props => {
 		}
 	};
 
-	let auth = new Auth();
-
 	const addEvent = async () => {
 		let name = props.name;
 		let rating = props.rating;
 		let image = props.image;
-		let result = await auth.authFetch('/users/events', {
+		let result = await authorize.authFetch('/users/events', {
 			method: 'POST',
 			body: JSON.stringify({ name, rating, image })
 		});

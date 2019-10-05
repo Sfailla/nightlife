@@ -7,6 +7,7 @@ import SearchResults from '../components/SearchResults';
 import Typography from '../components/Typography';
 import Button from '../components/Button';
 import Loader from '../components/Loader';
+import authorize from '../utils/AuthClass';
 
 class Search extends React.Component {
 	state = {
@@ -22,13 +23,9 @@ class Search extends React.Component {
 		return api.yelp.token;
 	};
 
-	// addEvent = event => {
-	// 	this.setState(() => ({
-	// 		events: [ ...this.state.events, event ]
-	// 	}));
-	// };
-
 	handleFetchData = searchVal => {
+		const controller = new AbortController();
+		const { signal } = controller;
 		this.setState(() => ({ isLoading: true, searchVal }));
 		fetch(
 			`${api.yelp
@@ -37,23 +34,13 @@ class Search extends React.Component {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${this.getToken()}`
-				}
+				},
+				signal
 			}
 		)
+			.then(res => authorize._checkStatus(res))
 			.then(res => {
-				if (res.status >= 200 && res.status <= 300) {
-					return res.json();
-				} else {
-					if (res.status > 300) {
-						return this.setState(() => ({
-							errors:
-								'** Sorry that wont work. Try an area near you! **'
-						}));
-					}
-				}
-			})
-			.then(res => {
-				if (res.businesses.length > 0) {
+				if (res.businesses.length) {
 					this.setState(() => ({
 						results: res.businesses,
 						isLoading: false,
@@ -63,11 +50,18 @@ class Search extends React.Component {
 					}));
 				} else if (!res.businesses.length) {
 					this.setState(() => ({
-						errors: '** Sorry no results for that area **'
+						errors: '** Sorry no results for that area **',
+						isLoading: false
 					}));
+					controller.abort();
 				}
 			})
-			.catch(err => console.log(err));
+			.catch(err => {
+				this.setState(() => ({
+					errors: `** Sorry ${err.statusText} **`,
+					isLoading: false
+				}));
+			});
 	};
 
 	handleClearSearch = () => {

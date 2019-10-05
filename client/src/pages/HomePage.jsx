@@ -20,7 +20,7 @@ import Register from '../sections/Register';
 import Login from '../components/Login';
 import SideDrawer from '../components/SideDrawer';
 import Backdrop from '../components/Backdrop';
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 import BGImg from '../images/city-skyline.png';
 
 const AuthRoute = ({ component: Component, ...rest }) => (
@@ -45,8 +45,6 @@ class HomePage extends React.PureComponent {
 		openDrawer: false
 	};
 
-	Auth = new Auth();
-
 	handleOpenDrawer = () => {
 		this.setState(prevState => {
 			return {
@@ -60,7 +58,7 @@ class HomePage extends React.PureComponent {
 	};
 
 	setUserPresence = isLoggedIn => {
-		this.Auth
+		authorize
 			.authFetch('/users/presence', {
 				method: 'PATCH',
 				body: JSON.stringify({ isLoggedIn })
@@ -72,7 +70,7 @@ class HomePage extends React.PureComponent {
 
 	logout = () => {
 		this.setUserPresence(false);
-		this.Auth.logout();
+		authorize.logout();
 		this.props.isLoggedIn(false);
 		this.props.history.push('/');
 	};

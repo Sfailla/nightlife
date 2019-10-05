@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 import ResultCard from './ResultCard';
 
 class SearchResComponent extends React.Component {
 	state = {
 		events: []
 	};
-
-	Auth = new Auth();
 
 	// addEvent = () => {
 	// 	this.props.results.map(data => {
@@ -19,7 +17,7 @@ class SearchResComponent extends React.Component {
 	// 	let rating = props.rating;
 	// 	let image = props.image;
 
-	// 	this.Auth
+	// 	authorize
 	// 		.authFetch('/users/events', {
 	// 			method: 'POST',
 	// 			body: JSON.stringify({ name, rating, image })
@@ -33,7 +31,7 @@ class SearchResComponent extends React.Component {
 	// };
 
 	initializeEventData = async () => {
-		let result = await this.Auth.authFetch('/users/settings', {
+		let result = await authorize.authFetch('/users/settings', {
 			method: 'GET'
 		});
 		let data = await result.json();
@@ -56,7 +54,6 @@ class SearchResComponent extends React.Component {
 						imageAlt="bar images"
 						isLoggedIn={this.props.isLoggedIn}
 						history={this.props.history}
-						// addEvent={this.addEvent}
 						moreInfoLink={data.url}
 						initializeEventData={this.initializeEventData}
 						events={this.state.events}

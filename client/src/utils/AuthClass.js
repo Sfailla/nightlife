@@ -1,6 +1,6 @@
-export default class Auth {
-	register = (username, password) => {
-		return fetch('/users/sign-up', {
+class Auth {
+	register = async (username, password) => {
+		return await fetch('/users/sign-up', {
 			headers: {
 				'Content-Type': 'application/json'
 			},
@@ -17,8 +17,8 @@ export default class Auth {
 		});
 	};
 
-	login = (username, password) => {
-		return fetch('/users/sign-in', {
+	login = async (username, password) => {
+		return await fetch('/users/sign-in', {
 			headers: {
 				'Content-Type': 'application/json'
 			},
@@ -35,12 +35,12 @@ export default class Auth {
 		});
 	};
 
-	authFetch = (url, options) => {
+	authFetch = async (url, options) => {
 		let headers = {
 			'Content-Type': 'application/json',
 			'x-auth': `${this.getToken()}`
 		};
-		return fetch(url, {
+		return await fetch(url, {
 			headers,
 			...options
 		}).then(res => {
@@ -92,12 +92,15 @@ export default class Auth {
 
 	_checkStatus(response) {
 		// raises an error in case response status is not a success
-		if (res.status >= 200 && res.status < 300) {
-			return res.json();
+		if (response.status >= 200 && response.status < 300) {
+			return response.json();
 		} else {
-			var error = new Error(res.statusText);
-			error.res = response;
+			var error = new Error(response.statusText);
+			error = response;
 			throw error;
 		}
 	}
 }
+
+const authorize = new Auth();
+export default authorize;
