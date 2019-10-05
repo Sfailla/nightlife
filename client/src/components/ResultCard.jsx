@@ -34,16 +34,13 @@ const ResultCard = props => {
 	};
 
 	const addEvent = async () => {
-		let name = props.name;
-		let rating = props.rating;
-		let image = props.image;
-		let result = await authorize.authFetch('/users/events', {
-			method: 'POST',
-			body: JSON.stringify({ name, rating, image })
-		});
-		let data = await result.json();
-		props.history.push('/dashboard');
-		return data;
+		const { name, rating, image } = props;
+		return await authorize
+			.authFetch('/users/events', {
+				method: 'POST',
+				body: JSON.stringify({ name, rating, image })
+			})
+			.then(() => props.history.push('/dashboard'));
 	};
 
 	return (

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { setAvatar } from '../actions/users';
 import { withRouter } from 'react-router-dom';
 
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 
 import guyAvatar from '../images/male-avatar.png';
 import girlAvatar from '../images/female-avatar.png';
@@ -31,8 +31,6 @@ export class AvatarComponent extends React.Component {
 
 	_isMounted = false;
 
-	Auth = new Auth();
-
 	handleOnChange = evt => {
 		const { name, value } = evt.target;
 		this.setState(() => ({ [name]: value }));
@@ -46,7 +44,7 @@ export class AvatarComponent extends React.Component {
 	};
 
 	initializeAvatar = () => {
-		this.Auth
+		authorize
 			.authFetch('/users/settings', { method: 'GET' })
 			.then(res => res.json())
 			.then(res => {
@@ -60,7 +58,7 @@ export class AvatarComponent extends React.Component {
 	updateAvatar = () => {
 		const avatarSelect = this.state.avatarSelect;
 		const avatar = this.handleSelectAvatar();
-		this.Auth
+		authorize
 			.authFetch('/users/settings/avatar', {
 				method: 'PATCH',
 				body: JSON.stringify({ avatar, avatarSelect })
