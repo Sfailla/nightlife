@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Auth from '../utils/AuthClass';
+import authorize from '../utils/AuthClass';
 
 import Typography from './Typography';
 import SignIn from './Signin';
@@ -37,8 +37,6 @@ export class Login extends Component {
 		errors: ''
 	};
 
-	Auth = new Auth();
-
 	handleOnChange = event => {
 		const { name, value } = event.target;
 		this.setState(() => ({ [name]: value, errors: '' }));
@@ -48,7 +46,7 @@ export class Login extends Component {
 		event.preventDefault();
 
 		const { username, password } = this.state;
-		const { login, setToken } = this.Auth;
+		const { login, setToken } = authorize;
 
 		if (username.length && password.length) {
 			this.setState(() => ({ errors: '' }));
@@ -80,7 +78,7 @@ export class Login extends Component {
 	};
 
 	setUserPresence = isLoggedIn => {
-		this.Auth
+		authorize
 			.authFetch('/users/presence', {
 				method: 'PATCH',
 				body: JSON.stringify({ isLoggedIn })

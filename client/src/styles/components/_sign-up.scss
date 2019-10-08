@@ -13,6 +13,20 @@
 		}
 	}
 
+	&__card {
+		max-width: 70%;
+		height: auto;
+		background-color: white;
+		margin: 3rem auto 0 auto;
+		box-shadow: var(--box-shadow-md-l);
+		position: relative;
+	}
+
+	&__heading {
+		text-align: center;
+		padding-top: 3rem;
+	}
+
 	& input[type="password"],
 	& input[type="submit"],
 	& input[type="text"] {
@@ -37,4 +51,5 @@
 }
 
 .signup__container {
+	grid-row: 3 / -1;
 }

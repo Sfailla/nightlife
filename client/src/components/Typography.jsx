@@ -5,12 +5,15 @@ const Typography = ({
 	headingPrimary,
 	headingSecondary,
 	headingTertiary,
-	classname,
+	className,
 	addStyles
 }) => {
-	if (headingPrimary && classname) {
+	if (headingPrimary && className) {
 		return (
-			<h1 style={{ ...addStyles }} className={`heading-primary ${classname}`}>
+			<h1
+				style={{ ...addStyles }}
+				className={`heading-primary ${className}`}
+			>
 				{headingPrimary}
 			</h1>
 		);
@@ -21,9 +24,12 @@ const Typography = ({
 			</h1>
 		);
 	}
-	if (headingSecondary && classname) {
+	if (headingSecondary && className) {
 		return (
-			<h2 style={{ ...addStyles }} className={`heading-secondary ${classname}`}>
+			<h2
+				style={{ ...addStyles }}
+				className={`heading-secondary ${className}`}
+			>
 				{headingSecondary}
 			</h2>
 		);
@@ -34,9 +40,12 @@ const Typography = ({
 			</h2>
 		);
 	}
-	if (headingTertiary && classname) {
+	if (headingTertiary && className) {
 		return (
-			<h3 style={{ ...addStyles }} className={`heading-tertiary ${classname}`}>
+			<h3
+				style={{ ...addStyles }}
+				className={`heading-tertiary ${className}`}
+			>
 				{headingTertiary}
 			</h3>
 		);
@@ -54,7 +63,7 @@ Typography.propTypes = {
 	headingSecondary: PropTypes.string,
 	headingTertiary: PropTypes.string,
 	addStyles: PropTypes.object,
-	classname: PropTypes.string
+	className: PropTypes.string
 };
 
 export default Typography;

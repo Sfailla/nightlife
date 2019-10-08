@@ -107,11 +107,11 @@ class Register extends Component {
 		return (
 			<div className="signup">
 				<Typography
-					addStyles={styles.heading}
-					headingPrimary="Sign up to see who is going out tonite!"
+					className="signup__heading"
+					headingPrimary="See whats going on tonite!"
 				/>
 
-				<div style={styles.card}>
+				<div className="signup__card">
 					<div className="signup__container">
 						<form
 							style={{ height: '100%' }}
