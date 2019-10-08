@@ -40,10 +40,10 @@ const SideDrawer = props => {
 								<p>NIGHT</p>
 								<p>LIFE</p>
 							</div>
-							<img
+							{/* <img
 								className="side-drawer__img"
 								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzFCT8vZwhI1Vfxfr3GMMSsV1EKuLAxYK_hfwx2knuwiYK-buW"
-							/>
+							/> */}
 						</div>
 					)}
 				</div>
