@@ -79,10 +79,11 @@
 
 		display: grid;
 		grid-template-columns: 15rem minmax(min-content, 120rem);
-		grid-template-rows: 7rem 1fr;
+		grid-template-rows: 70px 1fr;
 		box-shadow: 0rem 1rem 2rem .5rem rgba(0, 0, 0, .9);
 
 		@media (max-width: 50em) {
+			grid-template-rows: 60px 1fr;
 			margin: 0;
 		}
 
