@@ -12,26 +12,6 @@ import Typography from '../components/Typography';
 import authorize from '../utils/AuthClass';
 import Signup from '../components/Signup';
 
-const styles = {
-	title: {
-		textAlign: 'center',
-		fontWeight: 'bold'
-	},
-	heading: {
-		textAlign: 'center',
-		paddingTop: '3rem'
-	},
-	card: {
-		maxWidth: '70rem',
-		height: 'auto',
-		backgroundColor: 'white',
-		margin: '0 auto',
-		marginTop: '3rem',
-		boxShadow: 'var(--box-shadow-md-l)',
-		position: 'relative'
-	}
-};
-
 class Register extends Component {
 	state = {
 		formType: 'password',
@@ -101,22 +81,17 @@ class Register extends Component {
 		}
 	};
 
-	componentDidMount = () => {};
-
 	render() {
 		return (
 			<div className="signup">
 				<Typography
-					className="signup__heading"
+					className={'signup__heading'}
 					headingPrimary="See whats going on tonite!"
 				/>
 
 				<div className="signup__card">
 					<div className="signup__container">
-						<form
-							style={{ height: '100%' }}
-							onSubmit={this.handleOnSubmit}
-						>
+						<form onSubmit={this.handleOnSubmit}>
 							<Signup
 								errors={this.state.errors}
 								formType={this.state.formType}
