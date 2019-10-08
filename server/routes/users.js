@@ -71,15 +71,8 @@ server.post('/sign-in', (req, res) => {
 server.delete('/token', authenticate, (req, res) => {
 	req.user
 		.removeToken(req.token)
-		.then(
-			() => {
-				return res.status(200).send();
-			},
-			() => {
-				return res.status(400).send();
-			}
-		)
-		.catch(err => console.log(err));
+		.then(() => res.status(200).send())
+		.catch(err => res.status(400).send(err));
 });
 
 server.patch('/presence', authenticate, (req, res) => {

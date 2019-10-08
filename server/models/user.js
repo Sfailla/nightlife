@@ -6,8 +6,7 @@ const UserSchema = new mongoose.Schema({
 	username: {
 		type: String,
 		required: true,
-		unique: true,
-		minlength: 4
+		unique: true
 	},
 	password: {
 		type: String,
@@ -79,10 +78,18 @@ const UserSchema = new mongoose.Schema({
 UserSchema.pre('save', function(next) {
 	if (this.isModified('password')) {
 		bcrypt.genSalt(10, (err, salt) => {
-			bcrypt.hash(this.password, salt, (err, hash) => {
-				this.password = hash;
-				next();
-			});
+			if (err) {
+				return;
+			} else {
+				bcrypt.hash(this.password, salt, (err, hash) => {
+					if (err) {
+						return;
+					} else {
+						this.password = hash;
+						next();
+					}
+				});
+			}
 		});
 	} else {
 		next();
@@ -128,9 +135,7 @@ UserSchema.methods = {
 
 UserSchema.statics = {
 	findByCredentials: (username, password) => {
-		return User.findOne({
-			username
-		}).then(user => {
+		return User.findOne({ username }).then(user => {
 			if (!user) {
 				let error = 'Sorry that user was not found';
 				return Promise.reject({
