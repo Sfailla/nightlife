@@ -15,12 +15,18 @@
 	right: 0;
 	z-index: 9;
 
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 60px 30% 1fr;
+
 	transform: translateX(calc(100% + 10px));
 	transition: transform .4s ease-in-out;
 
 	&__avatar-section {
-		height: 30%;
+		grid-row: 2 / 3;
+		@include flex-center(center, center);
 
+<<<<<<< HEAD
 		// &::after {
 		// 	content: '';
 		// 	width: 100%;
@@ -30,12 +36,39 @@
 		// 	top: 0;
 		// 	left: 0;
 		// }
+=======
+		& ul {
+			@include flex-center(center, center);
+			flex-direction: column;
+		}
+
+		& ul li {
+			list-style: none;
+			&:not(:last-of-type) {
+				padding-bottom: .8em;
+			}
+		}
+
+		&--no-auth {
+			height: 100%;
+			@include flex-center(center, center);
+			background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzFCT8vZwhI1Vfxfr3GMMSsV1EKuLAxYK_hfwx2knuwiYK-buW')
+				no-repeat center / cover;
+
+			& p {
+				color: white;
+				background-color: rgba(0, 0, 0, .6);
+				padding: 5px;
+				font-size: 3rem;
+				font-weight: 400;
+				letter-spacing: 2px;
+			}
+		}
+>>>>>>> development
 	}
 
 	&__nav-section {
-		height: 70%;
-		position: relative;
-		z-index: 100;
+		grid-row: 3 / -1;
 	}
 
 	&__ul {
@@ -80,26 +113,6 @@
 		}
 	}
 
-	&__img-wrapper {
-		height: 100%;
-		width: 100%;
-
-		& p {
-			position: relative;
-			z-index: 5;
-			color: white;
-			font-size: 3rem;
-			font-weight: 400;
-			letter-spacing: 2px;
-		}
-	}
-
-	&__logo-wrapper {
-		width: 100%;
-		height: 100%;
-		@include flex-center(center, center);
-	}
-
 	&__img {
 		height: 100%;
 		position: absolute;
@@ -131,6 +144,7 @@
 		padding-left: 1px;
 	}
 
+<<<<<<< HEAD
 	&__profile-wrapper {
 		width: 100%;
 		height: calc(100% + 55px);
@@ -151,6 +165,29 @@
 			margin-bottom: 1rem;
 		}
 	}
+=======
+	// &__profile-wrapper {
+	// 	width: 100%;
+	// 	height: calc(100% + 55px);
+	// 	position: relative;
+	// 	z-index: 100;
+
+	// 	& ul {
+	// 		height: 100%;
+	// 		@include flex-center(center, center);
+	// 		flex-direction: column;
+	// 	}
+
+	// 	& li {
+	// 		list-style: none;
+	// 		@include flex-center(center, center);
+	// 	}
+
+	// 	& li:not(:last-of-type) {
+	// 		margin-bottom: 1rem;
+	// 	}
+	// }
+>>>>>>> development
 
 	@media (min-width: 33.07em) {
 		display: none;
