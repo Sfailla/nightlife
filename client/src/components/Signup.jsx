@@ -53,7 +53,9 @@ const Signup = props => (
 				headingSecondary="Sign Up For NightLife"
 				addStyles={styles.title}
 			/>
-			{props.errors && <p style={styles.error}>** {props.errors} **</p>}
+			{props.errors && (
+				<p style={styles.error}>** {props.errors} **</p>
+			)}
 			<div>
 				<BorderlessForm
 					type="text"
@@ -72,7 +74,7 @@ const Signup = props => (
 					name="checkbox"
 					labelName="Show Password"
 					checked={props.checked}
-					handleCBChange={props.handleCBChange}
+					handleCBChange={props.handleCheckBoxChange}
 				/>
 			</div>
 			<Button addStyles={styles.button} type="submit" name="submit" />

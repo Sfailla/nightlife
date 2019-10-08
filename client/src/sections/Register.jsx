@@ -26,7 +26,7 @@ class Register extends Component {
 		this.setState(() => ({ [name]: value, errors: '' }));
 	};
 
-	handleCBChange = () => {
+	handleCheckBoxChange = () => {
 		let form = document.querySelector('#password');
 
 		if (form !== null || form !== undefined) {
@@ -44,10 +44,12 @@ class Register extends Component {
 		const { register, setToken } = authorize;
 		const { username, password } = this.state;
 
-		if (username !== null && password !== null) {
-			if (username.length > 3) {
+		const trimmedUsername = username;
+
+		if (trimmedUsername !== null && password !== null) {
+			if (trimmedUsername.length > 3) {
 				this.setState(() => ({ errors: '' }));
-				return register(username, password)
+				return register(trimmedUsername, password)
 					.then(res => res.json())
 					.then(res => {
 						if (res.error) {
@@ -96,7 +98,7 @@ class Register extends Component {
 								errors={this.state.errors}
 								formType={this.state.formType}
 								checked={this.state.checked}
-								handleCBChange={this.handleCBChange}
+								handleCheckBoxChange={this.handleCheckBoxChange}
 								handleOnChange={this.handleOnChange}
 							/>
 						</form>

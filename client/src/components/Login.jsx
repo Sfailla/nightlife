@@ -48,9 +48,11 @@ export class Login extends Component {
 		const { username, password } = this.state;
 		const { login, setToken } = authorize;
 
-		if (username.length && password.length) {
+		const trimmedUsername = username.trim();
+
+		if (trimmedUsername.length && password.length) {
 			this.setState(() => ({ errors: '' }));
-			return login(username, password)
+			return login(trimmedUsername, password)
 				.then(res => res.json())
 				.then(res => {
 					if (res.error) {

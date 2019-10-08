@@ -93,7 +93,7 @@
 
 		@media (max-width: 81.25em) {
 			grid-template-columns: min-content minmax(min-content, 120rem);
-			grid-template-rows: 6rem 12rem 1fr;
+			// grid-template-rows: 6rem 12rem 1fr;
 		}
 		@media (min-width: 50em) {
 			height: 800px;
