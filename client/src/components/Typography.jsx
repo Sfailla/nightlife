@@ -8,50 +8,50 @@ const Typography = ({
 	className,
 	addStyles
 }) => {
-	if (headingPrimary && className) {
+	if (headingPrimary) {
 		return (
 			<h1
 				style={{ ...addStyles }}
-				className={`heading-primary ${className}`}
+				className={
+					className ? (
+						`heading-primary ${className}`
+					) : (
+						'heading-primary'
+					)
+				}
 			>
 				{headingPrimary}
 			</h1>
 		);
-	} else if (headingPrimary) {
-		return (
-			<h1 style={{ ...addStyles }} className={`heading-primary`}>
-				{headingPrimary}
-			</h1>
-		);
 	}
-	if (headingSecondary && className) {
+	if (headingSecondary) {
 		return (
 			<h2
 				style={{ ...addStyles }}
-				className={`heading-secondary ${className}`}
+				className={
+					className ? (
+						`heading-secondary ${className}`
+					) : (
+						'heading-secondary'
+					)
+				}
 			>
-				{headingSecondary}
-			</h2>
-		);
-	} else if (headingSecondary) {
-		return (
-			<h2 style={{ ...addStyles }} className={`heading-secondary`}>
 				{headingSecondary}
 			</h2>
 		);
 	}
-	if (headingTertiary && className) {
+	if (headingTertiary) {
 		return (
 			<h3
 				style={{ ...addStyles }}
-				className={`heading-tertiary ${className}`}
+				className={
+					className ? (
+						`heading-tertiary ${className}`
+					) : (
+						'heading-tertiary'
+					)
+				}
 			>
-				{headingTertiary}
-			</h3>
-		);
-	} else if (headingTertiary) {
-		return (
-			<h3 style={{ ...addStyles }} className={`heading-tertiary`}>
 				{headingTertiary}
 			</h3>
 		);
