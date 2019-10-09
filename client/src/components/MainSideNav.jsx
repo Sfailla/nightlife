@@ -18,7 +18,12 @@ const MainSideNav = props => (
 				{props.isLoggedIn && (
 					<li className="side-nav__li">
 						<Link to="/dashboard">
-							<Icon icon="dashboard" size={25} view1={24} view2={24} />
+							<Icon
+								icon="dashboard"
+								size={25}
+								view1={24}
+								view2={24}
+							/>
 							<span>Dashboard</span>
 						</Link>
 					</li>
@@ -27,14 +32,19 @@ const MainSideNav = props => (
 					<li className="side-nav__li">
 						<Link to="/account">
 							<Icon icon="settings" size={25} view1={32} view2={32} />
-							<span>Account</span>
+							<span>Settings</span>
 						</Link>
 					</li>
 				)}
 				{props.isLoggedIn ? null : (
 					<li className="side-nav__li">
 						<Link to="/sign-up">
-							<Icon icon="code-branch" size={25} view1={16} view2={28} />
+							<Icon
+								icon="code-branch"
+								size={25}
+								view1={16}
+								view2={28}
+							/>
 							<span>Register</span>
 						</Link>
 					</li>

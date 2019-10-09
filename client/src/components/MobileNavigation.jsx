@@ -41,7 +41,7 @@ const MobileNavigation = props => {
 									view1={32}
 									view2={32}
 								/>
-								<span>ACCOUNT</span>
+								<span>SETTINGS</span>
 							</div>
 						</Link>
 					</li>

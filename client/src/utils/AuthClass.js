@@ -56,8 +56,8 @@ class Auth {
 
 	isTokenExpired(token) {
 		try {
-			const decoded = decode(token);
-			if (decoded.exp < Date.now() / 1000) {
+			const { exp } = decode(token);
+			if (exp < Date.now() / 1000) {
 				// Checking if token is expired
 				return true;
 			} else return false;
@@ -96,7 +96,6 @@ class Auth {
 			return response.json();
 		} else {
 			var error = new Error(response.statusText);
-			error = response;
 			throw error;
 		}
 	}

@@ -1,9 +1,7 @@
 import React from 'react';
 
 import MobileNavigation from './MobileNavigation';
-import Avatar from './Avatar';
-import Typography from './Typography';
-import LogoutButton from './LogoutButton';
+import DrawerLoginDisplay from './DrawerLoginDisplay';
 
 const SideDrawer = props => {
 	let drawerClass = 'side-drawer';
@@ -13,26 +11,21 @@ const SideDrawer = props => {
 	}
 	return (
 		<div className={drawerClass}>
-			<div className="side-drawer__avatar-section">
+			<div
+				className={
+					props.isLoggedIn ? (
+						'side-drawer__avatar-section'
+					) : (
+						'side-drawer__avatar'
+					)
+				}
+			>
 				{props.isLoggedIn ? (
-					<ul>
-						<li>
-							<Avatar avatar={props.avatar} size={'8rem'} />
-						</li>
-						<li>
-							<Typography
-								addStyles={{ color: 'white' }}
-								headingTertiary={props.username}
-							/>
-						</li>
-						<li>
-							<LogoutButton
-								logout={props.logout}
-								addStyles={{ width: '12rem' }}
-								name="logout"
-							/>
-						</li>
-					</ul>
+					<DrawerLoginDisplay
+						avatar={props.avatar}
+						username={props.username}
+						logout={props.logout}
+					/>
 				) : (
 					<div className="side-drawer__avatar-section--no-auth">
 						<p>NIGHTLIFE</p>

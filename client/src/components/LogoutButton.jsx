@@ -16,10 +16,6 @@ const LogoutButton = props => {
 			color: 'gold',
 			background: 'var(--primary-color)'
 		}
-		// icon: {
-		// 	fill: 'var(--color-gold)',
-		// 	marginBottom: '1rem'
-		// }
 	};
 	return (
 		<button

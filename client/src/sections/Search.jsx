@@ -26,10 +26,13 @@ class Search extends React.Component {
 	handleFetchData = searchVal => {
 		const controller = new AbortController();
 		const { signal } = controller;
+
+		let value = searchVal.trim();
+
 		this.setState(() => ({ isLoading: true }));
 		fetch(
 			`${api.yelp
-				.baseURL}location=${searchVal}&limit=15&term=nightclubs,bars`,
+				.baseURL}location=${value}&limit=15&term=nightclubs,bars`,
 			{
 				method: 'GET',
 				headers: {

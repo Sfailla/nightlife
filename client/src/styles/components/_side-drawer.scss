@@ -22,6 +22,10 @@
 	transform: translateX(calc(100% + 10px));
 	transition: transform .4s ease-in-out;
 
+	&__avatar {
+		grid-row: 2 / 3;
+	}
+
 	&__avatar-section {
 		grid-row: 2 / 3;
 		@include flex-center(center, center);
@@ -67,7 +71,6 @@
 
 	&__li {
 		list-style: none;
-		margin-bottom: 2rem;
 		background: var(--primary-color);
 		height: 6rem;
 		cursor: pointer;
@@ -79,6 +82,10 @@
 		&:hover > .side-drawer__link svg {
 			color: var(--secondary-color);
 			fill: var(--secondary-color);
+		}
+
+		&:not(:last-of-type) {
+			margin-bottom: 2rem;
 		}
 
 		& a {
@@ -124,35 +131,12 @@
 
 		&:hover {
 			color: white;
-			// transition: color .4s ease-in-out;
 		}
 	}
 
 	&__search-title {
 		padding-left: 1px;
 	}
-
-	// &__profile-wrapper {
-	// 	width: 100%;
-	// 	height: calc(100% + 55px);
-	// 	position: relative;
-	// 	z-index: 100;
-
-	// 	& ul {
-	// 		height: 100%;
-	// 		@include flex-center(center, center);
-	// 		flex-direction: column;
-	// 	}
-
-	// 	& li {
-	// 		list-style: none;
-	// 		@include flex-center(center, center);
-	// 	}
-
-	// 	& li:not(:last-of-type) {
-	// 		margin-bottom: 1rem;
-	// 	}
-	// }
 
 	@media (min-width: 33.07em) {
 		display: none;
