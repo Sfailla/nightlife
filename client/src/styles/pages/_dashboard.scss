@@ -11,7 +11,7 @@
 		background: white;
 		box-shadow: var(--box-shadow-sm-l);
 		padding: 4rem 1rem;
-		@include flex-center(space-between, center);
+		text-align: center;
 		grid-column: 1 / 2;
 
 		@media (max-width: 50em) {
@@ -21,10 +21,11 @@
 	}
 
 	&__title {
-		font-size: 2.5rem;
+		font-size: 3rem;
 	}
 
 	&__sub-title {
+		padding-top: 5px;
 		font-size: 1.5rem;
 		color: var(--text-secondary);
 	}
