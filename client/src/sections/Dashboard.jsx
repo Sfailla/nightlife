@@ -93,7 +93,7 @@ class Dashboard extends React.PureComponent {
 				<li key={user._id}>
 					<div className="show-users__flex-container">
 						<div className="show-users__flex-container">
-							<Avatar avatar={user.settings.avatar} size={'4rem'} />
+							<Avatar avatar={user.settings.avatar} size={5} />
 							<Typography headingTertiary={user.username} />
 						</div>
 						<div className="show-users__icon-wrapper">
@@ -123,11 +123,11 @@ class Dashboard extends React.PureComponent {
 					<div className="dashboard__title-wrapper">
 						<Typography
 							headingPrimary="Dashboard"
-							classname="dashboard__title"
+							className="dashboard__title"
 						/>
 						<Typography
-							headingSecondary="What would you like to do?"
-							classname="dashboard__sub-title"
+							headingSecondary="Here are your saved settings"
+							className="dashboard__sub-title"
 						/>
 					</div>
 

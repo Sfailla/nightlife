@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 const Avatar = ({ avatar, size }) => {
 	const styles = {
 		avatar: {
-			width: `${size}`,
-			height: `${size}`,
+			width: `${size}rem`,
+			height: `${size}rem`,
 			borderRadius: '100%',
 			border: '2px solid var(--link-color)'
 		}

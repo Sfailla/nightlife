@@ -1,9 +1,9 @@
 import React from 'react';
 import authorize from '../utils/AuthClass';
 
-import Typography from '../components/Typography';
-import AvatarComponent from '../components/AvatarComponent';
-import AccountForm from '../components/AccountForm';
+import UserSettingsCard from '../components/UserSettingsCard';
+import AccountTitle from '../components/AccountTitle';
+import RemoveAccount from '../components/RemoveUser';
 
 class Account extends React.Component {
 	state = {
@@ -69,38 +69,16 @@ class Account extends React.Component {
 	render() {
 		return (
 			<div className="account">
-				<div className="account__title-wrapper">
-					<Typography
-						headingPrimary="Account"
-						classname="account__title"
-					/>
-					<Typography
-						classname="account__sub-title"
-						headingSecondary="create profile"
-					/>
-				</div>
-				<div className="account__profile-card">
-					<Typography
-						classname="account__card-title"
-						headingTertiary="Change Avatar"
-					/>
-					<hr />
-					<AvatarComponent />
-					<hr />
-					<Typography
-						classname="account__card-title"
-						headingTertiary="Add User Info"
-					/>
-					<hr />
-					<AccountForm
-						company={this.state.company}
-						email={this.state.email}
-						location={this.state.location}
-						description={this.state.description}
-						handleOnChange={this.handleOnChange}
-						handleOnSubmit={this.handleOnSubmit}
-					/>
-				</div>
+				<AccountTitle />
+				<UserSettingsCard
+					company={this.state.company}
+					email={this.state.email}
+					location={this.state.description}
+					description={this.state.description}
+					handleOnChange={this.handleOnChange}
+					handleOnSubmit={this.handleOnSubmit}
+				/>
+				<RemoveAccount />
 			</div>
 		);
 	}

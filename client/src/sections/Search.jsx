@@ -132,14 +132,14 @@ class Search extends React.Component {
 					<div className="search__header">
 						<Typography
 							headingPrimary="Welcome To NightLife"
-							classname="search__heading"
+							className="search__heading"
 						/>
 					</div>
 
 					<div className="search__background">
 						<Typography
 							headingSecondary="See what's going on tonight!"
-							classname="search__heading-secondary u-center-text"
+							className="search__heading-secondary u-center-text"
 						/>
 					</div>
 

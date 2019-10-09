@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 
 import Typography from './Typography';
 
-class ShowUsers extends React.PureComponent {
+class ShowUsers extends PureComponent {
 	render() {
 		return (
 			<Fragment>

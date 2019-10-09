@@ -20,10 +20,12 @@ class MainHeaderList extends React.Component {
 			<Fragment>
 				<div className="header">
 					<ul className="header__nav-list-items">
-						<li>{this.props.isLoggedIn && this.props.user.username}</li>
+						<li>
+							{this.props.isLoggedIn && this.props.user.username}
+						</li>
 						<li>
 							{this.props.isLoggedIn && (
-								<Avatar avatar={this.props.user.avatar} size={'4rem'} />
+								<Avatar avatar={this.props.user.avatar} size={4} />
 							)}
 						</li>
 						<li>
@@ -41,7 +43,10 @@ class MainHeaderList extends React.Component {
 						</li>
 					</ul>
 				</div>
-				<div className="header__nav-list-menu" style={{ zIndex: '100' }}>
+				<div
+					className="header__nav-list-menu"
+					style={{ zIndex: '100' }}
+				>
 					<HamburgerMenu
 						style={styles.index}
 						isOpen={this.props.isOpen}
