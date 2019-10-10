@@ -158,6 +158,13 @@ server.patch('/settings/biography', authenticate, (req, res) => {
 });
 
 // User Routes for Events
+server.get('/events', authenticate, (req, res) => {
+	return User.findOne({ _id: req.user.id }, (err, users) => {
+		if (err) return res.send(err);
+		res.send(users);
+	});
+});
+
 server.post('/events', authenticate, (req, res) => {
 	const { name, image, rating } = req.body;
 	let event = {

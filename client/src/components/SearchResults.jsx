@@ -4,31 +4,10 @@ import PropTypes from 'prop-types';
 import authorize from '../utils/AuthClass';
 import ResultCard from './ResultCard';
 
-class SearchResComponent extends React.Component {
+class SearchResults extends React.Component {
 	state = {
 		events: []
 	};
-
-	// addEvent = () => {
-	// 	this.props.results.map(data => {
-	// 		console.log(data.name);
-	// 	});
-	// 	let name = props.name;
-	// 	let rating = props.rating;
-	// 	let image = props.image;
-
-	// 	authorize
-	// 		.authFetch('/users/events', {
-	// 			method: 'POST',
-	// 			body: JSON.stringify({ name, rating, image })
-	// 		})
-	// 		.then(data => data.json())
-	// 		.then(data => {
-	// 			this.setState(() => ({ events: data }));
-	// 			this.props.history.push('/dashboard');
-	// 		})
-	// 		.catch(err => console.log(err));
-	// };
 
 	initializeEventData = async () => {
 		let result = await authorize.authFetch('/users/settings', {
@@ -38,7 +17,18 @@ class SearchResComponent extends React.Component {
 		this.setState({ events: data.events });
 	};
 
-	componentDidMount = () => {};
+	getEventData = async () => {
+		const response = await authorize.authFetch('/users/events', {
+			method: 'GET'
+		});
+		const event = await response.json();
+		const events = event.events;
+		this.setState({ events });
+	};
+
+	async componentDidMount() {
+		return await this.getEventData();
+	}
 
 	render() {
 		return (
@@ -64,7 +54,7 @@ class SearchResComponent extends React.Component {
 	}
 }
 
-SearchResComponent.propTypes = {
+SearchResults.propTypes = {
 	isLoggedIn: PropTypes.bool,
 	imageSrc: PropTypes.string,
 	imageAlt: PropTypes.string,
@@ -72,4 +62,4 @@ SearchResComponent.propTypes = {
 	name: PropTypes.string
 };
 
-export default SearchResComponent;
+export default SearchResults;

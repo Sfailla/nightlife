@@ -161,11 +161,13 @@ class Search extends React.Component {
 								<ul>
 									{this.state.results.length ? (
 										<div>
-											<Typography
-												headingPrimary={`search results (${this.state
-													.results.length})`}
-												addStyles={styles.resultsTitle}
-											/>
+											<div className="results__title">
+												<Typography
+													headingPrimary={`search results (${this
+														.state.results.length})`}
+													addStyles={styles.resultsTitle}
+												/>
+											</div>
 
 											<Button
 												addStyles={styles.button}

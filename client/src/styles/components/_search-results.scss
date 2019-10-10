@@ -11,6 +11,10 @@
 		}
 	}
 
+	&__title {
+		@include flex-center(center, center);
+	}
+
 	&__card {
 		width: 100%;
 		min-height: 35rem;
