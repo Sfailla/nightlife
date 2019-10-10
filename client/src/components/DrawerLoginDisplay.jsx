@@ -12,7 +12,7 @@ const DrawerLoginDisplay = ({ avatar, username, logout }) => {
 	return (
 		<ul style={styles}>
 			<li>
-				<Avatar avatar={avatar} size={'8rem'} />
+				<Avatar avatar={avatar} size={8} />
 			</li>
 			<li>
 				<Typography

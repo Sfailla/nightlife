@@ -119,7 +119,13 @@ class HomePage extends React.PureComponent {
 								/>
 							)}
 						/>
-						<AuthRoute exact path="/account" component={Account} />
+						<AuthRoute
+							exact
+							path="/account"
+							component={props => (
+								<Account {...props} logout={this.logout} />
+							)}
+						/>
 						<Route exact path="/sign-in" component={Login} />
 						<Route exact path="/sign-up" component={Register} />
 					</Switch>

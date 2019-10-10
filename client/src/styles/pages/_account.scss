@@ -155,14 +155,24 @@
 		height: 40rem;
 		margin: 0 auto;
 		background: white;
-		padding: 2rem 4rem;
+		padding: 20px 40px;
 		line-height: 1.7;
 		border-radius: 3px;
 		box-shadow: var(--box-shadow-md-l);
+
+		@media (max-width: 34.375em) {
+			max-width: 100%;
+		}
 	}
 
 	&__spacer {
 		width: 100%;
 		height: 8rem;
+	}
+
+	&__content {
+		width: 100%;
+		height: calc(100% - 47px);
+		background-color: lightpink;
 	}
 }

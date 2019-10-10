@@ -14,8 +14,6 @@ const Event = props => {
 			width: '100%',
 			marginTop: '1rem',
 			background: 'var(--primary-color)',
-			// backgroundImage:
-			// 	'linear-gradient(to right, var(--secondary-color), var(--primary-color))',
 			color: 'white',
 			boxShadow: 'var(--box-shadow-sm-l)',
 			display: 'flex',
@@ -55,11 +53,15 @@ const Event = props => {
 			</div>
 			<div style={styles.body}>
 				<h3 style={styles.h3}>{truncate(props.name, 20)}</h3>
-				<span className="events__rating">{changeNumToStar(props.rating)}</span>
+				<span className="events__rating">
+					{changeNumToStar(props.rating)}
+				</span>
 
 				<div className="events__button-wrapper">
 					<Button
-						name={<Icon size={25} view1={32} view2={32} icon="trash" />}
+						name={
+							<Icon size={25} view1={32} view2={32} icon="trash" />
+						}
 						addStyles={styles.svg}
 						type="button"
 						onClick={() => props.handleRemoveEvent(props.id)}

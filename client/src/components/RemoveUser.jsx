@@ -6,7 +6,6 @@ import Avatar from './Avatar';
 import Button from './Button';
 
 const RemoveAccount = props => {
-	console.log(props.avatar);
 	const styles = {
 		button: {
 			height: '4rem',
@@ -25,12 +24,13 @@ const RemoveAccount = props => {
 				<hr />
 				<div className="remove-user__content">
 					<div className="remove-user__avatar">
-						<Avatar size={10} avatar={props.avatar} />
+						<Avatar size={12} avatar={props.avatar} />
 					</div>
 					<Button
 						addStyles={styles.button}
 						name="DELETE USER"
 						btnType="button"
+						onClick={() => props.removeAccount()}
 					/>
 				</div>
 			</div>

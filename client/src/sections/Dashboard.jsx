@@ -71,10 +71,10 @@ class Dashboard extends React.PureComponent {
 
 		const users = await response.json();
 
-		users.map(async user => {
+		users.map(user => {
 			if (user._id !== uid) {
-				await loadedUsers.push(user);
-				await this.setState({
+				loadedUsers.push(user);
+				this.setState({
 					users: loadedUsers
 				});
 			}
@@ -154,9 +154,5 @@ class Dashboard extends React.PureComponent {
 		);
 	}
 }
-
-Dashboard.propTypes = {
-	logout: PropTypes.func
-};
 
 export default Dashboard;

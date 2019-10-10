@@ -13,23 +13,6 @@ import {
 	setAvatar
 } from '../actions/users';
 
-const styles = {
-	heading: {
-		textAlign: 'center',
-		paddingTop: '3rem'
-	},
-	card: {
-		maxWidth: '70rem',
-		height: 'auto',
-		backgroundColor: 'white',
-		margin: '0 auto',
-		marginTop: '4rem',
-		marginBottom: '4rem',
-		boxShadow: 'var(--box-shadow-md-l)',
-		position: 'relative'
-	}
-};
-
 export class Login extends Component {
 	state = {
 		username: '',
@@ -93,11 +76,13 @@ export class Login extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Typography
-					addStyles={styles.heading}
-					headingPrimary="sign in for access to nightlife features"
-				/>
-				<div style={styles.card}>
+				<div className="signup__title">
+					<Typography
+						className="signup__heading"
+						headingPrimary="sign in for access to nightlife features"
+					/>
+				</div>
+				<div className="signup__card">
 					<div className="signup__container">
 						<form
 							style={{ height: '100%' }}

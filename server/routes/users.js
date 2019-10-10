@@ -19,6 +19,18 @@ server.get('/usersList', (req, res) => {
 	});
 });
 
+server.delete('/users-list', authenticate, (req, res) => {
+	let id = req.user.id;
+
+	User.findByIdAndDelete(id, (err, users) => {
+		console.log(users);
+		console.log(id);
+		return {
+			users
+		};
+	});
+});
+
 server.post('/sign-up', (req, res) => {
 	const { username, password } = req.body;
 
@@ -184,7 +196,6 @@ server.delete('/events/:id', authenticate, (req, res) => {
 			res.send(event);
 		})
 		.catch(err => {
-			console.error(err);
 			res.status(400).send(err);
 		});
 });

@@ -86,10 +86,12 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="signup">
-				<Typography
-					className={'signup__heading'}
-					headingPrimary="See whats going on tonite!"
-				/>
+				<div className="signup__title">
+					<Typography
+						className={'signup__heading'}
+						headingPrimary="See whats going on tonite!"
+					/>
+				</div>
 
 				<div className="signup__card">
 					<div className="signup__container">

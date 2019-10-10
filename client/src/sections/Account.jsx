@@ -1,5 +1,6 @@
 import React from 'react';
 import authorize from '../utils/AuthClass';
+import { withRouter } from 'react-router-dom';
 
 import UserSettingsCard from '../components/UserSettingsCard';
 import AccountTitle from '../components/AccountTitle';
@@ -62,6 +63,13 @@ class Account extends React.Component {
 			});
 	};
 
+	removeUserAccount = () => {
+		// this.props.logout();
+		authorize
+			.authFetch('/users/users-list', { method: 'DELETE' })
+			.then(res => console.log('operation complete ', res));
+	};
+
 	componentDidMount = () => {
 		this.initializeUserData();
 	};
@@ -78,10 +86,11 @@ class Account extends React.Component {
 					handleOnChange={this.handleOnChange}
 					handleOnSubmit={this.handleOnSubmit}
 				/>
-				<RemoveAccount />
+				<RemoveAccount removeAccount={this.removeUserAccount} />
 			</div>
 		);
 	}
 }
 
-export default Account;
+const AccountWithRouter = withRouter(Account);
+export default AccountWithRouter;
