@@ -88,8 +88,14 @@ class Register extends Component {
 			<div className="signup">
 				<div className="signup__title">
 					<Typography
+						className="signup__heading"
+						headingPrimary="Register"
+					/>
+				</div>
+				<div className="signup__title">
+					<Typography
 						className={'signup__heading'}
-						headingPrimary="See whats going on tonite!"
+						headingPrimary="Sign Up for nightlife"
 					/>
 				</div>
 

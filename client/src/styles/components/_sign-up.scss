@@ -1,10 +1,14 @@
 .signup {
+	width: 80%;
+	margin: 0 auto;
+
 	&__title {
-		max-width: 70rem;
+		width: 100%;
 		height: auto;
 		background-color: white;
 		margin: 0 auto 3rem auto;
 		box-shadow: var(--box-shadow-md-l);
+		@include flex-center(center, center);
 	}
 
 	&__signup-card {
@@ -22,7 +26,7 @@
 	}
 
 	&__card {
-		max-width: 70rem;
+		width: 100%;
 		height: auto;
 		background-color: white;
 		margin: 3rem auto 0 auto;
@@ -33,6 +37,10 @@
 	&__heading {
 		text-align: center;
 		padding: 3rem 5px;
+
+		@media (max-width: 25em) {
+			font-size: 2.5rem;
+		}
 	}
 
 	& input[type="password"],

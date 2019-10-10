@@ -79,6 +79,12 @@ export class Login extends Component {
 				<div className="signup__title">
 					<Typography
 						className="signup__heading"
+						headingPrimary="Login"
+					/>
+				</div>
+				<div className="signup__title">
+					<Typography
+						className="signup__heading"
 						headingPrimary="sign in for access to nightlife features"
 					/>
 				</div>

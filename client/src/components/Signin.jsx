@@ -7,11 +7,6 @@ import { BorderlessForm } from './Form';
 import Button from './Button';
 
 const styles = {
-	title: {
-		textAlign: 'center',
-		color: 'var(--primary-color)',
-		fontWeight: 'bold'
-	},
 	borderlessForm: {
 		marginBottom: '2rem'
 	},
@@ -39,7 +34,6 @@ const Signin = ({ handleOnChange, errors }) => (
 	<div className="signup">
 		<div className="signup__signup-card">
 			<Icon icon="puzzle" size={100} view1={26} view2={28} />
-			<Typography addStyles={styles.title} headingSecondary="Login to NightLife" />
 			{errors && <p style={styles.error}>** {errors} **</p>}
 			<div style={{ paddingBottom: '7rem' }}>
 				<BorderlessForm

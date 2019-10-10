@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Icon } from './Icon';
-import Typography from './Typography';
 
 import { BorderlessForm } from './Form';
 import CheckGroup from './CheckGroup';
@@ -30,11 +29,6 @@ const styles = {
 		transform: 'translateX(-50%)',
 		width: '39rem',
 		textAlign: 'center'
-	},
-	title: {
-		textAlign: 'center',
-		color: 'var(--primary-color)',
-		fontWeight: 'bold'
 	}
 };
 
@@ -47,11 +41,6 @@ const Signup = props => (
 				view1={16}
 				view2={28}
 				icon="code-branch"
-			/>
-			<Typography
-				className="u-center-text"
-				headingSecondary="Sign Up For NightLife"
-				addStyles={styles.title}
 			/>
 			{props.errors && (
 				<p style={styles.error}>** {props.errors} **</p>
