@@ -14,7 +14,7 @@ class Search extends React.Component {
 		searchVal: '',
 		hasResults: false,
 		isLoading: false,
-		results: [],
+		searchResults: [],
 		events: [],
 		errors: ''
 	};
@@ -30,6 +30,20 @@ class Search extends React.Component {
 		let data = await result.json();
 		this.setState({ events: data.events });
 		return data;
+	};
+
+	disableAddEventButton = (name, events) => {
+		let eventMap = events.map(event => {
+			return event.name;
+		});
+
+		if (eventMap.includes(name)) {
+			console.log('event is included');
+			return true;
+		} else {
+			console.log('no event');
+			return false;
+		}
 	};
 
 	handleFetchData = searchVal => {
@@ -54,7 +68,7 @@ class Search extends React.Component {
 			.then(res => {
 				if (res.businesses.length) {
 					this.setState({
-						results: res.businesses,
+						searchResults: res.businesses,
 						isLoading: false,
 						hasResults: true,
 						searchVal: '',
@@ -78,7 +92,7 @@ class Search extends React.Component {
 	};
 
 	handleClearSearch = () => {
-		this.setState(() => ({ results: [], hasResults: false }));
+		this.setState(() => ({ searchResults: [], hasResults: false }));
 	};
 
 	scrollToBottom = () => {
@@ -169,12 +183,12 @@ class Search extends React.Component {
 								</div>
 
 								<ul>
-									{this.state.results.length ? (
+									{this.state.searchResults.length ? (
 										<div>
 											<div className="results__title">
 												<Typography
 													headingPrimary={`search results (${this
-														.state.results.length})`}
+														.state.searchResults.length})`}
 													addStyles={styles.resultsTitle}
 												/>
 											</div>
@@ -187,10 +201,13 @@ class Search extends React.Component {
 											/>
 
 											<SearchResults
-												results={this.state.results}
+												results={this.state.searchResults}
 												events={this.state.events}
 												isLoggedIn={this.props.user.isLoggedIn}
 												history={this.props.history}
+												disableAddEventButton={
+													this.disableAddEventButton
+												}
 											/>
 
 											<div style={styles.btnWrapper}>

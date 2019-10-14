@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import ResultCard from './ResultCard';
@@ -8,10 +8,11 @@ const SearchResults = ({
 	results,
 	history,
 	isLoggedIn,
-	initializeEventData
+	initializeEventData,
+	disableAddEventButton
 }) => {
 	return (
-		<div>
+		<Fragment>
 			{results.map(data => (
 				<ResultCard
 					key={data.id}
@@ -21,14 +22,15 @@ const SearchResults = ({
 					moreInfoLink={data.url}
 					image={data.image_url}
 					imageAlt="bar images"
-					isLoggedIn={isLoggedIn}
 					history={history}
-					moreInfoLink={data.url}
-					initializeEventData={initializeEventData}
 					events={events}
+					moreInfoLink={data.url}
+					isLoggedIn={isLoggedIn}
+					initializeEventData={initializeEventData}
+					disableAddEventButton={disableAddEventButton}
 				/>
 			))}
-		</div>
+		</Fragment>
 	);
 };
 

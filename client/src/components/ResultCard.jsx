@@ -71,7 +71,10 @@ const ResultCard = props => {
 							<Button
 								addStyles={styles.eventButton}
 								type="submit"
-								// disabled={}
+								disabled={props.disableAddEventButton(
+									props.name,
+									props.events
+								)}
 								onClick={() => addEvent()}
 								name="Add Event"
 							/>
