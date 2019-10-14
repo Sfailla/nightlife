@@ -22,12 +22,9 @@ server.get('/usersList', (req, res) => {
 server.delete('/users-list', authenticate, (req, res) => {
 	let id = req.user.id;
 
-	User.findByIdAndDelete(id, (err, users) => {
-		console.log(users);
-		console.log(id);
-		return {
-			users
-		};
+	User.findByIdAndDelete(id, (err, user) => {
+		if (err) return res.status().send(err);
+		return res.status(200).send(user);
 	});
 });
 
@@ -148,20 +145,25 @@ server.patch('/settings/biography', authenticate, (req, res) => {
 			}
 		},
 		{ new: true }
-	).then(doc => {
-		if (!doc) {
-			return res.status(404).send();
-		} else {
-			res.send(doc);
-		}
-	});
+	)
+		.then(doc => {
+			if (doc) {
+				res.send(doc);
+			}
+		})
+		.catch(err => {
+			return res.status(404).send(err);
+		});
 });
 
 // User Routes for Events
 server.get('/events', authenticate, (req, res) => {
-	return User.findOne({ _id: req.user.id }, (err, users) => {
-		if (err) return res.send(err);
-		res.send(users);
+	return User.findOne({ _id: req.user.id }, (err, user) => {
+		if (err) {
+			return res.status(400).send(err);
+		} else {
+			res.send(user);
+		}
 	});
 });
 
@@ -188,14 +190,14 @@ server.post('/events', authenticate, (req, res) => {
 });
 
 server.delete('/events/:id', authenticate, (req, res) => {
-	const id = req.params.id;
+	const _id = req.params.id;
 	const uid = req.user.id;
 
 	User.findOneAndUpdate(
 		{ _id: uid },
 		{
 			$pull: {
-				events: { _id: id }
+				events: { _id }
 			}
 		}
 	)
