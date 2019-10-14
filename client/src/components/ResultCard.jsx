@@ -43,12 +43,6 @@ const ResultCard = props => {
 			.then(() => props.history.push('/dashboard'));
 	};
 
-	const disableAddEvent = async () => {
-		const { name, events } = props;
-	};
-
-	disableAddEvent();
-
 	return (
 		<div className="results__card">
 			<div className="results__card--left">
@@ -77,6 +71,7 @@ const ResultCard = props => {
 							<Button
 								addStyles={styles.eventButton}
 								type="submit"
+								// disabled={}
 								onClick={() => addEvent()}
 								name="Add Event"
 							/>

@@ -23,6 +23,15 @@ class Search extends React.Component {
 		return api.yelp.token;
 	};
 
+	initializeEventData = async () => {
+		let result = await authorize.authFetch('/users/settings', {
+			method: 'GET'
+		});
+		let data = await result.json();
+		this.setState({ events: data.events });
+		return data;
+	};
+
 	handleFetchData = searchVal => {
 		const controller = new AbortController();
 		const { signal } = controller;
@@ -44,13 +53,14 @@ class Search extends React.Component {
 			.then(res => authorize._checkStatus(res))
 			.then(res => {
 				if (res.businesses.length) {
-					this.setState(() => ({
+					this.setState({
 						results: res.businesses,
 						isLoading: false,
 						hasResults: true,
 						searchVal: '',
 						errors: ''
-					}));
+					});
+					this.initializeEventData();
 				} else if (!res.businesses.length) {
 					this.setState(() => ({
 						errors: '** Sorry no results for that area **',
@@ -178,6 +188,7 @@ class Search extends React.Component {
 
 											<SearchResults
 												results={this.state.results}
+												events={this.state.events}
 												isLoggedIn={this.props.user.isLoggedIn}
 												history={this.props.history}
 											/>
