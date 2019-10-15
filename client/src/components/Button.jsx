@@ -7,20 +7,16 @@ const Button = ({
 	onClick,
 	btnType,
 	disabled,
+	className,
 	icon
 }) => {
-	const defaultButtonStyles = {
-		display: 'block',
-		width: 'auto',
-		height: '3rem',
-		opacity: disabled ? '.3' : 'none'
-	};
 	return (
 		<button
+			className={className}
 			disabled={disabled}
 			type={btnType}
 			onClick={onClick}
-			style={{ ...defaultButtonStyles, ...addStyles }}
+			style={{ ...addStyles }}
 		>
 			{icon ? icon : null}
 			{name}

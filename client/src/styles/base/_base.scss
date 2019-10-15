@@ -44,10 +44,20 @@ img {
 }
 
 button {
-	cursor: pointer;
 	text-transform: uppercase;
 	outline: none;
 	border: none;
+	display: block;
+	width: 12rem;
+	height: 4rem;
+}
+
+button:not(:disabled) {
+	cursor: pointer;
+}
+
+button:disabled {
+	opacity: .3;
 }
 
 .container {
