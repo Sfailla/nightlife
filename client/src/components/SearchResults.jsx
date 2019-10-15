@@ -7,6 +7,7 @@ const SearchResults = ({
 	events,
 	results,
 	history,
+	addEvent,
 	isLoggedIn,
 	initializeEventData,
 	disableAddEventButton
@@ -25,6 +26,7 @@ const SearchResults = ({
 					history={history}
 					events={events}
 					moreInfoLink={data.url}
+					addEvent={addEvent}
 					isLoggedIn={isLoggedIn}
 					initializeEventData={initializeEventData}
 					disableAddEventButton={disableAddEventButton}

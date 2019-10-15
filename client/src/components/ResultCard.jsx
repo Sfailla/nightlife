@@ -3,7 +3,7 @@ import React from 'react';
 import defaultImgSrc from '../images/bar-default-img.jpg';
 import Button from './Button';
 import { truncate, changeNumToStar } from '../utils/functions';
-import authorize from '../utils/AuthClass';
+// import authorize from '../utils/AuthClass';
 
 const ResultCard = props => {
 	const styles = {
@@ -26,22 +26,24 @@ const ResultCard = props => {
 		},
 		rating: {
 			padding: '2rem 0',
-			textAlign: 'center'
+			textAlign: 'center',
+			color: 'var(--link-color)'
 		},
 		a: {
 			textDecoration: 'none'
 		}
 	};
 
-	const addEvent = async () => {
-		const { name, rating, image } = props;
-		return await authorize
-			.authFetch('/users/events', {
-				method: 'POST',
-				body: JSON.stringify({ name, rating, image })
-			})
-			.then(() => props.history.push('/dashboard'));
-	};
+	// const addEvent = () => {
+	// 	const { name, rating, image } = props;
+	// 	return authorize
+	// 		.authFetch('/users/events', {
+	// 			method: 'POST',
+	// 			body: JSON.stringify({ name, rating, image })
+	// 		})
+	// 		.then(() => props.initializeEventData())
+	// 		.catch(err => console.error(err));
+	// };
 
 	return (
 		<div className="results__card">
@@ -75,7 +77,12 @@ const ResultCard = props => {
 									props.name,
 									props.events
 								)}
-								onClick={() => addEvent()}
+								onClick={() =>
+									props.addEvent(
+										props.name,
+										props.rating,
+										props.image
+									)}
 								name="Add Event"
 							/>
 							<a

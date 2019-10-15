@@ -141,8 +141,8 @@ const mapStateToProps = state => {
 	};
 };
 
-const HomePageWithRouter = withRouter(HomePage);
-
-export default connect(mapStateToProps, { isLoggedIn })(
-	HomePageWithRouter
+const HomePageWithRouter = withRouter(
+	connect(mapStateToProps, { isLoggedIn })(HomePage)
 );
+
+export default HomePageWithRouter;

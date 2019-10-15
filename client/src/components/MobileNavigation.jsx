@@ -88,7 +88,7 @@ const MobileNavigation = props => {
 									view2={28}
 									icon="code-branch"
 								/>
-								<span>SIGN IN</span>
+								<span>LOGIN</span>
 							</div>
 						</Link>
 					</li>

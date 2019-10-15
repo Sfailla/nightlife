@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import appReducer from '../src/store/appReducer';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import Layout from './layouts/MainLayout';
+import HomePage from './pages/HomePage';
 import { reduxDT } from './reduxDT/reduxDevtool';
 import { saveState, loadState } from './localStorage/localStorage';
 
@@ -21,7 +21,7 @@ store.subscribe(() => {
 const app = (
 	<Provider store={store}>
 		<Router>
-			<Layout />
+			<HomePage />
 		</Router>
 	</Provider>
 );

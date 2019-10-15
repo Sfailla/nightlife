@@ -184,7 +184,7 @@ server.post('/events', authenticate, (req, res) => {
 		}
 	)
 		.then(event => {
-			res.send(event);
+			res.status(200).send(event);
 		})
 		.catch(err => res.status(400).send(err));
 });

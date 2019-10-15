@@ -31,8 +31,8 @@ export class AvatarComponent extends React.Component {
 
 	_isMounted = false;
 
-	handleOnChange = evt => {
-		const { name, value } = evt.target;
+	handleOnChange = event => {
+		const { name, value } = event.target;
 		this.setState(() => ({ [name]: value }));
 	};
 
@@ -40,15 +40,13 @@ export class AvatarComponent extends React.Component {
 		event.preventDefault();
 		this.updateAvatar();
 		this.props.setAvatar(this.handleSelectAvatar());
-		this.props.history.push('/dashboard');
 	};
 
 	initializeAvatar = () => {
 		authorize
 			.authFetch('/users/settings', { method: 'GET' })
 			.then(res => res.json())
-			.then(res => {
-				const response = res;
+			.then(response => {
 				let avatar = response.settings.avatar;
 				let avatarSelect = response.settings.avatarSelect;
 				this.setState(() => ({ avatar, avatarSelect }));
@@ -64,8 +62,7 @@ export class AvatarComponent extends React.Component {
 				body: JSON.stringify({ avatar, avatarSelect })
 			})
 			.then(res => res.json())
-			.then(res => {
-				const response = res;
+			.then(response => {
 				let avatar = response.settings.avatar;
 				let avatarSelect = response.settings.avatarSelect;
 				if (this._isMounted) {
@@ -114,7 +111,7 @@ export class AvatarComponent extends React.Component {
 					handleSelectAvatar={this.handleSelectAvatar}
 					handleOnChange={this.handleOnChange}
 				/>
-				<Button type="SUBMIT" name="Save" addStyles={styles.button} />
+				<Button type="submit" name="Save" addStyles={styles.button} />
 			</form>
 		);
 	}

@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 
 import api from '../api/yelpAPI.json';
 import SearchCard from '../components/SearchCard';
-import SearchResults from '../components/SearchResults';
 import Typography from '../components/Typography';
-import Button from '../components/Button';
-import Loader from '../components/Loader';
 import authorize from '../utils/AuthClass';
+import ResultsPage from './Results';
 
 class Search extends React.Component {
 	state = {
@@ -24,12 +22,28 @@ class Search extends React.Component {
 	};
 
 	initializeEventData = async () => {
-		let result = await authorize.authFetch('/users/settings', {
-			method: 'GET'
-		});
-		let data = await result.json();
-		this.setState({ events: data.events });
-		return data;
+		try {
+			let result = await authorize.authFetch('/users/settings', {
+				method: 'GET'
+			});
+			let data = await result.json();
+			this.setState({ events: data.events });
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	addEvent = async (name, rating, image) => {
+		try {
+			const res = await authorize.authFetch('/users/events', {
+				method: 'POST',
+				body: JSON.stringify({ name, rating, image })
+			});
+			res.json();
+			return await this.initializeEventData();
+		} catch (err) {
+			return console.error(err);
+		}
 	};
 
 	disableAddEventButton = (name, events) => {
@@ -38,115 +52,60 @@ class Search extends React.Component {
 		});
 
 		if (eventMap.includes(name)) {
-			console.log('event is included');
 			return true;
 		} else {
-			console.log('no event');
 			return false;
 		}
 	};
 
-	handleFetchData = searchVal => {
+	handleFetchData = async searchVal => {
 		const controller = new AbortController();
 		const { signal } = controller;
 
 		let value = searchVal.trim();
 
 		this.setState(() => ({ isLoading: true }));
-		fetch(
-			`${api.yelp
-				.baseURL}location=${value}&limit=15&term=nightclubs,bars`,
-			{
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${this.getToken()}`
-				},
-				signal
-			}
-		)
-			.then(res => authorize._checkStatus(res))
-			.then(res => {
-				if (res.businesses.length) {
-					this.setState({
-						searchResults: res.businesses,
-						isLoading: false,
-						hasResults: true,
-						searchVal: '',
-						errors: ''
-					});
-					this.initializeEventData();
-				} else if (!res.businesses.length) {
-					this.setState(() => ({
-						errors: '** Sorry no results for that area **',
-						isLoading: false
-					}));
-					controller.abort();
+		try {
+			let response = await fetch(
+				`${api.yelp
+					.baseURL}location=${value}&limit=15&term=nightclubs,bars`,
+				{
+					method: 'GET',
+					headers: {
+						Authorization: `Bearer ${this.getToken()}`
+					},
+					signal
 				}
-			})
-			.catch(err => {
-				this.setState(() => ({
-					errors: `** Sorry ${err.statusText} **`,
-					isLoading: false
-				}));
-			});
+			);
+			let res = await response.json();
+			if (res.businesses.length) {
+				this.setState({
+					searchResults: res.businesses,
+					isLoading: false,
+					hasResults: true,
+					searchVal: '',
+					errors: ''
+				});
+			}
+			this.initializeEventData();
+		} catch (error) {
+			this.setState(() => ({
+				errors: error,
+				isLoading: false
+			}));
+			controller.abort();
+		}
 	};
 
 	handleClearSearch = () => {
 		this.setState(() => ({ searchResults: [], hasResults: false }));
 	};
 
-	scrollToBottom = () => {
-		this.findResults.scrollIntoView({ behavior: 'smooth' });
-	};
-
-	stopAutoScroll = () => {
-		this.setState({ hasResults: false });
-	};
-
-	componentDidUpdate() {
-		if (this.state.hasResults) {
-			if (this.findResults) {
-				this.scrollToBottom();
-			}
-		}
-	}
-
 	render() {
 		const styles = {
-			height: '100%',
-			position: 'relative',
-			button: {
-				width: '18rem',
-				height: '3.5rem',
-				background: 'var(--primary-color)',
-				color: 'white',
-				margin: '5rem auto'
-			},
-			spinner: {
-				width: '10rem',
-				height: '10rem',
-				background: 'transparent',
-				position: 'absolute',
-				left: '50%',
-				bottom: '3rem',
-				transform: 'translate(-50%, 0%)',
-
-				display: this.state.isLoading ? 'flex' : 'none',
-				justifyContent: 'center',
-				alignItems: 'center'
-			},
-			resultsTitle: {
-				textAlign: 'center',
-				fontSize: '4rem',
-				marginTop: '5rem'
-			},
-			backToTop: {
-				padding: '2rem',
-				color: 'var(--secondary-color)'
-			},
-			btnWrapper: {
-				marginTop: '2rem',
-				textAlign: 'center'
+			background: {
+				height: '100%',
+				position: 'relative'
 			}
 		};
 
@@ -175,55 +134,20 @@ class Search extends React.Component {
 							errors={this.state.errors}
 						/>
 
-						<div className="results">
-							<div className="results__container">
-								<div ref={node => (this.findResults = node)} />
-								<div style={styles.spinner}>
-									{this.state.isLoading && <Loader />}
-								</div>
-
-								<ul>
-									{this.state.searchResults.length ? (
-										<div>
-											<div className="results__title">
-												<Typography
-													headingPrimary={`search results (${this
-														.state.searchResults.length})`}
-													addStyles={styles.resultsTitle}
-												/>
-											</div>
-
-											<Button
-												addStyles={styles.button}
-												type="button"
-												name="Clear Results"
-												onClick={this.handleClearSearch}
-											/>
-
-											<SearchResults
-												results={this.state.searchResults}
-												events={this.state.events}
-												isLoggedIn={this.props.user.isLoggedIn}
-												history={this.props.history}
-												disableAddEventButton={
-													this.disableAddEventButton
-												}
-											/>
-
-											<div style={styles.btnWrapper}>
-												<a
-													href="#search"
-													onClick={this.stopAutoScroll}
-													style={styles.backToTop}
-												>
-													back to top
-												</a>
-											</div>
-										</div>
-									) : null}
-								</ul>
-							</div>
-						</div>
+						<ResultsPage
+							findResults={this.findResults}
+							isLoading={this.state.isLoading}
+							searchResults={this.state.searchResults}
+							results={this.state.searchResults}
+							events={this.state.events}
+							isLoggedIn={this.props.user.isLoggedIn}
+							history={this.props.history}
+							addEvent={this.addEvent}
+							hasResults={this.state.hasResults}
+							initializeEventData={this.initializeEventData}
+							disableAddEventButton={this.disableAddEventButton}
+							handleClearSearch={this.handleClearSearch}
+						/>
 					</div>
 				</div>
 			</div>
