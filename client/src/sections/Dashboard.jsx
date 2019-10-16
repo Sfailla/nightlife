@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import authorize from '../utils/AuthClass';
 
 import ShowUsers from '../components/ShowUsers';
@@ -9,7 +8,7 @@ import Avatar from '../components/Avatar';
 import { Icon } from '../components/Icon';
 import UserDetails from '../components/UserDetails';
 
-class Dashboard extends React.PureComponent {
+class Dashboard extends React.Component {
 	state = {
 		username: '',
 		company: '',
@@ -21,64 +20,59 @@ class Dashboard extends React.PureComponent {
 		user: this.props.currentUser
 	};
 
-	handleRemoveEvent = id => {
-		authorize
-			.authFetch(`/users/events/${id}`, { method: 'DELETE' })
-			.then(res => res.json())
-			.then(res => {
-				this.setState(prevState => ({
-					events: prevState.events.filter(event => event._id !== id)
-				}));
-			});
+	handleRemoveEvent = async id => {
+		try {
+			const response = await authorize.authFetch(
+				`/users/events/${id}`,
+				{ method: 'DELETE' }
+			);
+			response.json();
+			this.setState(prevState => ({
+				events: prevState.events.filter(event => event._id !== id)
+			}));
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
-	initializeUserBio = () => {
-		authorize
-			.authFetch('/users/me', { method: 'GET' })
-			.then(res => res.json())
-			.then(res => {
-				this.setState(() => ({
-					company: res.settings.company,
-					email: res.email,
-					location: res.settings.location,
-					description: res.settings.description
-				}));
-			})
-			.catch(err => console.log(err));
-	};
-
-	initializeEventData = () => {
-		authorize
-			.authFetch('/users/settings', {
+	initializeDashboardData = async () => {
+		try {
+			const response = await authorize.authFetch('/users/settings', {
 				method: 'GET'
-			})
-			.then(event => event.json())
-			.then(event => {
-				let events = event.events;
-				this.setState({
-					events
-				});
 			});
+			const data = await response.json();
+			const events = data.events;
+			this.setState({
+				events,
+				email: data.email,
+				company: data.settings.company,
+				location: data.settings.location,
+				description: data.settings.description
+			});
+		} catch (error) {
+			return console.error(error);
+		}
 	};
 
 	initializeShowUsers = async () => {
 		const uid = this.state.user.currentUser._id;
 		let loadedUsers = [];
-
-		const response = await fetch('/users/usersList', {
-			method: 'GET'
-		});
-
-		const users = await response.json();
-
-		users.map(user => {
-			if (user._id !== uid) {
-				loadedUsers.push(user);
-				this.setState({
-					users: loadedUsers
-				});
-			}
-		});
+		try {
+			const res = await fetch('/users/users-list', {
+				method: 'GET'
+			});
+			const users = await res.json();
+			users.map(user => {
+				if (user._id !== uid) {
+					loadedUsers.push(user);
+				}
+			});
+			this.setState({
+				users: loadedUsers
+			});
+		} catch (err) {
+			return console.error(err);
+		}
 	};
 
 	displayUsers = () =>
@@ -110,11 +104,10 @@ class Dashboard extends React.PureComponent {
 			);
 		});
 
-	componentDidMount = () => {
-		this.initializeEventData();
+	componentDidMount() {
 		this.initializeShowUsers();
-		this.initializeUserBio();
-	};
+		this.initializeDashboardData();
+	}
 
 	render() {
 		return (
