@@ -4,8 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import authorize from '../utils/AuthClass';
 
-import Typography from './Typography';
-import SignIn from './Signin';
+import Typography from '../components/Typography';
+import SignIn from '../components/Signin';
 import {
 	isLoggedIn,
 	setUsername,
@@ -25,36 +25,33 @@ export class Login extends Component {
 		this.setState(() => ({ [name]: value, errors: '' }));
 	};
 
-	handleOnSubmit = event => {
+	handleOnSubmit = async event => {
 		event.preventDefault();
 
 		const { username, password } = this.state;
 		const { login, setToken } = authorize;
+		const sanitizeUser = username.toString().toLowerCase().trim();
 
-		const trimmedUsername = username.trim();
-
-		if (trimmedUsername.length && password.length) {
+		if (sanitizeUser.length && password.length) {
 			this.setState(() => ({ errors: '' }));
-			return login(trimmedUsername, password)
-				.then(res => res.json())
-				.then(res => {
-					if (res.error) {
-						this.setState(() => ({ errors: res.error }));
-					} else {
-						setToken(res.tokens[0].token);
-						this.setUserPresence(true);
-						this.props.setUser(res);
-						this.props.setUsername(res.username);
-						this.props.setAvatar(res.settings.avatar);
-						this.props.isLoggedIn(true);
-						this.props.history.push('/dashboard');
-					}
-				})
-				.catch(err => {
-					if (err) {
-						return;
-					}
-				});
+			try {
+				const response = await login(sanitizeUser, password);
+				const res = response.json();
+				if (res.error) {
+					this.setState(() => ({ errors: res.error }));
+				} else {
+					setToken(res.tokens[0].token);
+					this.setUserPresence(true);
+					this.props.setUser(res);
+					this.props.setUsername(res.username);
+					this.props.setAvatar(res.settings.avatar);
+					this.props.isLoggedIn(true);
+					this.props.history.push('/dashboard');
+				}
+			} catch (error) {
+				this.setState({ errors: error });
+				return console.error(error);
+			}
 		} else {
 			this.setState(() => ({
 				errors: 'Please fill out form completely'
@@ -62,15 +59,15 @@ export class Login extends Component {
 		}
 	};
 
-	setUserPresence = isLoggedIn => {
-		authorize
-			.authFetch('/users/presence', {
+	setUserPresence = async isLoggedIn => {
+		try {
+			return await authorize.authFetch('/users/presence', {
 				method: 'PATCH',
 				body: JSON.stringify({ isLoggedIn })
-			})
-			.then(doc => doc.json())
-			.then(doc => {})
-			.catch(err => console.error(err));
+			});
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	render() {
