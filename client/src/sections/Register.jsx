@@ -33,44 +33,40 @@ class Register extends Component {
 			this.setState(() => ({
 				formType:
 					this.state.formType === 'password' ? 'text' : 'password',
-				checked: this.state.checked === false ? true : false
+				checked: !this.state.checked ? true : false
 			}));
 		}
 	};
 
-	handleOnSubmit = evt => {
-		evt.preventDefault();
+	handleOnSubmit = async event => {
+		event.preventDefault();
 
 		const { register, setToken } = authorize;
 		const { username, password } = this.state;
 
-		const trimmedUsername = username;
+		const sanitizeUser = username.toString().toLowerCase().trim();
 
-		if (trimmedUsername !== null && password !== null) {
-			if (trimmedUsername.length > 3) {
+		if (sanitizeUser.length && password.length) {
+			if (sanitizeUser.length > 3) {
 				this.setState(() => ({ errors: '' }));
-				return register(trimmedUsername, password)
-					.then(res => res.json())
-					.then(res => {
-						if (res.error) {
-							this.setState(() => ({ errors: res.error }));
-						} else {
-							setToken(res.tokens[0].token);
-							this.props.setUser(res);
-							this.props.setUsername(this.state.username);
-							this.props.isLoggedIn(true);
-							this.props.setAvatar(res.settings.avatar);
-							this.props.history.push('/dashboard');
-						}
-					})
-					.catch(err => {
-						if (err) {
-							this.setState(() => ({
-								errors: 'there is an registration error'
-							}));
-							return;
-						}
-					});
+				try {
+					const response = await register(sanitizeUser, password);
+					const res = response.json();
+					if (res.error) {
+						this.setState(() => ({ errors: res.error }));
+					} else {
+						setToken(res.tokens[0].token);
+						this.props.setUser(res);
+						this.props.setUsername(this.state.username);
+						this.props.isLoggedIn(true);
+						this.props.setAvatar(res.settings.avatar);
+						this.props.history.push('/dashboard');
+					}
+				} catch (error) {
+					this.setState(() => ({
+						errors: `there is an registration error ${error}`
+					}));
+				}
 			} else {
 				this.setState(() => ({
 					errors: 'username must be more than 3 letters'
@@ -78,7 +74,7 @@ class Register extends Component {
 			}
 		} else {
 			this.setState(() => ({
-				errors: 'Please fill out form completely'
+				errors: 'Please fill out form'
 			}));
 		}
 	};
