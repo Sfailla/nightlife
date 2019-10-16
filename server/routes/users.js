@@ -12,10 +12,10 @@ server.get('/me', authenticate, (req, res) => {
 	res.send(user);
 });
 
-server.get('/usersList', (req, res) => {
-	User.find({}, (err, users) => {
+server.get('/users-list', (req, res) => {
+	User.find({}, (err, user) => {
 		if (err) return res.send(err);
-		res.send(users);
+		res.send(user);
 	});
 });
 
