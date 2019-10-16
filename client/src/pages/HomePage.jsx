@@ -17,7 +17,7 @@ import Search from '../sections/Search';
 import Account from '../sections/Account';
 import Dashboard from '../sections/Dashboard';
 import Register from '../sections/Register';
-import Login from '../components/Login';
+import Login from '../sections/Login';
 import SideDrawer from '../components/SideDrawer';
 import Backdrop from '../components/Backdrop';
 import authorize from '../utils/AuthClass';

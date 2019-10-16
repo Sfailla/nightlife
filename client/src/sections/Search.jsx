@@ -62,22 +62,20 @@ class Search extends React.Component {
 		const controller = new AbortController();
 		const { signal } = controller;
 
-		let value = searchVal.trim();
+		const value = searchVal.toLowerCase().toString().trim();
 
 		this.setState(() => ({ isLoading: true }));
 		try {
-			let response = await fetch(
-				`${api.yelp
-					.baseURL}location=${value}&limit=15&term=nightclubs,bars`,
-				{
-					method: 'GET',
-					headers: {
-						Authorization: `Bearer ${this.getToken()}`
-					},
-					signal
-				}
-			);
-			let res = await response.json();
+			const url = `${api.yelp
+				.baseURL}location=${value}&limit=15&term=nightclubs,bars`;
+			const response = await fetch(url, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${this.getToken()}`
+				},
+				signal
+			});
+			const res = await response.json();
 			if (res.businesses.length) {
 				this.setState({
 					searchResults: res.businesses,

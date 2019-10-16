@@ -67,7 +67,8 @@ class Account extends React.Component {
 		// this.props.logout();
 		authorize
 			.authFetch('/users/users-list', { method: 'DELETE' })
-			.then(res => console.log('operation complete ', res));
+			.then(res => console.log('operation complete ', res))
+			.catch(err => console.error(err));
 	};
 
 	componentDidMount = () => {
