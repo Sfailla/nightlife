@@ -1,8 +1,6 @@
 import React from 'react';
 
-import Typography from './Typography';
 import { Icon } from './Icon';
-
 import { BorderlessForm } from './Form';
 import Button from './Button';
 
