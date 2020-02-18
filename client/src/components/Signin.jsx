@@ -29,7 +29,6 @@ const styles = {
 };
 
 const Signin = ({ handleOnChange, errors }) => {
-	console.log(errors);
 	return (
 		<div className="signup">
 			<div className="signup__signup-card">

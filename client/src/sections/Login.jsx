@@ -50,7 +50,6 @@ export class Login extends Component {
 				}
 			} catch (errors) {
 				this.setState({ errors });
-				throw new Error(errors);
 			}
 		} else {
 			this.setState(() => ({
