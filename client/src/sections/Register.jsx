@@ -51,7 +51,7 @@ class Register extends Component {
 				this.setState(() => ({ errors: '' }));
 				try {
 					const response = await register(sanitizeUser, password);
-					const res = response.json();
+					const res = await response.json();
 					if (res.error) {
 						this.setState(() => ({ errors: res.error }));
 					} else {

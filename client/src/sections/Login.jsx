@@ -36,10 +36,10 @@ export class Login extends Component {
 			this.setState(() => ({ errors: '' }));
 			try {
 				const response = await login(sanitizeUser, password);
-				const res = response.json();
+				const res = await response.json();
 				if (res.error) {
 					this.setState(() => ({ errors: res.error }));
-				} else {
+				} else if (!res.error) {
 					setToken(res.tokens[0].token);
 					this.setUserPresence(true);
 					this.props.setUser(res);
@@ -48,9 +48,9 @@ export class Login extends Component {
 					this.props.isLoggedIn(true);
 					this.props.history.push('/dashboard');
 				}
-			} catch (error) {
-				this.setState({ errors: error });
-				return console.error(error);
+			} catch (errors) {
+				this.setState({ errors });
+				throw new Error(errors);
 			}
 		} else {
 			this.setState(() => ({

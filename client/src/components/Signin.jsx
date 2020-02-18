@@ -28,31 +28,38 @@ const styles = {
 	}
 };
 
-const Signin = ({ handleOnChange, errors }) => (
-	<div className="signup">
-		<div className="signup__signup-card">
-			<Icon icon="puzzle" size={100} view1={26} view2={28} />
-			{errors && <p style={styles.error}>** {errors} **</p>}
-			<div style={{ paddingBottom: '7rem' }}>
-				<BorderlessForm
-					addStyles={styles.borderlessForm}
-					type="text"
-					name="username"
-					label="username"
-					handleOnChange={handleOnChange}
-				/>
-				<BorderlessForm
-					addStyles={styles.borderlessForm}
-					type="password"
-					name="password"
-					label="password"
-					btnName="Submit"
-					handleOnChange={handleOnChange}
+const Signin = ({ handleOnChange, errors }) => {
+	console.log(errors);
+	return (
+		<div className="signup">
+			<div className="signup__signup-card">
+				<Icon icon="puzzle" size={100} view1={26} view2={28} />
+				{errors && <p style={styles.error}>** {errors} **</p>}
+				<div style={{ paddingBottom: '7rem' }}>
+					<BorderlessForm
+						addStyles={styles.borderlessForm}
+						type="text"
+						name="username"
+						label="username"
+						handleOnChange={handleOnChange}
+					/>
+					<BorderlessForm
+						addStyles={styles.borderlessForm}
+						type="password"
+						name="password"
+						label="password"
+						btnName="Submit"
+						handleOnChange={handleOnChange}
+					/>
+				</div>
+				<Button
+					addStyles={styles.button}
+					type="submit"
+					name="Submit"
 				/>
 			</div>
-			<Button addStyles={styles.button} type="submit" name="Submit" />
 		</div>
-	</div>
-);
+	);
+};
 
 export default Signin;
