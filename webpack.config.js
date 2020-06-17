@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 let isProd = process.env.NODE_ENV === 'production';
 
@@ -59,7 +60,8 @@ module.exports = {
 		}),
 		new HtmlWebpackPlugin({
 			template: './public/index.html'
-		})
+		}),
+		new Dotenv()
 	],
 	devtool: isProd ? 'source-map' : 'cheap-module-source-map',
 	devServer: {
