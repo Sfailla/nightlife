@@ -17,9 +17,9 @@ class Search extends React.Component {
 		errors: ''
 	};
 
-	getToken = () => {
-		return api.yelp.token;
-	};
+	// getToken = () => {
+	// 	return api.yelp.token;
+	// };
 
 	initializeEventData = async () => {
 		try {
@@ -71,7 +71,7 @@ class Search extends React.Component {
 			const response = await fetch(url, {
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${this.getToken()}`
+					Authorization: `Bearer ${process.env.API_KEY}`
 				},
 				signal
 			});
