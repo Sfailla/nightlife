@@ -12,10 +12,9 @@
 	&__background {
 		width: 100%;
 		height: 20rem;
-		background-image: url('http://www.abstract-living.com/wp-content/uploads/2015/05/bar-scene.jpg');
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
+		// background-size: cover;
+		// background-position: bottom;
+		// background-repeat: no-repeat;
 		@include flex-center(center, center);
 		@media (max-width: 56.25em) {
 			height: 30rem;

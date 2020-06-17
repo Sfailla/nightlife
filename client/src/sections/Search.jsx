@@ -6,6 +6,7 @@ import SearchCard from '../components/SearchCard';
 import Typography from '../components/Typography';
 import authorize from '../utils/AuthClass';
 import ResultsPage from './Results';
+import image from '../images/bar-scene-opt.png';
 
 class Search extends React.Component {
 	state = {
@@ -117,7 +118,12 @@ class Search extends React.Component {
 						/>
 					</div>
 
-					<div className="search__background">
+					<div
+						style={{
+							background: `url(${image}) no-repeat center / cover`
+						}}
+						className="search__background"
+					>
 						<Typography
 							headingSecondary="See what's going on tonight!"
 							className="search__heading-secondary u-center-text"
