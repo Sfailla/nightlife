@@ -37,7 +37,7 @@
 		"mongodb": "^3.1.4",
 		"mongoose": "^5.2.13",
 		"node-sass": "^4.14.1",
-		"npm": "^6.14.5",
+		"npm": "^7.0.3",
 		"path": "^0.12.7",
 		"react": "^16.4.2",
 		"react-dom": "^16.4.2",
@@ -45,7 +45,7 @@
 		"react-redux": "^5.0.7",
 		"redux": "^4.0.0",
 		"redux-thunk": "^2.3.0",
-		"webpack": "^4.27.0"
+		"webpack": "^5.2.0"
 	},
 	"devDependencies": {
 		"babel-core": "^6.26.3",
@@ -64,7 +64,7 @@
 		"html-loader": "^0.5.5",
 		"html-webpack-plugin": "^3.2.0",
 		"image-webpack-loader": "^4.5.0",
-		"mocha": "^8.0.1",
+		"mocha": "^8.2.0",
 		"morgan": "^1.9.0",
 		"nodemon": "^2.0.4",
 		"prop-types": "^15.6.2",
