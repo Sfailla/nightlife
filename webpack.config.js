@@ -18,12 +18,12 @@ module.exports = {
 				test: /\.(js|jsx)$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,
-				query: {
-					presets: [ 'react', 'env' ],
+				options: {
+					presets: [ '@babel/preset-react', '@babel/preset-env' ],
 					plugins: [
-						'transform-class-properties',
-						'transform-object-rest-spread',
-						'transform-runtime'
+						'@babel/plugin-proposal-class-properties',
+						'@babel/plugin-proposal-object-rest-spread',
+						'@babel/plugin-transform-runtime'
 					]
 				}
 			},
@@ -48,7 +48,15 @@ module.exports = {
 			},
 			{
 				test: /\.(gif|png|jpe?g|svg)$/i,
-				loaders: [ 'file-loader', 'image-webpack-loader' ]
+				use: [
+					'file-loader',
+					{
+						loader: 'image-webpack-loader',
+						options: {
+							disable: true
+						}
+					}
+				]
 			}
 		]
 	},
@@ -73,6 +81,7 @@ module.exports = {
 	devServer: {
 		contentBase: path.join(__dirname, 'build'),
 		compress: true,
+		inline: false,
 		historyApiFallback: true,
 		proxy: {
 			'*': {
